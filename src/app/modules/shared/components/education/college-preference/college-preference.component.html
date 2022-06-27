@@ -1,0 +1,83 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/{{userType}}/education" >Education Data</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						College Preferences
+					</li>
+				</ol>
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+			<a href="javascript:;" (click)="updateStudentCP()" class="btn" >
+				<img class="mr-2" src="assets/img/sa-edit.svg" />
+				Update Information
+			</a>
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>College Preferences</h2>
+		</header>
+
+		<div>
+			<div class="pl-5 py-3" >
+
+				<table class="top-align bumpup-txt" >
+
+					<tbody>
+						<tr>
+							<td width="15%" >
+								<strong>Colleges:</strong>
+							</td>
+							<td width="85%" >
+								{{ colleges }}
+							</td>
+						</tr>
+						<tr>
+							<td width="15%" >
+								<strong>Majors:</strong>
+							</td>
+							<td width="85%" >
+								{{ majors }}
+							</td>
+						</tr>
+						<tr>
+							<td width="15%" >
+								<strong>Ensembles:</strong>
+							</td>
+							<td width="85%" >
+								{{ ensembles }}
+							</td>
+						</tr>
+						<tr>
+							<td width="15%" >
+								<strong>Military:</strong>
+							</td>
+							<td width="85%" >
+								{{ military }}
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</div>

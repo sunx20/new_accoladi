@@ -1,0 +1,140 @@
+<div class="modal-header" >
+	<h4 class="modal-title" >Edit User Information</h4>
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+		<div class="container" >
+			<div class="form-row" >
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('username')" >
+					<label class="control-label" for="username" >
+						Username
+					</label>
+					<input
+						id="username"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('username')"
+						formControlName="username"
+						name="username"
+						placeholder="Username" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('username')"
+						errorMsg="Please provide a username" >
+					</app-field-error-display>
+				</div>
+			</div>
+			<div class="form-row" >
+				<div class="col-md-6 form-group" >
+					<label class="control-label" for="current_password" >
+						Current Password
+					</label>
+					<input
+						id="current_password"
+						type="password"
+						class="form-control"
+						formControlName="current_password"
+						name="current_password"
+						placeholder="Current Password" />
+				</div>
+			</div>
+			<div class="form-row" >
+				<div class="col-md-6 form-group" >
+					<label class="control-label" for="password" >
+						Password
+					</label>
+					<input
+						id="password"
+						type="password"
+						class="form-control "
+						formControlName="password"
+						name="password"
+						placeholder="Password" />
+				</div>
+			</div>
+			<div class="form-row" >
+				<div
+					class="col-md-6 form-group"
+					[ngClass]="displayFieldCss('confirm_password')" >
+					<label class="control-label" for="confirm_password" >
+						Confirm Password
+					</label>
+					<input
+						id="confirm_password"
+						type="password"
+						class="form-control "
+						formControlName="confirm_password"
+						name="confirm_password"
+						placeholder="Confirm Password"
+						[class.state-error]="isFieldInvalid('confirm_password')" />
+
+					<app-field-error-display
+						[displayError]="
+							!isFieldInvalid('confirm_password') &&
+							form.errors &&
+							form.errors.mismatch "
+						errorMsg="Password mismatch" >
+					</app-field-error-display>
+				</div>
+			</div>
+			<div class="form-row" >
+				<div class="col-md-12" >
+					<div
+						*ngIf="requestSuccess"
+						class="alert alert-success"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div
+						*ngIf="requestFailed"
+						class="alert alert-danger"
+						role="alert" >
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+	
+		<button 
+			type="button" 
+			class="btn gray-btn" 
+			(click)="close()" >
+			Cancel
+		</button>
+	
+		<button 
+			type="submit" 
+			class="btn" 
+			(click)="submitAttempted=true; submitForm();" 
+			appDisableDoubleClick
+			[disabled]="requestSuccess" >
+		
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+			
+				{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+		
+		</button>
+	
+	</div>
+</form>

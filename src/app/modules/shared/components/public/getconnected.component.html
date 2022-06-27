@@ -1,0 +1,264 @@
+<div class="getConnected-page">	
+	
+	<div class="article-header-title text-center">
+		<h1>Get<br>Connected</h1>
+	</div>
+
+	<section id="gc-category">
+		
+		<div class="container-fluid">
+			
+			<div class="row">
+				
+				<div class="col-md-4">
+					
+					<div class="gcc-column text-center">
+						
+						<h1>STUDENT</h1>
+						
+						<button [routerLink]="['/register']" [queryParams]="{role: 'Student'}" class="btn btn-outline-dark">10 Days Free Trial*</button>
+						
+						<div>
+							<button (click)="openCommitmentStudent(content1)" class="btn btn-outline-dark btn-commitment">Our Pricing and Commitment to Students</button>
+						</div>
+
+						<img src="/assets/images/get-connected/asset1.png" alt="" class="img-fluid">
+					
+					</div>
+
+				</div>
+
+				<div class="col-md-4">
+					
+					<div class="gcc-column text-center">
+					
+						<h1>TEACHER</h1>
+						
+						<button [routerLink]="['/register']" [queryParams]="{role: 'Teacher'}" class="btn btn-outline-dark">Create Free Account</button>
+						
+						<div>
+							<button (click)="openCommitmentTeacher(content2)" class="btn btn-outline-dark btn-commitment">Our Commitment to Teachers</button>
+						</div>
+						
+						<img src="assets/images/get-connected/asset3.png" alt="" class="img-fluid">
+					
+					</div>
+
+				</div>
+
+				<div class="col-md-4">
+					
+					<div class="gcc-column text-center">
+						
+						<h1 class="gccc-recruiter">RECRUITERS</h1>
+						
+						<button [routerLink]="['/register']" [queryParams]="{role: 'Recruiter'}" class="btn btn-outline-dark">Create Free Account</button>
+						
+						<div>
+							<button (click)="openCommitmentRecruiter(content3)" class="btn btn-outline-dark btn-commitment">Our Commitment Recruiters</button>
+						</div>
+						
+						<img src="assets/images/get-connected/asset4.png" alt="" class="img-fluid">
+					
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section id="student-pricing-banner">
+		
+		<div class="spb-content text-right">
+
+			<h2>Student</h2>
+			<h1>Pricing</h1>
+
+		</div>
+
+	</section>
+
+	<div id="gc-pricing-details">
+
+		<!-- <div class="text-center mb-5">
+		
+			<button class="btn btn-gcpd">SIGN UP</button>
+		
+		</div> -->
+
+		<div class="container-fluid gcpd-body pt-5">
+			
+			<div class="row">
+				
+				<div class="col-md-4">
+					
+					<div class="gcpd-column text-center">
+						<h1>10 Days Trial</h1>
+						<h2>Free</h2>
+						<div class="offer-policies text-left">
+							<i>-</i><p>Limited search results of directories</p>
+							<i>-</i><p>Limited access to resources</p>
+							<i>-</i><p>Online profile not searchable to recruiters</p>
+						</div>
+						<h2>The 10-days free trial includes limited search results and resources. Your profile is not searchable to recruiters during the trial period.</h2>
+					</div>
+
+				</div>
+
+				<div class="col-md-4">
+					
+					<div class="gcpd-column text-center">
+						<h1>Full Access</h1>
+						<h2>3 months $30</h2>
+						<h2>6 months $55</h2>
+						<h2>12 months $100</h2>
+						<div class="offer-policies text-left">
+							<i>-</i><p>Online profile searchable to recuiters from colleges, universities, conservatories and summer enrichment</p>
+							<i>-</i><p>See colleges that viewed you</p>
+							<i>-</i><p>Receive messages from recruiters in a secure portal</p>
+							<i>-</i><p>Invite Teachers</p>
+							<i>-</i><p>College Directory</p>
+							<i>-</i><p>Premier Program</p>
+							<i>-</i><p>Request Reference</p>
+							<i>-</i><p>Music Career Directory</p>
+							<i>-</i><p>Summer Camp Directory</p>
+							<i>-</i><p>Competition & Festival Directory</p>
+							<i>-</i><p>Repertoire Directory</p>
+							<i>-</i><p>Excerpt Directory</p>
+							<i>-</i><p>Mock Audition Requirements</p>
+							<i>-</i><p>Entrance Exam Questions</p>
+							<i>-</i><p>500 Musical Terms</p>
+							<i>-</i><p>Music History Guides</p>
+							<i>-</i><p>American Music Timeline</p>
+							<i>-</i><p>Directory of 16,500+ Non- Institutional Scholarships</p>
+							<i>-</i><p>Articles & Blogs</p>
+							<i>-</i><p>Grade by Grade Guide for Audition Preparation</p>
+							<i>-</i><p>Music Theory Guides</p>
+							<i>-</i><p>Guide to Paying for Colleges</p>
+							<i>-</i><p>Notify colleges & summer enrichment preferences</p>
+							<i>-</i><p>Opportunity to be a featured student of Accoladi's home page</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-4">
+					
+					<div class="gcpd-column text-center">
+						<h1>Lifetime</h1>
+						<h2>Full Access</h2>
+						<h2>$199</h2>
+						<div class="offer-policies text-left">
+							<i>-</i><p>Online profile searchable to recuiters from colleges, universities, conservatories and summer enrichment</p>
+							<i>-</i><p>See colleges that viewed you</p>
+							<i>-</i><p>Receive messages from recruiters in a secure portal</p>
+							<i>-</i><p>Invite Teachers</p>
+							<i>-</i><p>College Directory</p>
+							<i>-</i><p>Premier Program</p>
+							<i>-</i><p>Request Reference</p>
+							<i>-</i><p>Music Career Directory</p>
+							<i>-</i><p>Summer Camp Directory</p>
+							<i>-</i><p>Competition & Festival Directory</p>
+							<i>-</i><p>Repertoire Directory</p>
+							<i>-</i><p>Excerpt Directory</p>
+							<i>-</i><p>Mock Audition Requirements</p>
+							<i>-</i><p>Entrance Exam Questions</p>
+							<i>-</i><p>500 Musical Terms</p>
+							<i>-</i><p>Music History Guides</p>
+							<i>-</i><p>American Music Timeline</p>
+							<i>-</i><p>Directory of 16,500+ Non- Institutional Scholarships</p>
+							<i>-</i><p>Articles & Blogs</p>
+							<i>-</i><p>Grade by Grade Guide for Audition Preparation</p>
+							<i>-</i><p>Music Theory Guides</p>
+							<i>-</i><p>Guide to Paying for Colleges</p>
+							<i>-</i><p>Notify colleges & summer enrichment preferences</p>
+							<i>-</i><p>Opportunity to be a featured student of Accoladi's home page</p>
+							<h3>Plus:</h3>
+							<i>-</i><p>Unlimited notification to college and summer enrichment preferences</p>
+							<i>-</i><p>Priority to become a featured student on Accoladi's homepage (Contigent on complete profile)</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<app-footer></app-footer>
+
+	</div>
+	
+</div>
+
+<ng-template #content1 let-modal>
+	<h3 class="modal-header">Our Commitment to Students</h3>
+	<div class="model-body">
+		We will connect you to:
+		<ul>
+			<li>Potential colleges, universities, and conservatories that offer a music degree</li>
+			<li>Potential institutions seeking your talents, even if you are not going to major in music </li>
+			<li>A college directory of U.S. colleges, universities, and conservatories, and the specific music degrees they offer</li>
+			<li>A national directory of collegiate premier programs</li>
+			<li>US Military music ensemble opportunities</li>
+			<li>A searchable profile, where you can upload your educational information, performance history, honors, awards, references, and performance videos</li>
+			<li>A national directory of non-institutional scholarships</li>
+			<li>A directory of music career opportunities</li>
+			<li>A directory of music camps, summer stock, and master classes</li>
+			<li>A directory of festivals and competitions</li>
+			<li>Resources about the application, audition, and acceptance process</li>
+			<li>A national repertoire directory of audition-appropriate pieces</li>
+			<li>Hundreds of schools’ music entrance exam questions and answers</li>
+			<li>500 musical terms found in music entrance exams</li>
+			<li>A guide of general music history</li>
+			<li>The American Music Timeline</li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+	<h3 class="modal-header">Our Commitment to Teachers</h3>
+	<div class="model-body">
+		We will connect you to:
+		<ul>
+			<li>A platform where your students can upload their educational and performance history, references, and performance videos for collegiate and summer enrichment recruiters</li>
+			<li>A portal to upload and maintain a reference for each of your student’s needs.</li>
+			<li>A platform to follow your students’ collegiate process</li>
+			<li>A college directory of U.S. colleges, universities, and conservatories, and the specific music degrees they offer</li>
+			<li>A directory of non-institutional scholarships to aid your students, parents, and school counselors in the procurement of scholarship funds</li>
+			<li>A directory of music camps, summer stock, and master classes</li>
+			<li>A directory of festivals and competitions</li>
+			<li>A national repertoire directory of solos, appropriate for college auditions</li>
+			<li>Music department entrance exam questions and answers</li>
+			<li>A Resource Center of advice, guides, and musical exercises to facilitate your needs</li>
+			<li>A video series of Motivational Moments that can be used in your classroom </li>
+			<li>A support program (SOAR) for your underserved students</li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+	<h3 class="model-heading">Our Commitment to Recruiters</h3>
+	<div class="model-body">
+		We will connect you to:
+		<ul>
+			<li>A searchable database of prospective students, including their educational information, performance history, honors, references, and solo performance videos</li>
+			<li>A secure portal to review teacher references</li>
+			<li>A secure messaging portal for direct contact with students, parents, and teachers  </li>
+			<li>A national directory of non-institutional scholarships</li>
+			<li>An opportunity for your school and music program to be featured on our front page</li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+	</div>
+</ng-template>

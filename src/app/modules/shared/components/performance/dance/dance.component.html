@@ -1,0 +1,115 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+
+				<ol class="breadcrumb" >
+
+					<li class="breadcrumb-item" >
+						<a routerLink="/student/performance" >Performance</a>
+					</li>
+
+					<li class="breadcrumb-item active" aria-current="page" >
+						Dance
+					</li>
+
+				</ol>
+
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+			<a class="btn"
+				href="javascript:;"
+				(click)="addStudentDance()" >
+				<img class="mr-2"
+					src="assets/img/sa-add-08.svg" />
+				Add Dance
+			</a>
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>Dance</h2>
+		</header>
+
+		<div class="general-table" >
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr>
+						<td>
+							<p>
+								Have you performed dance, in any of its disciplines; Ballet, Jazz, Tap, Motern/contemporary? 
+								Did you perform in Company or Troupe, or competition? 
+								Those are good performance opportunities! Tell us about them.
+							</p>
+							<p>
+								Questions Asked:<br />
+								Piece Performed *, Company, Show, Role, Type *, Performed at *, Grade (6-12) *, Link to video of performance, Comments
+							</p>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor=" let da of dance; let i = index " >
+						<td width="5%" >
+							<button *ngIf="da.video_url"
+								type="button"
+								class="btn btn-play"
+								(click)="playVideo(da.video_url)" >
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+						</td>
+						<td width="35%" >
+							<span class="bumpup-txt" >
+								<u>
+									{{ da.piece }} {{ da.type }}
+								</u>
+							</span>
+							<br />
+							{{ da.show }} {{ da.role }}
+						</td>
+						<td width="25%" >
+							{{ da.company }} {{ da.performed_at }}
+						</td>
+
+						<td width="3%" >
+							<a href="javascript:;"
+								(click)="updateStudentDance(da._id)" >
+								<img style="width:20px;"
+									src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+						<td width="3%" >
+							<img style="width:13px;cursor: pointer;"
+								src="assets/img/close-x-22.png"
+								(click)="removeStudentDance(da._id)" />
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+
+</div>

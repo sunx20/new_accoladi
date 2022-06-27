@@ -1,0 +1,140 @@
+<div class="modal-header" >
+	
+	<h4 class="modal-title" >
+		Share this profile<br/>
+		<span style="font-size: 10px; color: gray;">Note: The recipient of the email will need to have a Accoladi.com account to view the profile.</span>
+	</h4>
+	
+</div>
+
+<form novalidate="novalidate"
+		autocomplete="off"
+		[formGroup]="form"
+		(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+				
+				<div class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('email')" >
+
+					<label for="email" class="control-label " >
+						Email
+					</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						formControlName="email"
+						placeholder="Email"
+						class="form-control"
+						[class.state-error]="isFieldInvalid('email')" />
+
+					<app-field-error-display
+						*ngIf="f.email.errors && f.email.errors.required"
+						[displayError]="isFieldInvalid('email')"
+						errorMsg="Please provide an email" >
+					</app-field-error-display>
+
+					<app-field-error-display
+						*ngIf="f.email.errors && f.email.errors.email"
+						[displayError]="isFieldInvalid('email')"
+						errorMsg="Please provide a valid email" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+				
+				<div class="col-md-12 form-group" >
+					
+					<label for="link" class="control-label" >
+						Link to student profile
+					</label>
+					<input id="link"
+							name="link"
+							type="text"
+							formControlName="link"
+							placeholder="Link"
+							class="form-control"
+							[attr.disabled]="true" />
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+				
+				<div class="col-md-12 form-group" >
+					
+					<label for="additionalMsg" class="control-label" >
+						Text to send
+					</label>
+					<textarea id="additionalMsg"
+								name="additionalMsg"
+								formControlName="additionalMsg"
+								rows="2"
+								class="form-control" >{{ additionalMsg }}</textarea>
+				</div>
+
+				<app-field-error-display
+					*ngIf="f.additionalMsg.errors && f.additionalMsg.errors.required"
+					[displayError]="isFieldInvalid('additionalMsg')"
+					errorMsg="Please provide some text" >
+				</app-field-error-display>
+
+			</div>
+			
+
+			<div class="form-row" >
+				
+				<div class="col-md-12" >
+				
+					<div *ngIf="requestSuccess"
+						role="alert"
+						class="alert alert-success" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed"
+						role="alert"
+						class="alert alert-danger" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer d-flex justify-content-between" >
+				
+				<button type="button" class="btn gray-btn" (click)="close()" >
+					Cancel
+				</button>
+
+				<button type="submit" [disabled]="requestSuccess" class="btn " >
+					
+					<span *ngIf="loading"
+						role="status"
+						class="spinner-border spinner-border-sm"
+						aria-hidden="true" ></span>
+					{{
+						loading
+							? "Sending..."
+							: !requestSuccess
+							? "Share"
+							: "Done"
+					}}
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</form>

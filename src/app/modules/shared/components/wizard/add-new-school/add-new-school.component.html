@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add New School</h4>
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="schoolForm">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-row">
+        <div class="col-md-6 form-group required">
+          <label for="name" class="control-label">Name</label>
+          <input class="form-control" type="text" name="name" formControlName="school" id="name" />
+          <div *ngIf="schoolForm.controls['school'].hasError('required') && schoolForm.controls['school'].touched"
+            class="error-msg" translate>Please select Name
+          </div>
+        </div>
+
+        <div class="col-md-6 form-group required">
+          <label for="street" class="control-label">street</label>
+          <input type="text" formControlName="street" class="form-control">
+        </div>
+
+        <div class="col-md-6 form-group required">
+          <label for="city" class="control-label">City</label>
+          <input class="form-control" type="text" name="city" formControlName="city" id="city" />
+          <div *ngIf="schoolForm.controls['city'].hasError('required') && schoolForm.controls['city'].touched"
+            class="error-msg" translate>Please select City
+          </div>
+        </div>
+
+        <div class="col-md-6 form-group required">
+          <label for="state" class="control-label">State</label>
+
+          <!-- <input class="form-control" type="text" name="state" formControlName="state" id="state" /> -->
+          <select id="state" class="form-control " name="state" formControlName="state">
+            <option value="" disabled selected>State - Select One...</option>
+            <option *ngFor="let state of states" value="{{ state.abbr }}">{{ state.name }}</option>
+          </select>
+          <div *ngIf="schoolForm.controls['state'].hasError('required') && schoolForm.controls['state'].touched"
+            class="error-msg" translate>Please select City
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-6 form-group required">
+          <label for="zip" class="control-label">zip</label>
+          <input type="text" formControlName="zip" class="form-control">
+        </div>
+
+        <div class="col-md-6 form-group required">
+          <label for="phone" class="control-label">phone</label>
+          <input type="text" formControlName="phone" class="form-control">
+          <div *ngIf="schoolForm.controls['phone'].hasError('pattern') && !schoolForm.controls['phone'].valid"
+            class="error-msg" translate>Invalid Phone Number</div>
+        </div>
+
+        <div class="col-md-6 form-group required">
+          <label for="locale" class="control-label">Locale </label>
+          <select id="locale" class="form-control " name="locale" formControlName="locale">
+            <option value="" disabled selected>Locale - Select One...</option>
+            <option *ngFor="let locale of locales" value="{{ locale }}"> {{locale}} </option>
+          </select>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn gray-btn" (click)="close()">
+      Cancel
+    </button>
+    <button type="button" class="btn yellow-btn" [disabled]="!schoolForm.valid"
+      (click)="updateSchool(schoolForm.value)">
+      Save
+    </button>
+  </div>
+</form>

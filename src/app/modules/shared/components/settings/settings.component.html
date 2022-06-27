@@ -1,0 +1,643 @@
+<style>
+	.card {
+		margin-bottom: 2%;
+		overflow: visible;
+	}
+
+	.container {
+		padding-left: 0px;
+		margin-left: 0px;
+	}
+</style>
+
+<div class="px-4 py-5">
+
+	<h2 class="mb-4">
+		Account Settings
+	</h2>
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-6">
+
+				<div class="card" id="user_info" >
+
+					<section class="module">
+
+						<header class="row justify-content-between">
+
+							<h2 class="col-sm-6">
+								User Information
+							</h2>
+							<a href="javascript:;" (click)="editPersonalInfo()" style="padding-right:10px !important">
+								Edit
+							</a>
+
+						</header>
+
+						<div class="general-table closer-head">
+
+							<table class="table mb-0">
+
+								<thead>
+									<tr>
+										<th width="35%">First Name</th>
+										<th width="30%">Middle Name</th>
+										<th width="35%">Last Name</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{ user?.first_name }}</td>
+										<td>{{ user?.middle_name}}</td>
+										<td>{{ user?.last_name }}</td>
+									</tr>
+								</tbody>
+
+							</table>
+
+							<table class="table mb-0">
+
+								<thead>
+									<tr>
+										<th width="50%">Username</th>
+										<th width="50%">Password <a href="javascript:;" (click)="changePassword()" style="padding-right:10px !important">
+											change
+										</a></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{ user?.username }}</td>
+										<td>****** </td>
+									</tr>
+								</tbody>
+
+							</table>
+
+							<table class="table mb-0">
+
+								<thead>
+									<tr>
+										<th width="50%">Date of Birth</th>
+										<th width="50%">Dates</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{ dob }}</td>
+										<td>
+											<div *ngIf="isUserMetaAvailable" >
+												<b>Registered :</b> {{ user.meta.dates.registered | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+											
+											<div *ngIf="isUserMetaAvailable" >
+												<b>Paid Thru :</b> {{  user.meta.dates.paid_thru | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+
+											<div *ngIf="isUserMetaAvailable && user.meta.dates.last_login != null" >
+												<b>Last Login :</b> {{ user.meta.dates.last_login | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+											
+											<div *ngIf="isUserMetaAvailable && user.meta.dates.last_activity != null" >
+												<b>Last Activity :</b> {{ user.meta.dates.last_activity | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+											
+											<div *ngIf="isUserMetaAvailable && user.meta.dates.last_email_notification != null" >
+												<b>Last Email Notification :</b> {{ user.meta.dates.last_email_notification | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+											
+											<div *ngIf="isUserMetaAvailable &&user.meta.dates.activated != null" >
+												<b>Account Activated :</b> {{ user.meta.dates.activated | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+
+											<div *ngIf="isUserMetaAvailable && user.meta.dates.suspended != null" >
+												<b>Account Suspended :</b> {{ user.meta.dates.suspended | amDateFormat: 'MMM DD, YYYY' }}
+											</div>
+
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+
+							<table class="table mb-0" *ngIf="user?.introduction?.statement">
+								<thead>
+									<tr>
+										<th width="100%">Introduction Statement:</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											{{ user.introduction.statement }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table mb-0" *ngIf="user?.introduction?.video_url" >
+								<thead>
+									<tr>
+										<th width="50%">Introduction Video URL: </th><td>
+											<button type="button" 
+													class="btn btn-play" 
+													(click)="playVideo(user.introduction.video_url)" >
+												<img src="assets/img/play-arrow-black-19.png" />
+											</button>
+										</td>
+									</tr>
+								</thead>
+							</table>
+							
+						</div>
+
+						<div>
+							<p>
+								&nbsp;
+							</p>
+						</div>
+
+					</section>
+
+				</div>
+
+				<div class="card" id="contact_info" >
+
+					<section class="module">
+
+						<header class="row justify-content-between">
+
+							<h2 class="col-sm-6">
+								Contact Information
+							</h2>
+							<a href="javascript:;" (click)="editContactInfo()" style="padding-right:10px !important">
+								Edit
+							</a>
+
+						</header>
+
+						<div class="general-table closer-head">
+
+							<table class="table mb-0">
+
+								<thead>
+									<tr>
+										<th width="50%">Address</th>
+										<th width="50%">Phone</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											{{ user.address?.street1 }} {{ user.address?.street2 }}<br>
+											{{ user.address?.city }} {{ user.address?.state }}
+											{{ user.address?.country }}<br>
+											{{ user.address?.postal_code }}
+										</td>
+										<td>{{ user?.phone.phone }}</td>
+									</tr>
+								</tbody>
+
+								<thead>
+									<tr>
+										<th>Email</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{ user?.email }}</td>
+									</tr>
+								</tbody>
+
+							</table>
+
+						</div>
+
+						<div>
+							<p>
+								&nbsp;
+							</p>
+						</div>
+
+					</section>
+
+				</div>
+
+				<div class="card" id="demographic_info" >
+
+					<section class="module">
+
+						<header class="row justify-content-between">
+
+							<h2 class="col-sm-6">
+								Demographic Information
+							</h2>
+							<a href="javascript:;" (click)="editDemographicInfo()" style="padding-right:10px !important">
+								Edit
+							</a>
+
+						</header>
+
+						<div class="general-table closer-head">
+
+							<table class="table mb-0">
+
+								<thead>
+									<tr>
+										<th width="30%">Sex</th>
+										<th width="30%">Ethnicity</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{ sex }}</td>
+										<td>{{ ethnicity }}</td>
+									</tr>
+								</tbody>
+
+							</table>
+
+						</div>
+
+						<div>
+							<p>
+								&nbsp;
+							</p>
+						</div>
+
+					</section>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-6">
+
+				<div class="card" id="profile_image" >
+
+					<section class="module">
+
+						<header>
+							<h2>Profile Image</h2>
+						</header>
+
+						<div >
+							<img [src]="profile_image ? profile_image : defaultProfileImage" 
+								class="profileImage img-fluid" 
+								alt="Profile Image" />
+						</div>
+
+						<div class="col-lg-12 text-center py-2">
+
+							<input type="file" style="display:none" name="uploadprofileimg" id="uploadprofileimg"
+								(change)="selectImage($event.target.files)" #FileInput>
+
+							<button type="button" class="btn" (click)="FileInput.click()">
+								Pick New Profile Image
+							</button>
+
+							<div *ngIf="message" class="alert alert-danger">
+								{{message}}
+							</div>
+
+						</div>
+
+						<div class="col-lg-12 text-center py-2">
+							<div>
+								<img [src]="imgURL" height="100" width="100" class="m-auto" *ngIf="imgURL" />
+							</div>
+
+							<button type="button" class="btn py-2" *ngIf="imgURL" (click)="uploadImage()">
+								Upload Image
+							</button>
+
+							<div *ngIf="isImageSucess" class="alert alert-info ">
+								{{responseMsg}}
+							</div>
+
+						</div>
+
+					</section>
+
+				</div>
+
+				<div class="card" id="payment_billing_info" *ngIf="(user?.role == 'Student' || user?.role == 'Parent')">
+
+					<section class="module">
+
+						<header>
+							<h2>
+								Payment & Billing
+							</h2>
+						</header>
+
+						<div *ngIf="(user?.role == 'Student' ||user?.role == 'Recruiter' || user?.role == 'Teacher' )">
+
+							<div class="general-table closer-head" *ngIf="current_subscription">
+
+								<table class="table mb-0">
+
+									<thead>
+										<tr>
+											<th width="50%">Payment Method</th>
+											<th width="50%">Auto-Pay</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td>
+												<!-- VISA *** *** **** 0000 -->
+											</td>
+											<td>
+												<!-- On -->
+											</td>
+										</tr>
+									</tbody>
+
+								</table>
+
+							</div>
+
+							<div *ngIf="current_subscription">
+								<p>
+									<!-- <a class="underlinelink" href="#" >Edit Payment Method</a> -->
+								</p>
+							</div>
+
+							<div *ngIf="!processing" class="text-center" style="padding-bottom: 10px !important">
+
+								<button
+									*ngIf=" !current_subscription || (current_subscription.status != 'active' && current_subscription.status != 'trialing') "
+									[routerLink]="['/student/premium']" class="btn">
+									Purchase premium access
+								</button>
+
+								<div class="alert alert-info" role="alert"
+									*ngIf=" current_subscription && current_subscription.status == 'active' ">
+									{{ current_subscription.type }} subscription is active
+									<br />
+									<div *ngIf="current_subscription.coupon && cancel_sub_type"> Coupon code
+										{{ current_subscription.coupon }} is active </div>
+									<br />
+									(
+									{{ current_subscription.start * 1000 | date }}
+									-
+									{{ current_subscription.end * 1000 | date }}
+									)
+								</div>
+
+								<div class="alert alert-info" role="alert"
+									*ngIf=" current_subscription && current_subscription.status == 'trialing' ">
+									Trial period of {{ current_subscription.trial_period_days }} days is active
+									<br />
+									(
+									{{ current_subscription.start * 1000 | date }}
+									-
+									{{ current_subscription.end * 1000 | date }}
+									)
+								</div>
+
+							</div>
+
+						</div>
+
+						<div>
+							<span *ngIf="processing" class="spinner-border spinner-border-sm m-auto" role="status"
+								aria-hidden="true">
+							</span>
+							<br />
+						</div>
+
+						<div *ngIf="role === 'Parent'" class="text-center" style="padding-bottom: 10px !important">
+
+							<button type="button" (click)="bulkUpgrade()" class="btn " style="width:70%">
+
+								<span *ngIf="!bulkProcessing">
+									Purchase Premium Access for Multiple Students
+									<i class="fa fa-arrow-up"></i>
+								</span>
+
+								<span *ngIf="bulkProcessing" class="spinner-border spinner-border-sm" role="status"
+									aria-hidden="true">
+								</span>
+
+								<span *ngIf="bulkProcessing">
+									Processing
+								</span>
+
+							</button>
+						</div>
+
+					</section>
+
+				</div>
+
+				<div class="card" id="billing_history_info" *ngIf="(user?.role == 'Student' || user?.role == 'Parent' )">
+
+					<section class="module">
+
+						<header>
+
+							<h2>
+								Billing History
+							</h2>
+
+						</header>
+
+						<div class="general-table closer-head" *ngIf="(user?.role == 'Student')">
+
+							<table class="table" *ngIf="subscriptions && subscriptions.length != 0">
+
+								<thead>
+									<tr>
+										<th scope="col">Type/Status</th>
+										<th scope="col">Started/Expired</th>
+										<th scope="col">Paid by</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<ng-container *ngFor="let s of subscriptions; index as i">
+
+										<tr>
+											<td>
+												{{ s.type }}
+												<br>
+												<span
+													class="{{ s.status === 'active' ? 'text-success' : s.status === 'canceled' ? 'text-warning' : '' }}">
+													{{ s.status }}
+												</span>
+											</td>
+											<td>
+												{{ s.start * 1000 | amDateFormat: 'MMM DD, YYYY' }}
+												<br>
+												{{ s.end * 1000 | amDateFormat: 'MMM DD, YYYY' }}
+											</td>
+											<td>
+												{{ s.origin_name ? s.origin_name : '' }}
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="3" class="text-center">
+												<div *ngIf=" (s.status === 'active' || s.status === 'trialing') && !cancel_processing "
+													ngbDropdown class="d-inline-block w-100">
+
+													<button class="btn btn-light text-left" id="dropdownBasic1"
+														(click)="openCancelRenewPopup(s) ">
+														Cancelling and Renewal
+													</button>
+
+													<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="p-0"
+														style="border:none; border-radius: 0;">
+
+														<button [disabled]=" s.status !== 'trialing' "
+															class="btn btn-link text-left w-100" ngbDropdownItem
+															(click)=" cancelSubscription( s.id, 'i' ) ">
+															Cancel immediately
+														</button>
+
+														<button *ngIf="!s.cancel_at_period_end"
+															class="btn btn-link text-left w-100" ngbDropdownItem
+															(click)=" cancelSubscription( s.id, 's' ) ">
+															Do not renew at end of subscription
+														</button>
+
+														<button *ngIf="s.cancel_at_period_end"
+															class="btn btn-link text-left w-100" ngbDropdownItem
+															(click)=" cancelSubscription( s.id, 'a' ) ">
+															Activate recurring payments
+														</button>
+
+													</div>
+
+												</div>
+
+												<span *ngIf=" s.status === 'active' && cancel_processing "
+													class="spinner-border spinner-border-sm" role="status"
+													aria-hidden="true">
+												</span>
+
+											</td>
+										</tr>
+
+									</ng-container>
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+						<div class="general-table closer-head" *ngIf="(user?.role == 'Parent')">
+
+							<table class="table table-responsive"
+								*ngIf=" subscriptionHistory && subscriptionHistory.length != 0 ">
+
+								<thead>
+									<tr>
+										<th scope="col">Student name</th>
+										<th scope="col">Type</th>
+										<th scope="col">Started</th>
+										<th scope="col">Expiration</th>
+										<th scope="col">Status</th>
+										<!-- <th scope="col" ></th> -->
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<ng-container *ngFor="let s of subscriptionHistory">
+
+										<tr class="payment-history">
+											<td>{{ s.student_fullname }}</td>
+											<td>{{ s.type }}</td>
+											<td>{{ s.start * 1000 | amDateFormat: 'MMM DD, YYYY' }}</td>
+											<td>{{ s.end * 1000 | amDateFormat: 'MMM DD, YYYY' }}</td>
+											<td>
+												<span class="{{
+														s.status === 'active'
+														? 'text-success'
+														: s.status === 'canceled'
+														? 'text-warning'
+														: ''
+														}}">
+													{{ s.status }}
+												</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center" colspan="5">
+
+												<div *ngIf=" (s.status === 'active' || s.status === 'trialing') && !cancel_processing"
+													ngbDropdown class="d-inline-block w-100">
+
+													<button class="btn btn-light text-left" id="dropdownBasic1"
+														(click)="openCancelRenewPopup(s)">
+														Cancelling and Renewal
+													</button>
+
+													<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="p-0"
+														style="border:none; border-radius: 0;">
+
+														<button [disabled]=" s.status !== 'trialing' "
+															class="btn btn-link text-left w-100" ngbDropdownItem
+															(click)="cancelSubscriptionParent(s.id,s.student_id,'i')">
+															Cancel immediately
+														</button>
+
+														<button *ngIf="!s.cancel_at_period_end"
+															class="btn btn-link text-left" ngbDropdownItem
+															(click)="cancelSubscriptionParent(s.id,s.student_id,'s')">
+															Do not renew at end of subscription
+														</button>
+
+														<button *ngIf="s.cancel_at_period_end"
+															class="btn btn-link text-left" ngbDropdownItem
+															(click)="cancelSubscriptionParent(s.id,s.student_id,'a')">
+															Activate recurring payments
+														</button>
+
+													</div>
+												</div>
+
+												<span *ngIf=" s.status === 'active' &&	cancel_processing "
+													class="spinner-border spinner-border-sm" role="status"
+													aria-hidden="true">
+												</span>
+
+											</td>
+										</tr>
+
+									</ng-container>
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+					</section>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

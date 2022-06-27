@@ -1,0 +1,334 @@
+<div class="modal-header">
+	<h4 class="modal-title">Add Private Study</h4>
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()"
+>
+	<div class="modal-body">
+		<div class="container">
+			<div class="form-row">
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('instructor')"
+				>
+					<label class="control-label" for="ps_instructor"
+						>Instructor</label
+					>
+					<input
+						id="ps_instructor"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('instructor')"
+						formControlName="instructor"
+						placeholder="Instructor"
+						name="instructor"
+					/>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('instructor')"
+						errorMsg="Please provide an instructor"
+					>
+					</app-field-error-display>
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="ps_institution" class="control-label"
+						>Institution</label
+					>
+					<input
+						id="ps_institution"
+						type="text"
+						placeholder="Institution"
+						class="form-control"
+						formControlName="institution"
+						name="institution"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('family')"
+				>
+					<label class="control-label " for="ps_family">Family</label>
+					<select
+						id="ps_family"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('family')"
+						name="family"
+						formControlName="family"
+					>
+						<option value="" disabled selected
+							>Select One...</option
+						>
+						<option
+							*ngFor="let family of families"
+							value="{{ family }}"
+						>
+							{{ family }}
+						</option>
+					</select>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('family')"
+						errorMsg="Please provide a family"
+					>
+					</app-field-error-display>
+				</div>
+
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('instrument')"
+				>
+					<label for="ps_instrument" class="control-label "
+						>Instrument or Voice Part</label
+					>
+					<select
+						id="ps_instrument"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('instrument')"
+						name="instrument"
+						formControlName="instrument"
+					>
+						<option value="" disabled selected
+							>Select One...</option
+						>
+						<option
+							*ngFor="let instrument of instruments"
+							value="{{ instrument.name }}"
+						>
+							{{ instrument.name }}
+						</option>
+					</select>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('instrument')"
+						errorMsg="Please provide an instrument"
+					>
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-12 form-group required"
+					[ngClass]="displayFieldCss('subject')"
+				>
+					<label for="ps_subject" class="control-label"
+						>Subject</label
+					>
+					<select
+						id="ps_subject"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('subject')"
+						name="subject"
+						formControlName="subject"
+					>
+						<option value="" disabled selected
+							>Select One...</option
+						>
+						<option *ngFor="let s of subjects" [ngValue]="s">{{
+							s
+						}}</option>
+					</select>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('subject')"
+						errorMsg="Please provide a subject"
+					>
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-6  form-group required"
+					[ngClass]="displayFieldCss('started')"
+				>
+					<label for="ps_started" class="control-label"
+						>Started Study</label
+					>
+					<select 
+					id="ps_started" 
+					[class.state-error]="isFieldInvalid('started')" 
+					(change)="onStartYearChange($event.target.value)"
+					formControlName="started" 
+					name="started" 
+					placeholder="Started" 
+					class="form-control" required>
+					<option value="select" selected>Select</option>
+						<option *ngFor="let year of years">{{year}}</option>
+					</select>
+
+					<div *ngIf="provideStartYearShow">
+							<app-field-error-display
+							[displayError]="isFieldInvalid('started')"
+							errorMsg="Please provide started year">
+						</app-field-error-display>
+					</div>
+					<app-field-error-display
+						[displayError]="startYearErrorShow"
+						errorMsg="Start year should be earlier than or same as End year"
+					>
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-6  form-group">
+					<label for="ps_ended" class="control-label"
+						>Ended Study</label
+					>
+					<select 
+					id="ps_ended" 
+					[class.state-error]="isFieldInvalid('ended')" 
+					(change)="onEndYearChange($event.target.value)"
+					formControlName="ended" 
+					name="ended" 
+					placeholder="Ended Study" 
+					class="form-control" required>
+					<option value="select" selected>Select</option>
+						<option *ngFor="let year of years">{{year}}</option>
+					</select>
+					<div *ngIf="provideEndYearShow">
+							<app-field-error-display
+							[displayError]="isFieldInvalid('ended')"
+							errorMsg="Please provide ended year">
+						</app-field-error-display>
+					</div>
+					<app-field-error-display
+						[displayError]="endYearErrorShow"
+						errorMsg="End year should be later than or same as Start year"
+					>
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-6  form-group required"
+					[ngClass]="displayFieldCss('hours')"
+				>
+					<label for="ps_hours" class="control-label"
+						>Total Hours Studied</label
+					>
+					<input
+						id="ps_hours"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('hours')"
+						formControlName="hours"
+						placeholder="Total Hours Studied"
+						name="hours"
+					/>
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('hours')"
+						errorMsg="Please provide total hours"
+					>
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-6  form-group ">
+					<label for="ps_critique" class="control-label"
+						>Critiqued?</label
+					>
+					<select
+						id="ps_critique"
+						class="form-control "
+						name="critiqued"
+						formControlName="critiqued"
+					>
+						<option value="" disabled selected
+							>Select One...</option
+						>
+						<option
+							*ngFor="let critique of critiqueSelection"
+							value="{{ critique }}"
+						>
+							{{ critique }}
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Video URL: <small>(YouTube or Vimeo)</small></label>
+					<input
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('video_url')"
+						formControlName="video_url"
+						name="video_url"
+						placeholder="Provide FULL url - like https://youtu.be/nnn-AA"
+						(input)="getVideoUrl($event.target.value)"
+						/>
+	
+						<app-video-player [video]="videoUrl"></app-video-player>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Student Comments: <small>(optional)</small></label>
+					<textarea
+						class="form-control"
+						rows="3"
+						autocomplete="off"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('comments')"
+						formControlName="comments"
+						name="comments"
+						placeholder="Additional info you may want recruiter to know about this performance">
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+		
+		<button 
+			type="button" 
+			class="btn gray-btn" 
+			(click)="close()">
+			Cancel
+		</button>
+
+		<button 
+			type="button" 
+			class="btn" 
+			(click)="submitAttempted=true; submitForm();" 
+			appDisableDoubleClick
+			[disabled]="requestSuccess" >
+		
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+		
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+		
+		</button>
+
+	</div>
+
+</form>

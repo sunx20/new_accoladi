@@ -1,0 +1,388 @@
+<div class="modal-header">
+	<h4 class="modal-title">Update Account</h4>
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()" >
+
+	<div class="modal-body">
+		<div class="container">
+			<div *ngIf="msg" class="form-row">
+				<div class="col-md-12">
+					<div class="alert alert-warning" role="alert">
+						{{ msg }}
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('first_name')" >
+					<label class="control-label " for="first_name">First Name</label>
+					<input
+						id="first_name"
+						type="text"
+						class="form-control"
+						[class.state-error]="isFieldInvalid('first_name')"
+						formControlName="first_name"
+						name="first_name"
+						placeholder="First Name"/>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('first_name')"
+						errorMsg="Please provide your first name" >
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label">Middle Name</label>
+					<input
+						type="text"
+						class="form-control "
+						formControlName="middle_name"
+						name="middle_name"
+						placeholder="Middle Name" />
+				</div>
+
+				<div
+					class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('last_name')" >
+					<label class="control-label" for="last_name" >Last Name</label>
+					<input
+						id="last_name"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('last_name')"
+						formControlName="last_name"
+						name="last_name"
+						placeholder="Last Name" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('last_name')"
+						errorMsg="Please provide your last name" >
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label class="control-label" for="email">Email</label>
+					<input
+						id="email"
+						type="email"
+						[attr.disabled]="true"
+						class="form-control"
+						formControlName="email"
+						name="email"
+						placeholder="Email" />
+				</div>
+
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('username')" >
+					<label class="control-label" for="username">Username</label>
+					<input
+						id="username"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('username')"
+						formControlName="username"
+						name="username"
+						placeholder="Username" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('username')"
+						errorMsg="Please provide a username" >
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-4  form-group required"
+					[ngClass]="displayFieldCss('street1')" >
+					<label for="street1" class="control-label">Street 1</label>
+					<input
+						id="street1"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('street1')"
+						formControlName="street1"
+						name="street1"
+						placeholder="Street 1" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('street1')"
+						errorMsg="Please provide your address street" >
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label">Street 2</label>
+					<input
+						type="text"
+						class="form-control "
+						formControlName="street2"
+						name="street2"
+						placeholder="Street 2" />
+				</div>
+
+				<div
+					class="col-md-4  form-group required"
+					[ngClass]="displayFieldCss('city')" >
+					<label for="city" class="control-label">City</label>
+					<input
+						id="city"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('city')"
+						formControlName="city"
+						name="city"
+						placeholder="City" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('city')"
+						errorMsg="Please provide city" >
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('state')" >
+					<label for="state" class="control-label">
+						State
+					</label>
+					<select
+						id="state"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('state')"
+						name="state"
+						formControlName="state" >
+						<option value="" disabled selected >State - Select One...</option>
+						<option
+							*ngFor="let state of states"
+							value="{{ state.abbr }}" >{{ state.name }}</option>
+					</select>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('state')"
+						errorMsg="Please select a state" >
+					</app-field-error-display>
+				</div>
+
+				<div
+					class="col-md-4  form-group required"
+					[ngClass]="displayFieldCss('postal_code')" >
+					<label for="postal_code" class="control-label">Postal code</label >
+					<input
+						id="postal_code"
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('postal_code')"
+						formControlName="postal_code"
+						name="postal_code"
+						placeholder="Postal code" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('postal_code')"
+						errorMsg="Please provide postal code" >
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label">Country</label>
+					<input
+						type="text"
+						class="form-control "
+						formControlName="country"
+						name="country"
+						placeholder="Country" />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label class="control-label">Phone</label>
+					<input
+						type="text"
+						class="form-control "
+						formControlName="phone"
+						name="phone"
+						placeholder="Phone" />
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label">Country code</label>
+					<input
+						type="text"
+						class="form-control "
+						formControlName="international"
+						name="international"
+						placeholder="International" />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-3  form-group required"
+					[ngClass]="displayFieldCss('dob_year')" >
+					<label class="control-label">Year of birth</label>
+
+					<input
+						*ngIf="dob_min_year && dob_max_year"
+						type="number"
+						[min]="dob_min_year"
+						[max]="dob_max_year"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('dob_year')"
+						formControlName="dob_year"
+						name="dob_year"
+						placeholder="yyyy" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_year')"
+						errorMsg="Please provide valid year of birth({{ dob_min_year }}-{{ dob_max_year }})" >
+					</app-field-error-display>
+				</div>
+
+				<div
+					class="col-md-3  form-group required"
+					[ngClass]="displayFieldCss('dob_day')" >
+					<label class="control-label">Day of birth</label>
+
+					<input
+						type="number"
+						min="1"
+						max="31"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('dob_day')"
+						formControlName="dob_day"
+						name="dob_day"
+						placeholder="dd" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_day')"
+						errorMsg="Please provide valid day of birth (01-31)" >
+					</app-field-error-display>
+				</div>
+
+				<div
+					class="col-md-3  form-group required"
+					[ngClass]="displayFieldCss('dob_month')" >
+					<label class="control-label">Month of birth</label>
+
+					<select
+						id="dob_month"
+						class="form-control "
+						name="dob_month"
+						[class.state-error]="isFieldInvalid('dob_month')"
+						formControlName="dob_month" >
+						<option value="" disabled selected>Select</option>
+						<option
+							*ngFor="let month of months; let i = index"
+							value="{{ i + 1 }}" >{{ month }} </option>
+					</select>
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_month')"
+						errorMsg="Please provide valid month of birth (01-12)" >
+					</app-field-error-display>
+				</div>
+				<div style="display:none !important"
+					class="col-md-3 form-group"
+					[ngClass]="displayFieldCss('graduation_year')" >
+					<label class="control-label">Graduation year</label>
+					<input
+						type="number"
+						min="2000"
+						max="2100"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('graduation_year')"
+						formControlName="graduation_year"
+						name="graduation_year"
+						placeholder="Graduation year" />
+					<app-field-error-display
+						[displayError]="isFieldInvalid('graduation_year')"
+						errorMsg="Graduation year in range (2000 - 2100)" >
+					</app-field-error-display>
+				</div>
+			</div>
+			<hr />
+			<div class="form-row">
+				<div class="col-md-12">
+					<small>
+						Demographics - (optional) Demographic information is
+						strictly optional and is collected solely for
+						Accoladi.com to better understand our users
+						and market.
+						<br />
+						Accoladi.com will not make this data
+						available to anyone outside of the company, and this
+						data will not be searchable.
+					</small>
+					<br />
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label">Sex</label>
+					<select
+						id="sex"
+						class="form-control "
+						name="sex"
+						formControlName="sex"
+						placeholder="Gender" >
+						<option value="" disabled selected>Select</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+					</select>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label">Ethnicity</label>
+					<select
+						id="ethnicity"
+						class="form-control "
+						name="ethnicity"
+						formControlName="ethnicity"
+						placeholder="Ethnicity" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let e of ethnicities" value="{{ e }}">{{ e }}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div
+						*ngIf="requestSuccess"
+						class="alert alert-success"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div
+						*ngIf="requestFailed"
+						class="alert alert-danger"
+						role="alert" >
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer d-flex justify-content-between">
+		<button
+			type="button"
+			class="btn gray-btn"
+			(click)="activeModal.close('Close click')" >
+			Cancel
+		</button>
+		<button type="submit" [disabled]="requestSuccess" class="btn">
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+			{{ loading ? "Saving..." : !requestSuccess ? "Save" : "Done" }}
+		</button>
+	</div>
+</form>

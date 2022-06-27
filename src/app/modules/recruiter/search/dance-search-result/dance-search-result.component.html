@@ -1,0 +1,109 @@
+<div class="card-body" *ngIf="searchResults && searchResults.length" >
+
+	<h3 name="results" >
+		Search Results ({{ "showing " + searchResults?.length + " of " + total }})
+	</h3>
+
+	<div class="d-flex justify-content-center p-2" >
+
+		<ngb-pagination 
+			class="d-flex justify-content-center" 
+			[maxSize]="10" 
+			[rotate]="true" 
+			[ellipses]="false"
+			[boundaryLinks]="true" 
+			[collectionSize]="total" 
+			[(page)]="page" 
+			[pageSize]="pageSize"
+			(pageChange)="pageChange($event)" >
+		</ngb-pagination>
+
+	</div>
+
+	<table id="search-results-table" class="table table-condensed" >
+
+		<thead>
+			<tr>
+				<th class="text-left" >
+					Student
+				</th>
+				<th class="text-left" >
+					Dance
+				</th>
+				<th class="text-center" ></th>
+			</tr>
+		</thead>
+
+		<tbody >
+
+			<tr *ngFor="let s of searchResults" >
+				<td class="text-left" >
+					<span>{{ s.name }}</span> <br />	
+				</td>
+				<td class="text-left" >
+
+					<div *ngIf="s.dance && s.dance.length > 0" >
+
+						<div *ngFor="let event of s.dance" >
+							{{ event.piece }} - {{ event.role }} - {{ event.dance_type}}
+						</div>
+
+					</div>
+
+				</td>
+				<td class="text-right" nowrap="nowrap" >
+					<i title="Share student with a colleague"
+						(click)="shareStudent(s._id)" 
+						class="fas fa-share-alt"
+						style="color:#e2a90a;cursor:pointer;" ></i>&nbsp;
+
+					<i *ngIf="!inSavedList(s._id)" 
+						title="Save student to your list"
+						(click)="saveStudent(s._id)" 
+						class="fas fa-save"
+						style="color:#e2a90a;cursor:pointer;" ></i>&nbsp;
+
+					<i *ngIf="inSavedList(s._id)" 
+						title="Student is already saved" 
+						class="far fa-save"
+						style="color:#e2a90a;" ></i>&nbsp;
+
+					<i title="View student profile"	
+						(click)="modalProfile(s._id)" 
+						class="fas fa-address-card" 
+						style="color:#e2a90a;cursor:pointer;" ></i>&nbsp;
+
+					<i title="Send a message to this student" 
+						(click)="sendMessage(s._id)" 
+						class="fas fa-comments"
+						style="color:#e2a90a;cursor:pointer;" ></i>&nbsp;
+				</td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+	<div class="d-flex justify-content-center p-2" >
+
+		<ngb-pagination 
+			class="d-flex justify-content-center" 
+			[collectionSize]="total" 
+			[maxSize]="10" 
+			[rotate]="true"
+			[ellipses]="false" 
+			[boundaryLinks]="true" 
+			[(page)]="page" 
+			[pageSize]="pageSize"
+			(pageChange)="pageChange($event)" >
+		</ngb-pagination>
+
+	</div>
+
+</div>
+
+<div class="card-body" *ngIf="searchResults && !searchResults.length" >
+
+	<p>No Students found with that specified criteria.</p>
+
+</div>

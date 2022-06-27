@@ -1,0 +1,53 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >View Search Criteria</h4>
+
+</div>
+
+<div class="modal-body" >
+
+	<div class="container" >
+
+		<ul class="list-group" >
+			<li class="list-group-item" *ngIf="compositions" >
+				<strong>Compositions</strong>: {{ compositions }}
+			</li>
+			<li class="list-group-item" *ngIf="majors" >
+				<strong>Majors</strong>: {{ majors }}
+			</li>
+			<li class="list-group-item" *ngIf="ensembles" >
+				<strong>Ensembles</strong>: {{ ensembles }}
+			</li>
+			<li class="list-group-item" *ngIf="military" >
+				<strong>Military</strong>: {{ military }}
+			</li>
+			<li class="list-group-item" *ngIf="family" >
+				<strong>Family</strong>: {{ family }}
+			</li>
+			<li class="list-group-item" *ngIf="instrument" >
+				<strong>Instrument</strong>: {{ instrument }}
+			</li>
+			<li class="list-group-item" *ngIf="state" >
+				<strong>State</strong>: {{ state }}
+			</li>
+			<li class="list-group-item" *ngIf="school_grade" >
+				<strong>Grade</strong>: {{ school_grade }}
+			</li>
+			<li class="list-group-item" *ngIf="honors_performances" >
+				<strong>Honors Performances</strong>: {{ honors_performances }}
+			</li>
+		</ul>
+
+		<br />
+
+	</div>
+
+</div>
+
+<div class="modal-footer" >
+
+	<button type="button" class="btn gray-btn" (click)="close()" >
+		Cancel
+	</button>
+	
+</div>

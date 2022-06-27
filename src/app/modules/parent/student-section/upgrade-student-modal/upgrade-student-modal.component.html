@@ -1,0 +1,326 @@
+<div class="modal-body" >
+	
+	<div class="row" >
+		
+		<div class="col-md-10 offset-md-1" >
+		
+			<p>Upgrade to Premium Access</p>
+			<p>As a premium member you can:</p>
+			<ul>
+				<li>Appear in college recruiter searches</li>
+				<li>Access complete college music school search results</li>
+				<li>Find more performing arts scholarships</li>
+				<li>introduce yourself to college faculty and administrators</li>
+				<li>Discover which colleges are the best fit for you</li>
+			</ul>
+
+		</div>
+
+	</div>
+	
+
+	<div class="row" >
+
+		<div class="col-md-5 offset-md-1" >
+
+			<div class="card text-center" id="monthly-subscription-card" >
+
+				<div class="card-header" >
+
+					<h4 class="my-0 font-weight-normal" >Monthly</h4>
+
+				</div>
+
+				<div class="card-body" >
+
+					<h1 class="card-title pricing-card-title" >
+						{{ (monthlyPrice / 100) | currency:'' }} <small class="text-muted" >/ mo</small>
+						<br /><small class="text-muted" >{{trialpm}} day trial period</small>
+					</h1>
+
+					<ul class="list-unstyled mt-3 mb-4" >
+					</ul>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Monthly'"
+						disabled
+						class="btn btn-lg btn-block " >
+						Selected
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Quarterly'"
+						(click)="selectQuarterlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Semiannual'"
+						(click)="selectSemiannualSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Yearly'"
+						(click)="selectYearlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Lifetime'"
+						(click)="selectLifetimeSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="col-md-5" >
+
+			<div class="card text-center" id="quarterly-subscription-card" >
+
+				<div class="card-header" >
+
+					<h4 class="my-0 font-weight-normal" >Quarterly</h4>
+
+				</div>
+
+				<div class="card-body" >
+
+					<h1 class="card-title pricing-card-title" >
+						{{ (quarterlyPrice / 100) | currency:'' }} <small class="text-muted" >/ 3-mo</small>
+						<br /><small class="text-muted" >{{trialpq}} day trial period</small>
+					</h1>
+
+					<ul class="list-unstyled mt-3 mb-4" >
+					</ul>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Monthly'"
+						(click)="selectMonthlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Quarterly'"
+						disabled
+						class="btn btn-lg btn-block " >
+						Selected
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Semiannual'"
+						(click)="selectSemiannualSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Yearly'"
+						(click)="selectMonthlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Lifetime'"
+						(click)="selectLifetimeSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="row" >
+
+		<div class="col-md-5 offset-md-1" >
+
+			<div class="card text-center" id="semiannual-subscription-card" >
+
+				<div class="card-header" >
+
+					<h4 class="my-0 font-weight-normal" >Semiannual</h4>
+
+				</div>
+
+				<div class="card-body" >
+
+					<h1 class="card-title pricing-card-title" >
+						{{ (semiannualPrice / 100) | currency:'' }} <small class="text-muted" >/ 6-mo</small>
+						<br /><small class="text-muted" >{{trialps}} day trial period</small>
+					</h1>
+
+					<ul class="list-unstyled mt-3 mb-4" >
+					</ul>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Monthly'"
+						(click)="selectMonthlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Quarterly'"
+						(click)="selectQuarterlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Semiannual'"
+						disabled
+						class="btn btn-lg btn-block " >
+						Selected
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Yearly'"
+						(click)="selectMonthlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Lifetime'"
+						(click)="selectLifetimeSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="col-md-5" >
+
+			<div class="card text-center" id="yearly-subscription-card" >
+
+				<div class="card-header" >
+
+					<h4 class="my-0 font-weight-normal" >Yearly</h4>
+
+				</div>
+
+				<div class="card-body" >
+
+					<h1 class="card-title pricing-card-title" >
+						{{ (yearlyPrice / 100) | currency:'' }} <small class="text-muted" >/ yr</small>
+						<br /><small class="text-muted" >{{trialpy}} day trial period</small>
+					</h1>
+
+					<ul class="list-unstyled mt-3 mb-4" >
+					</ul>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Monthly'"
+						(click)="selectMonthlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Quarterly'"
+						(click)="selectQuarterlySubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Semiannual'"
+						(click)="selectSemiannualSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Yearly'"
+						disabled
+						class="btn btn-lg btn-block " >
+						Selected
+					</button>
+
+					<button
+						type="button"
+						*ngIf="selected === 'Lifetime'"
+						(click)="selectLifetimeSubscription()"
+						class="btn btn-lg btn-block " >
+						Select
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="form-row" >
+	
+		<div class="col-md-12" >
+			<br />
+			
+			<div *ngIf="requestSuccess" class="alert alert-success" role="alert" >
+				{{ feedback }}
+			</div>
+
+			<div *ngIf="requestFailed" class="alert alert-danger" role="alert" >
+				{{ feedback }}
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+		
+		<button type="button" class="btn gray-btn" (click)="close()" >
+			Cancel
+		</button>
+
+		<button class="btn " (click)="upgradeNewStudent()" >
+			<span *ngIf="!processing" > Subscribe Now ! </span>
+			<span *ngIf="processing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+			<span *ngIf="processing" > Processing</span>
+		</button>
+
+	</div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="row" >
+	
+	<div class="col-md-12" >
+	
+		<app-student-rate
+			*ngIf="student_id && recruiter_id && role=='Recruiter'"
+			[student_id]="student_id"
+			[user_id]="recruiter_id" >
+		</app-student-rate>
+	
+	</div>
+
+</div>
+
+<div class="row d-flex align-items-center" >
+	
+	<div class="col-md-6" >
+	
+		<button *ngIf="student_id && recruiter_id && role=='Recruiter'"
+			(click)="goBack()"
+			class="btn"
+			style="position: absolute;z-index: 1;" >
+			Back to Search
+		</button>
+	
+	</div>
+	
+</div>
+
+<app-student-full-profile
+	*ngIf="student"
+	[student_id]="student._id" >
+</app-student-full-profile>

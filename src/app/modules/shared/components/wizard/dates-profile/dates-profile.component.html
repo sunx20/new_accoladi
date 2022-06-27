@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h4 class="modal-title">Dates</h4>
+</div>
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-row">
+        <div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_year')">
+          <label class="control-label">Year of birth</label>
+          <input *ngIf="dob_min_year && dob_max_year" type="number" [min]="dob_min_year" [max]="dob_max_year"
+            class="form-control " [class.state-error]="isFieldInvalid('dob_year')" formControlName="dob_year"
+            name="dob_year" placeholder="yyyy" />
+          <app-field-error-display [displayError]="isFieldInvalid('dob_year')"
+            errorMsg="Please provide valid year of birth({{ dob_min_year }}-{{ dob_max_year }})">
+          </app-field-error-display>
+        </div>
+        <div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_day')">
+          <label class="control-label">Day of birth</label>
+          <input type="number" min="1" max="31" class="form-control " [class.state-error]="isFieldInvalid('dob_day')"
+            formControlName="dob_day" name="dob_day" placeholder="dd" />
+          <app-field-error-display [displayError]="isFieldInvalid('dob_day')"
+            errorMsg="Please provide valid day of birth (01-31)">
+          </app-field-error-display>
+        </div>
+
+        <div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_month')">
+          <label class="control-label">Month of birth</label>
+          <select id="dob_month" class="form-control " name="dob_month"
+            [class.state-error]="isFieldInvalid('dob_month')" formControlName="dob_month">
+            <option value="" disabled selected>Select</option>
+            <option *ngFor="let month of months; let i = index" value="{{ i + 1 }}">{{ month }} </option>
+          </select>
+          <app-field-error-display [displayError]="isFieldInvalid('dob_month')"
+            errorMsg="Please provide valid month of birth (01-12)">
+          </app-field-error-display>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_year')">
+          <label class="control-label">Year of graduation</label>
+          <input type="number" class="form-control " [class.state-error]="isFieldInvalid('graduation_year')"
+            formControlName="graduation_year" name="graduation_year" placeholder="yyyy" />
+          <app-field-error-display [displayError]="isFieldInvalid('dob_year')"
+            errorMsg="Please provide valid year of graduation({{ dob_min_year }}-{{ dob_max_year }})">
+          </app-field-error-display>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-between">
+    <div class="col-md-12">
+      <button type="button" style="float: left" class="btn gray-btn mr-1" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" style="float: left" class="btn gray-btn" (click)="BackToPreviousProfile()">
+        Back
+      </button>
+      <button type="button" style="float: right;" class="btn" (click)="submitAndNext()">
+        Next
+      </button>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,73 @@
+	<div class="card " >
+
+		<div class="card-header" >
+
+			<h5 class="mouse-pointer d-flex flex-row justify-content-between" >
+				
+				<div>
+					Letters
+				</div>
+
+			</h5>
+
+		</div>
+
+		<div>
+			
+			<div class="card-body" >
+
+				<div *ngIf="requestLetters && requestLetters?.length > 0" >
+					
+					<h6 style="margin-bottom: 6px" >
+						Request(s) for recommendation Letter(s)
+					</h6>
+
+					<ul class="list-group" >
+						<li *ngFor="let lr of requestLetters"
+							class="list-group-item" >
+							{{lr.body }}
+						</li>
+					</ul>
+
+				</div>
+
+				<br />
+
+				<div *ngIf="referralLetters && referralLetters?.length > 0" >
+					
+					<h6 style="margin-bottom: 6px" >
+						Recommendation Letter(s)
+					</h6>
+					
+					<ul class="list-group" >
+						<li *ngFor="let lr of referralLetters"
+							class="list-group-item" >
+							{{lr.body }}
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="card-footer d-flex justify-content-between" >
+			
+			<span>
+				You Have:
+				<br/> {{requestLetters.length || 0}} request(s) for recommendation letter(s)
+				<br/> {{referralLetters.length || 0}} recommendation letter(s)
+			</span>
+
+			<button type="button"
+					(click)="send()" 
+					class="btn btn-link" >
+					SEND <i class="fa fa-plus" ></i>
+			</button>
+		
+		</div>
+
+	</div>
+-->
+Teacher Letter component

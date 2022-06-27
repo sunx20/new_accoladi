@@ -1,0 +1,177 @@
+<div class="modal-header" >
+	
+	<h4 class="modal-title" >Add Composition Information</h4>
+
+</div>
+
+<div class="container" >
+	
+	<p style="color:red" >NOTE: Only add a composition if you were unable to find it in the drop-down. </p>
+
+</div>
+
+<form [formGroup]="compositionForm" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-12 form-group " >
+
+					<label for="name" class="control-label " >
+						Name
+					</label>
+					<input name="name" id="name" type="text" class="form-control" formControlName="name" >
+
+					<div *ngIf="compositionForm.controls['name'].hasError('required') && compositionForm.controls['name'].touched"
+						class="error-msg " >
+						Please provide a name
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group " >
+
+					<label for="composer" class="control-label " >
+						Composer
+					</label>
+					<input name="composer" id="composer" type="text" class="form-control" formControlName="composer" >
+					
+					<div *ngIf="compositionForm.controls['composer'].hasError('required') && compositionForm.controls['composer'].touched"
+						class="error-msg " >
+						Please provide a composer
+					</div>
+
+				</div>
+
+				<div class="col-md-6 form-group " >
+
+					<label for="publisher" class="control-label " >
+						Publisher
+					</label>
+					<input name="publisher" id="publisher" type="text" class="form-control" formControlName="publisher" >
+					
+					<div *ngIf="compositionForm.controls['publisher'].hasError('required') && compositionForm.controls['publisher'].touched"
+						class="error-msg " >
+						Please provide a publisher
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group" >
+
+					<label for="family" class="control-label " >
+						Family
+					</label>
+					<select name="family" class="form-control" formControlName="family" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let family of families" value="{{ family }}" >
+							{{ family }}
+						</option>
+					</select>
+					
+					<div *ngIf="compositionForm.controls['family'].hasError('required') && compositionForm.controls['family'].touched"
+						class="error-msg " >
+						Please provide a family
+					</div>
+
+				</div>
+
+				<div class="col-md-6 form-group" >
+
+					<label for="instrument" class="control-label " >
+						Instrument
+					</label>
+					<select name="instrument" class="form-control" formControlName="instrument" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let instrument of instruments" value="{{ instrument.name }}" >
+							{{ instrument.name }}
+						</option>
+					</select>
+					
+					<div *ngIf="compositionForm.controls['instrument'].hasError('required') && compositionForm.controls['instrument'].touched"
+						class="error-msg " >
+						Please provide a instrument
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-4 form-group " >
+
+					<label for="for" class="control-label" >
+						Written For
+					</label>
+					<select name="for" class="form-control" formControlName="for" >
+						<option value="" > Select a for</option>
+						<option *ngFor="let instrument of instrumentTypeList" value="{{instrument}}" >
+							{{instrument}}
+						</option>
+					</select>
+
+				</div>
+
+				<div class="col-md-4 form-group " >
+
+					<label for="category" class="control-label " >
+						Category
+					</label>
+					<select name="category" class="form-control" formControlName="category" >
+						<option value="" > Select a catergory</option>
+						<option *ngFor="let Category of CategoryList" value="{{Category}}" > {{Category}}</option>
+					</select>
+					
+					<div *ngIf="compositionForm.controls['category'].hasError('required') && compositionForm.controls['category'].touched"
+						class="error-msg " >
+						Please select a category
+					</div>
+
+				</div>
+
+				<div class="col-md-4 form-group " >
+
+					<label class="control-label " for="GradeLevel" >
+						Difficulty Level
+					</label>
+					<select name="GradeLevel" class="form-control" formControlName="gradelevel" >
+						<option value="" > Select a grade of difficulty</option>
+						<option *ngFor="let grade of GradeList" value="{{grade}}" >
+							{{grade}}
+						</option>
+					</select>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button" class="btn gray-btn" (click)="close()" >
+			Cancel
+		</button>
+
+		<button type="button" class="btn yellow-btn" [disabled]="!compositionForm.valid"
+			(click)="saveComposition(compositionForm.value)" >
+			Save
+		</button>
+
+	</div>
+
+</form>

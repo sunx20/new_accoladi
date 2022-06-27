@@ -1,0 +1,533 @@
+<div id="full-profile-to-print" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+			&nbsp;
+		</div>
+
+		<div class="btn-group btn-group-justified col-md-6 text-right" >
+			
+			<button class="btn mr-2" (click)="share()" >
+				<img class="mr-2" src="assets/img/icons8-share-50.png" />
+				Share Profile
+			</button>
+
+			<button class="btn mr-2" onclick="print()" >
+				<img class="mr-2" src="assets/img/print-icon-39.png" />
+				Print Profile
+			</button>
+
+		</div>
+
+	</div>
+
+	<section class="module red-band" >
+
+		<div class="row" >
+
+			<div class="col-lg-12" >
+
+				<div class="profile-img-row" >
+
+					<img [src]="profileImage" class="profileImage" alt="" />
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row" >
+
+			<div class="col-lg-5" >
+
+				<div class="profile-intro" >
+
+					<h1>
+						{{ student?.first_name + ' ' + student?.last_name }}
+					</h1>
+
+					<p>
+						{{ student?.personal_statement }}
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-2" >
+				&nbsp;
+			</div>
+
+			<div class="col-lg-5 pt-4 where-stats" >
+
+				<div class="profile-intro" >
+
+					<img src="assets/img/gray-map-marker-26.png" class="mr-2 " />
+
+					<p>
+						{{ student?.address.city }},
+						{{ student?.address.state }}
+						<br />Age: {{ age }}
+						<!-- <br>
+						DOB: {{student?.dob.month}}/{{student?.dob.day}}/{{student?.dob.year}} -->
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- Talents -->
+	<section id="full-profile-talents" class="module" >
+
+		<header>
+
+			<h2>
+				{{ student?.first_name }}'s Talents
+			</h2>
+
+		</header>
+
+		<div class="row" >
+
+			<div *ngFor="let talent of student?.talents" class="col" >
+
+				<div class="talent-circle" >
+
+					<span>
+						<img *ngIf="talent.primary" style="width:21px;" src="assets/img/favorite-star-42.png" /> {{ talent.talent }}
+						<p *ngIf="talent.styles" style="font-size:8pt;" >
+							<ng-container *ngFor="let style of talent.styles" >{{ style }} </ng-container>
+						</p>
+					</span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+	<!-- // Talents -->
+
+
+	<!-- Education -->
+	<section id="full-profile-education" class="module" >
+
+		<h2 class="first" >
+			School
+		</h2>
+
+		<table class="table" >
+
+			<tbody>
+
+				<tr *ngFor="let ed of student?.education" >
+					
+					<td width="60%" >
+						<b>{{ ed.name }}</b>
+						<br />{{ ed.city }} {{ ed.state }}
+					</td>
+					
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</section>
+	<!-- // Education -->
+
+
+	<!-- Musical Classes -->
+	<section id="full-profile-musical-classes" class="module" >
+
+		<header>
+
+			<h2>
+				Musical Classes
+			</h2>
+
+		</header>
+
+		<div class="profile-intro py-4" >
+
+			<table class="top-align bumpup-txt" >
+
+				<tbody>
+
+					<tr *ngFor="let mc of student?.musical_classes" >
+						<td>
+							{{ mc }}
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+	<!-- // Musical Classes -->
+
+
+	<section class="module pb-5 extras" >
+
+		<!-- Honors & Awards -->
+		<div id="full-profile-honors-awards" >
+
+			<h2 class="first" >
+				Honors & Awards
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let ha of student?.honors_awards" >
+
+						<td width="5%" >
+							<button *ngIf="ha.video_url" type="button" class="btn btn-play" (click)="playVideo(ha.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<b>{{ ha.event }}</b> <span *ngIf="ha.state" > {{ ha.state }},</span><span *ngIf="ha.school_grade" > {{ ha.school_grade }} Grade</span>
+							<br />{{ ha.composition_title }}
+							<br />{{ ha.type }}<span *ngIf="ha.section" > Section: {{ ha.section }}</span><span *ngIf="ha.chair" > Chair: {{ ha.chair }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ ha.date_performed }}
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Honors & Awards -->
+
+
+		<!-- Festivals & Competitions -->
+		<div id="full-profile-festivals-competitions" >
+
+			<h2>
+				Festivals & Competitions
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let fc of student?.festivals_competitions" >
+
+						<td width="5%" >
+							<button *ngIf="fc.video_url" type="button" class="btn btn-play" (click)="playVideo(fc.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<b>{{ fc.event }}</b><span *ngIf="fc.state" > {{ fc.state }},</span><span *ngIf="fc.school_grade" > {{ fc.school_grade }} Grade</span>
+							<span *ngIf="fc.show!=null" ><br />{{ fc.show }}</span>
+							<br />{{ fc.composition_title }}
+							<br /> {{ fc.type }}<span *ngIf="fc.section" > Section: {{ fc.section }}</span><span *ngIf="fc.chair" > Chair: {{ fc.chair }}</span>
+							<br /><span *ngIf="fc.rating" >Placement: {{ fc.placement }}</span><span *ngIf="fc.rating" > Rating: {{ fc.rating }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ fc.date_performed }}
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Festivals & Competitions -->
+
+
+		<!-- Summer Enrichment -->
+		<div id="full-profile-summer-enrichment" >
+
+			<h2>
+				Summer Enrichment
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let se of student?.summer_enrichments" >
+
+						<td width="5%" >
+							<button *ngIf="se.video_url" type="button" class="btn btn-play" (click)="playVideo(se.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<b>{{ se.event }}</b><span *ngIf="se.location.state" > {{ se.location.state }}</span>
+							<br />{{ se.institution }}<span *ngIf="se.location.city" > {{ se.location.city }}</span><span *ngIf="se.location.country" > {{ se.location.country }}</span>
+							<span *ngIf="se.conductor!=null" ><br />Cond: {{ se.conductor }}</span><span *ngIf="se.director!=null" > Dir: {{ se.director }}</span>
+							<span *ngIf="se.ensemble!=null" ><br />{{ se.ensemble }}</span>
+							<br />{{ se.event }}<span *ngIf="se.section" >Section: {{ se.section }}</span><span *ngIf="se.chair" > Chair: {{ se.chair }}</span>
+							<br />{{ se.emphasis.primary }}<span *ngIf="se.emphasis.secondary" > {{ se.emphasis.secondary }}</span>
+							<span *ngIf="se.role!=null" ><br />{{ se.role }}</span>
+							<br /><span *ngIf="se.dates.started" > Start : {{ se.dates.started }}</span><span *ngIf="se.dates.ended" > End : {{ se.dates.ended }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ se.dates.started }}
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Summer Enrichment -->
+
+
+		<!-- Musical Classes -->
+		<div id="full-profile-master-classes" >
+
+				<h2>
+					Musical Classes
+				</h2>
+
+				<table class="table" >
+
+					<tbody>
+
+						<tr *ngFor="let mc of student?.musical_classes" >
+							<td>
+								{{ mc }}
+							</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+			<!-- // Musical Classes -->
+
+		<!-- Master Classes -->
+		<div id="full-profile-master-classes" >
+
+			<h2>
+				Master Classes
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let mc of student?.master_classes" >
+
+						<td width="5%" >
+							<button *ngIf="mc.video_url" type="button" class="btn btn-play" (click)="playVideo(mc.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<span *ngIf="mc.event!=null" ><b>{{ mc.event }}</b></span><span *ngIf="mc.location.state!=null" > {{ mc.location.state }}</span>
+							<br />{{ mc.institution }} <span *ngIf="mc.location.city!=null" > {{ mc.location.city }}</span> <span *ngIf="mc.location.country!=null" > {{ mc.location.country }}</span>
+							<span *ngIf="mc.instructor!=null" ><br />{{ mc.instructor }}</span>
+							<br />{{ mc.subject }} <span *ngIf="mc.subject2!=null" > {{ mc.subject2 }}</span>
+							<br /><span *ngIf="mc.talent!=null" >{{ mc.talent }}</span><span *ngIf="mc.hours!=null" > {{ mc.hours }} hours</span><span *ngIf="mc.critiqued!=null" > Critiqued: {{ mc.critiqued }}</span>
+							<span *ngIf="mc.dates.started!=null" > Start : {{ mc.dates.started }}</span><span *ngIf="mc.dates.ended!=null" > End : {{ mc.dates.ended }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ mc.dates.started }}
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Master Classes -->
+
+
+		<!-- Private Lessons -->
+		<div id="full-profile-private-lessons" >
+
+			<h2>
+				Private Lessons
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let study of student?.private_studies" >
+
+						<td width="5%" >
+							&nbsp;
+						</td>
+
+						<td width="60%" >
+							<span *ngIf="study.talent!=null" > {{ study.talent }}</span><span *ngIf="study.subject!=null" > {{ study.subject }}</span><span *ngIf="study.hours!=null" > {{ study.hours }} hours</span><span *ngIf="study.instructor!=null" >Critiques: {{ study.critiqued }}</span>
+							<br />{{ study.institution }}<span *ngIf="study.instructor!=null" > {{ study.instructor }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ study?.dates?.started }}
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Private Lessons -->
+
+
+		<!-- Musical Theater -->
+		<div id="full-profile-musical-theater" >
+
+			<h2>
+				Musical Theater
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let mt of student?.musical_theater" >
+
+						<td width="5%" >
+							<button *ngIf="mt.video_url" type="button" class="btn btn-play" (click)="playVideo(mt.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<b>{{ mt.show }}</b><span *ngIf="mt.school_grade!=null" > {{ mt.school_grade }} grade</span>
+							<br />{{ mt.piece }}<span *ngIf="mt.type!=null" > {{ mt.type }}</span>
+							<br />{{ mt.role }}<span *ngIf="mt.instrument!=null" > {{ mt.instrument }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ mt.date_performed }}
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Musical Theater -->
+
+
+		<!-- Dance -->
+		<div id="full-profile-musical-theater" >
+
+			<h2>
+				Dance
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let da of student?.dance" >
+
+						<td width="5%" >
+							<button *ngIf="da.video_url" type="button" class="btn btn-play" (click)="playVideo(da.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+							<b>{{ da.show }}</b><span *ngIf="da.school_grade!=null" > {{ da.school_grade }} grade</span>
+							<br />{{ da.piece }}
+							<br />{{ da.role }}
+						</td>
+
+						<td width="35%" >
+							{{ da.date_performed }}
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // Dance -->
+
+		<!-- General Performance -->
+		<div id="full-profile-honors-awards" >
+
+			<h2 class="first" >
+				General Performances
+			</h2>
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let gp of student?.performances" >
+
+						<td width="5%" >
+							<button *ngIf="gp.video_url" type="button" class="btn btn-play" (click)="playVideo(gp.video_url)" >
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+						</td>
+
+						<td width="60%" >
+						<b>{{ gp.composition_title }}</b><span *ngIf="gp.type!=null" > {{ gp.type }}</span><span *ngIf="gp.school_grade!=null" > {{ gp.school_grade }} grade</span>
+						<br />{{ gp.talent }}<span *ngIf="gp.section!=null" > Section: {{ gp.section }}</span><span *ngIf="gp.chair!=null" > Chair: {{ gp.chair }}</span>
+						</td>
+
+						<td width="35%" >
+							{{ gp.date_performed }}
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		<!-- // General Performance -->
+
+	</section>
+
+</div>

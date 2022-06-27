@@ -1,0 +1,430 @@
+
+	<!-- hello Section Start -->
+	<section id="hello-box" >
+		<div class="container" >
+			<div class="card" style="background-image:url( '/assets/images/about1.png' );
+								background-size: 20%;
+								background-repeat: no-repeat;
+								background-position: right;">
+				<div class="card-body" >
+
+					<div class="content-header" >
+						<h5>Hello {{ account?.first_name }} {{ account?.last_name }}</h5>
+					</div>
+					<div id="dashboard-header-message" >
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- hello Section End -->
+
+
+	<!-- Badges Section Start -->
+	<section id="badge-box" >
+		<div class="container" >
+			<div class="card" >
+				<div class="card-body" >
+
+					<div class="content-header" >
+						<h5>BADGES</h5>
+					</div>
+					<div class="text-center" >
+						<div class="badges" >
+							<img src="assets/img/badges/{{ badges.location }}" alt="compass" title="Location Information" >
+							<img src="assets/img/badges/{{ badges.dates }}" alt="calendar" title="Important Dates" >
+							<img src="assets/img/badges/{{ badges.talents }}" alt="talent" title="Your Talent(s)" >
+							<img src="assets/img/badges/{{ badges.schools }}" alt="school" title="School Information" >
+							<img src="assets/img/badges/{{ badges.videos }}" alt="video" title="Video Links" >
+							<img src="assets/img/badges/{{ badges.honors }}" alt="honor" title="Honors Performances" >
+							<img src="assets/img/badges/{{ badges.camps }}" alt="camp" title="Summer Enrichment Participation" >
+						</div>
+						Collect all the badges to make sure your profile is highly searchable. See below for how to do that.
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Badges Section End -->
+
+
+	<!-- Student Profile Data Section Start -->
+	<section id="stu-profile-data" >
+		<div class="container" >
+			<div class="row" >
+
+				<div class="col-md-6" >
+
+					<div *ngIf="badge?.length > 0" class="card profile-stretch" >
+						<div class="card-body text-center" >
+							<div class="content-header" >
+								<h5>PROFILE STRENGTH</h5>
+							</div>
+
+							<div>
+								<span class="percent numerator"  >837</span>
+								<hr class="divisor">
+								<span class="percent denominator" >837</span>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="card stu-profile-views" >
+						<div class="card-body text-center" >
+							<span class="views" >{{ viewers  }}</span><br>
+							<span class="label" >PROFILE VIEWS</span><br>
+							<span class="searches" >{{ searches }}</span><br>
+							<span class="label" >SEARCHES APPEARED IN</span>
+							<!-- <p>Blurb about paying to see more with a full subscription account.</p> -->
+						</div>
+					</div>
+
+					<div class="card profile-messages" >
+						<div class="card-body horizontal-scroll" >
+							<div class="content-header" >
+								<h5>MESSAGES</h5>
+							</div>
+							<div *ngIf="loadingMessages" >
+								<p>
+									Loading messages...
+								</p>
+							</div>
+
+							<ng-container *ngIf="account && !loadingMessages" >
+								<table class="media-box" >
+									<tbody>
+										<tr *ngFor="let message of latestMessages" class="media-body" >
+											<td class="media-img" >
+												<img src="{{ message.last_msg.sender?.profile_imageurl && message.last_msg.sender?.profile_imageurl.length ? message.last_msg.sender.profile_imageurl : defaultProfileImage}}" alt="User Image" title="{{ message.last_msg.sender.first_name }} {{ message.last_msg.sender.last_name }}" >
+											</td>
+											<td class="media-content" >
+												<h6>{{ message.last_msg.sender.username }}</h6>
+												<p><i>{{ message.last_msg.date_sent | date: "EEEE, MMMM d" }}</i><br>{{message.last_msg.message}}</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-container>
+
+							<p class="text-center" >
+								&nbsp;<br>
+								<a routerLink="/student/profile/messages" *ngIf="role == 'Student'" >View All</a>
+								<a routerLink="/teacher/messages" *ngIf="role == 'Teacher'" >View All</a>
+							</p>
+
+						</div>
+					</div>
+
+					<div class="card" >
+						<div class="card-body horizontal-scroll" >
+							<div class="content-header" >
+								<h5>INVITES <button class="btn btn-sm sa-button float-right" (click)="invite()" >Invite</button></h5>
+							</div>
+							<!-- <table class="media-box" >
+								<tbody>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/0.jpg" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>Elke Recruiter</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/1.jpg" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>aray@cumberland.edu</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/4.jpg" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>griffinry@bethelu.edu</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/10.jpg" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>bmclarty@harding.edu</h6>
+										</td>
+									</tr>
+								</tbody>
+							</table> -->
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-6" >
+
+					<div class="card profile-comple" >
+						<div class="card-body" >
+							<div class="content-header" >
+								<h5>PROFILE COMPLETION</h5>
+							</div>
+							<table class="media-box" >
+								<tbody>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{talents?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>TALENTS</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{honors?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>HONORS & AWARDS</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{camps?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>SUMMER ENRICHMENTS</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{vid?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>VIDEOS</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{ed?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>SCHOOLS</h6>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<div class="icon" > {{pref?.length}} </div>
+										</td>
+										<td class="media-content" >
+											<h6>COLLEGE PREFS</h6>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!-- <div class="card refferences" >
+						<div class="card-body horizontal-scroll" >
+							<div class="content-header" >
+								<h5>REFFERENCES <button class="btn btn-sm sa-button float-right" >Request</button></h5>
+							</div>
+							<table class="media-box" >
+								<tbody>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>Elke Recruiter</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>aray@cumberland.edu</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>Thomas Eddings</h6>
+											<p>Have you finished your profile yet?</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div> -->
+
+					<!-- <div class="card associations" >
+						<div class="card-body horizontal-scroll" >
+							<div class="content-header" >
+								<h5>ASSOCIATIONS <button class="btn btn-sm sa-button float-right" >Request</button></h5>
+							</div>
+							<table class="media-box" >
+								<tbody>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>Elke Recruiter</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>aray@cumberland.edu</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>griffinry@bethelu.edu</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>bmclarty@harding.edu</h6>
+											<p>hey Elke, this is James testing a message flx.</p>
+										</td>
+									</tr>
+									<tr class="media-body" >
+										<td class="media-img" >
+											<img src="assets/images/about1.png" alt="User Image" >
+										</td>
+										<td class="media-content" >
+											<h6>Thomas Eddings</h6>
+											<p>Have you finished your profile yet?</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div> -->
+
+					<div class="card badges" >
+						<div class="card-body horizontal-scroll" >
+							<div class="content-header" >
+								<h5>BADGES</h5>
+							</div>
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									Badges represent completed profile data that recruiters
+									search against. By making sure you have information in
+									these key areas, you make your profile more likely to be
+									found, and as you continue to gain experience and keep
+									your profile up to date, th emore likely you will be
+									found and contacted.
+								</p>
+							
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/compass.svg" height="80" width="80"
+										title="Location Information" align="left" />
+									<b>LOCATION</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Location information is
+									important because Colleges and Universities search based
+									on state and city, and sometimes within a radius from
+									their institution. By having a full address we are able
+									to help searchers find you based on location. Go to your
+									<a href="javascript:void;" [routerLink]="['/student/settings']" >account settings</a>
+									and fill in your contact information.
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/calendar.svg" height="80" width="80"
+										title="Important Dates" align="left" />
+									<b>DATES</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Your graduation year and date of
+									birth are important because Colleges and Universities
+									often search on age or grade. Go to your
+									<a href="javascript:void;" [routerLink]="['/student/settings']" >account settings</a>
+									and fill in your personal information, and go to
+									<a href="javascript:void;" [routerLink]="['/student/education/scholastic-information']" >educational data</a>
+									and fill out your scholastic information.
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/talent.svg" height="80" width="80"
+										title="Your Talent(s)" align="left" />
+									<b>TALENTS</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Talents are specific needs
+									Colleges and Universities search on. Be as specific as
+									you can be. We give room for ranges when expected. Go to
+									<a href="javascript:void;" [routerLink]="['/student/profile/talents']" >Profile > Talents</a>
+									and fill in your talents information.
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/school.svg" height="80" width="80"
+										title="School Information" align="left" />
+									<b>SCHOOLS</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Your current school as well as
+									your college prefernces help a recruiter know if you are
+									a fit for their program.
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/video.svg" height="80" width="80" title="Video Links"
+										align="left" />
+									<b>VIDEOS</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Videos are the best way (except
+									for live audition) for you to display your repertoire
+									and abilities to a prospective College or University. In
+									each area of performance, we offer a place to put a link
+									to your video of that performance. Having a good catalog
+									of quality videos will play a part in how a recruiter
+									evaluates your profile. Enter your performances in the
+									correct category in
+									<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>. When you
+									enter data, have a video url to add (YouTube
+									and Vimeo offer free hosting of your video content, and
+									they handle conversion and storage).
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/honors.svg" height="80" width="80"
+										title="Honors Performances" align="left" />
+									<b>HONORS</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Honors and awards performances
+									are gems in your profile! Make sure to list them. Enter
+									your performances in the correct category in
+									<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>.
+								</p>
+			
+								<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+									<img class="mr-2" src="assets/img/badges/camp.svg" height="80" width="80"
+										title="Summer Enrichment Participation" align="left" />
+									<b>CAMPS</b><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Summer Enrichment opportunities
+									are a way to show how motivated you are. Enter your
+									performances in the correct category in
+									<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>.
+								</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Student Profile Data Section End -->

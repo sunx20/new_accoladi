@@ -1,0 +1,102 @@
+
+<div class="px-4 py-5">
+
+  <div class="row mb-3 d-flex align-items-center">
+    <div class="col-md-6">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/{{userType}}/education">
+              Education Data
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Letters
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- <div class="col-md-6 text-right">
+      <a href="javascript:;" (click)="updateStudentPS()" class="btn">
+        <img class="mr-2" src="assets/img/sa-edit.svg" />
+        Update Information
+      </a>
+    </div> -->
+  </div>
+
+<section class="module">
+  <header>
+    <h2>Letters</h2>
+    Letters of reference or introduction.
+    Click the \/ to expand, if you have an letters in the system.
+  </header>
+  <div class="card ">
+    <div class="card-header" (click)="isStudentLetterCollapsed = !isStudentLetterCollapsed" [attr.aria-expanded]="!isStudentLetterCollapsed">
+      <h5 class="mouse-pointer d-flex flex-row justify-content-between">
+        <div>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          Letters
+        </div>
+        <i class="fa fa-angle-down"></i>
+      </h5>
+    </div>
+
+    <div [ngbCollapse]="!isStudentLetterCollapsed">
+      <div class="card-body">
+
+        <!-- <div *ngIf="requestLetters && requestLetters?.length > 0">
+          <h6 style="margin-bottom: 6px">Request(s) for recommendation Letter(s)</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let lr of requestLetters">{{lr.body }}</li>
+          </ul>
+        </div>
+        <br /> -->
+
+        <div *ngIf="referralLetters && referralLetters?.length > 0">
+          <h6 style="margin-bottom: 6px">Recommendation Letter(s)</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let lr of referralLetters; let i = index">
+              ( {{ i+1 }} )  {{ lr.name }} {{ lr.email }}<br/>
+              {{ institution }} {{ city }} {{ state }} {{ country }}<br/>
+              {{ lr.capacity }}<br/>
+              {{ lr.comments }}<br/>
+              Rated:
+              <ul>
+                <li>Performing: {{ lr.ratings.performing }}</li>
+                <li>Interpretative: {{ lr.ratings.interpretative }}</li>
+                <li>Intellectual: {{ lr.ratings.intellectual }}</li>
+                <li>Integrity: {{ lr.ratings.integrity }}</li>
+                <li>Maturity: {{ lr.ratings.maturity }}</li>
+                <li>Motivation: {{ lr.ratings.motivation }}</li>
+                <li>Potential: {{ lr.ratings.potential }}</li>
+              </ul>
+              date added: {{ lr.date_added | date }}
+              <!-- date approved": null, -->
+            </li>
+          </ul>
+        </div>
+
+        <br />
+        <!-- <div *ngIf="introductionLetters && introductionLetters?.length > 0">
+          <h6 style="margin-bottom: 6px">Introduction Letter(s)</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let li of introductionLetters">{{li.body}}</li>
+          </ul>
+        </div> -->
+
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+      <span>
+        You Have:
+        <!-- <br/> {{requestLetters.length || 0}} request(s) for recommendation letter(s) -->
+        <br/> {{referralLetters.length || 0}} recommendation letter(s)
+        <!-- <br/> {{introductionLetters.length || 0}} introduction letter(s) -->
+      </span>
+      <!-- <button type="button" (click)="send()" class="btn btn-link">SEND <i class="fa fa-plus"></i></button> -->
+    </div>
+  </div>
+</section>
+
+</div>

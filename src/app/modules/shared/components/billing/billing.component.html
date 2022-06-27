@@ -1,0 +1,154 @@
+<ngb-tabset #t="ngbTabset" >
+
+	<ngb-tab>
+
+		<ng-template ngbTabTitle>Subscription</ng-template>
+	
+		<ng-template ngbTabContent>
+		
+			<div class="card" >
+		
+				<div class="card-body" >
+		
+					<div class="row" >
+		
+						<div class="col-md-6 offset-md-3 text-center" >
+		
+							<div *ngIf="!processing" >
+		
+								<button
+									*ngIf=" !current_subscription || (current_subscription.status != 'active' && current_subscription.status != 'trialing') "
+									[routerLink]="['/premium']"
+									class="btn " >
+									Purchase premium access
+								</button>
+		
+								<div
+									class="alert alert-info"
+									role="alert"
+									*ngIf=" current_subscription && current_subscription.status == 'active' " >
+									{{ current_subscription.type }} subscription is active
+									<br />
+									(
+										{{ current_subscription.start * 1000 | date }}
+										-
+										{{ current_subscription.end * 1000 | date }}
+									)
+								</div>
+
+								<div
+									class="alert alert-info"
+									role="alert"
+									*ngIf=" current_subscription && current_subscription.status == 'trialing' " >
+									Trial period of {{ current_subscription.trial_period_days }} days is active <br />
+									(
+										{{ current_subscription.start * 1000 | date }}
+										-
+										{{ current_subscription.end * 1000 | date }}
+									)
+								</div>
+
+							</div>
+
+							<span
+								*ngIf="processing"
+								class="spinner-border spinner-border-sm"
+								role="status"
+								aria-hidden="true" >
+							</span>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</ng-template>
+
+	</ngb-tab>
+
+	<ngb-tab>
+
+		<ng-template ngbTabTitle>Billing History  - - -</ng-template>
+		
+		<ng-template ngbTabContent>
+		
+			<div class="card" >
+		
+				<div class="card-body" >
+		
+					<table
+						class="table"
+						*ngIf="subscriptions && subscriptions.length != 0" >
+		
+						<thead>
+							<tr>
+								<th scope="col" >Type/Status</th>
+								<th scope="col" >Started/Expired</th>
+								<th scope="col" >Paid by</th>
+								<th scope="col" ></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							
+							<ng-container *ngFor="let s of subscriptions; index as i" >
+								<tr>
+									<td>
+										{{ s.type }}<br>
+										<span
+											class="{{ s.status === 'active' ? 'text-success' : s.status === 'canceled' ? 'text-warning' : '' }}" >{{ s.status }}</span>
+									</td>
+									<td>
+										{{ s.start * 1000 | amDateFormat: 'MMM DD, YYYY' }}<br>
+										{{ s.end * 1000 | amDateFormat: 'MMM DD, YYYY' }}
+									</td>
+									<td>
+										{{ s.origin_name ? s.origin_name : '' }}
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="text-center" >
+										<div *ngIf=" (s.status === 'active' || s.status === 'trialing') && !cancel_processing " ngbDropdown
+											class="d-inline-block w-100" >
+											<button class="btn btn-light text-left" id="dropdownBasic1" ngbDropdownToggle>
+												Cancelling and Renewal
+											</button>
+											<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="p-0"
+												style="border:none; border-radius: 0;" >
+												<button [disabled]=" s.status !== 'trialing' " class="btn btn-link text-left w-100" ngbDropdownItem
+													(click)=" cancelSubscription( s.id, 'i' ) " >
+													Cancel immediately
+												</button>
+												<button *ngIf="!s.cancel_at_period_end" class="btn btn-link text-left" ngbDropdownItem
+													(click)=" cancelSubscription( s.id, 's' ) " >
+													Do not renew at end of subscription
+												</button>
+												<button *ngIf="s.cancel_at_period_end" class="btn btn-link text-left" ngbDropdownItem
+													(click)=" cancelSubscription( s.id, 'a' ) " >
+													Activate recurring payments
+												</button>
+											</div>
+										</div>
+
+										<span *ngIf=" s.status === 'active' && cancel_processing " class="spinner-border spinner-border-sm"
+											role="status" aria-hidden="true" ></span>
+									</td>
+								</tr>
+							</ng-container>
+							
+						</tbody>
+
+					</table>
+
+				</div>
+				
+			</div>
+
+		</ng-template>
+
+	</ngb-tab>
+
+</ngb-tabset>

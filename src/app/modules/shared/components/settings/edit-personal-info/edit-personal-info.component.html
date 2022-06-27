@@ -1,0 +1,237 @@
+<div class="modal-header">
+	<h4 class="modal-title">Edit Personal Information</h4>
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+	
+	<div class="modal-body">
+		
+		<div class="container">
+			
+			<div class="form-row">
+				
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="first_name">
+						First Name
+					</label>
+					<input id="first_name" 
+							name="first_name"
+							type="text" 
+							class="form-control"
+							formControlName="first_name"
+							placeholder="First Name"
+							[class.state-error]="isFieldInvalid('first_name')" />
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('first_name')"
+						errorMsg="Please provide a first name">
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="middle_name">
+						Middle Name
+					</label>
+					<input id="middle_name" 
+							name="middle_name"
+							type="text" 
+							class="form-control" 
+							formControlName="middle_name"
+							placeholder="Middle Name" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="last_name">
+						Last Name
+					</label>
+					<input id="last_name" 
+							name="last_name"
+							type="last_name" 
+							class="form-control" 
+							formControlName="last_name"
+						 	placeholder="Last Name"
+							[class.state-error]="isFieldInvalid('last_name')" />
+							
+					 <app-field-error-display 
+						 [displayError]="isFieldInvalid('last_name')"
+						 errorMsg="Please provide a last name">
+					 </app-field-error-display>
+				</div>
+
+			</div>
+
+
+			<div class="form-row">
+
+				<div class="col-md-4  form-group required" 
+					[ngClass]="displayFieldCss('dob_month')">
+					
+					<label class="control-label">
+						Month of birth
+					</label>
+
+					<select id="dob_month" 
+							name="dob_month" 
+							class="form-control " 
+							formControlName="dob_month"
+							[class.state-error]="isFieldInvalid('dob_month')" >
+						<option value="" disabled selected >Select</option>
+						<option *ngFor="let month of months; let i = index" value="{{ i + 1 }}">{{ month }} </option>
+					</select>
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('dob_month')"
+						errorMsg="Please provide valid month of birth (01-12)" >
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group required" 
+					[ngClass]="displayFieldCss('dob_day')">
+					
+					<label class="control-label">
+						Day of birth
+					</label>
+
+					<input name="dob_day" 
+							type="number" 
+							min="1" 
+							max="31" 
+							class="form-control "
+							formControlName="dob_day" 
+							placeholder="dd"
+							[class.state-error]="isFieldInvalid('dob_day')" />
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('dob_day')"
+						errorMsg="Please provide valid day of birth (01-31)" >
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4  form-group required" 
+					[ngClass]="displayFieldCss('dob_year')">
+					
+					<label class="control-label">
+						Year of birth
+					</label>
+
+					<input *ngIf="dob_min_year && dob_max_year" 
+							name="dob_year"
+							type="number" 
+							[min]="dob_min_year" 
+							[max]="dob_max_year"
+							class="form-control " 
+							formControlName="dob_year" 
+							placeholder="yyyy"
+							[class.state-error]="isFieldInvalid('dob_year')" />
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('dob_year')"
+						errorMsg="Please provide valid year of birth({{ dob_min_year }}-{{ dob_max_year }})">
+					</app-field-error-display>
+				</div>
+				
+			</div>
+
+
+			<div class="form-row">
+				<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('username')">
+					
+					<label class="control-label" for="username">
+						Username
+					</label>
+
+					<input id="username" 
+							name="username"
+							type="text" 
+							class="form-control "
+							formControlName="username" 
+							placeholder="Username" 
+							[class.state-error]="isFieldInvalid('username')" />
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('username')"
+						errorMsg="Please provide a username">
+					</app-field-error-display>
+
+				</div>
+				<div class="col-md-6 form-group required">
+					<label for="intro_video_url" class="control-label">
+						Introduction Video URL: <small>(YouTube or Vimeo)</small>
+					</label>
+
+					<input id="intro_video_url" 
+							name="intro_video_url"
+							type="text" 
+							class="form-control "
+							formControlName="intro_video_url" 
+							placeholder="Provide FULL url - like https://youtu.be/nnn-AA" />
+
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group" >
+
+					<label for="intro_statement" class="control-label" >
+						Introduction Statement: <small>(optional)</small>
+					</label>
+					<textarea id="intro_statement" 
+						name="intro_statement"
+						rows="3"
+						autocomplete="off"
+						class="form-control"
+						formControlName="intro_statement"
+						placeholder="Write a small paragraph describing yourself to whoever may be looking." >
+					</textarea>
+
+				</div>
+
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+
+		<button type="button" 
+				class="btn gray-btn" 
+				(click)="close()" >
+			Cancel
+		</button>
+
+		<button type="button" 
+				class="btn" 
+				(click)="submitAttempted=true; submitForm();" 
+				appDisableDoubleClick
+				[disabled]="requestSuccess" >
+
+			<span *ngIf="loading" 
+					class="spinner-border spinner-border-sm" 
+					role="status" 
+					aria-hidden="true" ></span>
+
+			{{
+				loading
+					? "Saving..."
+					: !requestSuccess
+						? "Save"
+						: "Done"
+			}}
+
+		</button>
+
+	</div>
+
+</form>

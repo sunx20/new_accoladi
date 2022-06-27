@@ -1,0 +1,89 @@
+<div class="card" >
+
+	<div class="body-card" >
+
+		<table class="table" *ngIf="subscriptions && subscriptions.length > 0" >
+
+			<thead>
+				<tr>
+					<th scope="col" >Student</th>
+					<th scope="col" >Subscription</th>
+					<th scope="col" >Start</th>
+					<th scope="col" >Expire</th>
+					<th scope="col" >Status</th>
+					<th scope="col" ></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let s of subscriptions; index as i" >
+					<td>{{ s.student_fullname }}</td>
+					<td>{{ s.type }}</td>
+					<td>{{ s.start * 1000 | date }}</td>
+					<td>{{ s.end * 1000 | date }}</td>
+					<td>
+						<span class="{{
+								s.status === 'active'
+									? 'text-success'
+									: s.status === 'canceled'
+									? 'text-warning'
+									: ''
+							}}" >{{ s.status }}</span>
+					</td>
+					<td class="text-right" >
+						
+						<div *ngIf=" (s.status === 'active' || s.status === 'trialing') && !cancel_processing " ngbDropdown class="d-inline-block w-100" >
+							
+							<button class="btn btn-light text-left" id="dropdownBasic1" ngbDropdownToggle>
+								Cancelling and Renewal
+							</button>
+
+							<div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+								
+								<button [disabled]="s.status !== 'trialing'" class="btn btn-link text-left"
+									ngbDropdownItem (click)=" cancelSubscription( s.student_id, s.id, 'i' ) " >
+									Cancel immediately
+								</button>
+
+								<button *ngIf="!s.cancel_at_period_end" class="btn btn-link text-left" ngbDropdownItem
+									(click)=" cancelSubscription( s.student_id, s.id, 's' ) " >
+									Do not renew at end of subscription
+								</button>
+
+								<button *ngIf="s.cancel_at_period_end" class="btn btn-link text-left" ngbDropdownItem
+									(click)=" cancelSubscription( s.student_id, s.id, 'a' ) " >
+									Activate recurring payments
+								</button>
+
+							</div>
+
+						</div>
+
+						<span *ngIf="
+								s.status === 'active' &&
+								cancel_processing === s.student_id " class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+					
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<table>
+
+			<tbody>
+				<tr>
+					<td>
+						<p *ngIf="subscriptions && subscriptions.length == 0" >
+							No Payment History
+						</p>
+					</td>
+				</tr>
+			</tbody>
+	
+		</table>
+
+	</div>
+
+</div>

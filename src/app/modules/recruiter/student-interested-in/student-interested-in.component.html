@@ -1,0 +1,123 @@
+<div class="card " >
+
+	<div class="card-body" >
+
+		<div class="row" >
+			
+			<div class="col-12" >
+				<h3>Students Interested in</h3>
+			</div>
+
+			<div class="col-12" >
+				
+				<ngb-tabset [activeId]="activeTab" (tabChange)="onTabChange($event)" >
+					
+					<ngb-tab *ngFor="let tab of facultyForList;let i = index" >
+					
+						<ng-template ngbTabTitle >
+							<span (click)="onSelectTab(tab)" >{{tab.name}}</span>
+						</ng-template>
+
+						<ng-template ngbTabContent>
+
+							<div class="row" >
+								
+								<div class="col-12" >
+								
+									<table class="table table-condensed" >
+									
+										<thead>
+											<tr>
+												<th scope="col" >#</th>
+												<th scope="col" >First Name</th>
+												<th scope="col" >Talents</th>
+												<th scope="col" >State</th>
+												<th scope="col" >Graduation Year</th>
+												<th scope="col" class="text-center" ></th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr *ngIf="studentsInterestedInList.length === 0" >
+												<th colspan="2" scope="row" > {{noRecordFoundLabel}}</th>
+											</tr>
+											<tr *ngFor="let item of studentsInterestedInList; let j = index" >
+												<td scope="row" >{{ j + 1 + (page - 1) * pageSize }}</td>
+												<td class="text-left" > {{ item?.student_id?.first_name }} </td>
+												<td>
+													<div *ngIf="item?.student_id && item?.student_id?.talents" >
+														<small *ngFor="let talent of item?.student_id?.talents" >
+															{{ talent.talent }} <br />
+														</small>
+													</div>
+												</td>
+												<td>
+													{{ item?.student_id?.address?.state }}
+												</td>
+												<td>
+													{{ item?.student_id?.graduation_year }}
+												</td>
+												<td class="text-right" nowrap="nowrap" >
+													<i *ngIf="item.student_id" 
+														title="Share student with a colleague"
+														(click)="shareStudent(item.student_id._id)"
+														class="fas fa-share-alt" 
+														style="color:#e2a90a;cursor:pointer;" ></i>
+													&nbsp;
+													<i *ngIf="item.student_id" 
+														title="View student profile"
+														(click)="modalProfile(item.student_id._id)"
+														class="fas fa-address-card"
+														style="color:#e2a90a;cursor:pointer;" ></i>
+													&nbsp;
+													<i *ngIf="item.student_id" 
+														title="Send a message to this student"
+														(click)="sendMessage(item.student_id._id)"
+														class="fas fa-comments" 
+														style="color:#e2a90a;cursor:pointer;" ></i>
+													&nbsp;
+													<i *ngIf="item.student_id"
+														title="Delete student from your saved student list"
+														(click)="removeSaved(item.student_id._id)"
+														class="fas fa-trash" 
+														style="color:#e2a90a;cursor:pointer;" ></i>
+
+												</td>
+											</tr>
+										</tbody>
+
+									</table>
+
+								</div>
+
+							</div>
+
+							<div class="d-flex justify-content-between p-2" >
+
+								<ngb-pagination [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+									class="d-flex justify-content-center" [collectionSize]="totalCount" [(page)]="page"
+									[pageSize]="pageSize" (pageChange)="pageChange($event)" >
+								</ngb-pagination>
+
+								<select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize"
+									(change)="pageChange($event)" >
+									<option [ngValue]="10" >10 items per page</option>
+									<option [ngValue]="25" >25 items per page</option>
+									<option [ngValue]="50" >50 items per page</option>
+								</select>
+
+							</div>
+
+						</ng-template>
+
+					</ngb-tab>
+
+				</ngb-tabset>
+
+			</div>
+			
+		</div>
+
+	</div>
+
+</div>

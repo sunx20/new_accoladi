@@ -1,0 +1,210 @@
+<style>
+	.student-list-actions {
+		 white-space: nowrap;
+	}
+	.student-list-actions
+	.action-container {
+		display: inline-block;
+		margin: 5px;
+		padding: 5px;
+		text-align: center;
+	}
+
+	.student-list-actions
+	.action-text {
+		display: block;
+		color: #e2a90a;
+		font-size: 9px;
+	}
+
+	.student-list-actions
+	.action-icon {
+		vertical-align: middle;
+		color: #e2a90a;
+	}
+</style>
+
+<div class="card" >
+
+	<div class="card-header" >
+
+		<h5 class=" d-flex flex-row justify-content-between" >
+
+			<div>
+				Student Accounts
+				<p *ngIf="parent && students" 
+					style="font-size:.75em;" >
+					You have {{ students.length }} student(s)
+				</p>
+			</div>
+
+			<button type="button"
+					(click)="addStudent()"
+					class="btn btn-light" >
+				ADD STUDENT <i class="fa fa-plus" ></i>
+			</button>
+
+		</h5>
+
+	</div>
+
+	<ng-container *ngIf="invitation" ><!-- condition based on un-resolved "invitations" -->
+ 
+		<section id="unpaid-message-banner"
+				name="unpaid-message-banner"
+				class="unpaid-message py-3" >
+
+			<div *ngFor="let invite of inviteList" >
+
+				<div class="row" >
+
+					<div class="col-lg-10 offset-lg-1 pb-1" >
+
+						{{invite.sender}} has invited you to share their accout as a Parent. 
+
+						<button role="button"
+								(click)="onAccept(invite)"
+								class="btn btn-light btn-sm inviteBtn" >
+							Accept 
+						</button>
+						
+						&nbsp;&nbsp; 
+						
+						<button role="button"
+								(click)="onDecline(invite)"
+								class="btn btn-light btn-sm inviteBtn" >
+							Decline 
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</ng-container>
+
+	<div class="card-body" >
+
+		<table *ngIf="parent && students"
+				class="table table-bordered table-responsive-md" >
+
+			<tbody>
+
+				<tr *ngFor="let student of students; let i = index" >
+					<td>
+						{{ i + 1 }} - <b>{{ student.first_name }} {{ student.last_name }}</b>
+						
+						<br /><b>Username:</b> {{ student.username }}
+						<br /><b>Email:</b> {{ student.email }}
+						<br />
+
+						<span style="font-size:10px" >
+							<b>Talents:</b> ( {{ student.talents.length }} )
+							<b>Honors/Awards:</b> ( {{ student.honors_awards.length }} )
+							<br />
+							<b>Performances:</b> ( {{ student.performances.length }} )
+							<b>Education:</b> ( {{ student.education.length }} )
+						</span>
+
+						<div class="student-list-actions" >
+
+							<div (click)="modalProfile( student._id )" 
+								 class="action-container mouse-pointer" >
+								<span class="fa fa-user text-danger action-icon" ></span>
+								<span class="action-text" >View Profile</span>
+							</div>
+
+							<div (click)="viewDetails( student._id )" 
+								 class="action-container mouse-pointer" >
+								<span class="fa fa-user-edit text-danger action-icon" ></span>
+								<span class="action-text" >Edit Profile</span>
+							</div>
+
+							<div (click)="updateStudent( student._id )" 
+								 class="action-container mouse-pointer" >
+								<span class="fa fa-address-card text-danger action-icon" ></span>
+								<span class="action-text" >Edit Account</span>
+							</div>
+
+							<div (click)="removeStudent( student._id )" 
+								 class="action-container mouse-pointer" >
+								<span class="fa fa-trash text-danger action-icon" ></span>
+								<span class="action-text" >Remove </span>
+							</div>
+
+						</div>
+
+					</td>
+					<td>
+						<div *ngIf="student.membership.current_subscription &&
+									student.membership.current_subscription.status == 'active' "
+							role="alert"
+							class="alert alert-info center" >
+							
+							{{ student.membership.current_subscription.type }} subscription is active
+							
+							<br/>
+							
+							(
+								{{ student.membership.current_subscription.start * 1000 | date }}
+								-
+								{{ student.membership.current_subscription.end * 1000 | date }}
+							)
+						</div>
+
+						<div *ngIf="student.membership.current_subscription &&
+									student.membership.current_subscription.status == 'trialing' "
+							role="alert" 
+							class="alert alert-info center" >
+
+							Trial period of  {{student.membership.current_subscription.trial_period_days}} days is active
+							
+							<br/>
+							
+							(
+								{{ student.membership.current_subscription.start * 1000 | date }}
+								-
+								{{ student.membership.current_subscription.end * 1000 | date }}
+							)
+						</div>
+
+						<div *ngIf="( !student.membership.current_subscription && student.meta.dates.paid_thru === null ) || 
+									( student.meta.dates.paid_thru == '' || student.meta.dates.paid_thru === null )" 
+							role="alert" 
+							class="unpaid-message" >
+							This student has access to FREE content and features only. Upgrade this account to give Premium Access to content and features!<br>
+							In the upper left corner, click 'user' > 'account' and under Payment & Billing click 'Purchase Premium Access for Multiple Students'. 
+							Or <a href="/parent/settings" >click here!</a>
+						</div>
+						
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+	<div class="card-footer d-flex justify-content-between" >
+
+		<span *ngIf="!parent" >
+			Loading Data ...
+		</span>
+
+		<span *ngIf="parent && students" >
+			You have {{ students.length }} student(s)
+		</span>
+
+		<button type="button"
+				(click)="addStudent()"
+				class="btn btn-link" >
+			ADD STUDENT <i class="fa fa-plus" ></i>
+		</button>
+
+	</div>
+
+</div>

@@ -1,0 +1,722 @@
+<div class="px-4 py-5" >
+
+	<section *ngIf="teacherDisabled"
+			id="home-welcome-banner"
+			name="home-welcome-banner"
+			class="module py-3"
+			style="background-image:url( 'assets/img/instruments-889.png' );
+					background-size: 50%;
+					background-repeat: no-repeat;
+					background-position: right;" >
+
+		<div>
+
+			<div class="row" >
+			
+				<div class="col-lg-8" >
+				
+					<h1>Hello {{ account?.first_name }}! role--{{ role }}</h1>
+					<!-- <ng-container *ngIf=displayMessage >
+
+						<section id="unpaid-message-banner"
+								name="unpaid-message-banner"
+								class="unpaid-message py-3" >
+	
+							<div>
+	
+								<div class="row" >
+	
+									<div class="col-lg-10 offset-lg-1" >
+										
+										<p>
+											You are enjoying FREE features. Update your membership for FULL access. <a class="btn" role="button" [routerLink]="['/student/premium']">	Just $9.95/mo! </a>
+										</p>
+										
+									</div>
+	
+								</div>
+	
+							</div>
+	
+						</section>
+	
+					</ng-container>
+					<button type="button" class="btn" style="margin: 10px" (click)="open(gSContent)" >
+						Getting Started Checklist
+					</button>
+
+					<button type="button" class="btn" style="margin: 10px" routerLink="/student/search/scholarships" >
+						Find Scholarships
+					</button>
+
+					<button type="button" class="btn" style="margin: 10px" routerLink="/student/search/premier" >
+						Find Premier College Programs
+					</button> -->
+
+				</div>
+
+				<div class="col-lg-6" >
+					&nbsp;
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section name="home-badges-banner" id="home-badges-banner" class="module py-3" >
+	
+		<div>
+		
+			<div class="row" >
+			
+				<div class="col-lg-12 text-center" >
+					<img class="mr-2" src="assets/img/badges/{{ badges.location }}" height="60" width="60"
+						title="Location Information" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.dates }}" height="60" width="60"
+						title="Important Dates" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.talents }}" height="60" width="60"
+						title="Your Talent(s)" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.schools }}" height="60" width="60"
+						title="School Information" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.videos }}" height="60" width="60"
+						title="Video Links" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.honors }}" height="60" width="60"
+						title="Honors Performances" />
+					&nbsp;&nbsp;
+					<img class="mr-2" src="assets/img/badges/{{ badges.camps }}" height="60" width="60"
+						title="Summer Enrichment Participation" />
+
+					<p style="padding-top:18px;" >
+						Collect all the badges to make sure your profile is
+						highly searchable.
+					</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<div class="card-columns" >
+		
+		<!-- <div name="account-short-card" id="account-short-card" class="card" >
+		
+			<section class="module" >
+			
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Account Information
+					</h2>
+
+					<a class="col-sm-6 text-right" routerLink="/{{ role | lowercase }}/settings" >
+						View Details
+					</a>
+				</header>
+
+				<div class="general-table closer-head" >
+					
+					<table class="table mb-0" >
+						
+						<thead>
+							<tr>
+								<th>
+									
+								</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>
+									<img style="max-width:12px; margin-right:10px;"
+										src="assets/img/role-student-icon-24.png" />
+									<strong>Role:</strong> {{ role }}
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<table class="table mb-0" >
+						
+						<thead>
+							<tr>
+								<th width="35%" >First Name</th>
+								<th width="30%" >Middle Name</th>
+								<th width="35%" >Last Name</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>{{ account?.first_name }}</td>
+								<td>{{ account?.middle_name }}</td>
+								<td>{{ account?.last_name }}</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<table class="table mb-0" >
+					
+						<thead>
+							<tr>
+								<th width="75%" >Date of Birth:</th>
+								<th width="25%" ></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>{{ dob }}</td>
+								<td></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</section>
+
+		</div> -->
+
+		<!-- <div name="talents-card" id="talents-card" class="card" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Talents
+					</h2>
+
+					<a class="col-sm-6 text-right" routerLink="/{{ role | lowercase }}/profile/talents" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Select your instrument family, then your instrument.
+						There is no limit to how many talents you can add, so
+						add them all!
+					</p>
+				</div>
+
+				<div *ngFor="let talent of talents" >
+					<p>
+						{{ talent.talent }}
+						<br />( {{ talent.year_started }} )
+					</p>
+				</div>
+
+			</section>
+
+		</div> -->
+
+		<div name="messages-card" id="messages-card" class="card" >
+			
+			<section class="module border-rows" >
+				
+				<header>
+					<h2>
+						Recent Messages
+					</h2>
+				</header>
+
+				<div *ngIf="loadingMessages" >
+					<p>
+						Loading messages...
+					</p>
+				</div>
+
+				<ng-container *ngIf="account && !loadingMessages" >
+					
+					<div *ngFor="let message of latestMessages" >
+						<p>
+							<span class="ltgray-txt" >
+								{{
+									message.last_msg.date_sent
+										| date: "EEEE, MMMM d"
+								}}
+							</span>
+							<br />{{ message.last_msg.message }}
+						</p>
+					</div>
+
+					<footer>
+						<a routerLink="/student/profile/messages" *ngIf="role == 'Student'" >
+							View More
+						</a>
+						<a routerLink="/teacher/messages" *ngIf="role == 'Teacher'" >
+							View More
+						</a>
+					</footer>
+
+				</ng-container>
+
+			</section>
+
+		</div>
+
+		<div *ngIf="badge.length > 0" name="profile-strength-card" id="profile-strength-card" class="card" >
+			
+			<section class="module strength-award" >
+			
+				<header>
+					<h2>
+						Profile Strength
+					</h2>
+				</header>
+
+				<div>
+					
+					<div class="text-center" >
+						
+						<img src="assets/img/{{ badge }}_badge.png" />
+
+						<p class="gold-txt" >{{ badge }}</p>
+
+						<p>
+							{{ badge_description }}
+						</p>
+
+						<button type="button" class="blue-tri-link" data-toggle="modal" data-target=".improve-profile" >
+							Improve Your Profile
+							<img src="assets/img/blue-triangle-10.png" />
+						</button>
+
+					</div>
+
+				</div>
+
+			</section>
+
+		</div>
+		
+		<div name="invite-card" id="invite-card" class="card" >
+			
+			<section class="module" >
+			
+				<header>
+					<h2>Invite Users</h2>
+				</header>
+
+				<div>
+					
+					<div class="col-lg-12 text-center py-2" >
+						
+						<button type="button" class="btn" (click)="invite()" >
+							<img class="mr-2" src="assets/img/sa-add-08.svg" />
+							Invite Users
+						</button>
+
+					</div>
+
+				</div>
+
+			</section>
+
+		</div>
+		
+		<div *ngIf="viewers > 0" name="college-views-card" id="college-views-card" class="card" >
+			
+			<section class="module" >
+				
+				<div>
+					
+					<div class="col-lg-12 text-center py-2" >
+						<p class="gold-txt" style="font-size:40px; font-weight:700; margin:0" >
+							{{ viewers  }}
+						</p>
+
+						<p>
+							<strong>
+								Colleges Viewed Your Profile
+							</strong>
+						</p>
+					</div>
+
+				</div>
+
+				<footer>
+					<a routerLink="/student/viewed/colleges" >View Colleges</a>
+				</footer>
+
+			</section>
+
+		</div>
+		
+		<div *ngIf="searches > 0" name="appeared-searches-card" id="appeared-searches-card" class="card" >
+			
+			<section class="module" >
+				
+				<div>
+					
+					<div class="col-lg-12 text-center py-2" >
+						<p class="gold-txt" style="font-size:40px; font-weight:700; margin:0" >
+							{{ searches }}
+						</p>
+
+						<p>
+							<strong>
+								Number of searches you appeared in
+							</strong>
+						</p>
+					</div>
+
+				</div>
+
+				<footer>
+					
+					
+				</footer>
+
+			</section>
+
+		</div>
+		
+		<div name="badges-card" id="badges-card" class="card" >
+			
+			<section class="module border-rows" >
+			
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Badges
+					</h2>
+				</header>
+
+				<div>
+					<p>
+						Badges represent completed profile data that recruiters
+						search against. By making sure you have information in
+						these key areas, you make your profile more likely to be
+						found, and as you continue to gain experience and keep
+						your profile up to date, th emore likely you will be
+						found and contacted.
+					</p>
+				</div>
+
+				<div *ngIf="role == 'Student'" >
+					
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/compass.svg" height="80" width="80"
+							title="Location Information" align="left" />
+						<b>LOCATION</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Location information is
+						important because Colleges and Universities search based
+						on state and city, and sometimes within a radius from
+						their institution. By having a full address we are able
+						to help searchers find you based on location. Go to your
+						<a href="javascript:void;" [routerLink]="['/student/settings']" >account settings</a>
+						and fill in your contact information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/calendar.svg" height="80" width="80"
+							title="Important Dates" align="left" />
+						<b>DATES</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Your graduation year and date of
+						birth are important because Colleges and Universities
+						often search on age or grade. Go to your
+						<a href="javascript:void;" [routerLink]="['/student/settings']" >account settings</a>
+						and fill in your personal information, and go to
+						<a href="javascript:void;" [routerLink]="[
+								'/student/education/scholastic-information'
+							]" >educational data</a>
+						and fill out your scholastic information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/talent.svg" height="80" width="80"
+							title="Your Talent(s)" align="left" />
+						<b>TALENTS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Talents are specific needs
+						Colleges and Universities search on. Be as specific as
+						you can be. We give room for ranges when expected. Go to
+						<a href="javascript:void;" [routerLink]="['/student/profile/talents']" >Profile > Talents</a>
+						and fill in your talents information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/school.svg" height="80" width="80"
+							title="School Information" align="left" />
+						<b>SCHOOLS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Your current school as well as
+						your college prefernces help a recruiter know if you are
+						a fit for their program.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/video.svg" height="80" width="80" title="Video Links"
+							align="left" />
+						<b>VIDEOS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Videos are the best way (except
+						for live audition) for you to display your repertoire
+						and abilities to a prospective College or University. In
+						each area of performance, we offer a place to put a link
+						to your video of that performance. Having a good catalog
+						of quality videos will play a part in how a recruiter
+						evaluates your profile. Enter your performances in the
+						correct category in
+						<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>. When you
+						enter data, have a video url to add (YouTube
+						and Vimeo offer free hosting of your video content, and
+						they handle conversion and storage).
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/honors.svg" height="80" width="80"
+							title="Honors Performances" align="left" />
+						<b>HONORS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Honors and awards performances
+						are gems in your profile! Make sure to list them. Enter
+						your performances in the correct category in
+						<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/camp.svg" height="80" width="80"
+							title="Summer Enrichment Participation" align="left" />
+						<b>CAMPS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Summer Enrichment opportunities
+						are a way to show how motivated you are. Enter your
+						performances in the correct category in
+						<a href="javascript:void;" [routerLink]="['/student/performance']" >Performances</a>.
+					</p>
+				</div>
+
+				<div *ngIf="role == 'Teacher'" >
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/compass.svg" height="80" width="80"
+							title="Location Information" align="left" />
+						<b>LOCATION</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Location information is
+						important because Colleges and Universities search based
+						on state and city, and sometimes within a radius from
+						their institution. By having a full address we are able
+						to help searchers find you based on location. Go to your
+						<a href="javascript:void;" [routerLink]="['/teacher/settings']" >account settings</a>
+						and fill in your contact information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/calendar.svg" height="80" width="80"
+							title="Important Dates" align="left" />
+						<b>DATES</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Your graduation year and date of
+						birth are important because Colleges and Universities
+						often search on age or grade. Go to your
+						<a href="javascript:void;" [routerLink]="['/teacher/settings']" >account settings</a>
+						and fill in your personal information, and go to
+						<a href="javascript:void;" [routerLink]="[
+								'/teacher/education/scholastic-information'
+							]" >educational data</a>
+						and fill out your scholastic information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/talent.svg" height="80" width="80"
+							title="Your Talent(s)" align="left" />
+						<b>TALENTS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Talents are specific needs
+						Colleges and Universities search on. Be as specific as
+						you can be. We give room for ranges when expected. Go to
+						<a href="javascript:void;" [routerLink]="['/teacher/profile/talents']" >Profile > Talents</a>
+						and fill in your talents information.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/school.svg" height="80" width="80"
+							title="School Information" align="left" />
+						<b>SCHOOLS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Your current school as well as
+						your college prefernces help a recruiter know if you are
+						a fit for their program.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/video.svg" height="80" width="80" title="Video Links"
+							align="left" />
+						<b>VIDEOS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Videos are the best way (except
+						for live audition) for you to display your repertoire
+						and abilities to a prospective College or University. In
+						each area of performance, we offer a place to put a link
+						to your video of that performance. Having a good catalog
+						of quality videos will play a part in how a recruiter
+						evaluates your profile. Enter your performances in the
+						correct category in
+						<a href="javascript:void;" [routerLink]="['/teacher/performance']" >Performances</a>. When you
+						enter data, have a video url to add (YouTube
+						and Vimeo offer free hosting of your video content, and
+						they handle conversion and storage).
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/honors.svg" height="80" width="80"
+							title="Honors Performances" align="left" />
+						<b>HONORS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Honors and awards performances
+						are gems in your profile! Make sure to list them. Enter
+						your performances in the correct category in
+						<a href="javascript:void;" [routerLink]="['/teacher/performance']" >Performances</a>.
+					</p>
+
+					<p style="border-bottom:thin solid gray;padding:5px 0 10px 0;min-height:100px;" >
+						<img class="mr-2" src="assets/img/badges/camp.svg" height="80" width="80"
+							title="Summer Enrichment Participation" align="left" />
+						<b>CAMPS</b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Summer Enrichment opportunities
+						are a way to show how motivated you are. Enter your
+						performances in the correct category in
+						<a href="javascript:void;" [routerLink]="['/teacher/performance']" >Performances</a>.
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- modals -->
+<div tabindex="-1" role="dialog" class="modal fade improve-profile" aria-labelledby="myModalLabel" aria-hidden="true" >
+	
+	<div class="modal-dialog" >
+	
+		<div class="modal-content" >
+		
+			<div class="modal-body" >
+				
+				<h3>
+					Improve Your Profile
+				</h3>
+
+				<br />
+
+			</div>
+
+			<div class="modal-footer d-flex justify-content-between" >
+				
+				<button type="button" class="btn gray-btn" data-dismiss="modal" >
+					Close
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<ng-template #gSContent let-modal >
+	
+	<div class="modal-body" *ngIf="teacherDisabled" >
+	
+		<h3>
+			Getting Started Checklist
+		</h3>
+
+		<br />
+
+		<ol>
+			<li>
+				Add Account Information (name, birthday, graduation date,
+				contact information, and address)
+			</li>
+			
+			<li>
+				Create an introduction video - to give a general introduction of yourself to College recruiters.
+				Post the video to YouTube or Vimeo, and add that URL to your account, Include a paragraph to round out 
+				your introduction.
+			</li>
+
+			<li>
+				Invite parents to create an account
+			</li>
+
+			<li>
+				Tell us about your talents (primary and additional)
+			</li>
+
+			<li>
+				Add General Performance information (Primary instrument, when,
+				and where the performance took place)
+				<br />
+				- Add videos if possible
+			</li>
+
+			<li>
+				Add information about private lessons, master classes, school
+				classes related to music, and summer enrichment programs that
+				youâ€™ve taken part in
+				<br />
+				- Add videos if possible
+			</li>
+
+			<li>
+				Add school information (middle and high schools attended) in the
+				Education Data tab
+			</li>
+
+			<li>
+				Add Scholastic Information (e.g. GPA, SAT score, ACT score,
+				etc.)
+			</li>
+
+			<li>
+				Add College Preferences (e.g. preferred schools, programs,
+				ensembles, etc.)
+			</li>
+
+			<li>
+				Write a College Intro Statement to grab college recruitersâ€™
+				attention
+			</li>
+
+			<li>
+				Add Musical Theatre experience (e.g. orchestra pit, ensemble,
+				chorus, etc)
+				<br />
+				- Add videos if possible
+			</li>
+
+			<li>
+				Insert information about Honors and Awards (e.g. honors
+				ensembles, all-state band, etc.)
+				<br />
+				- Add videos if possible
+			</li>
+
+			<li>
+				Add information under Festivals and Competitions (e.g.
+				instrument, where, when, how well you did)
+				<br />
+				- Add videos if possible
+			</li>
+		</ol>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+		
+		<button type="button" class="btn gray-btn" (click)="modal.close('Close click')" >
+			Close
+		</button>
+
+	</div>
+	
+</ng-template>

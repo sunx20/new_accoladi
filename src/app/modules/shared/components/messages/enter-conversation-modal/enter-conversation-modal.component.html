@@ -1,0 +1,342 @@
+<div class="modal-header" >
+
+	<h4
+		*ngIf="!receiverUsername && !thread_id"
+		class="modal-title" >
+		New Message
+	</h4>
+
+	<h4
+		*ngIf="receiverUsername"
+		class="modal-title" >
+		{{ receiverUsername }}
+	</h4>
+
+	<h4
+		*ngIf="!receiverUsername && thread_id"
+		class="modal-title" >
+		Loading messages ...
+	</h4>
+
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div
+			*ngIf="!receiverUsername && thread_id"
+			class="container"
+			style="padding:25px" >
+
+			<div class="row" >
+
+				<div class="col-md-12" >
+
+					<div class="d-flex justify-content-center" >
+
+						<div
+							role="status"
+							class="spinner-border"
+							style="width: 3rem; height: 3rem;" >
+
+							<span class="sr-only" >
+								Loading...
+							</span>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<ng-container *ngIf="currentThread.length !== 0" >
+
+			<div
+				*ngIf="receiverUsername || thread_id"
+				class="container  messages-area"
+				#scrollBottom >
+
+				<div
+					*ngFor="let m of currentThreadMsgs"
+					class="message-wrapper" >
+
+					<div
+						id="{{ m._id }}"
+						class="message " >
+
+						<div
+							*ngIf="m.sender._id === user_id"
+							class="message-content"
+							style="text-align: right;" >
+
+							<div
+								class="header"
+								style="display: flex; flex-direction: row-reverse;" >
+
+								<span class="sender text-capitalize " >
+									Me
+								</span>
+
+								<span class="message-date  text-small italic " >
+									{{ m.date_sent | date: "medium" }}
+								</span>
+
+								<span
+									*ngIf="m.priority"
+									class="italic" >
+
+									<mark>
+										{{ m.priority }}
+									</mark>
+
+								</span>
+
+							</div>
+
+							<div class="custom-order-message" >
+
+								<p
+									*ngIf="m.subject"
+									class="title italic" >
+									{{ m.subject }}
+								</p>
+
+								<div class="wrapper-message" >
+
+									<div class="list-message" >
+
+										<p class="message-body " >
+											{{ m.message }}
+										</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<div
+							*ngIf="m.sender._id !== user_id"
+							class="message-content" >
+
+							<div class="header" >
+
+								<span class="sender text-capitalize" >
+									{{ m.sender.username }}
+								</span>
+
+								<span class="message-date  text-small italic" >
+									{{ m.date_sent | date: "medium" }}
+								</span>
+
+								<span
+									*ngIf="m.priority"
+									class="italic" >
+
+									<mark>
+										{{ m.priority }}
+									</mark>
+
+								</span>
+
+							</div>
+
+							<div class="custom-order-message" >
+
+								<p
+									*ngIf="m.subject"
+									class="title italic" >
+									{{ m.subject }}
+								</p>
+
+								<div class="wrapper-message" >
+
+									<div class="list-message" >
+
+										<p class="message-body " >
+											{{ m.message }}
+										</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</ng-container>
+
+		<div
+			*ngIf="currentThread.length === 0 && !thread_id"
+			class="container"
+			style="padding:25px" >
+
+			<div class="form-row" >
+
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('to')" >
+
+					<label
+						for="to"
+						class="control-label" >
+						Send to
+					</label>
+
+					<select
+						name="to"
+						id="to"
+						class="form-control "
+						formControlName="to"
+						[class.state-error]="isFieldInvalid('to')" >
+						<option value="" disabled selected>Select recipient</option>
+						<option
+							*ngFor="let r of userMessageRecipients"
+							value="{{ r._id }}" >
+							{{ r.first_name }}
+							{{ r.last_name }} ({{ r.username }})
+						</option>
+					</select>
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('to')"
+						errorMsg="Please select a recipient" >
+					</app-field-error-display>
+
+				</div>
+
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('priority')" >
+
+					<label
+						for="priority"
+						class="control-label" >
+						Priority
+					</label>
+
+					<select
+						name="priority"
+						id="priority"
+						class="form-control "
+						formControlName="priority"
+						[class.state-error]="isFieldInvalid('priority')" >
+						<option value="" disabled selected>Select priority</option>
+						<option
+							*ngFor="let p of priorities"
+							value="{{ p }}" >
+							{{ p }}
+						</option>
+					</select>
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('priority')"
+						errorMsg="Please select priority" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<div
+						*ngIf="requestSuccess"
+						role="alert"
+						class="alert alert-success" >
+						{{ feedback }}
+					</div>
+
+					<div
+						*ngIf="requestFailed"
+						role="alert"
+						class="alert alert-danger" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div
+					class="col-md-10 form-group required"
+					[ngClass]="displayFieldCss('msg')" >
+
+					<textarea
+						name="msg"
+						id="msg"
+						rows="3"
+						class="form-control"
+						formControlName="msg"
+						[class.state-error]="isFieldInvalid('msg')" >
+					</textarea>
+
+				</div>
+
+				<div class="col-md-2" >
+
+					<button
+						type="submit"
+						class="btn btn-block" 
+						appDisableDoubleClick 
+						(click)="submitForm()" >
+
+						<span
+							*ngIf="loading"
+							role="status"
+							class="spinner-border spinner-border-sm"
+							aria-hidden="true" ></span>
+						{{ loading ? "" : "Send" }}
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button
+			type="button"
+			class="btn gray-btn"
+			(click)="close()" >
+			Close
+		</button>
+
+	</div>
+
+</form>

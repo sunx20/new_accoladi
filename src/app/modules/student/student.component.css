@@ -1,0 +1,152 @@
+/*-------------------------------------------
+	Student-Profile-Overview Page
+--------------------------------------------*/
+input:focus {
+	outline: none !important;
+}
+
+#search-student .ss-sidenav {
+	background: url(/assets/images/student-profile/assets_1.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+#search-student .talent-search.student-profile p {
+	font-weight: 500;
+}
+
+.student-profile .meetAJ .meetAJ-content p {
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+.student-profile .meetAJ img {
+	border-radius: 10px;
+	border: 1px solid #555;
+	height: 100%;
+	width: 100%;
+	min-height: 200px;
+}
+
+.student-profile .btn.student-profile-btn {
+	font-size: 14px;
+	padding: 8px 10px;
+	margin: 0;
+}
+
+.student-profile .meetAJ iframe{
+	width: 100%;
+	height: 20vw;
+	min-height: 250px;
+	max-height: 400px;
+}
+
+.student-profile .list-by-grade p {
+	font-size: 13px;
+}
+
+.student-profile .list-by-grade .lbg-header {
+	height: 70px;
+}
+
+.student-profile .selectText {
+	width: 100%;
+	font-size: 15px;
+	font-weight: 600;
+	color: #6C757D;
+}
+
+.student-profile .student-profile-select select {
+	background-color: rgba(236, 236, 236, .7);
+	border-radius: 4px;
+	border-color: transparent;
+	width: 100%;
+	height: 35px;
+	padding: 0 2px;
+}
+
+.student-profile .student-profile-select select:focus {
+	outline: 0;
+}
+.student-profile .student-profile-select option {
+	color: #6C757D;
+	font-size: 14px;
+	font-weight: 600;
+}
+.student-profile textarea::placeholder {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.student-profile-input input.bg-light {
+	background-color: #f8f9fa !important;
+}
+
+.sp-education-scores .small-input, .sp-section-form .small-input {
+	float: left;
+	background-color: rgba(236, 236, 236, .7);
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	margin-left: 10px !important;
+	margin-top: 4px !important;
+	width: 105px;
+	height: 35px !important;
+}
+
+.sp-section-form {
+	border-radius: 6px;
+}
+
+.sp-form-text-color {
+	color: #6C7593;
+}
+
+.sp-art-courses {
+	border-radius: 13px;
+	overflow: hidden;
+}
+
+.sp-art-courses table.table {
+	margin: 0;
+}
+
+.sp-art-courses table.table tr {
+	height: 35px;
+}
+
+.sp-section-form .score-form-text {
+	font-size: 18px;
+	font-weight: bold;
+	color: #6C7593;
+}
+
+.sp-mock-audition-guidelines p {
+	font-size: 13px !important;
+	line-height: 1.6 !important;
+	margin-bottom: 10px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 620.98px) {
+	.horizontally-scrollable {
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: nowrap;
+	}
+}
+
+@media (max-width: 550.98px) {
+	.student-profile .ts-explaination h1 {
+		font-size: 29px;
+	}
+	.student-profile .ts-explaination h2 {
+		font-size: 24px;
+	}
+	
+	.student-profile .ts-explaination h3 {
+		font-size: 20px;
+	}
+
+	.student-profile .ts-explaination h4 {
+		font-size: 17px;
+	}
+}

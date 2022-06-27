@@ -1,0 +1,189 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		College details
+	</h4>
+
+</div>
+
+<div class="modal-body" >
+
+	<div class="container" >
+
+		<div class="row" *ngIf="college" >
+
+			<div class="col-md-12" >
+
+				<strong>ORGANIZATION</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Name</th>
+							<th scope="col" >Nickname</th>
+							<th scope="col" >Mascot</th>
+							<th scope="col" >Url</th>
+							<th scope="col" >Address</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ college.name }}</td>
+							<td>{{ college.nickname }}</td>
+							<td>{{ college.mascot }}</td>
+							<td ><span *ngIf="college.url!=''" ><a target="_blank" href="{{ college.url }}" >View Site</a></span></td>
+							<td>{{ college.address.city + " " + extractState(college.address.state) }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>STUDY</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Years</th>
+							<th scope="col" >Degrees</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ college.years }}</td>
+							<td>{{ joinArray(college.degrees) }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Music Majors</th>
+							<th scope="col" >Music Minors</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ joinArray(college.music_majors) }}</td>
+							<td>{{ joinArray(college.music_minors) }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Ensembles Offered</th>
+							<th scope="col" >Audition Dates</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ joinArray(college.ensembles_offered) }}</td>
+							<td>{{ joinArray(college.audition_dates) }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>ACCESS</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Public</th>
+							<th scope="col" >Private</th>
+							<th scope="col" >Non profit</th>
+							<th scope="col" >Funding source</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ college.public ? "Yes" : "No" }}</td>
+							<td>{{ college.private ? "Yes" : "No" }}</td>
+							<td>{{ college.non_profit ? "Yes" : "No" }}</td>
+							<td>{{ college.funding_source ? "Yes" : "No" }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>AFFILIATION</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >HBCU</th>
+							<th scope="col" >Religion</th>
+							<th scope="col" >Denomination</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ college.hbc }}</td>
+							<td>{{ college.religion }}</td>
+							<td>{{ college.denomination }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>CAMPUS</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Campus setting</th>
+							<th scope="col" >Campus housing</th>
+							<th scope="col" >Student population</th>
+							<th scope="col" >Undergraduate students</th>
+							<th scope="col" >Graduation rate</th>
+							<th scope="col" >Transfer out rate</th>
+							<th scope="col" >Net price</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ college.meta.campus_setting }}</td>
+							<td>{{ college.meta.campus_housing }}</td>
+							<td>{{ college.meta.student_population }}</td>
+							<td>{{ college.meta.undergraduate_students }}</td>
+							<td>{{ college.meta.graduation_rate }}</td>
+							<td>{{ college.meta.transfer_out_rate }}</td>
+							<td>{{ college.meta.net_price }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal-footer d-flex justify-content-between" >
+
+	<button type="button" class="btn gray-btn" (click)="close()" >
+		Cancel
+	</button>
+
+</div>

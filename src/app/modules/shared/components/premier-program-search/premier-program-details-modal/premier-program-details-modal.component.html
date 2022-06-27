@@ -1,0 +1,169 @@
+<div class="modal-header" >
+	
+	<h4 class="modal-title" >
+		Premier College Programs details
+	</h4>
+
+</div>
+
+<!-- <div class="modal-body" >
+	
+	<div class="container" >
+	
+		<div *ngIf="premier_program" 
+			class="row">
+	
+			<div class="col-md-12" >
+	
+				<strong>PREMIER COLLEGE PROGRAMS</strong>
+	
+				<table class="table" >
+	
+					<thead>
+						<tr>
+							<th scope="col" >Name</th>
+							<th scope="col" >Type</th>
+							<th scope="col" >Discipline</th>
+							<th scope="col" >Ages</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<tr>
+							<td>{{ premier_program.name }}</td>
+							<td>{{ extractType(premier_program) }}</td>
+							<td>{{ premier_program.discipline }}</td>
+							<td>{{ premier_program.ages }}</td>
+						</tr>
+					</tbody>
+	
+				</table>
+
+				<strong>AWARD</strong>
+	
+				<table class="table" >
+	
+					<thead>
+						<tr>
+							<th scope="col" >Amount</th>
+							<th scope="col" >Number of</th>
+							<th scope="col" >Period</th>
+							<th scope="col" >Currency</th>
+							<th scope="col" >Deadline</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<tr>
+							<td>{{ premier_program.award.amount }}</td>
+							<td>{{ premier_program.award.number_of }}</td>
+							<td>{{ premier_program.award.period }}</td>
+							<td>{{ premier_program.award.currency }}</td>
+							<td>{{ premier_program.deadline }}</td>
+						</tr>
+					</tbody>
+	
+				</table>
+
+				<strong>APPLIES TO</strong>
+	
+				<table class="table" >
+							
+					<tbody>
+						<tr>
+							<td>
+								{{ premier_program.applies_to }}
+							</td>
+						</tr>
+					</tbody>
+	
+				</table>
+
+				<strong>REQUIREMENTS</strong>
+	
+				<table class="table" >
+	
+					<thead>
+						<tr>
+							<th scope="col" >Fee</th>
+							<th scope="col" >Must Attend In</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<tr>
+							<td>{{ premier_program.fee }}</td>
+							<td>{{ extractState( premier_program.must_attend_in.state ) }}</td>
+						</tr>
+					</tbody>
+	
+				</table>
+
+				<strong>OFFERED BY</strong>
+	
+				<table class="table" >
+	
+					<tbody>
+						<tr>
+							<td>
+								<span *ngIf="premier_program.organization.name">
+									{{ premier_program.organization.name }}
+								</span>
+								<span *ngIf="premier_program.organization.contact">
+									<br/>Contact: {{ premier_program.organization.contact }}
+								</span>
+								
+								<span *ngIf="premier_program.organization.contact || premier_program.organization.name">
+									&nbsp;<br/>&nbsp;<br/>
+								</span>
+
+								<span *ngIf="premier_program.organization.address.street1">
+									{{ premier_program.organization.address.street1 }}<br/>
+								</span>
+								<span *ngIf="premier_program.organization.address.city">
+									{{ premier_program.organization.address.city }}
+								</span>
+								<span *ngIf="premier_program.organization.address.state">
+									{{ premier_program.organization.address.state }}
+								</span>
+								<span *ngIf="premier_program.organization.address.postal_code"><br/>
+									{{ premier_program.organization.address.postal_code }}
+								</span>
+								
+								<span *ngIf="premier_program.organization.city || premier_program.organization.state">
+									&nbsp;<br/>
+									&nbsp;<br/>
+								</span>
+								
+								<span *ngIf="premier_program.organization.phone">
+									{{ premier_program.organization.phone }}
+								</span>
+								<span *ngIf="premier_program.organization.fax">
+									<br/>FAX: {{ premier_program.organization.fax }}
+								</span>
+								<span *ngIf="premier_program.organization.url" >
+									<br/><a href="{{ premier_program.organization.url }}" target="_new" >View Site</a>
+								</span>
+							</td>
+						</tr>
+					</tbody>
+	
+				</table>
+	
+			</div>
+	
+		</div>
+	
+	</div>
+
+</div> -->
+
+<div class="modal-footer d-flex justify-content-between" >
+
+	<button type="button" 
+			class="btn gray-btn" 
+			(click)="close()" >
+		Cancel
+	</button>
+
+</div>

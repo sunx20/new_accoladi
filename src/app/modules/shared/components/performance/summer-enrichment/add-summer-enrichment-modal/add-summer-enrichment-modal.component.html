@@ -1,0 +1,385 @@
+<div class="modal-header">
+	<h4 class="modal-title">Add Summer Enrichment History</h4>
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()"
+>
+	<div class="modal-body">
+		<div class="container">
+			<div class="form-row">
+				<div
+					class="col-md-12 form-group required"
+					[ngClass]="displayFieldCss('event')"
+				>
+					<label for="se_event" class="control-label"
+						>Event / Name</label
+					>
+					<input
+						id="se_event"
+						type="text"
+						placeholder="Event Name"
+						name="event"
+						formControlName="event"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('event')"
+					/>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('event')"
+						errorMsg="Please provide an event"
+					>
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('started')"
+				>
+					<label for="se_started" class="control-label"
+						>Started</label
+					>
+					<select 
+					id="se_started" 
+					[class.state-error]="isFieldInvalid('started')" 
+					(change)="onStartYearChange($event.target.value)"
+					formControlName="started" 
+					name="started" 
+					placeholder="Started" 
+					class="form-control" required>
+					<option value="select" selected>Select</option>
+						<option *ngFor="let year of years">{{year}}</option>
+					</select>
+
+					<div *ngIf="provideStartYearShow">
+						<app-field-error-display
+						[displayError]="isFieldInvalid('started')"
+						errorMsg="Please provide started year">
+					</app-field-error-display>
+				    </div>
+					<app-field-error-display
+						[displayError]="startYearErrorShow"
+						errorMsg="Start year should be earlier than or same as End year"
+					>
+					</app-field-error-display>
+				</div>
+
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('ended')"
+				>
+					<label for="se_ended" class="control-label">Ended</label>
+
+					<select 
+					id="se_ended" 
+					[class.state-error]="isFieldInvalid('ended')" 
+					(change)="onEndYearChange($event.target.value)"
+					formControlName="ended" 
+					name="ended" 
+					placeholder="Ended" 
+					class="form-control" required>
+					<option value="select" selected>Select</option>
+						<option *ngFor="let year of years">{{year}}</option>
+					</select>
+					<div *ngIf="provideEndYearShow">
+							<app-field-error-display
+							[displayError]="isFieldInvalid('ended')"
+							errorMsg="Please provide ended year">
+						</app-field-error-display>
+					</div>
+					
+					<app-field-error-display
+						[displayError]="endYearErrorShow"
+						errorMsg="End year should be later than or same as Start year"
+					>
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div
+					class="col-md-6 form-group required"
+					[ngClass]="displayFieldCss('primary')"
+				>
+					<label for="primary" class="control-label"
+						>Primary Emphasis</label
+					>
+					<input
+						id="primary"
+						type="text"
+						class="form-control"
+						[class.state-error]="isFieldInvalid('primary')"
+						formControlName="primary"
+						name="primary"
+						placeholder="Primary Emphasis"
+					/>
+					<app-field-error-display
+						[displayError]="isFieldInvalid('primary')"
+						errorMsg="Please provide primary emphasis"
+					>
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label>Secondary Emphasis</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Secondary Emphasis"
+						formControlName="secondary"
+						name="secondary"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label class="control-label " for="se_family">Family</label>
+					<select
+						id="se_family"
+						class="form-control "
+						name="family"
+						formControlName="family"
+					>
+						<option value="" disabled selected>Select</option>
+						<option
+							*ngFor="let family of families"
+							value="{{ family }}"
+						>
+							{{ family }}
+						</option>
+					</select>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label for="se_instrument" class="control-label"
+						>Instrument or Voice Part</label
+					>
+					<select
+						id="se_instrument"
+						class="form-control"
+						name="instrument"
+						formControlName="instrument"
+					>
+						<option value="" disabled selected>Select</option>
+						<option
+							*ngFor="let instrument of instruments"
+							value="{{ instrument.name }}"
+						>
+							{{ instrument.name }}
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label>Institution</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Institution"
+						formControlName="institution"
+						name="institution"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-4 form-group">
+					<label>City</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="City"
+						formControlName="city"
+						name="city"
+					/>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label for="state" class="control-label">
+						State
+					</label>
+					<select
+						id="state"
+						class="form-control "
+						name="state"
+						formControlName="state"
+					>
+						<option value="" disabled selected
+							>State - Select One...</option
+						>
+						<option
+							*ngFor="let state of states"
+							value="{{ state.abbr }}"
+							>{{ state.name }}</option
+						>
+					</select>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label>Country</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Country"
+						formControlName="country"
+						name="country"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label>Ensemble</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Ensemble"
+						formControlName="ensemble"
+						name="ensemble"
+					/>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label>Role</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Role"
+						formControlName="role"
+						name="role"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label>Conductor</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Conductor"
+						formControlName="conductor"
+						name="conductor"
+					/>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label>Director</label>
+					<input
+						type="text"
+						class="form-control "
+						placeholder="Director"
+						formControlName="director"
+						name="director"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group ">
+					<label class="control-label" for="section">Section</label>
+					<input
+						id="section"
+						type="text"
+						placeholder="Section"
+						class="form-control "
+						formControlName="section"
+						name="section"
+					/>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label for="chair" class="control-label">Chair</label>
+					<input
+						id="chair"
+						type="text"
+						placeholder="Chair"
+						class="form-control"
+						formControlName="chair"
+						name="chair"
+					/>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Video URL: <small>(YouTube or Vimeo)</small></label>
+					<input
+						type="text"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('video_url')"
+						formControlName="video_url"
+						name="video_url"
+						placeholder="Provide FULL url - like https://youtu.be/nnn-AA"
+						(input)="getVideoUrl($event.target.value)"
+						/>
+	
+						<app-video-player [video]="videoUrl"></app-video-player>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Student Comments: <small>(optional)</small></label>
+					<textarea class="form-control" rows="3" autocomplete="off" class="form-control "
+						[class.state-error]="isFieldInvalid('comments')" formControlName="comments" name="comments"
+						placeholder="Additional info you may want recruiter to know about this performance">
+								</textarea>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer d-flex justify-content-between">
+		
+		<button 
+			type="button" 
+			class="btn gray-btn" 
+			(click)="close()">
+			Cancel
+		</button>
+		
+		<button 
+			type="button" 
+			class="btn" 
+			(click)="submitAttempted=true; submitForm();" 
+			appDisableDoubleClick
+			[disabled]="requestSuccess" >
+		
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+	
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+		
+		</button>
+
+	</div>
+
+</form>

@@ -1,0 +1,84 @@
+<div class="px-4 py-5">
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-6">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/performance">Performance</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Musical Theater
+					</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="col-md-6 text-right">
+			<a class="btn" href="javascript:;" (click)="addStudentMT()"><img class="mr-2"
+					src="assets/img/sa-add-08.svg" />Add
+				Musicals</a>
+		</div>
+	</div>
+
+	<section class="module">
+		<header>
+			<h2>Musical Theater</h2>
+		</header>
+		<div class="general-table">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<p>
+								Were you a vocalist in the cast or chorus? Did
+								you perform in the Orchestra pit for theater
+								performances? Those are good performance
+								opportunities! Tell us about them.
+							</p>
+							<p>
+								Questions Asked:<br />
+								Show *, Role, Type * (cast, chorus, pit, etc),
+								Instrument/Voice Part *, Grade (6-12), Piece
+								Performed *, Link to video of performance
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table">
+				<tbody>
+					<tr *ngFor="
+							let mt of musical_theater;
+							let i = index
+						">
+						<td width="5%">
+							<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+								(click)="playVideo(mt.video_url)">
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+						</td>
+						<td width="35%">
+							<span class="bumpup-txt">
+								<u>
+									{{ mt.role }}
+								</u> </span><br />
+							{{ mt.show }}
+						</td>
+						<td width="25%">
+							{{ mt.date_performed }}
+						</td>
+
+						<td width="3%">
+							<a href="javascript:;" (click)="updateStudentMT(mt._id)">
+								<img style="width:20px;" src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+						<td width="3%">
+							<img style="width:13px;cursor: pointer;" src="assets/img/close-x-22.png"
+								(click)="removeStudentMT(mt._id)" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

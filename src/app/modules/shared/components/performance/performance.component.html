@@ -1,0 +1,239 @@
+<div class="px-4 py-5" >
+
+	<nav aria-label="breadcrumb" >
+
+		<ol class="breadcrumb pb-4" >
+
+			<li class="breadcrumb-item" >
+				<a routerLink="/{{userType}}/performance" >Performance</a>
+			</li>
+
+			<li class="breadcrumb-item active" aria-current="page" >
+				Overview
+			</li>
+
+		</ol>
+
+	</nav>
+
+	<div class="card-columns" >
+
+		<div class="card" id="honorsAwardsCard" >
+
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >Honors & Awards</h2>
+					<a
+						class="col-sm-6 text-right"
+						routerLink="/{{userType}}/performance/honors-awards"	>
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						An Honors Ensemble performance (like All-State Chorus, Regional Band, or awards performances) 
+						is a great addition to your resume.
+						Recruiters will often look for candidates who have honors ensemble experience.
+					</p>
+				</div>
+
+				<div *ngFor="let honorAward of student?.honors_awards.slice(0, 5)" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ honorAward.event }}
+						</u>
+						<br />
+						{{ honorAward.composition_title }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="festivalsCompetitionsCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >Festivals & Competitions</h2>
+					<a
+						class="col-sm-6 text-right"
+						routerLink="/{{userType}}/performance/festivals-competitions" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Solo/Ensemble Festivals and Competitions happen outside of your school, but you might
+						participate in them with your school ensemble.
+						You or your ensemble will get a score, rating, or ranking at festivals and competitions.
+						If you have the judge’s name, your scores, and judge’s comments, add them to each entry.
+					</p>
+				</div>
+
+				<div *ngFor="let item of student?.festivals_competitions.slice(0, 5)" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ item.event }}
+						</u>
+						<br />
+						{{ item.composition_title }}
+						<br />
+						{{ item.talent }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="summerEnrichmentCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >Summer Enrichment</h2>
+					<a
+						class="col-sm-6 text-right"
+						routerLink="/{{userType}}/performance/summer-enrichment"	>
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Summer Enrichment experiences including summer camps sponsored by larger organizations to
+						touring with a Drum & Bugle Corps.
+					</p>
+				</div>
+
+				<div *ngFor="let se of student?.summer_enrichments.slice(0, 5)" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ se.event }}
+						</u>
+						<br />
+						{{ se.talent }}
+						<br />
+						{{ se.dates.started }} / {{ se.dates.ended }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="generalPerformanceCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >General Performance</h2>
+					<a
+						class="col-sm-6 text-right"
+						routerLink="/{{userType}}/performance/general" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						This section is to record all the times you’ve performed in school, at church, or in a community
+						ensemble.
+						Remember to add the ensemble and the year you participated.
+						If you participated in honors ensembles, competitions, or camps, there are separate sections to
+						add those.
+					</p>
+				</div>
+
+				<div *ngFor="let performance of student?.performances.slice(0, 5)" >
+					<p>
+						<u class="bumpup-txt" >{{ performance.composition_title }}</u>
+						<br />
+						{{ performance.type }} {{ performance.talent }}
+						<br />
+						{{ performance.composers }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="musicalTheaterCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >Musical Theater</h2>
+					<a
+						class="col-sm-6 text-right"
+						routerLink="/{{userType}}/performance/musical-theater" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Were you a vocalist in the cast or chorus?
+						Did you perform in the Orchestra pit for theater performances?
+						Those are good performance opportunities! Tell us about them.
+					</p>
+				</div>
+
+				<div *ngFor="let mt of student?.musical_theater" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ mt.show }}
+						</u>
+						<br />
+						{{ mt.role }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+
+		<div class="card" id="danceCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >Dance</h2>
+					<a class="col-sm-6 text-right" routerLink="/student/performance/dance" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Have you performed dance, in any of its disciplines; Ballet, Jazz, Tap, Modern/contemporary? 
+						Did you perform in Company or Troupe, or competition? 
+						Those are good performance opportunities! 
+						Tell us about them.
+					</p>
+				</div>
+
+				<div *ngFor="let d of student?.dance" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ d.show }}
+						</u>
+						<br />
+						{{ d.role }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
+
+</div>

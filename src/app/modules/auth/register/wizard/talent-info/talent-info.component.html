@@ -1,0 +1,93 @@
+<app-progress-bar [role]="role" [wizard]="'talent-info'" [type]="type" ></app-progress-bar>
+
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		<span class="student-title" *ngIf="type=='Child'" >
+			Student : 
+		</span>Talent/Skill Info
+	</h4>
+
+</div>
+
+
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()" >
+	
+	<div class="modal-body" >
+	
+		<div class="container" >
+
+			<div class="form-row" >
+	
+				<div class="col-md-6 form-group" >
+	
+					<label class="control-label " for="se_family" >Family</label>
+					<select id="se_family" class="form-control " name="family" formControlName="family" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let family of families" value="{{ family }}" >
+							{{ family }}
+						</option>
+					</select>
+	
+					<div *ngIf="form.controls['family'].hasError('required') && form.controls['family'].touched"
+						class="error-msg " >
+						Please provide a family
+					</div>
+	
+				</div>
+
+				<div class="col-md-6 form-group" >
+	
+					<label for="se_instrument" class="control-label" >Talent</label>
+					<select id="se_instrument" class="form-control" name="talent" formControlName="talent" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let talent of talents" value="{{ talent.name }}" >
+							{{ talent.name }}
+						</option>
+					</select>
+	
+					<div *ngIf="form.controls['talent'].hasError('required') && form.controls['talent'].touched"
+						class="error-msg " >
+						Please provide a instrument/talent
+					</div>
+	
+				</div>
+	
+			</div>
+
+
+			<div class="form-row" >
+	
+				<div class="col-md-12" >
+	
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert" >
+						{{ feedback }}
+					</div>
+		
+				</div>
+		
+			</div>
+		
+		</div>
+	
+	</div>
+	
+	<div class="modal-footer d-flex justify-content-between" >
+	
+		<button type="button" class="btn gray-btn float-left" (click)="onClickBack()" >
+			Back
+		</button>
+	
+		<button type="submit" [disabled]="requestSuccess" class="btn " >
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+			{{ loading ? "Saving..." : !requestSuccess ? "Continue" : "Done" }}
+		</button>
+
+	</div>
+
+</form>

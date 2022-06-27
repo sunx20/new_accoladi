@@ -1,0 +1,263 @@
+<div class="px-4 py-5" >
+
+	<nav aria-label="breadcrumb" >
+
+		<ol class="breadcrumb pb-4" >
+
+			<li class="breadcrumb-item" >
+				<a routerLink="/{{userType}}/education" >Education Data</a>
+			</li>
+
+			<li class="breadcrumb-item active" aria-current="page" >
+				Overview
+			</li>
+			
+		</ol>
+
+	</nav>
+
+	<div class="card-columns" >
+
+		<div class="card" id="schoolsCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Schools
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/schools" >
+						View Details
+					</a>
+				</header>
+
+				<div *ngFor="let school of student?.education.slice(0, 5)" >
+					
+					<p>
+						<u class="bumpup-txt" >
+							{{ school.name }}
+						</u>
+
+						<br /> {{ school.city }} {{ school.state }} &nbsp;
+
+						<img *ngIf="school.current" style="width:12px;" src="assets/img/favorite-star-42.png" />
+
+						<img *ngIf="!school.current" style="width:12px;"
+							src="assets/img/not-yet-favorite-star-41.png" />
+					</p>
+
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="musicalClassesCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Musical Classes
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/musical-classes" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Have you formally studied your art? You might have taken
+						AP Music Theory or AP Music History. Make sure to list it here.
+					</p>
+				</div>
+
+				<div *ngFor="let mc of student?.musical_classes.slice(0, 5)" >
+					<p class="bumpup-txt" >
+						{{ mc }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="masterClassesCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Master Classes
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/master-classes" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						A Master Class is 4 or more hours with an expert in a discipline.
+						The instructor will work with one or more students in front of an audience.
+						We recommend taking Master Classes because you will learn a lot and because recruiters look for your participation.
+					</p>
+				</div>
+
+				<div *ngFor="let mc of student?.master_classes.slice(0, 5)" >
+					<p>
+						<span class="bumpup-txt" >
+							{{ mc.instructor }}
+						</span>
+						<br />
+						{{ mc.subject }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="privateStudiesCard" >
+			
+			<section class="module border-rows" >
+				
+				<header class="row justify-content-between" >
+					
+					<h2 class="col-sm-6" >
+						Private Studies
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/private-studies" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						List any private study with a teacher outside of normal school studies.
+					</p>
+				</div>
+
+				<div *ngFor="let study of student?.private_studies.slice(0, 5)" >
+					<p>
+						<u class="bumpup-txt" >
+							{{ study.subject }}
+						</u>
+						<br />
+						{{ study.instructor }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="scholasticInformationCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						Scholastic Information
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/scholastic-information" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p>
+						Even though you are interested in a music scholarship,
+						you are still going to college, and colleges liketo know
+						some academic statistics about you. 
+						Use your current GPA and standardized test scores.
+					</p>
+				</div>
+
+				<div *ngIf="student?.graduation_year" >
+					<p>
+						<b>Graduation Year: </b>
+						{{ student.graduation_year }}
+					</p>
+				</div>
+
+				<div *ngIf="student?.scholastics" >
+					<div *ngIf="student?.scholastics.gpa" >
+						<p>
+							<b>GPA: </b>
+							{{ student.scholastics.gpa }}
+						</p>
+					</div>
+				</div>
+
+				<div *ngIf="student?.scholastics" >
+					<div *ngIf="student?.scholastics.sat" >
+						<p>
+							<b>SAT: </b>
+							{{ student.scholastics.sat }}
+						</p>
+					</div>
+				</div>
+
+				<div *ngIf="student?.scholastics" >
+					<div *ngIf="student?.scholastics.act" >
+						<p>
+							<b>ACT: </b>
+							{{ student.scholastics.act }}
+						</p>
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="collegePreferencesCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						College Preferences
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/college-preferences" >
+						View Details
+					</a>
+				</header>
+
+				<div *ngIf="student && student?.college_pref" >
+					<p *ngIf="colleges" >
+						<b>Colleges: </b>
+						{{ colleges }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="personalStatementCard" >
+
+			<section class="module border-rows" >
+
+				<header class="row justify-content-between" >
+					<h2 class="col-sm-6" >
+						College Statement
+					</h2>
+					<a class="col-sm-6 text-right" routerLink="/{{userType}}/education/personal-statement" >
+						View Details
+					</a>
+				</header>
+
+				<div>
+					<p *ngIf="student?.personal_statement" >
+						{{ student?.personal_statement }}
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
+
+</div>

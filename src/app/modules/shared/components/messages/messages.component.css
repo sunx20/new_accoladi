@@ -1,0 +1,32 @@
+.messages-card-header,
+.messages-card-header:hover,
+.messages-card-footer {
+  background-color: white;
+  color: #333;
+}
+
+.messages-card-header:hover h5 {
+  color: #333;
+}
+
+h4 {
+  margin: 0;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border-left: none;
+  border-right: none;
+}
+
+.sync-messages {
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}

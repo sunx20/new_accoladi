@@ -1,0 +1,409 @@
+<div class="modal-body" >
+
+	<div class="row" #stripeContainer>
+
+		<div class="col-md-8 offset-md-2" >
+
+			<form class="needs-validation" novalidate>
+
+				<div id="sa-stripe-two-paymentRequest" >
+					<!--Stripe paymentRequestButton Element inserted here-->
+				</div>
+
+				<fieldset>
+
+					<legend
+						*ngIf="!paymentRequestAvailable"
+						class="card-only text-center"
+						data-tid="sa-stripe-elements.form.pay_with_card" >
+						Pay with card
+					</legend>
+					<legend
+						*ngIf="paymentRequestAvailable"
+						class="payment-request-available"
+						data-tid="sa-stripe-elements.form.enter_card_manually" >
+						Or enter card details
+					</legend>
+
+					<p *ngIf="role === 'parent'" >
+						Parent accounts are free on Accoladi.com. We collect your credit card information now, but you will not
+						be charged until you associate a student to your account (either by adding them or accepting an invitation).
+					</p>
+
+					<div class=" form-row" >
+
+						<div class="col" >
+
+							<label
+								for="sa-stripe-two-name"
+								data-tid="sa-stripe-elements.form.name_label" >
+								Name on card
+							</label>
+							<input
+								id="sa-stripe-two-name"
+								data-tid="sa-stripe-elements.form.name_placeholder"
+								class="form-control"
+								type="text"
+								placeholder="Jane Doe"
+								required />
+
+							<div class="invalid-feedback" >
+								Please provide name on card.
+							</div>
+
+						</div>
+
+					</div>
+
+					<br />
+
+					<div class=" form-row" >
+
+						<div class="col" >
+
+							<label
+								for="sa-stripe-two-email"
+								data-tid="sa-stripe-elements.form.email_label" >
+								Email of student subscription
+							</label>
+							<input
+								id="sa-stripe-two-email"
+								data-tid="sa-stripe-elements.form.email_placeholder"
+								class="form-control"
+								type="email"
+								placeholder="janedoe@gmail.com"
+								required="" />
+
+							<div class="invalid-feedback" >
+								Please provide email of student subscription.
+							</div>
+
+						</div>
+
+						<div class="col" >
+
+							<label
+								for="sa-stripe-two-phone"
+								data-tid="sa-stripe-elements.form.phone_label" >
+								Phone
+							</label >
+							<input
+								id="sa-stripe-two-phone"
+								data-tid="sa-stripe-elements.form.phone_placeholder"
+								class="form-control"
+								type="text"
+								placeholder="(941) 555-0123" />
+
+						</div>
+
+					</div>
+
+					<br />
+
+					<div data-locale-reversible>
+
+						<div class=" form-row" >
+
+							<div class="col" >
+
+								<label
+									for="sa-stripe-two-address"
+									data-tid="sa-stripe-elements.form.address_label" >
+									Address
+								</label>
+								<input
+									id="sa-stripe-two-address"
+									data-tid="sa-stripe-elements.form.address_placeholder"
+									class="form-control"
+									type="text"
+									placeholder="185 Berry St" />
+
+							</div>
+
+						</div>
+
+						<br />
+
+						<div class=" form-row" data-locale-reversible>
+
+							<div class="col" >
+
+								<label
+									for="sa-stripe-two-city"
+									data-tid="sa-stripe-elements.form.city_label" >
+									City
+								</label>
+								<input
+									id="sa-stripe-two-city"
+									data-tid="sa-stripe-elements.form.city_placeholder"
+									class="form-control"
+									type="text"
+									placeholder="San Francisco" />
+
+							</div>
+
+							<div class="col" >
+
+								<label
+									for="sa-stripe-two-state"
+									data-tid="sa-stripe-elements.form.state_label" >
+									State
+								</label>
+								<input
+									id="sa-stripe-two-state"
+									data-tid="sa-stripe-elements.form.state_placeholder"
+									class="form-control empty"
+									type="text"
+									placeholder="CA" />
+
+							</div>
+
+							<div class="col" >
+
+								<label
+									for="sa-stripe-two-zip"
+									data-tid="sa-stripe-elements.form.postal_code_label" >
+									ZIP
+								</label>
+								<input
+									id="sa-stripe-two-zip"
+									data-tid="sa-stripe-elements.form.postal_code_placeholder"
+									class="form-control empty"
+									type="text"
+									placeholder="94107" />
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<br />
+
+					<div class=" form-row" >
+
+						<div class="col" >
+
+							<label
+								for="sa-stripe-two-card"
+								data-tid="sa-stripe-elements.form.card_label" >
+								Card
+							</label>
+							<div
+								id="sa-stripe-two-card"
+								class="form-control" >
+							</div>
+							<div
+								id="card-errors"
+								style=" width: 100%;
+									margin-top: .25rem;
+									font-size: 80%;
+									color: #e2a90a;" >
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class=" form-row" >
+
+						<div class="col">
+
+							<label for="sa-stripe-card_expiry" data-tid="sa-stripe-elements.form.card_expiry_label">
+								Expiry
+							</label>
+							<div id="sa-stripe-two-card-expiry" class="form-control">
+							</div>
+						
+						</div>
+
+					</div>
+
+					<div class=" form-row" >
+
+						<div class="col">
+
+							<label for="sa-stripe-card_cvc" data-tid="sa-stripe-elements.form.card_cvc_label">
+								CVC
+							</label>
+							<div id="sa-stripe-two-card-cvc" class="form-control">
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class=" form-row" >
+
+						<div class="col" >
+
+							<label
+								for="sa-stripe-two-coupon"
+								data-tid="sa-stripe-elements.form.coupon_label" >
+								Coupon Code
+							</label>
+							<input
+								
+								(focusout)="focusOutCoupon()"
+								id="sa-stripe-two-coupon"
+								data-tid="sa-stripe-elements.form.coupon"
+								class="form-control"
+								type="text"
+								placeholder="Coupon Code" />
+						</div>
+						
+					</div>
+
+				<div *ngIf="errorShow" class="error-message">{{errorMessage}}</div>
+
+				<div *ngIf="successShow" class="success-message">{{successMessage}}</div>
+
+					<br />
+
+					<div class="form-row" >
+					
+						<div class="col" >
+						
+							<div class="d-flex justify-content-center" >
+							
+								<p>
+									You are entering into a auto-billing subscription agreement<span *ngIf="role === 'parent'" > for {{ nStudents }} student(s)</span>.<br />
+									You will be billed ${{ amount / 100 | number: ".2" }}
+									starting {{ startDate }}<span *ngIf="plan != 'Lifetime'"> and {{ plan }} thereafter,
+									unless you cancel within your {{ trialp }}-day trial</span>.
+								</p>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<br />
+
+					<div class=" form-row" >
+						
+						<div class="col d-flex justify-content-center" >
+							
+							<a
+								class="reset text-center"
+								href="#"
+								(click)="onReset($event)" >
+								<svg
+									width="32px"
+									height="32px"
+									viewBox="0 0 32 32"
+									version="1.1"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink" >
+									<path
+										fill="#000000"
+										d="M15,7.05492878 C10.5000495,7.55237307 7,11.3674463 7,16 C7,20.9705627 11.0294373,25 16,25 C20.9705627,25 25,20.9705627 25,16 C25,15.3627484 24.4834055,14.8461538 23.8461538,14.8461538 C23.2089022,14.8461538 22.6923077,15.3627484 22.6923077,16 C22.6923077,19.6960595 19.6960595,22.6923077 16,22.6923077 C12.3039405,22.6923077 9.30769231,19.6960595 9.30769231,16 C9.30769231,12.3039405 12.3039405,9.30769231 16,9.30769231 L16,12.0841673 C16,12.1800431 16.0275652,12.2738974 16.0794108,12.354546 C16.2287368,12.5868311 16.5380938,12.6540826 16.7703788,12.5047565 L22.3457501,8.92058924 L22.3457501,8.92058924 C22.4060014,8.88185624 22.4572275,8.83063012 22.4959605,8.7703788 C22.6452866,8.53809377 22.5780351,8.22873685 22.3457501,8.07941076 L22.3457501,8.07941076 L16.7703788,4.49524351 C16.6897301,4.44339794 16.5958758,4.41583275 16.5,4.41583275 C16.2238576,4.41583275 16,4.63969037 16,4.91583275 L16,7 L15,7 L15,7.05492878 Z M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z">
+									</path>
+								</svg>
+							</a>
+							&nbsp; &nbsp;
+							<button
+								type="submit"
+								class="btn "
+								data-tid="sa-stripe-elements.form.pay_button" >
+								Pay Total: ${{ amount / 100 | number: ".2" }}
+							</button>
+
+						</div>
+
+					</div>
+
+				</fieldset>
+
+				<br />
+
+				<div
+					*ngIf="errorvisible"
+					class="error text-center"
+					role="alert" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="17"
+						height="17"
+						viewBox="0 0 17 17" >
+						<path
+							class="base"
+							fill="#000"
+							d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z">
+						</path>
+						<path
+							class="glyph"
+							fill="#FFF"
+							d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z">
+						</path>
+					</svg>
+					<span class="message" >
+						{{ error_message }}
+					</span>
+
+				</div>
+
+			</form>
+
+			<br />
+
+			<div class="success" >
+
+				<div class="icon text-center" >
+
+					<svg
+						width="84px"
+						height="84px"
+						viewBox="0 0 84 84"
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink" >
+						<circle
+							class="border"
+							cx="42"
+							cy="42"
+							r="40"
+							stroke-linecap="round"
+							stroke-width="4"
+							stroke="green"
+							fill="none" >
+						</circle>
+						<path
+							class="checkmark"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M23.375 42.5488281 36.8840688 56.0578969 64.891932 28.0500338"
+							stroke-width="4"
+							stroke="#000"
+							fill="none" >
+						</path>
+
+					</svg>
+					
+				</div>
+
+				<h3
+					class="title text-center green-text"
+					data-tid="sa-stripe-elements.success.title" >
+					Payment successful
+				</h3>
+
+				<br />
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal-footer" >
+	
+	<button type="button" class="btn gray-btn" (click)="close()" >
+		Cancel
+	</button>
+
+</div>

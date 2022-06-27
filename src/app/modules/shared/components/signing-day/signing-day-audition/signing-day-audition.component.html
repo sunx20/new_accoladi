@@ -1,0 +1,231 @@
+<div class="modal-header" >
+	<h2>National Signing Day 2021</h2>
+</div>
+
+<form class="font-12" [formGroup]="form" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="row" >
+
+				<div class="col-md-12" >
+					Area of Consideration : {{value.area.group}} 
+					<span *ngIf="value.area.sub_group" > - {{value.area.sub_group}}</span>
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-md-12" >
+					Audition Requirments
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-6" >
+					Composition/Piece Performed
+				</div>
+
+				<div class="col-6" >
+					Type
+				</div>
+
+			</div>
+
+			<div class="row" >
+
+				<div class="col-6" >
+
+					<input 
+						id="performed" 
+						type="text" 
+						name="performed" 
+						required 
+						class="form-control"
+						formControlName="performed" 
+						placeholder="Name of piece" />
+
+				</div>
+
+				<div class="col-6" >
+
+					<select
+						type="text"
+						name="type"  
+						formControlName="type" 
+						class="form-control" >
+						<option value="" selected >Select (if applicable)</option>
+						<option *ngFor="let t of types" >{{ t }}</option>
+					</select>
+
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-12" >
+					Composer/Choreographer
+				</div>
+
+			</div>
+
+			<div class="row" >
+
+				<div class="col-12" >
+
+					<input 
+						type="text"
+						name="composer"
+						required
+						formControlName="composer"
+						class="input-full-width"
+						placeholder="Composer" >
+
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-6" >
+					Video URL : (Youtube or Vimeo)
+				</div>
+
+			</div>
+
+			<div class="row" >
+
+				<div class="col-12" >
+
+					<input 
+						type="text"
+						name="video_url"
+						required
+						placeholder="Provide FULL url - like https://youtu.be/nnn-AA"
+						class="form-control "
+						formControlName="video_url"
+						[class.state-error]="isFieldInvalid('video_url')"
+						(input)="getVideoUrl($event.target.value)" />
+					<app-video-player *ngIf="showVideo" [video]="videoUrl" ></app-video-player>
+
+				</div>
+
+			</div>
+			
+			<div class="row mt-2" >
+
+				<div class="col-md-12" >
+					Additional Information - If Applicable (Dance / Musical Theater)
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+		
+				<div class="col-12" >
+					Company
+				</div>
+				
+			</div>
+		
+			<div class="row" >
+		
+				<div class="col-12" >
+		
+					<input 
+						name="company"
+						type="text"
+						class="input-full-width"
+						formControlName="company"
+						placeholder="Company" >
+		
+				</div>
+		
+			</div>
+				
+			<div class="row mt-2" >
+			
+				<div class="col-6" >
+					Show
+				</div>
+			
+				<div class="col-6" >
+					Role
+				</div>
+			
+			</div>
+			
+			<div class="row" >
+			
+				<div class="col-6" >
+			
+					<input 
+						name="show"
+						type="text"
+						class="input-full-width"
+						formControlName="show"
+						placeholder="Show" >
+			
+				</div>
+			
+				<div class="col-6" >
+			
+					<input 
+						name="role"
+						type="text"
+						class="input-full-width"
+						formControlName="role"
+						placeholder="Role" >
+			
+				</div>
+			
+			</div>
+			
+			<div class="row mt-2" >
+			
+				<div class="col-12" >
+					Comments
+				</div>
+			
+			</div>
+
+			<div class="row" >
+			
+				<div class="col-12" >
+
+					<textarea
+						class="form-control"
+						id="statement"
+						rows="4"
+						autocomplete="off"
+						class="form-control "
+						formControlName="comments"
+						name="comments"
+						placeholder="Addiotional Comments on video" ></textarea>
+			
+				</div>
+			
+			</div>
+
+			<div class="row mt-2" >
+
+				<button
+					type="button"
+					class="btn btn-danger add-button"
+					[disabled]="!form.valid"
+					(click)="save()" >
+					<i class="fa fa-plus-circle" aria-hidden="true" ></i> Add </button>
+
+			</div>
+				
+		</div>
+
+	</div>
+
+</form>

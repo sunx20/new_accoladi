@@ -1,0 +1,38 @@
+<div class="card " >
+
+	<div class="card-body" >
+
+		<h3>Talent Search</h3>
+
+		<small>
+			Search across the entire student database for Students that meet
+			your criteria, save the results, or save the criteria for later
+			searches.
+		</small>
+
+		<br />
+
+		<app-search-filter 
+			(search)="onSearch($event)" 
+			[page]="page" 
+			[pageSize]="pageSize" >
+		</app-search-filter>
+
+	</div>
+
+</div>
+
+<div #scrollElement >
+
+	<app-search-results 
+		*ngIf="recruiter && response" 
+		[recruiter]="recruiter" 
+		[response]="response" 
+		[total]="total"
+		[page]="page" 
+		[pageSize]="pageSize" 
+		(paginate)="onPaginate($event)" 
+		(scrollTo)="scroll()" >
+	</app-search-results>
+
+</div>

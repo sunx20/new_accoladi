@@ -1,0 +1,112 @@
+<app-progress-bar [role]="role" [wizard]="'account-info'" [type]="type" ></app-progress-bar>
+
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		<span class="student-title" *ngIf="type=='Child'" >
+			Student : 
+		</span>Account Info
+	</h4>
+
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()" >
+
+	<div class="form-row" *ngIf="type=='Child'" >
+
+		<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('email')" >
+
+			<label for="email" class="control-label " >Email</label><br>
+			<label for="email" class="control-label " >( How WE communicate with you )</label>
+			<input name="email" id="email" type="text" class="form-control "
+				[class.state-error]="isFieldInvalid('email')" formControlName="email" placeholder="Email" />
+
+			<app-field-error-display 
+				*ngIf="f.email.errors && f.email.errors.required"
+				[displayError]="isFieldInvalid('email')" 
+				errorMsg="Please provide email" >
+			</app-field-error-display>
+
+			<app-field-error-display 
+				*ngIf="f.email.errors && f.email.errors.email"
+				[displayError]="isFieldInvalid('email')" 
+				errorMsg="Please provide a valid email" >
+			</app-field-error-display>
+
+			<app-field-error-display 
+				*ngIf="f.email.errors && f.email.errors.emailTaken"
+				[displayError]="isFieldInvalid('email')" 
+				errorMsg="This email is already taken" >
+			</app-field-error-display>
+
+		</div>
+
+		<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('username')" >
+
+			<label for="username" class="control-label " >Username</label><br>
+			<label for="email" class="control-label " >( What is displayed to the public )</label>
+			<input name="username" id="username" type="text" class="form-control "
+				[class.state-error]="isFieldInvalid('username')" formControlName="username" placeholder="Username" />
+
+			<app-field-error-display 
+				[displayError]="isFieldInvalid('username')" 
+				errorMsg="Please provide username" >
+			</app-field-error-display>
+
+		</div>
+
+	</div>
+
+
+	<div class="form-row" >
+
+		<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('password')" >
+
+			<label for="password" class="control-label " >Password</label><br>
+			<label for="password" class="control-label " >( The longer the better )</label>
+			<input id="password" name="password" type="password" class="form-control" formControlName="password"
+				[class.state-error]="isFieldInvalid('password')" />
+
+			<app-field-error-display 
+				[displayError]="isFieldInvalid('password')"
+				*ngIf="f.password.errors && f.password.errors.required" 
+				errorMsg="Please provide a password" >
+			</app-field-error-display>
+
+		</div>
+
+		<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('confirm_password')" >
+			
+			<label for="confirm_password" class="control-label margin-bottom" >Confirm Password</label><br>
+			<input id="confirm_password" name="confirm_password" type="password" class="form-control"
+				formControlName="confirm_password" [class.state-error]="isFieldInvalid('confirm_password')" />
+
+			<app-field-error-display 
+				[displayError]="isFieldInvalid('confirm_password')" 
+				*ngIf="f.confirm_password.errors && f.confirm_password.errors.required" 
+				errorMsg="Please confirm password" >
+			</app-field-error-display>
+
+			<app-field-error-display 
+				[displayError]="!isFieldInvalid('confirm_password') && form.errors && form.errors.mismatch" 
+				errorMsg="Password mismatch" >
+			</app-field-error-display>
+
+		</div>
+
+	</div>
+
+	<div class="col-12" >
+	
+		<button type="button" class="btn gray-btn float-left" (click)="onClickBack()" >
+			Back
+		</button>
+		
+		<button type="submit" [disabled]="requestSuccess" class="btn float-right" >
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+			{{ loading ? "Saving..." : !requestSuccess ? "Continue" : "Done" }}
+		</button>
+
+	</div>
+	
+</form>

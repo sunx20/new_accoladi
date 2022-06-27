@@ -1,0 +1,163 @@
+<div class="modal-header">
+  <h4 class="modal-title">Score this Student - [STUDENT_NAME]</h4>
+</div>
+
+<form>
+
+  <div class="modal-body">
+
+    <div class="container">
+
+      <div class="form-row">
+
+        <!-- 
+					TODO:
+					Form depends on the AREA for judging criteria
+				 -->
+
+         <form [formGroup]="profileForm" >
+         
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Category</div>
+              <div class="col-1">Monologue I</div>
+              <div class="col-1">Song I</div>
+              <div class="col-1">Song II</div>
+              <div class="col-1">Dance I</div>
+              <div class="col-1">Dance II</div>
+              <div class="col-2">General Comments</div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Breath Support</div>
+              <div class="col-1 "><input   type="number" name="MonologueI_BreathSupport" [min]="0" [max]="10" formControlName="MonologueI_BreathSupport" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input  type="number" name="SongI_BreathSupport"  [min]="0" [max]="10" formControlName="SongI_BreathSupport" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_BreathSupport"  [min]="0" [max]="10" formControlName="SongII_BreathSupport" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_BreathSupport" [min]="0" [max]="10" formControlName="DanceI_BreathSupport" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_BreathSupport" [min]="0" [max]="10" formControlName="DanceII_BreathSupport" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_BreathSupport" formControlName="GeneralComments_BreathSupport" /></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Pronunciation</div>
+              <div class="col-1"><input type="number" name="MonologueI_Pronunciation" [min]="0" [max]="10" formControlName="MonologueI_Pronunciation" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Pronunciation" [min]="0" [max]="10" formControlName="SongI_Pronunciation" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Pronunciation" [min]="0" [max]="10" formControlName="SongII_Pronunciation" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Pronunciation" [min]="0" [max]="10" formControlName="DanceI_Pronunciation" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Pronunciation" [min]="0" [max]="10"formControlName="DanceII_Pronunciation" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Pronunciation" formControlName="GeneralComments_Pronunciation" /></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Intonation</div>
+              <div class="col-1"><input type="number" name="MonologueI_Intonation" [min]="0" [max]="10" formControlName="MonologueI_Intonation" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Intonation"  [min]="0" [max]="10" formControlName="SongI_Intonation" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Intonation" [min]="0" [max]="10" formControlName="SongII_Intonation" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Intonation" [min]="0" [max]="10" formControlName="DanceI_Intonation" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Intonation" [min]="0" [max]="10" formControlName="DanceII_Intonation" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Intonation"  formControlName="GeneralComments_Intonation"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Rhythm</div>
+              <div class="col-1"><input type="number" name="MonologueI_Rhythm" [min]="0" [max]="10" formControlName="MonologueI_Rhythm" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Rhythm" [min]="0" [max]="10" formControlName="SongI_Rhythm" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Rhythm" [min]="0" [max]="10" formControlName="SongII_Rhythm" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Rhythm" [min]="0" [max]="10" formControlName="DanceI_Rhythm" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Rhythm" [min]="0" [max]="10" formControlName="DanceII_Rhythm" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Rhythm"  formControlName="GeneralComments_Rhythm"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Tempo</div>
+              <div class="col-1"><input type="number" name="MonologueI_Tempo" [min]="0" [max]="10" formControlName="MonologueI_Tempo" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Tempo" [min]="0" [max]="10" formControlName="SongI_Tempo" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Tempo" [min]="0" [max]="10" formControlName="SongII_Tempo" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Tempo" [min]="0" [max]="10" formControlName="DanceI_Tempo" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Tempo" [min]="0" [max]="10" formControlName="DanceII_Tempo" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Tempo"  formControlName="GeneralComments_Tempo"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Dynamics</div>
+              <div class="col-1"><input type="number" name="MonologueI_Dynamics" [min]="0" [max]="10" formControlName="MonologueI_Dynamics" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Dynamics" [min]="0" [max]="10" formControlName="SongI_Dynamics" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Dynamics" [min]="0" [max]="10" formControlName="SongII_Dynamics" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Dynamics" [min]="0" [max]="10" formControlName="DanceI_Dynamics" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Dynamics" [min]="0" [max]="10" formControlName="DanceII_Dynamics" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Dynamics"  formControlName="GeneralComments_Dynamics"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Phrasing</div>
+              <div class="col-1"><input type="number" name="MonologueI_Phrasing" [min]="0" [max]="10" formControlName="MonologueI_Phrasing" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Phrasing" [min]="0" [max]="10" formControlName="SongI_Phrasing" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Phrasing" [min]="0" [max]="10" formControlName="SongII_Phrasing" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Phrasing" [min]="0" [max]="10" formControlName="DanceI_Phrasing" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Phrasing" [min]="0" [max]="10" formControlName="DanceII_Phrasing" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Phrasing"  formControlName="GeneralComments_Phrasing"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Interpretation</div>
+              <div class="col-1"><input type="number" name="MonologueI_Interpretation" [min]="0" [max]="10" formControlName="MonologueI_Interpretation" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Interpretation" [min]="0" [max]="10" formControlName="SongI_Interpretation" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Interpretation" [min]="0" [max]="10" formControlName="SongII_Interpretation" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Interpretation" [min]="0" [max]="10" formControlName="DanceI_Interpretation" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Interpretation" [min]="0" [max]="10" formControlName="DanceII_Interpretation" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Interpretation"  formControlName="GeneralComments_Interpretation"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Presentation</div>
+              <div class="col-1"><input type="number" name="MonologueI_Presentation" [min]="0" [max]="10" formControlName="MonologueI_Presentation" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Presentation" [min]="0" [max]="10" formControlName="SongI_Presentation" (input)="onSongIChange($event.target.value)" /></div>
+              <div class="col-1"><input type="number" name="SongII_Presentation" [min]="0" [max]="10" formControlName="SongII_Presentation" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Presentation" [min]="0" [max]="10" formControlName="DanceI_Presentation" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Presentation" [min]="0" [max]="10" formControlName="DanceII_Presentation" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Presentation"  formControlName="GeneralComments_Presentation"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Memorization or Overall Impression</div>
+              <div class="col-1"><input type="number" name="MonologueI_Memorization" [min]="0" [max]="10" formControlName="MonologueI_Memorization" (input)="onMonologueIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongI_Memorization" [min]="0" [max]="10" formControlName="SongI_Memorization" (input)="onSongIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="SongII_Memorization" [min]="0" [max]="10" formControlName="SongII_Memorization" (input)="onSongIIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceI_Memorization" [min]="0" [max]="10" formControlName="DanceI_Memorization" (input)="onDanceIChange($event.target.value)"/></div>
+              <div class="col-1"><input type="number" name="DanceII_Memorization" [min]="0" [max]="10" formControlName="DanceII_Memorization" (input)="onDanceIIChange($event.target.value)"/></div>
+              <div class="col-2"><input type="text" name="GeneralComments_Memorization"  formControlName="GeneralComments_Memorization"/></div>
+              <!-- <div class="col-1">&nbsp;</div> -->
+            </div>
+
+           
+            <div class="row col-12 mt-2">
+              <div class="col-5 fist-col-padding">Total</div>
+              <div class="col-1"><input class="form-cell-width" type="number" readonly name="Total_MonologueI" formControlName="Total_MonologueI"/></div>
+              <div class="col-1"><input class="form-cell-width" type="number" readonly name="Total_SongI" formControlName="Total_SongI" /></div>
+              <div class="col-1"><input class="form-cell-width" type="number" readonly name="Total_SongII" formControlName="Total_SongII"/></div>
+              <div class="col-1"><input class="form-cell-width" type="number" readonly name="Total_DanceI" formControlName="Total_DanceI"/></div>
+              <div class="col-1"><input class="form-cell-width" type="number" readonly name="Total_DanceII" formControlName="Total_DanceII"/></div>
+              <div class="col-2"><input type="text" name="Total_GeneralComments" formControlName="Total_GeneralComments" /></div>
+        
+            </div>
+          <!-- <div class="col-1"><input class="form-cell-width" type="text" id="grandTotal" name="Grand_Total_VoiceAdjudication"/></div> -->
+        </form>
+      
+        <p>Judges Score: {{judgesScore}}</p>
+
+
+      </div>
+
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn gray-btn" (click)="close()">
+          Cancel
+        </button>
+        <button type="submit" (click)="sumbit()" class="btn-primary btn">
+          Submit
+         </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

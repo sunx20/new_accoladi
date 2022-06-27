@@ -1,0 +1,523 @@
+<section class="signup-hero py-5 text-center" >
+
+	<div class="container" >
+
+		<div class="row" >
+
+			<div class="col-lg-12" >
+
+				<h1 class="mb-4" >
+					Register for a Accoladi.com account
+				</h1>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+<ng-container *ngIf="!role" >
+
+	<section class="account-options pb-5" >
+
+		<div class="container" >
+
+			<div class="row m-0 signup-card" >
+
+				<div class="col-md-7 p-0 d-flex align-items-center"
+					style="background:url('assets/img/violin-player.jpg'); background-size:cover;" >
+					<img class="d-block mx-auto" src="assets/img/student-icon-113.png" />
+				</div>
+
+				<div class="col-md-5 p-0" >
+
+					<div class="p-5" >
+
+						<h3 class="pb-4" >I am a student</h3>
+
+						<ul class="pb-4" >
+							<li>Enter your performance and education history</li>
+							<li>Provide your talents and awards</li>
+							<li>Keep track of your accomplishments</li>
+							<li>Communicate with teachers and educators</li>
+							<li>Have your profile available for recruiters to search</li>
+							<li>
+								$9.95 / Monthly
+								<br/> OR <br/>
+								$100.00 / Yearly
+								<br><img src="assets/images/CCs.png" />
+							</li>
+						</ul>
+
+						<a href="javascript:;"
+							class="btn"
+							(click)="selectRole('Student')" >
+							Create Account
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row text-center" >
+
+				<div class="col-md-4 top-width" >
+
+					<div class="signup-card p-5" >
+
+						<img class="d-block mx-auto pb-3"
+								style="max-width:28px;"
+								src="assets/img/parent-icon-57.png" />
+
+						<h3 class="pb-4" >I am a parent</h3>
+
+						<ul>
+							<li>Manage all students in one screen</li>
+							<li>Keep track of your students' progress</li>
+							<li>Communicate with students, teachers and educators</li>
+							<li>Pay for multiple students on one account</li>
+							<li>
+								Free for your account <br>
+								Charges per student account:  <br>
+								$9.95 / Monthly
+								<br/> OR <br/>
+								$100.00 / Yearly
+								<br><img src="assets/images/CCs.png" />
+							</li>
+						</ul>
+
+						<a href="javascript:;"
+							class="btn"
+							(click)="selectRole('Parent')" >
+							Create Account
+						</a>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4 top-width" >
+
+					<div class="signup-card p-5" >
+
+						<img class="d-block mx-auto pb-3"
+								style="max-width:28px;"
+								src="assets/img/teacher-icon-57.png" />
+
+						<h3 class="pb-4" >I am a teacher</h3>
+
+						<ul>
+							<li>View all students in one screen</li>
+							<li>Keep track of your students' progress</li>
+							<li>Communicate with students and parents</li>
+							<li>Free membership</li>
+						</ul>
+
+						<a href="javascript:;"
+							class="btn"
+							(click)="selectRole('Teacher')" >
+							Create Account
+						</a>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4 top-width" >
+
+					<div class="signup-card p-5" >
+
+						<img class="d-block mx-auto pb-3"
+								style="max-width:21px;"
+								src="assets/img/university-icon-43.png" />
+
+						<h3 class="pb-4" >
+							I am a college<br />
+							professor / recruiter
+						</h3>
+
+						<ul>
+							<li>Search world wide for talented youth</li>
+							<li>Keep track of your favorites</li>
+							<li>Rate students on your own criteria</li>
+							<li>Communicate with students and parents</li>
+							<li>View student profiles and videos</li>
+							<li>Free membership</li>
+						</ul>
+
+						<a href="javascript:;"
+							class="btn"
+							(click)="selectRole('Recruiter')" >
+							Create Account
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</ng-container>
+
+<div class="row" >
+
+	<div class="col-md-8 offset-md-2" >
+
+		<form novalidate="novalidate"
+				autocomplete="false"
+				[formGroup]="form"
+				 >
+
+			<ng-container *ngIf="role" >
+
+				<br />
+
+				<div class="form-row" >
+
+					<div class="offset-md-3 col-md-2 form-group required"
+						[ngClass]="displayFieldCss('first_name')" >
+						<label for="first_name"
+								class="control-label " >First Name</label>
+						<input id="first_name"
+								name="first_name"
+								type="text"
+								class="form-control"
+								formControlName="first_name"
+								[class.state-error]="isFieldInvalid('first_name')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('first_name')"
+							errorMsg="Please provide first name" >
+						</app-field-error-display>
+					</div>
+
+					<div class=" col-md-2 form-group" >
+						<label for="middle_name"
+								class="control-label " >Middle Name</label>
+						<input id="middle_name"
+								name="middle_name"
+								type="text"
+								class="form-control"
+								formControlName="middle_name" />
+					</div>
+
+					<div class="col-md-2 form-group required"
+						[ngClass]="displayFieldCss('last_name')" >
+						<label for="last_name"
+								class="control-label " >Last Name</label>
+						<input id="last_name"
+								name="last_name"
+								type="text"
+								class="form-control"
+								formControlName="last_name"
+								[class.state-error]="isFieldInvalid('last_name')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('last_name')"
+							errorMsg="Please provide last name" >
+						</app-field-error-display>
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+
+					<div class="offset-md-3 col-md-3 form-group required"
+						[ngClass]="displayFieldCss('email')" >
+						<label for="email"
+								class="control-label " >Email</label>
+						<input id="email"
+								name="email"
+								type="email"
+								class="form-control"
+								autocomplete="username"
+								formControlName="email"
+								[class.is-valid]="f.email.status === 'VALID'"
+								[class.state-error]="isFieldInvalid('email')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('email')"
+							*ngIf="f.email.errors && f.email.errors.required"
+							errorMsg="Please provide an email" >
+						</app-field-error-display>
+						<app-field-error-display
+							[displayError]="isFieldInvalid('email')"
+							*ngIf="f.email.errors && f.email.errors.email"
+							errorMsg="Please provide a valid email" >
+						</app-field-error-display>
+						<app-field-error-display
+							[displayError]="isFieldInvalid('email')"
+							*ngIf="f.email.errors && f.email.errors.emailTaken"
+							errorMsg="This email is already taken" >
+						</app-field-error-display>
+						<!-- <small *ngIf="f.email.status === 'PENDING'" >
+							<br />
+							<i>Checking...</i>
+						</small> -->
+					</div>
+
+					<input type="hidden"
+							name="role"
+							formControlName="role" />
+
+					<div class="col-md-3 form-group required"
+							[ngClass]="displayFieldCss('username')" >
+						<label for="username"
+								class="control-label " >Username</label>
+						<input id="username"
+								name="username"
+								type="text"
+								class="form-control"
+								autocomplete="false"
+								formControlName="username"
+								[class.state-error]="isFieldInvalid('username')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('username')"
+							errorMsg="Please provide username" >
+						</app-field-error-display>
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+
+					<div class="offset-md-3 col-md-3 form-group required"
+							[ngClass]="displayFieldCss('password')" >
+						<label for="password"
+								class="control-label " >Password</label>
+						<input id="password"
+								name="password1"
+								type="password"
+								class="form-control"
+								autocomplete="false"
+								formControlName="password"
+								[class.state-error]="isFieldInvalid('password')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('password')"
+							errorMsg="Please provide a password" >
+						</app-field-error-display>
+					</div>
+
+					<div class="col-md-3 form-group required"
+							[ngClass]="displayFieldCss('confirm_password')" >
+						<label for="confirm_password"
+								class="control-label " >Confirm password</label>
+						<input id="confirm_password"
+								name="confirm_password"
+								type="password"
+								class="form-control"
+								formControlName="confirm_password"
+								[class.state-error]="isFieldInvalid('confirm_password')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('confirm_password')"
+							errorMsg="Please confirm password" >
+						</app-field-error-display>
+						<app-field-error-display
+							[displayError]="!isFieldInvalid('confirm_password') && form.errors && form.errors.mismatch"
+							errorMsg="Password mismatch" >
+						</app-field-error-display>
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+
+					<div class="offset-md-3 col-md-3 form-group required"
+							[ngClass]="displayFieldCss('zip_code')" >
+						<label for="zip_code"
+								class="control-label " >Zip Code</label>
+						<input id="zip_code"
+								name="zip_code"
+								type="text"
+								class="form-control"
+								formControlName="zip_code"
+								[class.state-error]="isFieldInvalid('zip_code')" />
+						<app-field-error-display
+							[displayError]="isFieldInvalid('zip_code')"
+							errorMsg="Please provide Zip code" >
+						</app-field-error-display>
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					<div class="offset-md-5 col-md-2 form-group" >
+						<label for="promo_code"
+								class="control-label" >
+							Promo Code
+						</label>
+						<input id="promo_code"
+								name="promo_code"
+								type="text"
+								class="form-control"
+								formControlName="promo_code" />
+					</div>
+				</div>
+
+				<div *ngIf="form.get('role').value === 'Recruiter'" >
+
+					<div class="form-row" >
+
+						<div class="offset-md-3 col-md-3 form-group" >
+							<label class="control-label "
+									for="college" >College</label>
+							<input id="college"
+									name="college"
+									type="text"
+									class="form-control"
+									placeholder="Search colleges ..."
+									formControlName="college"
+									[ngbTypeahead]="searchColleges"
+									[inputFormatter]="formatMatches"
+									[resultTemplate]="rt"
+									(selectItem)="selectedCollege($event)" />
+							<span *ngIf="searchingColleges" >searching...</span>
+							<div *ngIf="searchFailed"
+									class="invalid-feedback" >
+								Sorry, suggestions could not be loaded.
+							</div>
+
+							<input type="hidden"
+									name="college_id"
+									formControlName="college_id"
+									value="" />
+
+							<ng-template #rt let-r="result" let-t="term" >
+								<span class="device" >
+									<span class="grayout" >{{ r?.name }}</span>
+									<br />
+									<small class="grayout" >{{ r?.state }}</small>
+								</span>
+							</ng-template>
+						</div>
+
+						<div class="col-md-3 form-group" >
+							<label for="title"
+									class="control-label " >
+								Title
+							</label>
+							<input id="title"
+									name="title"
+									type="text"
+									class="form-control"
+									formControlName="title" />
+						</div>
+
+					</div>
+
+					<div class="form-row" >
+
+						<div class="offset-md-3 col-md-3 form-group" >
+							<label for="discipline"
+									class="control-label " >
+								Discipline
+							</label>
+							<input id="discipline"
+									name="discipline"
+									type="text"
+									class="form-control"
+									formControlName="discipline" />
+						</div>
+
+						<div class="col-md-3 form-group" >
+							<label for="faculty_url"
+									class="control-label " >
+								Faculty URL
+							</label>
+							<input id="faculty_url"
+									name="faculty_url"
+									type="text"
+									class="form-control"
+									formControlName="faculty_url" />
+						</div>
+
+					</div>
+
+					<div class="form-row" >
+
+						<div class="offset-md-3 col-md-6 form-group" >
+							<p>
+								By submitting this form I confirm that I am the
+								person whom I claim to be, and that I have the
+								authority to recruit for the school identified
+								above. I understand that Accoladi.com
+								will confirm these claim and take appropriate
+								action if they find them to be false - I also
+								understand my account will NOT be active until
+								such confirmation.
+							</p>
+							<br />
+
+							<div class="checkbox" >
+								<label for="agree"
+										class="control-label" >
+									<input id="agree"
+											name="agree"
+											type="checkbox"
+											formControlName="agree" />
+									I agree
+								</label>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+
+					<div class="offset-md-3 col-md-6" >
+
+						<br />
+
+						<div *ngIf="registerFailed"
+								class="alert alert-danger"
+								role="alert" >
+							{{ feedback }}
+						</div>
+
+						<br />
+
+						<div class="d-flex justify-content-center" >
+							<button
+								appDisableDoubleClick
+								(click)="submitForm()"
+								class="btn"
+								[disabled]="!agreed" >
+								<span *ngIf="loading"
+										class="spinner-border spinner-border-sm"
+										role="status"
+										aria-hidden="true" ></span>
+								{{ loading ? "Processing..." : "Register" }}
+							</button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</ng-container>
+
+		</form>
+
+	</div>
+
+</div>
+
+
+<section class="mt-5 py-5 white-bkd" >
+	<div class="container text-center" >
+		<div class="row" >
+			<div class="col-lg-12" >
+				<h2 class="mb-4" >Already have an account?</h2>
+				<a [routerLink]="['/login']" class="btn" >Log In</a>
+			</div>
+		</div>
+	</div>
+</section>

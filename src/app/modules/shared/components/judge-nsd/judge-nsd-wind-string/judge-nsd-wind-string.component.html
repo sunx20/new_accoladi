@@ -1,0 +1,99 @@
+<div class="modal-header">
+  <h4 class="modal-title">Score this Student - {{student_name}}</h4>
+</div>
+
+
+  <div class="modal-body">
+
+    <div class="container">
+      <form [formGroup]="profileForm" >
+
+        <div class="row col-12 mt-1">
+          <div class="col-5">Category</div>
+          <div class="col-2">{{SongI}}</div>
+          <div class="col-2">{{SongII}}</div>
+          <div class="col-3">General Comments</div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Correctness</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Correctness" name="PreparedPieceI_Correctness"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Correctness" name="PreparedPieceII_Correctness"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Correctness" name="GeneralComments_Correctness"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Rhythm</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Rhythm" name="PreparedPieceI_Rhythm"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Rhythm" name="PreparedPieceII_Rhythm"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Rhythm" name="GeneralComments_Rhythm"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Tempo</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Tempo" name="PreparedPieceI_Tempo"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Tempo" name="PreparedPieceII_Tempo"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Tempo" name="GeneralComments_Tempo"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Dynamics</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Dynamics" name="PreparedPieceI_Dynamics"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Dynamics" name="PreparedPieceII_Dynamics"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Dynamics" name="GeneralComments_Dynamics"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Articulation</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Articulation" name="PreparedPieceI_Articulation"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Articulation" name="PreparedPieceII_Articulation"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Articulation" name="GeneralComments_Articulation"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Phrasing</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Phrasing" name="PreparedPieceI_Phrasing"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Phrasing" name="PreparedPieceII_Phrasing"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Phrasing" name="GeneralComments_Phrasing"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Intonation</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Intonation" name="PreparedPieceI_Intonation"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Intonation" name="PreparedPieceII_Intonation"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Intonation" name="GeneralComments_Intonation"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Interpretation</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Interpretation" name="PreparedPieceI_Interpretation"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Interpretation" name="PreparedPieceII_Interpretation"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Interpretation" name="GeneralComments_Interpretation"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Presentation</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Presentation" name="PreparedPieceI_Presentation"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Presentation" name="PreparedPieceII_Presentation"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Presentation" name="GeneralComments_Presentation"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Memorization or Overall Impression</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceI_Memorization" name="PreparedPieceI_Memorization"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" class="form-control form-cell" formControlName="PreparedPieceII_Memorization" name="PreparedPieceII_Memorization"/></div>
+           <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Memorization" name="GeneralComments_Memorization"/></div>
+        </div>
+        <div class="row col-12 mt-1">
+           <div class="col-5">Total</div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIChange($event.target.value)" id="val1" class="form-control form-cell" formControlName="Total_PreparedPieceI" name="Total_PreparedPieceI"/></div>
+           <div class="col-2"><input type="number" [min]="0" [max]="10" (input)="onPreparedPieceIIChange($event.target.value)" id="val2" class="form-control form-cell" formControlName="Total_PreparedPieceII" name="Total_PreparedPieceII"/></div>
+           <div class="col-3"><input type="text" id="val3" class="form-control form-cell" formControlName="Total_GeneralComments" name="Total_GeneralComments"/></div>
+        </div>
+      </form>
+      </div>
+      <div>Judges Score: {{judgesScore}}</div>
+    
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn gray-btn" (click)="close()">
+          Cancel
+        </button>
+        <button type="submit"  (click)="sumbit()" class="btn-primary btn">
+         Submit
+        </button>
+      </div>
+
+    </div>
+
+
+

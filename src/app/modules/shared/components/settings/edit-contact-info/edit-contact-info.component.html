@@ -1,0 +1,129 @@
+<div class="modal-header">
+	<h4 class="modal-title">Edit Contact Information</h4>
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+
+	<div class="modal-body">
+
+		<div class="container">
+
+			<div class="form-row">
+				
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="street1">
+						Street 1
+					</label>
+					<input id="street1" type="text" class="form-control" [class.state-error]="isFieldInvalid('street1')"
+						formControlName="street1" name="street1" placeholder="Street 1" />
+					<app-field-error-display [displayError]="isFieldInvalid('street1')"
+						errorMsg="Please provide a street"></app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="street2">
+						Street 2
+					</label>
+					<input id="street2" type="text" class="form-control" formControlName="street2" name="street2"
+						placeholder="Street 2" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="city">
+						City
+					</label>
+					<input id="city" type="text" class="form-control" formControlName="city" name="city"
+						placeholder="City" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="state">
+						State
+					</label>
+					<select id="state" class="form-control " [class.state-error]="isFieldInvalid('state')" name="state"
+						formControlName="state">
+						<option value="" disabled selected>State - Select One</option>
+						<option *ngFor="let state of states" value="{{ state.abbr }}">{{ state.name }}</option>
+					</select>
+					<app-field-error-display [displayError]="isFieldInvalid('state')" errorMsg="Please select a state">
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="current_password">
+						Postal Code
+					</label>
+					<input id="postalCode" type="text" class="form-control" formControlName="postalCode"
+						name="postalCode" placeholder="Postal Code" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="current_password">
+						Country
+					</label>
+					<input id="country" type="text" class="form-control" formControlName="country" name="country"
+						placeholder="Country" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label" for="password">
+						Email
+					</label>
+					<input id="email" type="text" class="form-control " formControlName="email" name="email"
+						placeholder="email" disabled />
+				</div>
+
+				<div class="col-md-2 form-group">
+					<label class="control-label" for="countryCode">
+						Country Code
+					</label>
+					<input id="countryCode" type="text" class="form-control" formControlName="countryCode"
+						name="countryCode" placeholder="Country Code" />
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label" for="phone">
+						Phone
+					</label>
+					<input id="phone" type="text" class="form-control" formControlName="phone" name="phone"
+						placeholder="Phone" />
+				</div>
+				
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+
+		<button type="button" class="btn gray-btn" (click)="close()">
+			Cancel
+		</button>
+
+		<button type="button" class="btn" [disabled]="requestSuccess" appDisableDoubleClick (click)="submitForm()">
+
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+			{{
+				loading
+					? "Saving..."
+					: !requestSuccess
+						? "Save"
+						: "Done"
+			}}
+
+		</button>
+	</div>
+	
+</form>

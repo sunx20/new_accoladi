@@ -1,0 +1,136 @@
+<div class="modal-header">
+	<h2> National Signing Day 2021</h2>
+</div>
+
+<form class="font-12" [formGroup]="form">
+	<input type="hidden" formControlName="composition_id">
+	<input type="hidden" formControlName="instrument">
+	<input type="hidden" formControlName="family">
+	<input type="hidden" formControlName="type">
+
+	<div class="modal-body">
+
+		<div class="container ">
+
+			<div class="row">
+
+				<div class="col-md-12">
+					Area of Consideration : {{value.area.group}} 
+					<span *ngIf="value.area.sub_group"> - {{value.area.sub_group}}</span>
+				</div>
+
+			</div>
+
+			<div class="row mt-2">
+
+				<div class="col-4">
+					Composition Performed
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-10">
+
+					<input type="text" id="cp_composition" name="performed" required class="form-control"
+						formControlName="performed" placeholder="Type to search catalog..."
+						[ngbTypeahead]="searchCompositions" [inputFormatter]="formatMatches" [resultTemplate]="rt"
+						(selectItem)="selectedComposition($event)" />
+
+					<span *ngIf="searchingCompositions">
+						searching...
+					</span>
+
+					<div *ngIf="searchFailed" class="invalid-feedback">
+						Sorry, suggestions could not be loaded.
+					</div>
+
+					<ng-template #rt let-r="result" let-t="term">
+
+						<span class="device">
+
+							<span class="grayout">{{ r?.title }}</span><br />
+							<small class="grayout">
+								{{ r?.composers }}
+								{{ r?.instrument.name
+									? " - " + r?.instrument.name
+									: " - " + r?.instrument.group
+								}}
+								{{ r?.meta.uil.grade
+									? " - Grade:" + r?.meta.uil.grade
+									: ""
+								}}
+								{{ r?.publisher.name
+									? " - " + r?.publisher.name
+									: ""
+								}}
+							</small>
+
+						</span>
+
+					</ng-template>
+
+				</div>
+
+				<div class="col-2">
+
+					<button *ngIf="noResult" type="button" class="btn btn-danger add-button" (click)="componsion()">
+						<i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+					</button>
+
+				</div>
+
+			</div>
+
+			<div class="row mt-2">
+
+				<div class="col-4">
+					Composer
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-10">
+
+					<input type="text" formControlName="composer" class="input-full-width" placeholder="Composer"
+						name="composer">
+				</div>
+
+			</div>
+
+			<div class="row mt-2">
+
+				<div class="col-4">
+					Video URL : (Youtube or Vimeo)
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-10">
+
+					<input type="text" name="url" placeholder="Provide FULL url - like https://youtu.be/nnn-AA"
+						class="form-control " formControlName="url" [class.state-error]="isFieldInvalid('url')"
+						(input)="getVideoUrl($event.target.value)" />
+					<app-video-player *ngIf="showVideo" [video]="videoUrl"></app-video-player>
+
+				</div>
+
+				<div class="col-2">
+
+					<button [disabled]="!form.valid" type="button" class="btn btn-danger add-button" (click)="save()">
+						<i class="fa fa-plus-circle" aria-hidden="true"></i> Add </button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</form>

@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title">College Preferences</h4>
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <label class="control-label " for="college">Colleges</label>
+          <input [ngbTypeahead]="searchColleges" [inputFormatter]="formatMatches" [resultTemplate]="rt"
+            class="form-control" type="text" name="college" placeholder="Search colleges ..." formControlName="college"
+            id="college" (selectItem)="selectedCollege($event)" />
+          <span *ngIf="searchingColleges">searching...</span>
+          <div class="invalid-feedback" *ngIf="searchFailed">
+            Sorry, suggestions could not be loaded.
+          </div>
+          <input type="hidden" name="college_id" formControlName="college_id" value="" />
+          <ng-template #rt let-r="result" let-t="term">
+            <span class="device">
+              <span class="grayout">{{ r?.name }}</span><br />
+              <small class="grayout">
+                {{ r?.state }}
+              </small>
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <ul class="list-group" *ngIf="selectedColleges.length">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let c of selectedColleges">
+              <span>{{ c.name }}
+                {{ c.state ? "(" + c.state + ")" : "" }}
+              </span>
+              <i (click)="removeCollege(c._id)" class="fa fa-trash text-danger  mouse-pointer"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <label for="" class="control-label">
+            Majors
+          </label>
+          <ng-select [closeOnSelect]="false" *ngIf="majorsList.length" [multiple]="true" placeholder=""
+            clearAllText="Clear" formControlName="majors">
+            <ng-option *ngFor="let m of majorsList" [value]="m">{{m}}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+            {{ feedback }}
+          </div>
+          <div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+            {{ feedback }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-between">
+    <div class="col-md-12">
+      <button type="button" class="btn gray-btn mr-1" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" class="btn gray-btn" (click)="BackToPreviousProfile()">
+        Back
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)="submitAndNext()">
+        Next
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)="submitAttempted=true; submitForm()">Save
+      </button>
+    </div>
+  </div>
+</form>

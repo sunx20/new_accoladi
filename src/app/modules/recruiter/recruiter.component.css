@@ -1,0 +1,121 @@
+/*-------------------------------------------
+	recruiter-Profile-Overview Page
+--------------------------------------------*/
+input:focus {
+	outline: none !important;
+}
+
+#search-student .ss-sidenav {
+	background: url(/assets/images/student-profile/assets_1.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+#search-student .talent-search .recruiter-profile p {
+	font-weight: 500;
+}
+
+.recruiter-profile .selectText {
+	width: 100%;
+	font-size: 15px;
+	font-weight: 600;
+	color: #6C757D;
+}
+
+.recruiter-profile .recruiter-profile-select select {
+	background-color: rgba(236, 236, 236, .7);
+	border-radius: 4px;
+	border-color: transparent;
+	width: 100%;
+	height: 35px;
+	padding: 0 2px;
+}
+
+.recruiter-profile .recruiter-profile-select select:focus {
+	outline: 0;
+}
+
+.recruiter-profile .recruiter-profile-select option {
+	color: #6C757D;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.recruiter-profile textarea::placeholder {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.recruiter-profile-input input.bg-light {
+	background-color: #f8f9fa !important;
+}
+
+.sp-education-scores .small-input, .sp-section-form .small-input {
+	float: left;
+	background-color: rgba(236, 236, 236, .7);
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	margin-left: 10px !important;
+	margin-top: 4px !important;
+	width: 105px;
+	height: 35px !important;
+}
+
+.sp-section-form {
+	border-radius: 6px;
+}
+
+.sp-form-text-color {
+	color: #6C7593;
+}
+
+.sp-art-courses {
+	border-radius: 13px;
+	overflow: hidden;
+}
+
+.sp-art-courses table.table {
+	margin: 0;
+}
+
+.sp-art-courses table.table tr {
+	height: 35px;
+}
+
+.sp-section-form .score-form-text {
+	font-size: 18px;
+	font-weight: bold;
+	color: #6C7593;
+}
+
+.sp-mock-audition-guidelines p {
+	font-size: 13px !important;
+	line-height: 1.6 !important;
+	margin-bottom: 10px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 620.98px) {
+	.horizontally-scrollable {
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: nowrap;
+	}
+}
+
+@media (max-width: 550.98px) {
+	.recruiter-profile .ts-explaination h1 {
+		font-size: 29px;
+	}
+
+	.recruiter-profile .ts-explaination h2 {
+		font-size: 24px;
+	}
+	
+	.recruiter-profile .ts-explaination h3 {
+		font-size: 20px;
+	}
+
+	.recruiter-profile .ts-explaination h4 {
+		font-size: 17px;
+	}
+}

@@ -1,0 +1,74 @@
+<ol class="progress" *ngIf="role === 'Student'" >
+	<li [ngClass]="personalInfoStatus" data-step="1" >
+		Personal Info
+	</li>
+	<li [ngClass]="accountInfoStatus" data-step="2" >
+		Account Info
+	</li>
+	<li [ngClass]="locationInfoStatus" data-step="3" >
+		Contact Info
+	</li>
+	<li [ngClass]="talentInfoStatus" data-step="4" >
+		Talent Info
+	</li>
+	<li [ngClass]="schoolInfoStatus" data-step="5" >
+		School Info
+	</li>
+	<li [ngClass]="parentInfoStatus" data-step="6" >
+		Parent Info
+	</li>
+</ol>
+
+<ol class="progress" *ngIf="role === 'Parent'" >
+	<li [ngClass]="personalInfoStatus" data-step="1" >
+		Personal Info
+	</li>
+	<li [ngClass]="accountInfoStatus" data-step="2" >
+		Account Info
+	</li>
+	<li [ngClass]="locationInfoStatus" data-step="3" >
+		Contact Info
+	</li>
+	<li [ngClass]="studentPersonalInfoStatus" data-step="4" >
+		Student Personal Info
+	</li>
+	<li [ngClass]="studentAccountInfoStatus" data-step="5" >
+		Student Account Info
+	</li>
+	<li [ngClass]="StudentTalentInfoStatus" data-step="6" >
+		Student Talent Info
+	</li>
+	<li [ngClass]="studentSchoolInfoStatus" data-step="7" >
+		Student School Info
+	</li>
+</ol>
+
+<ol class="progress" *ngIf="role === 'Teacher'" >
+	<li [ngClass]="personalInfoStatus" data-step="1" >
+		Personal Info
+	</li>
+	<li [ngClass]="accountInfoStatus" data-step="2" >
+		Account Info
+	</li>
+	<li [ngClass]="locationInfoStatus" data-step="3" >
+		Contact Info
+	</li>
+	<li [ngClass]="schoolInfoStatus" data-step="4" >
+		School Info
+	</li>
+</ol>
+
+<ol class="progress" *ngIf="role === 'Recruiter'" >
+	<li [ngClass]="personalInfoStatus" data-step="1" >
+		Personal Info
+	</li>
+	<li [ngClass]="accountInfoStatus" data-step="2" >
+		Account Info
+	</li>
+	<li [ngClass]="locationInfoStatus" data-step="3" >
+		Contact Info
+	</li>
+	<li [ngClass]="schoolInfoStatus" data-step="4" >
+		School Info
+	</li>
+</ol>

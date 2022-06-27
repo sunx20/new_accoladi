@@ -1,0 +1,57 @@
+
+	<div class="container-fluid">
+		
+		<div class="row justify-content-md-center">
+			
+			<div class="col-8">
+				
+				<h3>Test Embed Video</h3>
+
+				<div>
+					<iframe 
+						width="560" 
+						height="315" 
+						src="http://www.youtube.com/embed/tcLW5d0KAYE" 
+						title="YouTube video player" 
+						frameborder="0" 
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+				</div>
+
+				<div (click)="openVideo(vidPopup1)" >
+					Popup Vid
+				</div>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Feature Video 1 -->
+	<ng-template #vidPopup1 let-modal >
+	
+		<div class="modal-content" >
+
+			<h3 class="model-heading">Feature Video 1</h3>
+		
+			<div class="model-body text-center">
+		
+				<div class="video-container justify-content-center" >
+					<iframe 
+						title="YouTube video player" 
+						src="http://www.youtube.com/embed/tcLW5d0KAYE" 
+						frameborder="0" 
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+						></iframe>
+				</div>
+		
+			</div>
+		
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+			</div>
+
+		</div>
+	
+	</ng-template>

@@ -1,0 +1,178 @@
+<style>
+	.colleges-page {
+		margin-top: 3em;
+	}
+</style>
+
+<div class="colleges-page gold-page">
+	
+	<ng-container *ngIf="showCollege" >
+
+		<div class="container" >
+			
+			<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" >
+			
+				<div class="col-md-6 px-0" >
+					<h1 class="display-4" >{{ college.name }}</h1>
+					<h3 class="display-4 font-italic" >{{ college.nickname }} {{ college.mascot }}</h3>
+				</div>
+
+			</div>
+
+		</div>
+
+		<main role="main" class="container" >
+
+			<div class="row" >
+				
+				<aside class="col-md-4 blog-sidebar" >
+					
+					<div class="p-3 mb-3 bg-light rounded" >
+						<h4 class="font-italic" >Access</h4>
+						<p class="mb-0" >Private: <span *ngIf="college.private" >Yes</span><span *ngIf="college.public" >No</span></p>
+						<p class="mb-0" >HBC: <span *ngIf="college.hbc" >Yes</span><span *ngIf="!college.hbc" >No</span></p>
+					</div>
+					
+					<div class="p-3 bg-light rounded" >
+						<h4 class="font-italic" >Finance</h4>
+						<p class="mb-0" >Non-profit: <span *ngIf="college.non_profit" >Yes</span><span *ngIf="!college.non_profit" >No</span></p>
+						<p class="mb-0" >Funding: <span *ngIf="college.funding_source" >{{ college.funding_source }}</span><span *ngIf="!college.funding_source" style="color:grey;" >N/A</span></p>
+					</div>
+
+					<div class="p-3 bg-light rounded" >
+						<h4 class="font-italic" >Religious</h4>
+						<p class="mb-0" >Religion: <span *ngIf="college.religion" >{{ college.religion }}</span><span *ngIf="!college.religion" style="color:grey;" >N/A</span></p>
+						<p class="mb-0" >Denomination: <span *ngIf="college.denomination" >{{ college.denomination }}</span><span *ngIf="!college.denomination" style="color:grey;" >N/A</span></p>
+					</div>
+				</aside> 
+				
+				<div class="col-md-8 blog-main" >
+
+					<h3 class="pb-3 mb-4 font-italic border-bottom" >
+						{{ college.address }} {{ college.address2 }} {{ college.city }} {{ college.state }} {{ college.zip }}
+					</h3>
+
+					<div class="blog-post" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Ensembles</h2>
+
+						<div style="padding-left:10px;" >
+							<div *ngFor="let e of college.ensembles_offered" >{{ e }}</div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="blog-post" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Admissions</h2>
+
+						<div style="padding-left:10px;" >
+							<ul class="list-unstyled mb-0" >
+								<li>Years Offered: {{ college.years }}</li>
+								<li *ngIf="college.url" >Website: <a href="{{ college.url }}" target="_new" >View Website</a></li>
+								<li *ngIf="college.application_url" >Application: <a href="{{ college.application_url }}" target="_new" >Apply</a></li>
+								<li>cost: {{ college.cost }}</li>
+							</ul>
+						</div>
+						<hr>
+					</div>
+					
+					<div class="blog-post" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Student Body</h2>
+
+						<div style="padding-left:10px;" >
+							<ul class="list-unstyled mb-0" >
+								<li>Campus Setting: {{ college.campus_setting }}</li>
+								<li>Campus Housing: {{ college.campus_housing }}</li>
+								<li>Student Pop.: {{ college.student_population }}</li>
+								<li>Undergraduates: {{ college.undergraduate_students }}</li>
+								<li>Graduation Rate: {{ college.graduation_rate }}</li>
+								<li>Transfer Rate: {{ college.transfer_out_rate }}</li>
+							</ul>
+						</div>
+						<hr>
+					</div>
+
+					<div class="blog-post" *ngIf="college.music_majors" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Music Majors</h2>
+
+						<div style="padding-left:10px;" >
+							<div *ngFor="let mj of college.music_majors" >{{ mj }}</div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="blog-post" *ngIf="college.music_minors" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Music Minors</h2>
+
+						<div style="padding-left:10px;" >
+							<div *ngFor="let mn of college.music_minors" >{{ mn }}</div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="blog-post" *ngIf="college.degrees" >
+						<h2 class="blog-post-title" style="border-bottom: thin black solid;" >Degrees Offered</h2>
+
+						<div style="padding-left:10px;" >
+							<div *ngFor="let d of college.degrees" >{{ d }}</div>
+						</div>
+						<hr>
+					</div>
+					
+					<nav class="blog-pagination" >
+						<button class="btn btn-outline-primary" routerLink="/colleges/{{ college.state }}/" >Return to {{ college.state }}</button>&nbsp;
+						<a class="btn btn-outline-secondary" href="https://www.Accoladi.com/find_colleges.html" >Return to "Find"</a>
+					</nav>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<footer class="blog-footer" >
+			<p style="padding: 0 30px;" >
+				Information is maintained to the best of Accoladi.com's ability.
+				Data may have changed since our last update. Students and Parents are responsible
+				to make sure infromation is relevant to them by checking with the college directly.
+			</p>
+		</footer>
+
+	</ng-container>
+
+	<ng-container *ngIf="showCollegeList" >
+
+		<h1 class="heading text-center">Colleges List</h1>
+
+		<div class="table-responsive-md" >
+
+			<table id="collegeStateList" class="table table-striped mx-auto w-auto" style="width:70%; text-align:center;" >
+				
+				<thead class="thead-dark" style="cursor: pointer;" >
+					<tr>
+						<th (click)="sortTable(0)" class="align-top" >College Name</th>
+						<th (click)="sortTable(1)" class="align-top" >City, State</th>
+						<th (click)="sortTable(2)" class="align-top" >Public / Profit / HBC</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr *ngFor="let college of collegeList; let i=index" >
+						<td routerLink="/colleges/{{ college.address.state }}/{{ college.name | replace : ' ' : '_' }}" style="cursor: pointer;" >{{ college.name }}</td>
+						<td>{{ college.address.city }}, {{ college.address.state }}</td>
+						<td>
+							<span *ngIf="college.non_profit" >Non-profit </span>
+							<span *ngIf="college.private" >Private </span>
+							<span *ngIf="college.hbc" >HBC </span>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</ng-container>
+
+	<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,684 @@
+<kendo-grid 
+	[data]="view" 
+	[pageSize]="pageSize" 
+	[skip]="skip" 
+	[sortable]="true" 
+	[sort]="sort" 
+	[pageable]="true"
+	[height]="550" 
+	[navigable]="true" 
+	(dataStateChange)="dataStateChange($event)" >
+
+	<kendo-grid-column 
+		field="index" 
+		title="#" 
+		width="40" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="fullname" 
+		title="Name" 
+		width="200" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="student_id.address.state" 
+		title="State" 
+		width="100" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="year" 
+		title="Grad.Year" 
+		width="100" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="area.group" 
+		title="Group" 
+		width="100" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="area.sub_group" 
+		title="Sub Group" 
+		width="100" ></kendo-grid-column>
+
+	<kendo-grid-column 
+		field="area.talent" 
+		title="Talent" 
+		width="100" ></kendo-grid-column>
+
+
+	<div *kendoGridDetailTemplate="let dataItem" >
+		<app-judge-nsd-subgrid [category]="dataItem" ></app-judge-nsd-subgrid>
+	</div>
+
+	<kendo-grid-command-column title="" width="220" >
+		<ng-template kendoGridCellTemplate  let-dataItem="dataItem" >
+
+			<i title="View student profile" 
+				class="fas fa-address-card" 
+				style="color:#e2a90a;cursor:pointer;"
+				(click)="modalProfile(dataItem.student_id._id)" ></i>
+
+			&nbsp;
+
+			<i title="Judge student" 
+				class="fas fa-award" 
+				style="color:#e2a90a;cursor:pointer;"
+				(click)="judgeStudentCategory(dataItem)" ></i>
+
+		</ng-template>
+	</kendo-grid-command-column>
+
+</kendo-grid>
+
+<!-- <div class="card ">
+
+	<div class="card-body">
+
+		<div class="row mb-2">
+			<div class="col-md-2"></div>
+			<div class="col-md-2" nowrap>
+				Year : <select>
+					<option>2021</option>
+					<option>2022</option>
+					<option>2023</option>
+				</select>
+			</div>
+			<div class="col-md-5" nowrap>
+				Area : <select>
+					<option>ALL</option>
+					<optgroup label="Performance-Vocal">
+						<option>Soprano</option>
+						<option>Mezzo-Soprano</option>
+						<option>Counter-Tenor</option>
+						<option>Tenor</option>
+						<option>Bass</option>
+						<option>Commercial/Pop</option>
+						<option>Jazz</option>
+					</optgroup>
+					<optgroup label="Performance-Keyboard">
+						<option>Classical Piano</option>
+						<option>Harpsichord</option>
+						<option>Organ</option>
+					</optgroup>
+					<optgroup label="Performance-Strings">
+						<option>Violin</option>
+						<option>Viola</option>
+						<option>Cello</option>
+						<option>Double Bass</option>
+						<option>Harp</option>
+						<option>Guitar</option>
+					</optgroup>
+					<optgroup label="Performance-Woodwinds">
+						<option>Flute/Piccolo</option>
+						<option>Oboe/English Horn</option>
+						<option>Clarinet</option>
+						<option>Bass Clarinet</option>
+						<option>Bassoon</option>
+						<option>Saxophone (Alto)</option>
+						<option>Saxophone (Tenor)</option>
+						<option>Saxophone (Baritone)</option>
+					</optgroup>
+					<optgroup label="Performance-Brass and Percussion">
+						<option>Trumpet</option>
+						<option>French Horn</option>
+						<option>Trombone</option>
+						<option>Bass Trombone</option>
+						<option>Euphonium</option>
+						<option>Tuba</option>
+						<option>Percussion </option>
+					</optgroup>
+					<optgroup label="Performance-Jazz">
+						<option>Flute</option>
+						<option>Saxophone (Alto)</option>
+						<option>Saxophone (Tenor)</option>
+						<option>Saxophone (Baritone)</option>
+						<option>Trumpet</option>
+						<option>Trombone</option>
+						<option>Piano / Keys</option>
+						<option>Double-Bass & Electric</option>
+						<option>Guitar</option>
+						<option>Drum-Set</option>
+					</optgroup>
+					<optgroup label="Production">
+						<option>Musical Theater</option>
+						<option>Show Choir</option>
+					</optgroup>
+					<optgroup label="Ministry">
+						<option>Praise and Worship Leader</option>
+						<option>Minister of Music</option>
+						<option>Handbells</option>
+					</optgroup>
+					<optgroup label="Music Education">
+						<option>General Elementary Music</option>
+						<option>Choral Music Ed.</option>
+						<option>Wind Inst. Music Ed.</option>
+						<option>String Inst. Music Ed.</option>
+					</optgroup>
+					<optgroup label="Creative">
+						<option>Composition</option>
+						<option>Songwriting</option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" (input)="filterValue($event.target.value)"
+					placeholder="Search..">
+			</div>
+		</div>
+
+		<h3>NSD Participants</h3>
+
+		<div class="row  mt-2 ml-2 mr-2 mb-2">
+			<div class="col-1">#</div>
+			<div class="col-4" sortable="first_name" (sort)="onSort($event)">Name</div>
+			<div class="col-2" sortable="state" (sort)="onSort($event)">State</div>
+			<div class="col-2" sortable="graduation_year" (sort)="onSort($event)">Grad. Year</div>
+			<div class="col-2"></div>
+		</div>
+
+		<div class="" *ngFor=" let dt of data; let i = index ">
+			<div class="div-border-top-bottom row mt-2 ml-2 mr-2 mb-2">
+				<div class="col-1">{{dt.index}}</div>
+				<div class="col-5 ">
+					<span>{{dt.student_id.first_name}} {{dt.student_id.last_name}}</span>
+					
+				</div>
+				<div class="col-2">
+					{{dt.student_id.address.state}}
+				</div>
+				<div class="col-2">
+					{{dt.year}}
+				</div>
+				<div class="col-2 pad-20-right">
+					<i title="View student profile" class="fas fa-address-card"
+						style="color:#e2a90a;cursor:pointer;" (click)="modalProfile(dt.student_id._id)"></i>
+
+					&nbsp;
+
+					<i title="Judge student" class="fas fa-award" style="color:#e2a90a;cursor:pointer;"
+						(click)="judgeStudent()"></i>
+
+
+				</div>
+
+
+			</div>
+			<div *ngFor=" let p of dt.performances; let i = index ">
+				<div class="row mt-2 ml-2 mr-2">
+
+					<div class="col-1"></div>
+					<div class="col-1">
+
+						<button *ngIf="p.video_url" type="button" class="btn btn-play" (click)="playVideo(p.video_url)">
+							<img src="assets/img/play-arrow-black-19.png" />
+						</button>
+
+					</div>
+					<div class="col-8">
+
+						<span class="bumpup-txt">
+							<u>
+								{{ p.composition_title }}
+							</u>
+						</span>
+
+						<br />
+
+						{{ p.type }} {{ p.talent }}
+
+						<br />
+
+						<p *ngIf="p.composers?.length">
+							<em>
+								{{ p.composers }}
+							</em>
+						</p>
+
+					</div>
+					 <div class="col-1">
+						{{ p.date_performed }}
+					</div> 
+					
+					
+
+				</div>
+
+			</div>
+
+			<div *ngFor=" let mt of dt.musical_theater; let i = index ">
+				<div class="row mt-2 ml-2 mr-2">
+
+
+					<div class="col-1"></div>
+					<div class="col-1">
+
+						<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+							(click)="playVideo(mt.video_url)">
+							<img src="assets/img/play-arrow-black-19.png" />
+						</button>
+
+					</div>
+					<div class="col-8">
+
+						<span class="bumpup-txt">
+							<u>
+								{{ mt.show }} - {{ mt.role }}
+							</u>
+						</span>
+						<br />
+
+						{{ mt.type }}
+
+
+
+					</div>
+
+					 <div class="col-2">
+
+					</div> 
+					
+
+				</div>
+
+			</div>
+
+		</div>
+		 <table class="table table-condensed">
+
+			<thead>
+				<tr>
+					<th scope="col" >#</th>
+					<th scope="col" class="text-left" sortable="first_name" (sort)="onSort($event)">Name</th>
+					<th scope="col" class="text-left th-90" sortable="state" (sort)="onSort($event)">State</th>
+					<th scope="col" class="text-left" sortable="graduation_year" (sort)="onSort($event)">Grad. Year</th>
+					<th scope="col" class="text-center"></th>
+				</tr>
+			</thead>
+
+			<tbody *ngIf="!savedStudentsList || savedStudentsList.length === 0">
+				<tr *ngFor="let item of savedStudentsList; let i = index">
+					<th colspan="7" scope="row">No Students</th>
+				</tr>
+			</tbody>
+
+			<tbody>
+
+				 MOCK DATA
+				<tr>
+					<th scope="row">
+						1
+					</th>
+					<td class="text-left">
+						Bobby Smith <br />
+					</td>
+					<td>
+						MI
+					</td>
+					<td>
+						2022
+					</td>
+					<td class="text-right" nowrap="nowrap">
+
+						<i 
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile()"></i>
+
+							&nbsp;
+
+						<i 
+							title="Judge student"
+							class="fas fa-award"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="judgeStudent()"></i>
+
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="3">
+						<div *ngFor=" let p of d.performances; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="p.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(p.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10"> 
+									<span class="bumpup-txt">
+										<u>{{ p.composition_title }}</u>({{ p.type }})
+									</span>
+									<br />
+									<p *ngIf="p.composers?.length" class="small">
+										<em>{{ p.composers }}</em>
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div *ngFor=" let mt of d.musical_theater; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(mt.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ mt.show }} - {{ mt.role }}</u> ({{ mt.type }})
+									</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						2
+					</th>
+					<td class="text-left">
+						Maggie Smith <br />
+					</td>
+					<td>
+						AR
+					</td>
+					<td>
+						2022
+					</td>
+					<td class="text-right" nowrap="nowrap">
+
+						<i 
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile()"></i>
+
+							&nbsp;
+
+						<i 
+							title="Judge student"
+							class="fas fa-award"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="judgeStudent()"></i>
+
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="3">
+						<div *ngFor=" let p of d.performances; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="p.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(p.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ p.composition_title }}</u>({{ p.type }})
+									</span>
+									<br />
+									<p *ngIf="p.composers?.length" class="small">
+										<em>{{ p.composers }}</em>
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div *ngFor=" let mt of d.musical_theater; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(mt.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ mt.show }} - {{ mt.role }}</u> ({{ mt.type }})
+									</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						3
+					</th>
+					<td class="text-left">
+						Amir Azthan <br />
+					</td>
+					<td>
+						TN
+					</td>
+					<td>
+						2022
+					</td>
+					<td class="text-right" nowrap="nowrap">
+
+						<i 
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile()"></i>
+
+							&nbsp;
+
+						<i 
+							title="Judge student"
+							class="fas fa-award"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="judgeStudent()"></i>
+
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="3">
+						<div *ngFor=" let p of d.performances; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="p.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(p.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ p.composition_title }}</u>({{ p.type }})
+									</span>
+									<br />
+									<p *ngIf="p.composers?.length" class="small">
+										<em>{{ p.composers }}</em>
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div *ngFor=" let mt of d.musical_theater; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(mt.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ mt.show }} - {{ mt.role }}</u> ({{ mt.type }})
+									</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						4
+					</th>
+					<td class="text-left">
+						Sizar Salidar <br />
+					</td>
+					<td>
+						MI
+					</td>
+					<td>
+						2022
+					</td>
+					<td class="text-right" nowrap="nowrap">
+
+						<i 
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile()"></i>
+
+							&nbsp;
+
+						<i 
+							title="Judge student"
+							class="fas fa-award"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="judgeStudent()"></i>
+
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="3">
+						<div *ngFor=" let p of d.performances; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="p.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(p.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ p.composition_title }}</u>({{ p.type }})
+									</span>
+									<br />
+									<p *ngIf="p.composers?.length" class="small">
+										<em>{{ p.composers }}</em>
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div *ngFor=" let mt of d.musical_theater; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(mt.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ mt.show }} - {{ mt.role }}</u> ({{ mt.type }})
+									</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						5
+					</th>
+					<td class="text-left">
+						Jacalyn Jeffries <br />
+					</td>
+					<td>
+						MI
+					</td>
+					<td>
+						2022
+					</td>
+					<td class="text-right" nowrap="nowrap">
+
+						<i 
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile()"></i>
+
+							&nbsp;
+
+						<i 
+							title="Judge student"
+							class="fas fa-award"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="judgeStudent()"></i>
+
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="3">
+						<div *ngFor=" let p of d.performances; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="p.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(p.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ p.composition_title }}</u>({{ p.type }})
+									</span>
+									<br />
+									<p *ngIf="p.composers?.length" class="small">
+										<em>{{ p.composers }}</em>
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div *ngFor=" let mt of d.musical_theater; let i = index ">
+							<div class="row mt-2 ml-2 mr-2">
+								<div class="col-1">
+									<button *ngIf="mt.video_url" type="button" class="btn btn-play"
+										(click)="playVideo(mt.video_url)">
+										<img src="assets/img/play-arrow-black-19.png" />
+									</button>
+								</div>
+								<div class="col-10">
+									<span class="bumpup-txt">
+										<u>{{ mt.show }} - {{ mt.role }}</u> ({{ mt.type }})
+									</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				 // MOCK DATA 
+
+			</tbody>
+
+		</table> 
+
+		<div class="d-flex justify-content-between p-2">
+
+			<ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalSavedStudents" [(page)]="page"
+				[pageSize]="pageSize" (pageChange)="pageChange($event)">
+			</ngb-pagination>
+
+			<select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize"
+				(change)="pageChange($event)">
+				<option [ngValue]="100">100 items per page</option>
+				<option [ngValue]="250">250 items per page</option>
+				<option [ngValue]="500">500 items per page</option>
+			</select>
+
+		</div>
+
+	</div>
+
+</div>  -->

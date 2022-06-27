@@ -1,0 +1,132 @@
+<div class="wrapper gold-page" >
+
+	<h1 class="d-flex justify-content-center" >Login</h1>
+
+	<div class="row justify-content-center align-items-center h-100" >
+		
+		<div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3" >
+
+			<form 
+				novalidate="novalidate"
+				autocomplete="off"
+				[formGroup]="form"
+				(ngSubmit)="submitForm()"
+				class="justify-content-center" >
+
+				<div *ngIf="!loginSuccess" >
+
+					<div class="form-group required"
+						[ngClass]="displayFieldCss('email')" >
+
+						<label for="email" class="control-label " >
+							Email Address
+						</label>
+						<input id="email"
+								name="email"
+								type="email"
+								class="form-control email-input"
+								formControlName="email"
+								[class.state-error]="isFieldInvalid('email')" />
+
+						<app-field-error-display 
+							*ngIf="f.email.errors && f.email.errors.required"
+							[displayError]="isFieldInvalid('email')"
+							errorMsg="Please provide an email" >
+						</app-field-error-display>
+
+						<app-field-error-display 
+							*ngIf="f.email.errors && f.email.errors.email"
+							[displayError]="isFieldInvalid('email')"
+							errorMsg="Please provide a valid email" >
+						</app-field-error-display>
+
+					</div>
+
+
+					<div class="form-group required"
+						[ngClass]="displayFieldCss('password')" >
+
+						<label for="password" class="control-label " >
+							Password
+						</label>
+						<input id="password"
+								name="password"
+								type="password"
+								class="form-control pwd-input"
+								formControlName="password"
+								[class.state-error]="isFieldInvalid('password')" />
+
+						<app-field-error-display 
+							[displayError]="isFieldInvalid('password')"
+							errorMsg="Please provide a password" >
+						</app-field-error-display>
+					</div>
+
+					<div class="form-group align-items-center" >
+
+						<div *ngIf="loginFailed" class="alert alert-danger" role="alert" >
+							{{ feedback }}
+						</div>
+
+						<br />
+
+						<div class="d-flex justify-content-center" >
+
+							<button
+								type="submit" 
+								class="btn login-btn" >
+								
+								<span 
+									*ngIf="loading" 
+									class="spinner-border spinner-border-sm" 
+									role="status" 
+									aria-hidden="true" ></span>
+								{{ loading ? 'Logging in...' : 'Login' }}
+							</button>
+						</div>
+
+						<br />
+						<br />
+
+						<p class="d-flex justify-content-center" >
+							<a [routerLink]="['/recover-password']" >Forgot your password? Click Here</a>
+						</p>
+
+						<p class="d-flex justify-content-center" >
+							<a [routerLink]="['/register']" >Want an account? Click Here</a>
+						</p>
+
+					</div>
+
+				</div>
+
+				<div *ngIf="loginSuccess" class="container" >
+
+					<div class="form-group align-items-center" >
+
+						<br />
+						<br />
+						<br />
+
+						<div>
+							{{ feedback }}
+							<div style="text-align:center;" >
+								<img src="assets/images/cleff_black.gif" height="200" />
+							</div>
+						</div>
+
+						<br />
+
+					</div>
+
+				</div>
+
+			</form>
+
+		</div>
+	
+	</div>
+
+	<app-footer></app-footer>
+
+</div>

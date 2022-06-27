@@ -1,0 +1,102 @@
+<ng-container >
+
+	<div class="container-fluid role-container" >
+
+		<div class="row" >
+
+			<nav class="col-md-2 sidebar"
+				[class.reveal]="showSidebar" >
+
+				<app-side-bar></app-side-bar>
+
+			</nav>
+
+			<main role="main"
+				class="employer col-md-9 ml-sm-auto col-lg-10" >
+
+				<br>&nbsp;
+
+				<section *ngIf="showWelcome"
+						class="module py-3"
+						style="background-image:url('assets/img/instruments-889.png');
+								background-size: 50%;
+								background-repeat: no-repeat;
+								background-position: right;" >
+
+					<div>
+
+						<div class="row" >
+
+							<div class="col-lg-5" >
+
+								<h1>Hello {{ recruiter?.first_name }}!!</h1>
+								
+								Faculty For:
+								<div *ngFor="let c of faculty_for" >
+									{{ c.name }}: {{ c.discipline }}
+								</div>
+								
+								<button type="button"
+										(click)="open(gSContent)"
+										class="btn" >
+									Getting Started
+								</button>
+
+							</div>
+
+							<div class="col-lg-6" >&nbsp;</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<br>
+
+				<router-outlet></router-outlet>
+
+				<br>
+
+			</main>
+
+		</div>
+	</div>
+
+</ng-container>
+
+<ng-template #gSContent let-modal >
+
+	<div class="modal-body" >
+
+		<h3>Getting Started</h3>
+
+		<br />
+
+		<ol>
+			<li>
+				Search Student database for talented students that match your criteria. 
+				Fill your ensemble / program needs with the highest quality students.
+			</li>
+			<li>
+				Save Search criteria, so you can easily re-run searches in the future.
+			</li>
+			<li>
+				Share Students with coleagues, Save Students for easy review later, 
+				View full Profile or message a student.
+			</li>
+		</ol>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button"
+				(click)="modal.close('Close click')"
+				class="btn gray-btn" >
+			Close
+		</button>
+
+	</div>
+
+</ng-template>

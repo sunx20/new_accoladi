@@ -1,0 +1,443 @@
+<br />
+<br />
+
+<div class="row" *ngIf="processing" >
+
+	<div class="col-md-8 offset-md-2" >
+
+		<div class="alert alert-info" role="alert" >
+			Payment processing in progress ...
+		</div>
+
+	</div>
+
+</div>
+
+<div class="row" *ngIf="!processing" >
+
+	<div class="col-md-8 offset-md-2" >
+
+		<p>Upgrade to Premium Access</p>
+		<p>As a premium member you can:</p>
+		<ul>
+			<li>Appear in college recruiter searches</li>
+			<li>Access complete college music school search results</li>
+			<li>Find more performing arts scholarships</li>
+			<li>introduce yourself to college faculty and administrators</li>
+			<li>Discover which colleges are the best fit for you</li>
+		</ul>
+
+	</div>
+
+</div>
+
+<br />
+
+<div class="row" *ngIf="!processing" >
+
+	<div class="col-md-4 offset-md-2" >
+
+		<div class="card text-center" >
+
+			<div class="card-header" >
+				
+				<h4 class="my-0 font-weight-normal" >Monthly</h4>
+
+			</div>
+
+			<div class="card-body" >
+
+				<h1 class="card-title pricing-card-title" >
+					{{ (monthlyPrice / 100) | currency:'' }} <small class="text-muted" >/ mo</small>
+					<br /><small class="text-muted">{{trialpm}} day trial period</small>
+				</h1>
+
+				<ul class="list-unstyled mt-3 mb-4" >
+				</ul>
+
+				<button
+					type="button"
+					*ngIf="
+						!loggedin ||
+						!current_subscription ||
+						current_subscription.status != 'active' "
+					(click)="handleMonthlySubscription()"
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<button
+					type="button"
+					*ngIf="
+						!processingM &&
+						current_subscription &&
+						current_subscription.status == 'active' &&
+						current_subscription.type == 'Yearly' "
+					disabled
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<div
+					*ngIf="
+						!processingM &&
+						current_subscription &&
+						current_subscription.type == 'Monthly' " >
+					<div
+						class="alert alert-info"
+						role="alert"
+						*ngIf="
+							current_subscription &&
+							current_subscription.status == 'active' " >
+						Monthly subscription is active
+						<br/>
+						(
+							{{ current_subscription.start * 1000 | date }}
+							-
+							{{ current_subscription.end * 1000 | date }}
+						)
+					</div>
+				</div>
+
+				<span
+					*ngIf="processingM"
+					class="spinner-border spinner-border-sm"
+					role="status"
+					aria-hidden="true" >
+				</span>
+
+			</div>
+		
+		</div>
+
+	</div>
+
+	<div class="col-md-4" >
+
+		<div class="card text-center" >
+
+			<div class="card-header" >
+
+				<h4 class="my-0 font-weight-normal" >Quarterly</h4>
+
+			</div>
+
+			<div class="card-body" >
+
+				<h1 class="card-title pricing-card-title" >
+					{{ (quarterlyPrice / 100) | currency:'' }} <small class="text-muted" >/ 3-mo</small>
+					<br /><small class="text-muted">{{trialpq}} day trial period</small>
+				</h1>
+
+				<ul class="list-unstyled mt-3 mb-4" >
+				</ul>
+
+				<button
+					type="button"
+					*ngIf="
+						!loggedin ||
+						!current_subscription ||
+						current_subscription.status != 'active' "
+					(click)="handleQuarterlySubscription()"
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<button
+					type="button"
+					*ngIf="
+						!processingQ &&
+						current_subscription &&
+						current_subscription.status == 'active' &&
+						current_subscription.type == 'Quarterly' "
+					disabled
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<div
+					*ngIf="
+						!processingQ &&
+						current_subscription &&
+						current_subscription.type == 'Quarterly' " >
+					<div
+						class="alert alert-info"
+						role="alert"
+						*ngIf="
+							current_subscription &&
+							current_subscription.status == 'active' " >
+						Quarterly subscription is active
+						<br/>
+						(
+							{{ current_subscription.start * 1000 | date }}
+							-
+							{{ current_subscription.end * 1000 | date }}
+						)
+					</div>
+				</div>
+
+				<span
+					*ngIf="processingQ"
+					class="spinner-border spinner-border-sm"
+					role="status"
+					aria-hidden="true" >
+				</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<br />
+
+<div class="row" *ngIf="!processing" >
+
+	<div class="col-md-4 offset-md-2" >
+
+		<div class="card text-center" >
+
+			<div class="card-header" >
+
+				<h4 class="my-0 font-weight-normal" >Semiannual</h4>
+
+			</div>
+
+			<div class="card-body" >
+
+				<h1 class="card-title pricing-card-title" >
+					{{ (semiannualPrice / 100) | currency:'' }} <small class="text-muted" >/ 6-mo</small>
+					<br /><small class="text-muted">{{trialps}} day trial period</small>
+				</h1>
+
+				<ul class="list-unstyled mt-3 mb-4" >
+				</ul>
+
+				<button
+					type="button"
+					*ngIf="
+						!loggedin ||
+						!current_subscription ||
+						current_subscription.status != 'active' "
+					(click)="handleSemiannualSubscription()"
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<button
+					type="button"
+					*ngIf="
+						!processingS &&
+						current_subscription &&
+						current_subscription.status == 'active' &&
+						current_subscription.type == 'Semiannual' "
+					disabled
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<div
+					*ngIf="
+						!processingS &&
+						current_subscription &&
+						current_subscription.type == 'Semiannual' " >
+
+					<div
+						class="alert alert-info"
+						role="alert"
+						*ngIf="
+							current_subscription &&
+							current_subscription.status == 'active' " >
+						Semiannual subscription is active
+						<br />
+						(
+							{{ current_subscription.start * 1000 | date }}
+							-
+							{{ current_subscription.end * 1000 | date }}
+						)
+					</div>
+
+				</div>
+
+				<span
+					*ngIf="processingS"
+					class="spinner-border spinner-border-sm"
+					role="status"
+					aria-hidden="true" >
+				</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-md-4" >
+
+		<div class="card text-center" >
+
+			<div class="card-header" >
+
+				<h4 class="my-0 font-weight-normal" >Yearly</h4>
+
+			</div>
+
+			<div class="card-body" >
+
+				<h1 class="card-title pricing-card-title" >
+					{{ (yearlyPrice / 100) | currency:'' }} <small class="text-muted" >/ yr</small>
+					<br /><small class="text-muted">{{trialpy}} day trial period</small>
+				</h1>
+
+				<ul class="list-unstyled mt-3 mb-4" >
+				</ul>
+
+				<button
+					type="button"
+					*ngIf="
+						!loggedin ||
+						!current_subscription ||
+						current_subscription.status != 'active' "
+					(click)="handleYearlySubscription()"
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<button
+					type="button"
+					*ngIf="
+						!processingY &&
+						current_subscription &&
+						current_subscription.status == 'active' &&
+						current_subscription.type == 'Monthly' "
+					disabled
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<div
+					*ngIf="
+						!processingY &&
+						current_subscription &&
+						current_subscription.type == 'Yearly' " >
+
+					<div
+						class="alert alert-info"
+						role="alert"
+						*ngIf="
+							current_subscription &&
+							current_subscription.status == 'active' " >
+						Yearly subscription is active
+						<br />
+						(
+							{{ current_subscription.start * 1000 | date }}
+							-
+							{{ current_subscription.end * 1000 | date }}
+						)
+					</div>
+
+				</div>
+
+				<span
+					*ngIf="processingY"
+					class="spinner-border spinner-border-sm"
+					role="status"
+					aria-hidden="true" >
+				</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<br />
+<!--
+<div class="row" *ngIf="!processing" >
+
+	<div class="col-md-8 offset-md-2" >
+
+		<div class="card text-center" >
+
+			<div class="card-header" >
+
+				<h4 class="my-0 font-weight-normal" >Lifetime</h4>
+
+			</div>
+
+			<div class="card-body" >
+
+				<h1 class="card-title pricing-card-title" >
+					{{ (lifetimePrice / 100) | currency:'' }}
+				</h1>
+
+				<ul class="list-unstyled mt-3 mb-4" >
+				</ul>
+
+				<button
+					type="button"
+					*ngIf="
+						!loggedin ||
+						!current_subscription ||
+						current_subscription.status != 'active' "
+					(click)="handleLifetimeSubscription()"
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<button
+					type="button"
+					*ngIf="
+						!processingL &&
+						current_subscription &&
+						current_subscription.status == 'active' &&
+						current_subscription.type == 'Lifetime' "
+					disabled
+					class="btn btn-lg btn-block " >
+					Select
+				</button>
+
+				<div
+					*ngIf="
+						!processingL &&
+						current_subscription &&
+						current_subscription.type == 'Lifetime' " >
+
+					<div
+						class="alert alert-info"
+						role="alert"
+						*ngIf="
+							current_subscription &&
+							current_subscription.status == 'active' " >
+						Lifetime subscription is active
+						<br />
+						(
+							{{ current_subscription.start * 1000 | date }}
+							-
+							{{ current_subscription.end * 1000 | date }}
+						)
+					</div>
+
+				</div>
+
+				<span
+					*ngIf="processingL"
+					class="spinner-border spinner-border-sm"
+					role="status"
+					aria-hidden="true" >
+				</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<br />
+-->

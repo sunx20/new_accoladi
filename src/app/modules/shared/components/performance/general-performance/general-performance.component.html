@@ -1,0 +1,140 @@
+<div class="px-4 py-5">
+
+	<div class="row mb-3 d-flex align-items-center">
+
+		<div class="col-md-6">
+
+			<nav aria-label="breadcrumb">
+
+				<ol class="breadcrumb">
+
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/performance">Performance</a>
+					</li>
+
+					<li class="breadcrumb-item active" aria-current="page">
+						General Performance
+					</li>
+
+				</ol>
+
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right">
+
+			<a href="javascript:;" (click)="addStudentPerformance()" class="btn">
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Performance
+			</a>
+
+		</div>
+
+	</div>
+
+	<section class="module">
+
+		<header>
+			<h2>General Performance</h2>
+		</header>
+
+		<div class="general-table">
+
+			<table class="table">
+
+				<tbody>
+
+					<tr>
+						<td class="align-top">
+
+							<p>
+								This section is to record all the times you’ve
+								performed in school, at church, or in a
+								community ensemble. Remember to add the ensemble
+								and the year you participated. If you
+								participated in honors ensembles, competitions,
+								or camps, there are separate sections to add
+								those.
+							</p>
+
+							<p>
+								Questions Asked:<br />
+								Type * (Chorus, Solo, Sm. Ensemble, Ensemble,
+								Orchestra etc.), Instrument/Voice Part *,
+								Composition Performed *, Date Performed, Grade
+								(6-12), Section, Chair, Link to video of
+								performance
+							</p>
+
+						</td>
+						<td class="align-top text-center" width="200">
+
+							<a href="javascript:;" (click)="playVideo('https://vimeo.com/349239752')">
+								<img src="assets/img/general_performance_video_thumb.jpg" /><br>
+								Watch Video
+							</a>
+
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<table class="table">
+
+				<tbody>
+
+					<tr *ngFor=" let performance of performances; let i = index ">
+						<td width="5%">
+
+							<button *ngIf="performance.video_url" type="button" class="btn btn-play"
+								(click)="playVideo(performance.video_url)">
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+
+						</td>
+						<td width="35%">
+
+							<span class="bumpup-txt">
+								<u>
+									{{ performance.composition_title }}
+								</u>
+							</span>
+
+							<br />
+
+							{{ performance.type }} {{ performance.talent }}
+
+							<br />
+
+							<p *ngIf="performance.composers?.length">
+								<em>
+									{{ performance.composers }}
+								</em>
+							</p>
+
+						</td>
+						<td width="25%">
+							{{ performance.date_performed }}
+						</td>
+						<td width="3%">
+							<a href="javascript:;" (click)=" updateStudentPerformance(performance._id) ">
+								<img style="width:20px;" src="assets/img/sa-edit.svg" /></a>
+						</td>
+						<td width="3%">
+							<img (click)=" removeStudentPerformance(performance._id) "
+								style="width:13px;cursor: pointer;" src="assets/img/close-x-22.png" />
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+
+</div>

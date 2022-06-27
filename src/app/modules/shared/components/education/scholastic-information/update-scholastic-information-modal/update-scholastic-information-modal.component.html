@@ -1,0 +1,162 @@
+<div class="modal-header" >
+	
+	<h4 class="modal-title" >
+		Scholastic Information
+	</h4>
+
+</div>
+
+<form novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()">
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+						<div class="form-group" [ngClass]="displayFieldCss('graduation_year')" >
+
+						<label class="control-label" >
+							Graduation Year
+						</label>
+						<input
+							name="graduation_year"
+							type="number"
+							min="2000"
+							max="2100"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('graduation_year')"
+							formControlName="graduation_year"
+							placeholder="Graduation Year" />
+
+						<app-field-error-display
+							[displayError]="isFieldInvalid('graduation_year')"
+							errorMsg="Graduation year in range (2000 - 2100)" >
+						</app-field-error-display>						
+
+					</div>
+
+					<div class="form-group" [ngClass]="displayFieldCss('gpa')" >
+
+						<label for="gpa" class="control-label" >
+							GPA
+						</label>
+						<input
+							id="gpa"
+							type="number"
+							class="form-control "
+							min="0"
+							max="5"
+							formControlName="gpa"
+							name="gpa"
+							placeholder="Grade Point Average" />
+
+						<app-field-error-display
+							[displayError]="isFieldInvalid('gpa')"
+							errorMsg="Please provide a number between 0 and 5">
+						</app-field-error-display>
+
+					</div>
+
+					<div class="form-group" [ngClass]="displayFieldCss('sat')" >
+						
+						<label for="sat" class="control-label" >
+							SAT
+						</label>
+						<input
+							id="sat"
+							type="number"
+							class="form-control "
+							formControlName="sat"
+							name="sat"
+							placeholder="Scholastic Assessment Test" />
+
+						<app-field-error-display
+							[displayError]="isFieldInvalid('sat')"
+							errorMsg="Please provide SAT" >
+						</app-field-error-display>
+
+					</div>
+
+					<div class="form-group" [ngClass]="displayFieldCss('act')" >
+
+						<label for="act" class="control-label" >
+							ACT
+						</label>
+						<input
+							id="act"
+							type="number"
+							class="form-control "
+							formControlName="act"
+							name="act"
+							placeholder="American College Testing" />
+
+						<app-field-error-display
+							[displayError]="isFieldInvalid('act')"
+							errorMsg="Please provide ACT" >
+						</app-field-error-display>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<div *ngIf="requestSuccess"
+						class="alert alert-success"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed"
+						class="alert alert-danger"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button" class="btn gray-btn" (click)="close()" >
+			Cancel
+		</button>
+
+		<button type="submit"
+				[disabled]="requestSuccess"
+				class="btn yellow-btn" >
+
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+
+		</button>
+
+	</div>
+
+</form>

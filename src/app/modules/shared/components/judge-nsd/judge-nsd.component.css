@@ -1,0 +1,11 @@
+.div-border-top-bottom
+{
+    border-top: 1px solid #eeeeee !important;
+    border-bottom: 1px solid #eeeeee !important;
+    margin-top: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.modal-xl .modal-lg {
+    max-width: 90%;
+    }

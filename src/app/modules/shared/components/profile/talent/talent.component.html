@@ -1,0 +1,113 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+
+				<ol class="breadcrumb" >
+
+					<li class="breadcrumb-item" >
+						<a routerLink="/student/profile" 
+							routerLinkActive="active" >Profile</a>
+					</li>
+
+					<li class="breadcrumb-item active" 
+						aria-current="page" >
+						Talents
+					</li>
+
+				</ol>
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+
+			<a href="javascript:;" 
+				class="btn" 
+				(click)="addTalent()" >
+				<img class="mr-2" 
+					src="assets/img/sa-add-08.svg" />
+				Add Talent
+			</a>
+
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>Talents</h2>
+		</header>
+
+		<div class="general-table" >
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let talent of talents" >
+
+						<td width="5%" style="vertical-align: top;" >
+							<img *ngIf="talent.primary" 
+								style="width:21px;" 
+								src="assets/img/favorite-star-42.png" />
+							<img *ngIf="!talent.primary" 
+								style="width:21px;" 
+								src="assets/img/not-yet-favorite-star-41.png" />
+						</td>
+
+						<td width="37%" style="vertical-align: top;" >
+							<span class="bumpup-txt" >
+								{{ talent.talent }} ( {{ talent.family }} )
+								<div *ngIf="talent.range" >{{ talent.range ? "(" + talent.range + ")" : ""  }}</div>
+								<div *ngIf="talent.year_started" > {{ talent.year_started }}</div>
+							</span>
+						</td>
+
+						<td width="25%" style="vertical-align: top;" >
+							<span *ngIf="talent.styles" >
+								<b>Proficient Styles:</b>
+								<div *ngFor="let style of talent.styles" >
+									{{ style }}
+								</div>
+							</span>
+						</td>
+
+						<td width="25%" style="vertical-align: top;" >
+							<span *ngIf="talent.emphasis" >
+								<b>Emphasis:</b>
+								<div *ngFor="let e of talent.emphasis" >
+									{{ e }}
+								</div>
+							</span>
+						</td>
+
+						<td width="3%" style="vertical-align: top;"  >
+							<a href="javascript:;" 
+								(click)="updateTalent(talent._id)" >
+								<img style="width:20px;" 
+									src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+
+						<td width="3%" style="vertical-align: top;"  >
+							<img style="width:13px;cursor: pointer;" 
+								src="assets/img/close-x-22.png" 
+								(click)="removeTalent(talent._id)" />
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+
+</div>

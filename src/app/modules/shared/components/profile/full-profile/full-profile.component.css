@@ -1,0 +1,159 @@
+body {
+	color: #555;
+}
+
+.module h1 {
+	font-size: 24px;
+	color: #555;
+}
+
+.module h2 {
+	font-size: 20px;
+	padding: 30px 33px 0px;
+	color: #555;
+}
+
+.module.extras h2 {
+	border-bottom: 1px solid #ccc;
+	padding: 40px 33px 10px;
+}
+
+.module.extras h2.first {
+	padding-top: 12px;
+}
+
+.module header h2 {
+	padding: 0 0 0 25px;
+}
+
+.general-table th,
+.module p,
+.module li,
+table.top-align td {
+	font-size: 15px;
+}
+
+.table td,
+.table th {
+	border: none;
+	padding-bottom: 0;
+}
+
+table.table {
+	margin: 0 0 0 23px;
+}
+
+.btn img {
+	filter: invert(0) brightness(1);
+}
+
+.where-stats img {
+	float: left;
+	max-width: 13px;
+	top: 3px;
+	position: relative;
+}
+
+.where-stats p {
+	overflow: hidden;
+}
+
+.profile-img-row img {
+	border: 5px solid #fff;
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+}
+
+.module.red-band {
+	border: none;
+}
+
+.profile-img-row {
+	padding: 15px 35px;
+	border-radius: 3px; /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e2a90a+0,a92e28+49,ffffff+49,ffffff+49,ffffff+100 */
+	background: #e2a90a; /* Old browsers */
+	background: -moz-linear-gradient(
+		top,
+		#e2a90a 0%,
+		#e2a90a 49%,
+		#ffffff 49%,
+		#ffffff 49%,
+		#ffffff 100%
+	); /* FF3.6-15 */
+	background: -webkit-linear-gradient(
+		top,
+		#e2a90a 0%,
+		#e2a90a 49%,
+		#ffffff 49%,
+		#ffffff 49%,
+		#ffffff 100%
+	); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(
+		to bottom,
+		#e2a90a 0%,
+		#e2a90a 49%,
+		#ffffff 49%,
+		#ffffff 49%,
+		#ffffff 100%
+	); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a90a', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.profile-intro {
+	padding: 0 35px 10px 35px;
+}
+
+.talent-circle {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 1px solid #e2a90a;
+	position: relative;
+	margin: 20px auto;
+}
+
+.talent-circle span {
+	font-size: 20px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	top: 50%;
+	display: table;
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+	transform: translateY(-50%);
+}
+
+.dl-profile {
+	max-width: 1100px;
+	margin: 20px auto;
+}
+
+@media print {
+	body {
+		background-color: transparent;
+	}
+
+	.module {
+		box-shadow: 0;
+		margin-bottom: 5px;
+	}
+
+	a.btn {
+		display: none;
+	}
+
+	.table {
+		width: 90%;
+		background: transparent;
+	}
+
+	.mb-3 {
+		display: none;
+	}
+}

@@ -1,0 +1,226 @@
+	<div class="modal-header" >
+
+		<h4 class="modal-title" >Send Letter</h4>
+		
+	</div>
+
+	<form novalidate="novalidate"
+		autocomplete="off"
+		[formGroup]="form" >
+
+		<div class="modal-body" >
+
+			<div class="container" >
+
+				<div class="form-row" >
+					
+					<div class="col-md-6 form-group required"
+						[ngClass]="displayFieldCss('subject')" >
+						
+						<label for="subject" class="control-label " >
+								Subject
+						</label>
+						<select id="subject"
+								name="subject"
+								formControlName="subject"
+								placeholder="Subject"
+								class="form-control "
+								[class.state-error]="isFieldInvalid('subject')" >
+							<option value="" disabled selected >
+								Subject - Select One...
+							</option>
+							<option *ngFor="let t of letterTypes"
+									value="{{ t.type }}" >
+								{{ t.display }}
+							</option>
+						</select>
+
+						<app-field-error-display
+							[displayError]="isFieldInvalid('subject')"
+							errorMsg="Please provide subject" >
+						</app-field-error-display>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-2 form-group" >
+						
+						<div class="checkbox" >
+							
+							<label for="toEmail" class="control-label" >
+								<input id="toEmail"
+										name="toEmail"
+										type="checkbox"
+										formControlName="toEmail" />
+								To Email
+							</label>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div *ngIf="!form.get('toEmail').value" 
+					class="form-row" >
+					
+					<div *ngIf="form.get('subject').value == 'referral'"
+						class="col-md-6 form-group "
+						[ngClass]="displayFieldCss('faculty')" >
+						
+						<label for="faculty" class="control-label " >
+							Recipient
+						</label>
+						<input id="faculty"
+								name="faculty"
+								type="text"
+								formControlName="faculty"
+								placeholder="Search faculty ..."
+								[ngbTypeahead]="searchFaculties"
+								[inputFormatter]="formatMatches"
+								[resultTemplate]="rt"
+								(selectItem)="selectedFaculty($event)"
+								class="form-control" />
+						<span *ngIf="searchingFaculties" >searching...</span>
+						
+						<div *ngIf="searchFailed" 
+							class="invalid-feedback" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<input name="faculty_id"
+								type="hidden"
+								formControlName="faculty_id"
+								value="" />
+
+						<ng-template #rt let-r="result" let-t="term" >
+							
+							<span class="device" >
+								<span class="grayout" >{{ r?.first_name + " " + r?.last_name }}</span>
+								<br />
+								<small class="grayout" >
+									{{
+										r?.position +
+										", " +
+										r?.department +
+										" (" +
+										r?.college +
+										")"
+									}}
+								</small>
+							</span>
+
+						</ng-template>
+
+					</div>
+
+				</div>
+
+				<div *ngIf="form.get('toEmail').value" class="form-row" >
+					
+					<div class="col-md-6 form-group required"
+						[ngClass]="displayFieldCss('email')" >
+						
+						<label for="email" class="control-label " >Recipient Email</label>
+						<input id="email"
+								name="email"
+								type="email"
+								placeholder="Email"
+								formControlName="email"
+								class="form-control"
+								[class.state-error]="isFieldInvalid('email')" />
+						
+						<app-field-error-display
+							*ngIf="f.email.errors && f.email.errors.required"
+							[displayError]="isFieldInvalid('email')"
+							errorMsg="Please provide an email" >
+						</app-field-error-display>
+						
+						<app-field-error-display
+							*ngIf="f.email.errors && f.email.errors.email"
+							[displayError]="isFieldInvalid('email')"
+							errorMsg="Please provide a valid email" >
+						</app-field-error-display>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-12 form-group" >
+						
+						<label for="body" class="control-label " >
+							Body
+						</label>
+						<textarea id="body"
+									name="body"
+									formControlName="body"
+									rows="5"
+									class="form-control"
+									style="text-align: left; min-height: 230px; resize: none;" >
+						</textarea>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-12" >
+					
+						<div *ngIf="requestSuccess"
+							role="alert"
+							class="alert alert-success" >
+							{{ feedback }}
+						</div>
+
+						<div *ngIf="requestFailed"
+							class="alert alert-danger"
+							role="alert" >
+							{{ feedback }}
+						</div>
+
+					</div>
+					
+				</div>
+
+				<div class="modal-footer d-flex justify-content-between" >
+					
+					<button type="button"  
+							(click)="close()"
+							class="btn gray-btn" >
+						Cancel
+					</button>
+
+					<button type="button"
+							appDisableDoubleClick
+							(click)="submitAttempted=true; submitForm();" 
+							[disabled]="requestSuccess" 
+							class="btn" >
+					
+						<span *ngIf="loading"
+								role="status"
+								class="spinner-border spinner-border-sm"
+								aria-hidden="true" ></span>
+					
+						{{
+							loading
+							? "Sending..."
+							: !requestSuccess
+								? "Send letter"
+								: "Done"
+						}}
+
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</form>

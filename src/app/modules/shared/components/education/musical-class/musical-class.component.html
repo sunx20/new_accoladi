@@ -1,0 +1,68 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/{{userType}}/education" >Education Data</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Musical Classes
+					</li>
+				</ol>
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+
+			<a class="btn" href="javascript:;" (click)="updateStudentMCs()" >
+
+				<img class="mr-2" src="assets/img/sa-edit.svg" />
+				Update Information
+
+			</a>
+
+		</div>
+		
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>
+				Musical Classes
+			</h2>
+		</header>
+
+		<div>
+
+			<div class="pl-5 py-3" >
+
+				<p *ngIf="musical_classes.length === 0" >
+					Have you formally studied your art? You might have taken AP
+					Music Theory or AP Music History. Make sure to list it here.
+				</p>
+
+				<table class="top-align bumpup-txt" >
+
+					<tbody>
+
+						<tr *ngFor="let mc of musical_classes" >
+							<td>{{ mc }}</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</div>

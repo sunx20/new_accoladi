@@ -1,0 +1,248 @@
+<div class="modal-header">
+	<h4 class="modal-title">Add Festivals & Competitions History</h4>
+
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+	<div class="modal-body">
+		<div class="container">
+			<div class="form-row">
+				<div class="col-md-10 form-group required" [ngClass]="displayFieldCss('composition')">
+					<label class="control-label " for="fc_composition">Composition Performed</label>
+					<!-- required -->
+					<input [ngbTypeahead]="searchCompositions" [inputFormatter]="formatMatches" [resultTemplate]="rt"
+						class="form-control" type="text" name="composition" formControlName="composition"
+						id="fc_composition" placeholder="Type to search catalog..."
+						(selectItem)="selectedComposition($event)" />
+
+					<span *ngIf="searchingCompositions">searching...</span>
+					<div class="invalid-feedback" *ngIf="searchFailed">
+						Sorry, suggestions could not be loaded.
+					</div>
+
+					<input type="hidden" name="composition_id" formControlName="composition_id" value="" />
+
+					<app-field-error-display [displayError]="isFieldInvalid('composition')"
+						errorMsg="Please provide a composition">
+					</app-field-error-display>
+
+					<ng-template #rt let-r="result" let-t="term">
+						<span class="device">
+							<span class="grayout">{{ r?.title }}</span><br />
+							<small class="grayout">
+								{{ r?.composers
+								}}{{
+								r?.instrument.name
+								? " - " + r?.instrument.name
+								: " - " + r?.instrument.group
+								}}
+								{{
+								r?.meta.uil.grade
+								? " - Grade:" + r?.meta.uil.grade
+								: ""
+								}}
+								{{
+								r?.publisher.name
+								? " - " + r?.publisher.name
+								: ""
+								}}
+							</small>
+						</span>
+					</ng-template>
+				</div>
+
+				<div class="col-md-2 mt-4">
+					<button *ngIf="noResult" type="button" class="btn btn-danger" (click)="componsion()"><img
+							class="mr-2" src="assets/img/sa-add-08.svg"> Add </button>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('type')">
+					<label for="fc_type" class="control-label ">Performed as</label>
+					<select id="fc_type" class="form-control " [class.state-error]="isFieldInvalid('type')" name="type"
+						formControlName="type" placeholder="">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let type of types" value="{{ type }}">{{
+							type
+							}}</option>
+					</select>
+					<app-field-error-display [displayError]="isFieldInvalid('type')" errorMsg="Please provide a type">
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('family')">
+					<label class="control-label " for="fc_family">Family</label>
+					<select id="fc_family" class="form-control " [class.state-error]="isFieldInvalid('family')"
+						name="family" formControlName="family">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let family of families" value="{{ family }}">
+							{{ family }}
+						</option>
+					</select>
+					<app-field-error-display [displayError]="isFieldInvalid('family')"
+						errorMsg="Please provide a family">
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('instrument')">
+					<label for="fc_instrument" class="control-label ">Instrument or Voice Part</label>
+					<select id="fc_instrument" class="form-control " [class.state-error]="isFieldInvalid('instrument')"
+						name="instrument" formControlName="instrument">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let instrument of instruments" value="{{ instrument.name }}">
+							{{ instrument.name }}
+						</option>
+					</select>
+					<app-field-error-display [displayError]="isFieldInvalid('instrument')"
+						errorMsg="Please provide an instrument">
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('event')">
+					<label for="event" class="control-label">Event Name</label>
+					<input type="text" class="form-control " [class.state-error]="isFieldInvalid('event')"
+						formControlName="event" name="event" placeholder="Event Name" />
+					<app-field-error-display [displayError]="isFieldInvalid('event')"
+						errorMsg="Please provide an event">
+					</app-field-error-display>
+				</div>
+
+				<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('state')">
+					<label for="fc_state" class="control-label">State</label>
+					<select id="fc_state" class="form-control " [class.state-error]="isFieldInvalid('state')"
+						name="state" formControlName="state" placeholder="State">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let state of states" [ngValue]="state.abbr">{{ state.name }}</option>
+					</select>
+					<app-field-error-display [displayError]="isFieldInvalid('state')" errorMsg="Please provide a state">
+					</app-field-error-display>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label class="control-label">Performed Year:</label>
+					<select [class.state-error]="isFieldInvalid('date_performed')" formControlName="date_performed"
+						name="date_performed" class="form-control">
+						<option value="" selected>Select</option>
+						<option *ngFor="let year of years">{{year}}</option>
+					</select>
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label">Grade:</label>
+					<select class="form-control " [class.state-error]="isFieldInvalid('school_grade')"
+						name="school_grade" formControlName="school_grade" placeholder="Grade">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let grade of grades" [ngValue]="grade">{{ grade }}th</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label class="control-label">Section:</label>
+					<input type="text" class="form-control " [class.state-error]="isFieldInvalid('section')"
+						formControlName="section" name="section" placeholder="Section" />
+				</div>
+
+				<div class="col-md-6 form-group">
+					<label class="control-label">Chair:</label>
+					<input type="text" class="form-control " [class.state-error]="isFieldInvalid('chair')"
+						formControlName="chair" name="chair" placeholder="Chair" />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-4 form-group">
+					<label class="control-label">Judge:</label>
+					<input type="text" class="form-control " [class.state-error]="isFieldInvalid('judge')"
+						formControlName="judge" name="judge" placeholder="Judge" />
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label">Rating: <small>(If applicable)</small></label>
+					<select class="form-control " [class.state-error]="isFieldInvalid('rating')" name="rating"
+						formControlName="rating" placeholder="">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let rating of festivalRatings" [ngValue]="rating">{{ rating }}</option>
+					</select>
+					<span *ngIf="selectedRating === 'Other...'">
+						<input type="text" class="form-control " [class.state-error]="isFieldInvalid('rating')"
+							formControlName="rating" name="rating" placeholder="Rating" />
+					</span>
+				</div>
+
+				<div class="col-md-4 form-group">
+					<label class="control-label">Placement: <small>(If applicable)</small></label>
+					<select class="form-control " [class.state-error]="isFieldInvalid('placement')" name="placement"
+						formControlName="placement" placeholder="">
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let placement of competitionPlacements" [ngValue]="placement">{{ placement }}
+						</option>
+					</select>
+					<span *ngIf="selectedPlacement === 'Other...'">
+						<input type="text" class="form-control " [class.state-error]="isFieldInvalid('placement')"
+							formControlName="placement" name="placement" placeholder="Placement" />
+					</span>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Judge's Comments: <small>(optional)</small></label>
+					<textarea class="form-control" rows="3" autocomplete="off" class="form-control "
+						[class.state-error]="isFieldInvalid('comments')" formControlName="judges_comments"
+						name="judges_comments" placeholder=""></textarea>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Video URL: <small>(YouTube or Vimeo)</small></label>
+					<input type="text" class="form-control " [class.state-error]="isFieldInvalid('video_url')"
+						formControlName="video_url" name="video_url"
+						placeholder="Provide FULL url - like https://youtu.be/nnn-AA"
+						(input)="getVideoUrl($event.target.value)" />
+					<app-video-player [video]="videoUrl"></app-video-player>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12 form-group">
+					<label class="control-label">Student Comments: <small>(optional)</small></label>
+					<textarea class="form-control" rows="3" autocomplete="off" class="form-control "
+						[class.state-error]="isFieldInvalid('comments')" formControlName="comments" name="comments"
+						placeholder="Additional info you may want recruiter to know about this performance">
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-12">
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+		<button type="button" class="btn gray-btn" (click)="close()">
+			Cancel
+		</button>
+		<button type="submit" [disabled]="requestSuccess" class="btn yellow-btn">
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+			{{ loading ? "Saving..." : !requestSuccess ? "Save" : "Done" }}
+		</button>
+	</div>
+</form>

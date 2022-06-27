@@ -1,0 +1,39 @@
+<div class="px-4 py-5" >
+	
+	<div class="row mb-3 d-flex align-items-center" >
+		
+		<div class="col-md-6" >
+			
+			<nav aria-label="breadcrumb" >
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a href="../index.html" >Resources</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						FAQs
+					</li>
+				</ol>
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" ></div>
+
+	</div>
+
+	<section class="module border-rows" >
+		
+		<header>
+			<h2>FAQs</h2>
+		</header>
+		
+		<div *ngFor="let faq of faqs; index as i" >
+			<p>
+				<span class="drkgray-txt" >{{faq.question}}:</span><br />
+				{{faq.answer}}
+			</p>
+		</div>
+
+	</section>
+
+</div>

@@ -1,0 +1,241 @@
+<div class="container" >
+
+	<div class="row" >
+
+		<div class="offset-md-3 col-md-6" >
+
+			<br />
+			<br />
+			<br />
+
+			<div class="alert alert-success text-center" role="alert" >
+				Successful registration.
+			</div>
+
+			<div class="row" >
+
+				<div class="col-md-12" >
+
+					<script>
+						fbq("track", "Lead", { value: 0, currency: "0" });
+					</script>
+
+					<h3>Welcome to Accoladi.com!</h3>
+
+					<p>
+						Welcome {{ firstName + " " + lastName }},
+					</p>
+
+					<div *ngIf="role == 'student'" >
+
+						<p class="text-center" >
+							We hope we can help streamline your collegiate journey.
+						</p>
+
+						<p class="text-center" >
+							Search 14,000+ scholarships<br>
+							View our NEW Premier College Programs directory<br>
+							Get recruited with your profile
+						</p>
+
+						<p class="text-center" >
+							Enjoy FULL access at just $9.95/mo!
+						</p>
+
+						<p class="col-md-12 text-center" >
+							<br />
+							<a class="btn"
+								role="button"
+								[routerLink]="['/student/home']" >
+								Get Started!
+							</a>
+						</p>
+
+						<div style="background-color:#a0a0a0; padding: 8px;" >
+
+							<p class="text-center" >
+								*** REMEMBER ***
+							</p>
+
+							<p class="text-center" >
+								Colleges are continually looking for students to fill their ensembles and offer<br>
+								scholarships! Brand yourself through 5 simple profile updates:
+							</p>
+
+							<p class="text-center" >
+								High School and Graduation Year,<br>
+								Preferred colleges (and major),<br>
+								Musical Talents and Repertoire (and years),<br>
+								Accomplishments: Ensembles, competitions, camps etc.,<br>
+								Performance Videos!
+							</p>
+
+							<p class="text-center" >
+								We are extremely grateful you are here and are excited to help you on your journey!
+							</p>
+
+						</div>
+
+					</div>
+
+					<div *ngIf="role == 'parent'" >
+
+						<p class="text-center" >
+							We hope we can help streamline your child’s collegiate journey.
+						</p>
+
+						<p class="text-center" >
+							Search 14,000+ scholarships<br>
+							View our NEW Premier Collee Programs directory<br>
+							Get your child recruited with a completed profile
+						</p>
+
+						<p class="text-center" >
+							Enjoy FULL access at just $9.95/mo!
+						</p>
+
+						<p class="col-md-12 text-center" >
+							<br />
+							<a class="btn" 
+								role="button" 
+								[routerLink]="['/parent/students']" >
+								Get Started!
+							</a>
+						</p>
+
+						<div style="background-color: #a0a0a0; padding: 8px;" >
+
+							<p class="text-center" >
+								***REMEMBER***
+							</p>
+
+							<p class="text-center" >
+								Colleges are continually looking for students to fill their ensembles and offer<br>
+								scholarships! Brand your child through 5 simple profile updates:
+							</p>
+
+							<p class="text-center" >
+								High School and Graduation Year,<br>
+								Preferred colleges (and major),<br>
+								Musical Talents and Repertoire (and years),<br>
+								Accomplishments: Ensembles, competitions, camps etc.,<br>
+								Performance Videos!
+							</p>
+
+							<p class="text-center" >
+								We are extremely grateful you are here and are excited to help your child on their journey!
+							</p>
+
+						</div>
+
+					</div>
+
+					<div *ngIf="role == 'teacher'" >
+
+						<p>
+							You’ve just taken the first step toward helping your
+							students find a great college music fit!
+						</p>
+
+						<p>
+							Colleges are looking for students to fill their
+							ensembles, studios, and other programs every day.
+							Your students could be a perfect fit!
+						</p>
+
+						<p>
+							While students document their performance profile
+							and their musical achievements, you can use
+							Accoladi.com as a resource to guide
+							students toward a college-level music experience
+							that suits their goals. You can access and recommend
+							audition requirements for music programs around the
+							country, non-institutional scholarships, and
+							advice to help students improve their musicianship
+							and audition-readiness.
+						</p>
+
+						<p>
+							When students are ready to apply to a music program,
+							you can manage multiple recommendations for multiple
+							students from your dashboard.
+						</p>
+
+						<p>
+							We’re very happy you’re here and are excited to help
+							your students on their journey to achieve their
+							college dreams.
+						</p>
+
+						<p class="col-md-12 text-center" >
+							<br />
+							<a class="btn"
+								role="button"
+								[routerLink]="['/teacher/home']" >
+								Get Started!
+							</a>
+						</p>
+
+					</div>
+
+					<div *ngIf="role == 'recruiter'" >
+
+						<p style="color: red;" >
+							Make sure to check your email for an "activation"
+							email from Accoladi.com - you will need
+							to activate your account to continue.
+						</p>
+
+						<p>
+							You’ve just taken the first step toward finding
+							great prospects for your music program!
+						</p>
+
+						<p>
+							Thousands of students are waiting to get contacted
+							by schools just like yours. It’s easy to get
+							started:
+						</p>
+
+						<ol>
+							<li>Log in to your account</li>
+							<li>From your Dashboard, click on the Search tab</li>
+							<li>Enter the criteria you need to find</li>
+							<li>Click Search</li>
+							<li>Save, share, and contact students directly though the site.</li>
+						</ol>
+
+						<p>
+							We’re very happy you’re here and are excited to help
+							you find the students you need.
+						</p>
+
+					</div>
+
+					<p *ngIf="plan && amount" >
+						You are entering into a auto-billing subscription
+						agreement for {{ nStudents }} student(s).
+						<br />
+						You will be billed ${{ amount }} starting
+						{{ startDate }} and
+						{{ plan.toLowerCase() }} thereafter, unless you
+						cancel within your {{trialp}}-day trial.
+					</p>
+
+					<p>
+						Sincerely,<br />
+						Dr. Randall A. Bayne<br />
+						Founder &amp; CEO, Accoladi.com
+					</p>
+
+				</div>
+
+			</div>
+
+			<br />
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,12 @@
+.no-break{
+    white-space: nowrap
+}
+
+.pad-left{
+    padding-left: 20px;
+}
+
+.student-title {
+	font-size: 1.25em;
+	font-weight: bold;
+}

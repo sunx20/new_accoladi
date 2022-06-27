@@ -1,0 +1,139 @@
+<div class="px-4 py-5">
+	<div class="row mb-3 d-flex align-items-center">
+		<!-- <div class="col-md-12" *ngIf="student?.summer_enrichments.length == 0">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/student/performance" routerLinkActive="active">Performance</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Summer Enrichment
+					</li>
+				</ol>
+			</nav>
+		</div> -->
+
+		<div class="col-md-6">
+			<!-- *ngIf="student?.summer_enrichments.length > 0"-->
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/performance" routerLinkActive="active">Performance</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Summer Enrichment
+					</li>
+				</ol>
+			</nav>
+		</div>
+
+		<div class="col-md-6 text-right">
+			<!-- *ngIf="student?.summer_enrichments.length > 0" -->
+			<a href="javascript:;" (click)="addStudentSummerEnrichment()" class="btn">
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Summer Enrichment
+			</a>
+		</div>
+	</div>
+
+	<!--
+	<section class="module" *ngIf="student?.summer_enrichments.length == 0">
+		<header><h2>Summer Enrichment</h2></header>
+		<div class="text-center pt-5">
+			<a
+				href="javascript:;"
+				(click)="addStudentSummerEnrichment()"
+				class="btn" >
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Summer Enrichment
+			</a>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-lg-4 offset-md-4 pb-4">
+					<p>
+						Summer Enrichment experiences including summer camps
+						sponsored by larger organizations to touring with a Drum
+						&amp; Bugle Corps.
+					</p>
+					<p>
+						Questions Asked:<br />
+						Event/Name *, Started *, Ended *, Primary Emphasis *,
+						Secondary Emphasis, Instrument/Voice Part, Institution,
+						City, State, Country, Esemble, Role, Conductor/Director,
+						Section, Chair, Link to video of performance
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	-->
+
+	<section class="module">
+		<!-- *ngIf="student?.summer_enrichments.length > 0"-->
+		<header>
+			<h2>Summer Enrichment</h2>
+		</header>
+		<div class="general-table">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td class="align-top">
+							<p>
+								Summer Enrichment experiences including summer
+								camps sponsored by larger organizations to
+								touring with a Drum &amp; Bugle Corps.
+							</p>
+							<p>
+								Questions Asked:<br />
+								Event/Name *, Started *, Ended *, Primary
+								Emphasis *, Secondary Emphasis, Instrument/Voice
+								Part, Institution, City, State, Country,
+								Esemble, Role, Conductor/Director, Section,
+								Chair, Link to video of performance
+							</p>
+						</td>
+						<td class="align-top text-center" width="200">
+							<a href="javascript:;" (click)="playVideo('https://vimeo.com/349239941')">
+								<img src="assets/img/summer_enrichment_video_thumb.jpg" /><br>Watch Video</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table">
+				<tbody>
+					<tr *ngFor=" let se of summer_enrichments; let i = index ">
+						<td width="5%">
+							<button *ngIf="se.video_url" type="button" class="btn btn-play"
+								(click)="playVideo(se.video_url)">
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+						</td>
+						<td width="40%">
+							<span class="bumpup-txt">
+								<u>
+									{{ se.event }}
+								</u>
+							</span>
+							<br />
+							{{ se.talent }}
+						</td>
+
+						<td width="45%">
+							{{ "Started: " + se.dates.started + " . Ended: " + se.dates.ended }}
+						</td>
+						<td width="5%">
+							<a href="javascript:;" (click)="updateStudentSummerEnrichment(se._id)">
+								<img style="width:20px;" src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+						<td width="5%">
+							<img (click)="removeStudentSummerEnrichment(se._id)" style="width:13px;cursor: pointer;"
+								src="assets/img/close-x-22.png" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

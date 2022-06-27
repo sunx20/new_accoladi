@@ -1,0 +1,537 @@
+<div
+	name="student-side-nav"
+	id="student-side-nav"
+	class="sidebar-sticky" >
+
+	<ul class="nav flex-column" >
+
+		<li class="nav-item" id="nav-student-home" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/home"
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact: true }" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Home</title>
+
+						<path
+							class="a"
+							d="M42.4,39.92H7.55a.63.63,0,0,0-.58.59v2.63a.55.55,0,0,0,.58.58H42.4a.58.58,0,0,0,.58-.58V40.51A.59.59,0,0,0,42.4,39.92Z" />
+						<path
+							class="a"
+							d="M9.48,35.6v3.16H40.53V35.6a.59.59,0,0,0-.59-.59H10.07a.6.6,0,0,0-.59.59Z" />
+						<path
+							class="a"
+							d="M16.91,34.31a.55.55,0,0,0,.58-.58V21.57a.58.58,0,0,0-.58-.59h-4.5a.63.63,0,0,0-.59.59V33.73a.58.58,0,0,0,.59.58Z" />
+						<path
+							class="a"
+							d="M26.91,34.31a.55.55,0,0,0,.58-.58V21.57a.58.58,0,0,0-.58-.59H22.4a.58.58,0,0,0-.58.59V33.73a.55.55,0,0,0,.58.58Z" />
+						<path
+							class="a"
+							d="M36.9,34.31a.55.55,0,0,0,.59-.58V21.57A.58.58,0,0,0,36.9,21H32.4a.63.63,0,0,0-.58.59V33.73a.58.58,0,0,0,.58.58Z" />
+						<path
+							class="a"
+							d="M39.89,19H10.07a.6.6,0,0,0-.59.59.59.59,0,0,0,.59.58H39.94a.63.63,0,0,0,.59-.58.64.64,0,0,0-.64-.59Z" />
+						<path
+							class="a"
+							d="M25,10.05a2.87,2.87,0,1,1-2.87,2.86A2.84,2.84,0,0,1,25,10.05ZM7.55,18.17H42.4a.62.62,0,0,0,.58-.41.64.64,0,0,0-.23-.64L25.27,6.36a.66.66,0,0,0-.64,0L7.26,17.06a.5.5,0,0,0-.23.65.47.47,0,0,0,.52.46Z" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Home
+				</span>
+
+			</a>
+
+			<div
+				id="submenu1"
+				class="collapse"
+				[class.show]="this.currentPath === 'home' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'home' }}" >
+
+				<ul class="flex-column nav" >
+
+					<li class="nav-item pro5" >
+						<a
+							class="nav-link"
+							href="javascript:;"
+							(click)="showHomeTour()" >
+							Show Tour
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-profile" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/full-profile"
+				routerLinkActive="active" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Profile</title>
+
+						<path
+							class="a"
+							d="M25,26.89A16.12,16.12,0,0,0,8.88,43H41.09A16.12,16.12,0,0,0,25,26.89Z" />
+						<path
+							class="a"
+							d="M33,15.05A8.06,8.06,0,1,1,25,7,8.06,8.06,0,0,1,33,15.05" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Profile
+				</span>
+
+			</a>
+
+			<div
+				id="submenu1"
+				class="collapse"
+				[class.show]="this.currentPath === 'profile' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'profile' }}" >
+
+				<ul class="flex-column nav" >
+
+					<li class="nav-item pro0" >
+						<a
+							class="nav-link"
+							routerLink="/student/profile"
+							routerLinkActive="active" >
+							Overview
+						</a>
+					</li>
+
+					<li class="nav-item pro2" >
+						<a
+							class="nav-link"
+							routerLink="/student/profile/parent-sponsor"
+							routerLinkActive="active" >
+							Parent/Sponsor
+						</a>
+					</li>
+
+					<li class="nav-item pro3" >
+						<a
+							class="nav-link"
+							routerLink="/student/profile/talents"
+							routerLinkActive="active" >
+							Talents
+						</a>
+					</li>
+
+					<li class="nav-item pro5" >
+						<a
+							class="nav-link"
+							routerLink="/student/full-profile"
+							routerLinkActive="active" >
+							Full Profile
+						</a>
+					</li>
+
+					<li class="nav-item pro6" >
+						<a
+							class="nav-link"
+							href="javascript:;"
+							(click)="showProfileTour()" >
+							Show Tour
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-performance" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/performance"
+				routerLinkActive="active" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Performance</title>
+
+						<path
+							class="a"
+							d="M18.36,34.73h0A2.66,2.66,0,0,1,16,33.33l-2-4L13.27,29,8,40.15a.43.43,0,0,0,.49.6l5.25-1a.37.37,0,0,1,.44.2l2.57,4.65a.42.42,0,0,0,.76,0l5.3-11.23-3.65,1.2A2,2,0,0,1,18.36,34.73Z" />
+						<path
+							class="a"
+							d="M42,40.15h0L36.7,29l-.76.36-2,4a2.55,2.55,0,0,1-2.33,1.4,2.58,2.58,0,0,1-.8-.12l-3.65-1.2L32.44,44.6a.44.44,0,0,0,.77,0L35.77,40a.41.41,0,0,1,.45-.2l5.25,1A.46.46,0,0,0,42,40.15Z" />
+						<path
+							class="a"
+							d="M31,31h0l2.09-4.09a1.38,1.38,0,0,1,.48-.48l4.09-2.09a1.06,1.06,0,0,0,.52-1.28l-1.4-4.37a1,1,0,0,1,0-.69l1.4-4.37a1.09,1.09,0,0,0-.52-1.28l-4.09-2.09a1.38,1.38,0,0,1-.48-.48L31,5.77a1.06,1.06,0,0,0-1.28-.53L25.31,6.65a1,1,0,0,1-.69,0L20.29,5.21A1.05,1.05,0,0,0,19,5.77L16.92,9.86a1.38,1.38,0,0,1-.48.48l-4.09,2.08a1,1,0,0,0-.52,1.29l1.4,4.37a1,1,0,0,1,0,.68l-1.4,4.37a1.09,1.09,0,0,0,.52,1.29l4.09,2.08a1.38,1.38,0,0,1,.48.48L19,31.08a1.06,1.06,0,0,0,1.28.52l4.37-1.41a1,1,0,0,1,.68,0l4.38,1.41A1.15,1.15,0,0,0,31,31Z" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Performance
+				</span>
+
+			</a>
+
+			<div
+				class="collapse"
+				id="submenu1"
+				[class.show]="this.currentPath === 'performance' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'performance' }}" >
+				<ul class="flex-column nav" >
+
+					<li class="nav-item per2" >
+						<a
+							class="nav-link"
+							routerLink="/student/performance/honors-awards"
+							routerLinkActive="active" >
+							Honors & Awards
+						</a>
+					</li>
+
+					<li class="nav-item per3" >
+						<a
+							class="nav-link"
+							routerLink="/student/performance/festivals-competitions"
+							routerLinkActive="active" >
+							Festivals & Competitions
+						</a>
+					</li>
+
+					<li class="nav-item per4" >
+						<a
+							class="nav-link"
+							routerLink="/student/performance/summer-enrichment"
+							routerLinkActive="active" >
+							Summer Enrichment
+						</a>
+					</li>
+
+					<li class="nav-item per1" >
+						<a
+							class="nav-link"
+							routerLink="/student/performance/general"
+							routerLinkActive="active" >
+							General Performance
+						</a>
+					</li>
+
+					<li class="nav-item per8" >
+						<a
+							class="nav-link"
+							routerLink="/student/performance/musical-theater"
+							routerLinkActive="active" >
+							Musical Theater
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-education" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/education"
+				routerLinkActive="active" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Education Data</title>
+
+						<path
+							class="a"
+							d="M45.66,19.19l-20.39-7.3a.52.52,0,0,0-.46,0L4.43,19.19a.69.69,0,0,0-.46.59.68.68,0,0,0,.39.59l20.39,7.3c.06,0,.13.06.19.06a.25.25,0,0,0,.2-.06l17-6V27.3H42a1.24,1.24,0,0,0-1.25,1.25V32.3a.66.66,0,0,0,.65.66h2.9a.67.67,0,0,0,.66-.66V28.55a1.26,1.26,0,0,0-1.25-1.25h-.2V21.19l2.13-.75a.58.58,0,0,0,.4-.6.61.61,0,0,0-.33-.65Z" />
+						<path
+							class="a"
+							d="M25,30.67a2.57,2.57,0,0,1-.66-.13L12.71,26.39v9.67a.65.65,0,0,0,.53.66A79.24,79.24,0,0,0,25,38.16a77.67,77.67,0,0,0,11.77-1.44.65.65,0,0,0,.53-.66V26.39L25.67,30.6a2.12,2.12,0,0,1-.66.07Z" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Education Data
+				</span>
+
+			</a>
+
+			<div
+				id="submenu1"
+				class="collapse"
+				[class.show]="this.currentPath === 'education' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'education' }}" >
+
+				<ul class="flex-column nav" >
+
+					<li class="nav-item edu1" >
+						<a
+							class="nav-link"
+							routerLink="/student/education/schools"
+							routerLinkActive="active" >
+							Schools
+						</a>
+					</li>
+
+					<li class="nav-item per6" >
+						<a class="nav-link" routerLink="/student/education/musical-classes" routerLinkActive="active" >
+							Musical Classes
+						</a>
+					</li>
+
+					<li class="nav-item per7" >
+						<a class="nav-link" routerLink="/student/education/master-classes" routerLinkActive="active" >
+							Master Classes
+						</a>
+					</li>
+
+					<li class="nav-item per5" >
+						<a
+							class="nav-link"
+							routerLink="/student/education/private-studies"
+							routerLinkActive="active" >
+							Private Studies
+						</a>
+					</li>
+
+					<li class="nav-item edu3" >
+						<a
+							class="nav-link"
+							routerLink="/student/education/scholastic-information"
+							routerLinkActive="active" >
+							Scholastic Information
+						</a>
+					</li>
+
+					<li class="nav-item edu2" >
+						<a
+							class="nav-link"
+							routerLink="/student/education/college-preferences"
+							routerLinkActive="active" >
+							College Preferences
+						</a>
+					</li>
+
+					<li class="nav-item edu4" >
+						<a
+							class="nav-link"
+							routerLink="/student/education/personal-statement"
+							routerLinkActive="active" >
+							College Intro Statement
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-messages" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/profile/messages"
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact: true }" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Messages</title>
+
+						<path class="a"  d="M 0 7 L 0 37 L 4 37 L 4 11 L 44 11 L 44 7 Z M 6 13 L 6 15.03125 C 11.917969 19.910156 24.160156 30 25.15625 30.84375 C 26.25 31.769531 27.402344 31.90625 28 31.90625 C 28.597656 31.90625 29.75 31.769531 30.84375 30.84375 C 31.925781 29.929688 45.253906 18.964844 50 15.0625 L 50 13 Z M 6 17.625 L 6 38.21875 L 19.125 28.4375 C 15.230469 25.222656 9.78125 20.742188 6 17.625 Z M 50 17.65625 C 46.605469 20.449219 40.960938 25.097656 36.90625 28.4375 L 50 38.25 Z M 20.6875 29.75 L 6 40.71875 L 6 43 L 50 43 L 50 40.75 L 35.3125 29.75 C 33.636719 31.132813 32.441406 32.132813 32.15625 32.375 C 30.578125 33.710938 28.871094 33.90625 28 33.90625 C 27.128906 33.90625 25.421875 33.714844 23.84375 32.375 C 23.566406 32.140625 22.378906 31.148438 20.6875 29.75 Z"/>
+
+					</svg>
+
+				</div>
+
+				<span>
+					Messages
+				</span>
+
+			</a>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-resources" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/resources"
+				routerLinkActive="active" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Resource</title>
+
+						<path
+							class="a"
+							d="M17.67,34.41h20.9V7.24H17.67a6.29,6.29,0,0,0-6.27,6.27v23a6.29,6.29,0,0,0,6.27,6.27h20.9V38.58H17.67a2.09,2.09,0,1,1,0-4.17Z" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Resource
+				</span>
+
+			</a>
+
+			<div
+				id="submenu1"
+				class="collapse"
+				[class.show]="this.currentPath === 'resources' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'resources' }}" >
+
+				<ul class="flex-column nav" >
+
+					<li class="nav-item res2" >
+						<a
+							class="nav-link"
+							routerLink="/student/resources/help"
+							routerLinkActive="active" >
+							Help
+						</a>
+					</li>
+
+					<li class="nav-item res2" >
+						<a
+							class="nav-link"
+							routerLink="/student/resources/pdfs"
+							routerLinkActive="active" >
+							Music Guides
+						</a>
+					</li>
+					<li class="nav-item res2" >
+						<a
+							class="nav-link"
+							routerLink="/student/resources/musical-terms"
+							routerLinkActive="active" >
+							Musical Terms
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item" id="nav-student-searches" >
+
+			<a
+				class="nav-link"
+				routerLink="/student/search"
+				routerLinkActive="active" >
+
+				<div class="icon" >
+
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 49.97 50" >
+
+						<title>Search</title>
+
+						<path
+							class="a"
+							d="M21.49,30.79a9.29,9.29,0,1,1,6.56-2.72,9.28,9.28,0,0,1-6.56,2.72ZM34,29.91A15.05,15.05,0,1,0,29.89,34l8.74,8.73h0a2.89,2.89,0,0,0,4.08-4.08Z" />
+
+					</svg>
+
+				</div>
+
+				<span>
+					Search
+				</span>
+
+			</a>
+
+			<div
+				id="submenu1"
+				class="collapse"
+				[class.show]="this.currentPath === 'search' || isSidebarOpen"
+				attr.aria-expanded="{{ this.currentPath === 'search' }}" >
+
+				<ul class="flex-column nav" >
+
+					<li class="nav-item sea1" >
+						<a
+							class="nav-link"
+							routerLink="/student/search/colleges"
+							routerLinkActive="active" >
+							Colleges
+						</a>
+					</li>
+
+					<li class="nav-item sea2" >
+						<a
+							class="nav-link"
+							routerLink="/student/search/scholarships"
+							routerLinkActive="active" >
+							Scholarships
+						</a>
+					</li>
+
+					<li class="nav-item sea3" >
+						<a
+							class="nav-link"
+							routerLink="/student/search/premier"
+							routerLinkActive="active" >
+							Premier College Programs
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</li>
+
+	</ul>
+
+</div>

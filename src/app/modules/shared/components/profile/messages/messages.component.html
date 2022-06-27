@@ -1,0 +1,111 @@
+<div class="px-4 py-5 messages">
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-6">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a
+							routerLink="/student/profile"
+							routerLinkActive="active"
+						>
+							Profile
+						</a>
+					</li>
+
+					<li class="breadcrumb-item active" aria-current="page">
+						Messages
+					</li>
+				</ol>
+
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right"></div>
+	</div>
+
+	<section class="module border-rows">
+		<header>
+			<h2>
+				Messages
+			</h2>
+		</header>
+
+		<div *ngIf="loadingMessages">
+			<p>
+				Loading messages...
+			</p>
+		</div>
+		<div *ngIf="isNewNotification">
+			<div
+				class="alert alert-light d-flex flex-row justify-content-between"
+				role="alert"
+				style="padding: 8px;"
+			>
+				<p>
+					<span class="font-weight-normal">
+						Someone from
+						<strong>{{ notificationCollegeName }}</strong>
+						viewed your profile!
+					</span>
+					<span class="ltgray-txt"
+						><small
+							>Notification from Scholarship Auditions
+							System</small
+						>
+					</span>
+				</p>
+				<button
+					type="button"
+					class="ml-2 close"
+					(click)="isNewNotification = !isNewNotification"
+				>
+					&times;
+				</button>
+			</div>
+		</div>
+
+		<ng-container *ngIf="student && !loadingMessages">
+
+			<!--
+			<div>
+				<p class="red-txt" >You have 2 new Messages!</p>
+			</div>
+			<div>
+				<p class="drkgray-txt" >
+					<span class="drkgray-txt" >April 30</span><br />Lorem ipsum
+					dolor sit amet, consectetur adipiscing elitsed do eiusmod
+					tempor incididunt. Lorem ipsum dolor sit amet, consectetur
+					adipiscing elitsed do eiusmod tempor incididunt.
+				</p>
+			</div>
+			-->
+
+			<div *ngFor="let mt of messageThreads; let i = index">
+				<div
+					(click)="enterConversation(mt)"
+					style="cursor: pointer;"
+					class=" d-flex flex-row justify-content-between"
+				>
+					<p>
+						<span class="ltgray-txt">
+							{{ mt?.last_msg.date_sent | date }}
+						</span>
+						<br />
+
+						<b>{{ getOPUsername(mt) }}: </b>
+
+						{{ mt?.last_msg.message }}
+					</p>
+
+					<div style="width: 39px;">
+						<!-- <i
+							(click)="deleteConversation(mt._id)"
+							class="fa fa-trash text-danger float-right  mouse-pointer"
+						></i> -->
+					</div>
+				</div>
+			</div>
+		</ng-container>
+	</section>
+</div>

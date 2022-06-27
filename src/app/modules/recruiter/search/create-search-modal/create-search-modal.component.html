@@ -1,0 +1,116 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >Save Search Criteria</h4>
+
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()">
+
+	<div class="modal-body" >
+	
+		<div class="container" >
+	
+			<div class="from-row" >
+				<div class="col-md-12" ></div>
+			</div>
+	
+			<div class="form-row" >
+	
+				<div class="col-md-12 form-group required"
+					[ngClass]="displayFieldCss('label')" >
+
+					<label for="label" class="control-label " >
+						Label
+					</label>
+					<input
+						id="label"
+						type="text"
+						formControlName="label"
+						required
+						name="label"
+						class="form-control"
+						[class.state-error]="isFieldInvalid('label')"
+						placeholder="Enter label" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('label')"
+						errorMsg="Please provide a label" >
+					</app-field-error-display>
+					
+				</div>
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12 form-group" >
+
+					<label for="category" class="control-label ">
+						Category
+					</label>
+					<input
+						id="category"
+						type="text"
+						formControlName="category"
+						name="category"
+						class="form-control"
+						placeholder="Enter category" />
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+				
+				<div class="col-md-12" >
+				
+					<div
+						*ngIf="requestSuccess"
+						class="alert alert-success"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div
+						*ngIf="requestFailed"
+						class="alert alert-danger"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+	
+		<button type="button" class="btn gray-btn" (click)="close()" >
+			Cancel
+		</button>
+	
+		<button type="submit" [disabled]="requestSuccess" class="btn " >
+			<span
+				*ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true"></span>
+
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+		</button>
+
+	</div>
+
+</form>

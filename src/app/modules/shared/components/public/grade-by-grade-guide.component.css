@@ -1,0 +1,409 @@
+
+/*-------------------------------------------
+	Grade Guide Section Start
+-------------------------------------------*/
+.grade-guide {
+	padding-top: 6rem;
+}
+
+.grade-guide .heading,
+.music-carrers .heading {
+	font-size: 80px;
+	color: #323333;
+	font-weight: 600;
+}
+
+.grade-guide .text {
+	color: #323333;
+	font-size: 23px;
+}
+
+.grade-guide .button {
+	color: #e7e3e3;
+	font-size: 24px;
+	font-weight: 600;
+	background: #007690;
+	border-radius: 5px;
+	padding: 1rem;
+	text-decoration: none;
+}
+
+@media (max-width: 1440px) {
+	.grade-guide .heading,
+	.music-carrers .heading {
+		font-size: 67px;
+	}
+
+	.grade-guide .button {
+		font-size: 22px;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.grade-guide .heading,
+	.music-carrers .heading {
+		font-size: 55px;
+	}
+
+	.grade-guide .button {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.grade-guide .heading,
+	.music-carrers .heading {
+		font-size: 45px;
+	}
+
+	.grade-guide .text {
+		font-size: 20px;
+	}
+
+	.grade-guide .button {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 480.98px) {
+	.grade-guide .heading,
+	.music-carrers .heading {
+		font-size: 35px;
+	}
+
+	.grade-guide .text {
+		font-size: 18px;
+	}
+
+	.grade-guide .button {
+		font-size: 16px;
+	}
+}
+
+
+
+
+/* Responsive Media Query */
+@media (max-width: 767.98px) {
+	#grade-by-grade-body .dir-buttons {
+		padding: 8vw 0 18vw;
+	}
+	#grade-by-grade-body .dir-buttons .grade-dir-btn {
+		width: 170px;
+		font-size: 18px;
+	}
+}
+@media (max-width: 450.98px) {
+	.keyboard-6th-header .directory-path {
+		font-size: 12px;
+	}
+	#grade-by-grade-body .dir-buttons .grade-dir-btn {
+		width: 120px;
+		font-size: 13px;
+		margin: 5px .5vw;
+	}
+}
+/*-------------------------------------------
+	Keyboard-6th Grade Page> Deails Section
+--------------------------------------------*/
+.keyboard-6th-details .k6d-text {
+	padding: 50px 0;
+}
+.keyboard-6th-details .k6d-text p span {
+	color: #f2c033;
+}
+.k6d-text .k6d-text-btn {
+	background-color: #ffbf10;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 700;
+	padding: 6px 30px;
+	border: 2px solid #fff;
+	border-radius: 8px;
+	margin: 0 0 10px;
+}
+.k6d-text .k6d-text-btn div {
+	font-size: 16px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 575.98px) {
+	.keyboard-6th-details .k6d-text h1 {
+		font-size: 30px;
+	}
+	.keyboard-6th-details .k6d-text h3 {
+		font-size: 20px;
+	}
+	.keyboard-6th-details .k6d-text p {
+		font-size: 14px;
+	}
+	.k6d-text .k6d-text-btn {
+		font-size: 20px;
+		padding: 6px 25px;
+	}
+	.k6d-text .k6d-text-btn div {
+		font-size: 14px;
+	}
+}
+/*-------------------------------------------
+	Keyboard-6th Grade Page> Footer Section
+--------------------------------------------*/
+#grade-by-grade-footer {
+	position: relative;
+}
+#grade-by-grade-footer .gbg-footer {
+	position: relative;
+	z-index: 10;
+}
+#grade-by-grade-footer .gbg-footer-img {
+	position: absolute;
+	bottom: 0;
+	z-index: 0;
+}
+
+/* ################# 8/26/2021 ################### */
+/*-------------------------------------------
+	Audition Requirement Page> Clarinet Premier 
+--------------------------------------------*/
+#audition-requirement-header {
+	background: url(/assets/images/audition-requirement/Asset\ 2.png) no-repeat top;
+	background-size: cover;
+	padding: 10px 0;
+}
+#audition-requirement-header .directory-path {
+	font-size: 14px;
+	color: #32a5df;
+	font-weight: bold;
+}
+#audition-requirement-header .directory-path span {
+	color: #333;
+	font-weight: bold;
+}
+#audition-requirement-header .arh-context {
+	padding: 4vw 0;
+}
+#audition-requirement-header .arh-context h3 {
+	font-size: 5vw;
+}
+#audition-requirement-header .arh-context h1 {
+	font-size: 13vw;
+	margin-top: 1.2vw;
+	text-shadow: 5px 1px 0 #32a5df;
+}
+
+/* Responsive Media Query */
+@media (max-width: 767.98px) {
+	#audition-requirement-header .directory-path {
+		font-size: 12px;
+	}
+}
+
+/*-------------------------------------------
+	Audition Requirement Page> Clarinet details 
+--------------------------------------------*/
+#ar-clarinet-details {
+	padding: 70px 10px;
+	background: url(/assets/images/audition-requirement/dimondgraphicplain-01.png) no-repeat bottom;
+	background-size: cover;
+}
+.gradient-bg {
+	background-image: linear-gradient(130deg, #fff, #e7e5e0, #ead8ae);
+}
+/*-------------------------------------------
+	Audition Requirement Page> Footer 
+--------------------------------------------*/
+#audition-requirement-footer {
+	background: url(/assets/images/audition-requirement/yellow-background-footer.png) no-repeat center;
+	background-size: cover;
+}
+
+/*-------------------------------------------
+	Instrumental Page> header 
+--------------------------------------------*/
+.instrumental-dir-path {
+	padding: 15px 10px 7px;
+	font-size: 14px;
+	color: #ffbf10;
+	font-weight: bold;
+}
+.instrumental-dir-path span {
+	color: #333;
+	font-weight: bold;
+}
+#instrumental-header {
+	background: url(/assets/images/grade-by-grade/instrumental/AdobeStock_3936425.jpg) no-repeat center;
+	background-size: cover;
+}
+#instrumental-header .ih-context {
+	padding: 50px;
+	color: #fff;
+}
+#instrumental-header .ih-context h1 {
+	font-size: 8vw;
+	text-shadow: 5px 1px 0 #f2c033;
+}
+#instrumental-header .ih-context h3 {
+	font-size: 4.5vw;
+}
+#instrumental-header .ih-context p {
+	font-size: 2vw;
+	padding-top: 20px;
+}
+/* Responsive Media Query */
+@media (max-width: 767.98px) {
+	#instrumental-header .ih-context {
+		padding: 30px 20px;
+	}
+}
+@media (max-width: 575.98px) {
+	.instrumental-dir-path {
+		font-size: 13px;
+		padding: 20px 10px 5px;
+	}
+	#instrumental-header .ih-context {
+		padding: 20px 10px;
+	}
+	#instrumental-header .ih-context h1 {
+		font-size: 10vw;
+	}
+	#instrumental-header .ih-context h3 {
+		font-size: 5vw;
+	}
+	#instrumental-header .ih-context p {
+		font-size: 3vw;
+	}
+}
+@media (max-width: 440.98px) {
+	.instrumental-dir-path {
+		font-size: 12px;
+		padding: 8px 10px 5px;
+	}
+	#instrumental-header .ih-context h1 {
+		font-size: 11vw;
+	}
+	#instrumental-header .ih-context h3 {
+		font-size: 6vw;
+	}
+	#instrumental-header .ih-context p {
+		font-size: 4vw;
+		padding: 0;
+	}
+}
+
+/*-------------------------------------------
+	Instrumental Page> Gallery 
+--------------------------------------------*/
+#gbg-instrumental-bg {
+	background: url(/assets/images/grade-by-grade/instrumental/instrumental-bg.png) no-repeat bottom;
+	background-size: cover;
+}
+#gbg-instrumental-bg .instrumental-gallery {
+	padding-top: 70px;
+	padding-bottom: 100px;
+}
+.instrumental-gallery .ig-item {
+	margin: 20px 0;
+}
+.instrumental-gallery .ig-item .ig-item-overlay {
+	background-color: #ffcb33;
+	border: 2px solid #fff;
+	border-radius: 20px;
+	color: #fff;
+	padding: 10px 15px;
+	position: absolute;
+	bottom: 10px;
+	width: 80%;
+	left: 10%;
+}
+.instrumental-gallery .ig-item .ig-item-overlay h4 {
+	margin: 0;
+	font-size: 20px;
+}
+
+/*-------------------------------------------
+	Keyboard Page> header 
+--------------------------------------------*/
+section.inst-keyboard {
+	background-image: url(/assets/images/grade-by-grade/keyboard/pexels-photo-6647419.jpg) !important;
+}
+
+/*-------------------------------------------
+	Voice Page> header 
+--------------------------------------------*/
+section.inst-voice {
+	background-image: url(/assets/images/grade-by-grade/voice/Rectangle\ 12.jpg) !important;
+}
+
+
+
+/*-------------------------------------------
+	Grade-By-Grade Page
+--------------------------------------------*/
+#instrumental-header.grade-by-grade-header {
+	background: url(/assets/images/grade-by-grade/gbg_home/1.jpg) no-repeat center;
+}
+#instrumental-header.grade-by-grade-header .gbg-home-header-context {
+	padding-top: 10vw;
+	padding-bottom: 13vw;
+	background: repeating-linear-gradient(to right, rgba(255, 198, 33, 0.7), rgba(255, 198, 33, 0.7) 52%, transparent 48%, transparent 100%);
+}
+
+#gbg-instrumental-bg.gbg_home_bg {
+	background: url(/assets/images/grade-by-grade/blue-background-footer.png) no-repeat bottom;
+	background-size: cover;
+	overflow: hidden;
+}
+#gbg-instrumental-bg.gbg_home_bg .gbg_home_recruitation_details p {
+	font-size: 22px;
+}
+#gbg-instrumental-bg.gbg_home_bg .gbg_home_categories h1 {
+	font-size: 60px;
+}
+#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn img {
+	height: 130px;
+}
+#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn button.btn {
+	background-color: #e2a90a;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 7px 30px;
+	width: 70%;
+	color: #fff;
+	font-size: 1.6vw;
+	box-shadow: 0px -20px 30px #fff;
+}
+
+/* Responsive Media Query */
+@media (max-width: 767.98px) {
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_categories h1 {
+		font-size: 50px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn {
+		margin-bottom: 50px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn button.btn {
+		font-size: 20px;
+	}
+}
+@media (max-width: 600.98px) {
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_recruitation_details h2 {
+		font-size: 24px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_recruitation_details p {
+		font-size: 18px;
+	}
+}
+@media (max-width: 400.98px) {
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_recruitation_details p {
+		font-size: 16px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_categories h1 {
+		font-size: 40px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn {
+		margin-bottom: 50px;
+	}
+	#gbg-instrumental-bg.gbg_home_bg .gbg_home_btn button.btn {
+		font-size: 17px;
+	}
+}

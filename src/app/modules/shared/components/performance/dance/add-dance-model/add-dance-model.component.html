@@ -1,0 +1,261 @@
+<div class="modal-header" >
+	<h4 class="modal-title" >
+		Add Dance History
+	</h4>
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group" [ngClass]="displayFieldCss('piece')" >
+
+					<label for="dance_piece" class="control-label" >
+						Piece performed *
+					</label>
+					<input id="dance_piece"
+						name="piece"
+						type="text"
+						class="form-control"
+						formControlName="piece"
+						[class.state-error]="isFieldInvalid('piece')"
+						placeholder="Piece performed" />
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('piece')"
+						errorMsg="Please provide a Piece performed" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-3 form-group required" [ngClass]="displayFieldCss('type')" >
+
+					<label for="dance_type" class="control-label " >
+						Type *
+					</label>
+					<select id="dance_type"
+						name="type"
+						class="form-control"
+						formControlName="type"
+						[class.state-error]="isFieldInvalid('type')"
+						placeholder="Type" >
+						<option value="" disabled selected >Select</option>
+						<option value="Variation" >Variation</option>
+						<option value="Solo" >Solo</option>
+						<option value="Combo" >Combo</option>
+						<option value="Chorus" >Chorus</option>
+						<option value="Other" >Other</option>
+					</select>
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('type')" 
+						errorMsg="Please provide a type" >
+					</app-field-error-display>
+
+				</div>
+				
+				<div class="col-md-3 form-group" [ngClass]="displayFieldCss('style')" >
+
+					<label for="dance_style" class="control-label " >
+						Style *
+					</label>
+					<select id="dance_style"
+							name="style"
+							class="form-control"
+							formControlName="style"
+							[class.state-error]="isFieldInvalid('style')"
+							placeholder="style" >
+						<option value="" disabled selected >Select</option>
+						<option value="Contemporary" >Contemporary</option>
+						<option value="Ballet" >Ballet</option>
+						<option value="Jazz" >Jazz</option>
+						<option value="Tap" >Tap</option>
+						<option value="Hip-hop" >Hip-hop</option>
+						<option value="Ballroom" >Ballroom</option>
+						<option value="Other" >Other</option>
+					</select>
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('style')" 
+						errorMsg="Please provide a style" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('company')" >
+
+					<label for="dance_company " class="control-label" >
+						Company
+					</label>
+					<input id="dance_company"
+						name="company"
+						type="text"
+						class="form-control"
+						formControlName="company"
+						[class.state-error]="isFieldInvalid('company')"
+						placeholder="Company " />
+
+				</div>
+
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('show')" >
+
+					<label for="dance_show" class="control-label" >
+						Show
+					</label>
+					<input id="dance_show"
+						name="show"
+						type="text"
+						class="form-control"
+						formControlName="show"
+						[class.state-error]="isFieldInvalid('show')"
+						placeholder="Show" />
+
+				</div>
+
+				<div class="col-md-4 form-group required " [ngClass]="displayFieldCss('role')" >
+
+					<label for="dance_role" class="control-label" >
+						Role
+					</label>
+					<input id="dance_role"
+						name="role"
+						type="text"
+						class="form-control"
+						formControlName="role"
+						[class.state-error]="isFieldInvalid('role')"
+						placeholder="Role" />
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-8 form-group required " [ngClass]="displayFieldCss('performed_at')" >
+
+					<label for="dance_performed_at" class="control-label" >
+						Performed at (event or venue)
+					</label>
+					<input id="dance_performed_at"
+						name="performed_at"
+						type="text"
+						class="form-control"
+						formControlName="performed_at"
+						[class.state-error]="isFieldInvalid('performed_at')"
+						placeholder="Performed at" />
+
+				</div>
+
+				<div class="col-md-4 form-group"  [ngClass]="displayFieldCss('school_grade')" >
+
+					<label for="dance_school_grade" class="control-label" >
+						Grade (6-12)
+					</label>
+					<input name="dance_school_grade"
+						name="school_grade"
+						type="text"
+						class="form-control"
+						formControlName="school_grade"
+						[class.state-error]="isFieldInvalid('school_grade')"
+						placeholder="School Grade" />
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12 form-group" [ngClass]="displayFieldCss('video_url')" >
+
+					<label for="dance_video_url" class="control-label" >
+						Video URL: <small>(YouTube or Vimeo)</small>
+					</label>
+					<input id="dance_video_url"
+						name="video_url"
+						type="text"
+						class="form-control"
+						formControlName="video_url"
+						[class.state-error]="isFieldInvalid('video_url')"
+						(input)="getVideoUrl($event.target.value)"
+						placeholder="Provide FULL url - like https://youtu.be/nnn-AA" />
+
+					<app-video-player [video]="videoUrl" >
+					</app-video-player>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12 form-group" >
+
+					<label for="dance_comments" class="control-label" >
+						Student Comments: <small>(optional)</small>
+					</label>
+					<textarea id="dance_comments" 
+						name="comments"
+						rows="3"
+						autocomplete="off"
+						class="form-control"
+						formControlName="comments"
+						[class.state-error]="isFieldInvalid('comments')"
+						placeholder="Additional info you may want recruiter to know about this performance" >
+					</textarea>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button" class="btn gray-btn" (click)="close()" >
+			Cancel
+		</button>
+
+		<button type="button" class="btn" appDisableDoubleClick (click)="submitAttempted=true; submitForm();"
+			[disabled]="requestSuccess" >
+
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+
+			{{
+				loading
+				? "Saving..."
+				: !requestSuccess
+					? "Save"
+					: "Done"
+			}}
+
+		</button>
+
+	</div>
+
+</form>

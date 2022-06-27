@@ -1,0 +1,769 @@
+<div *ngIf="showForm" >
+
+	<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()" >
+
+		<div class="form-row" >
+
+			<div class="col-md-3  form-group" >
+
+				<label>Student Last Name:</label>
+				<input type="text" class="form-control " name="last_name" formControlName="last_name" />
+
+			</div>
+
+			<div class="col-md-3  form-group" >
+
+				<label>Distance From Me: (miles)</label>
+				<select class="form-control " name="radius" formControlName="radius" >
+					<option value="" >
+						Any (miles)
+					</option>
+					<option *ngFor="let radius of radiusList" value="{{ radius }}" >
+						{{ radius }}
+					</option>
+				</select>
+
+			</div>
+
+			<div class="col-md-3 form-group" >
+
+				<label>State:</label>
+				<select class="form-control " name="state" formControlName="state" placeholder="State" >
+					<option value="" >
+						Any
+					</option>
+					<option *ngFor="let state of states" [ngValue]="state.abbr" >
+						{{ state.name }}
+					</option>
+				</select>
+
+			</div>
+
+			<div class="col-md-3 form-group" >
+
+				<label class="control-label " for="school" >School</label>
+				<input 
+					[ngbTypeahead]="searchSchools" 
+					[inputFormatter]="formatMatches" 
+					[resultTemplate]="rt"
+					class="form-control" 
+					type="text" 
+					name="school" 
+					placeholder="Search schools..."
+					formControlName="school" 
+					id="school" 
+					(selectItem)="selectedSchool($event)" />
+
+				<span *ngIf="loadingSchools" >loading schools...</span>
+				<div class="invalid-feedback" *ngIf="searchFailed" >
+					Sorry, suggestions could not be loaded.
+				</div>
+
+				<input type="hidden" name="school_id" formControlName="school_id" value="" />
+
+				<ng-template #rt let-r="result" let-t="term" >
+					<span class="device" >
+						<span class="grayout" >{{ r?.name }}</span><br />
+						<small class="grayout" >
+							{{ r?.address.city + ", " + r?.address.state }}
+						</small>
+					</span>
+				</ng-template>
+
+			</div>
+
+			<div class="col-md-3 form-group" >
+
+				<label>Family:</label>
+				<select class="form-control " name="family" formControlName="family" >
+					<option value="" >
+						Any
+					</option>
+					<option *ngFor="let f of family" value="{{ f }}" >
+						{{ f }}
+					</option>
+				</select>
+
+			</div>
+
+			<div class="col-md-3 form-group" >
+
+				<label>Instrument or Voice Part:</label>
+				<select class="form-control " name="instrument" formControlName="instrument" >
+					<option value="" >
+						Any
+					</option>
+					<option *ngFor="let instrument of instruments" value="{{ instrument.name }}" >
+						{{ instrument.name }}
+					</option>
+				</select>
+
+			</div>
+
+			<div class="col-md-3  form-group" >
+
+				<label>Student's Current Grade:</label>
+				<select class="form-control " name="school_grade" formControlName="school_grade" >
+					<option value="" >
+						Any
+					</option>
+					<option *ngFor="let school_grade of grades" value="{{ school_grade }}" >
+						{{ school_grade }}
+					</option>
+				</select>
+
+			</div>
+
+		</div>
+
+		<style>
+			.btn-thin {
+				max-height: 2em;
+				padding: 2px;
+			}
+			.adv-button {
+				margin-bottom: 15px;
+			}
+		</style>
+
+		<div class="text-center adv-button" >
+			<div class="btn btn-thin " (click)="toggle()" > {{ buttonName }} </div>
+		</div>
+		
+		<div *ngIf="advancedSearch" >
+				<div class="form-group" >
+					
+					<div class="form-row" >
+
+						<div class="col-md-3" >
+
+							<label class="control-label " >Honors Performances</label>
+							<select class="form-control " name="hpopt" formControlName="hpopt" >
+								<option value="All" >All Checked</option>
+								<option value="Any" >Any Checked</option>
+							</select>
+
+							<br>
+
+						</div>
+						
+					</div>
+
+					<div class="form-row " >
+
+						<div class="col-md-3" >
+
+							<div class="checkbox" formArrayName="events" *ngFor="
+								let event of form.controls.events['controls'] | slice:0:6;
+								let i = index " >
+								<label>
+									<input type="checkbox" [formControlName]="i" />
+									{{ events[i] }}
+								</label>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+
+							<div class="checkbox" formArrayName="events" *ngFor="
+								let event of form.controls.events['controls'] | slice:6:12;
+								let i = index  " >
+								<label>
+									<input type="checkbox" [formControlName]="i + 6" />
+									{{ events[i + 6] }}
+								</label>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+
+							<div class="checkbox" formArrayName="events" *ngFor="
+								let event of form.controls.events['controls'] | slice:12:18;
+								let i = index  " >
+								<label>
+									<input type="checkbox" [formControlName]="i + 12" />
+									{{ events[i + 12] }}
+								</label>
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+
+							<div class="checkbox" formArrayName="events" *ngFor="
+								let event of form.controls.events['controls'] | slice:18:24;
+								let i = index  " >
+								<label>
+									<input type="checkbox" [formControlName]="i + 18" />
+									{{ events[i + 18] }}
+								</label>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="form-row mt-3" >
+
+						<div class="col-md-3" >
+
+							<label class="control-label" >Styles</label>
+							<div class="checkbox" formArrayName="styles" *ngFor=" let style of form.controls.styles['controls'] | slice:0:6;
+								let i = index " >
+								<label>
+									<input type="checkbox" [formControlName]="i" />
+									{{styles[i].name}}
+								</label>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+
+							<label class="control-label" ></label>
+							<div class="checkbox" formArrayName="styles" 
+							*ngFor="let style of form.controls.styles['controls'] | slice:6:12; let i = index  " >
+								<label>
+									<input type="checkbox" [formControlName]="i + 6" />
+									{{ styles[i + 6].name }}
+								</label>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+
+							<label class="control-label" >Emphasis</label>
+							<div class="checkbox" formArrayName="emphasis" 
+							*ngFor="let emp of form.controls.emphasis['controls']; let i = index" >
+								<label>
+									<input type="checkbox" [formControlName]="i" />
+									{{emphasis[i].name}}
+								</label>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<br />
+
+				<div class="form-row" >
+
+					<div class="col-md-4 form-group" >
+
+						<label class="control-label " >Composition 1</label>
+						<input
+							[ngbTypeahead]="searchCompositions" 
+							[inputFormatter]="formatCompositionMatches"
+							[resultTemplate]="rtcomposition1" 
+							class="form-control" 
+							type="text" 
+							name="composition1"
+							formControlName="composition1" 
+							placeholder="Type to search catalog..."
+							(selectItem)="selectedComposition1($event)" />
+
+						<span *ngIf="searchingCompositions" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchCompositionsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<input type="hidden" name="composition1_id" formControlName="composition1_id" value="" />
+
+						<ng-template #rtcomposition1 let-r="result" let-t="term" >
+							
+							<span class="device" >
+								
+								<span class="grayout" >{{ r?.title }}</span><br />
+								<small class="grayout" >
+									{{ r?.composers }}
+									{{
+									r?.instrument.name
+										? " - " + r?.instrument.name
+										: " - " + r?.instrument.group
+									}}
+									{{
+									r?.meta.uil.grade
+										? " - Grade:" + r?.meta.uil.grade
+										: ""
+									}}
+									{{
+									r?.publisher.name
+										? " - " + r?.publisher.name
+										: ""
+									}}
+								</small>
+
+							</span>
+
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="composition2opt" formControlName="composition2opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Composition 2</label>
+						<input 
+							[ngbTypeahead]="searchCompositions" 
+							[inputFormatter]="formatCompositionMatches"
+							[resultTemplate]="rtcomposition2" 
+							class="form-control" 
+							type="text" 
+							name="composition2"
+							formControlName="composition2" 
+							placeholder="Type to search catalog..."
+							(selectItem)="selectedComposition2($event)" />
+
+						<span *ngIf="searchingCompositions" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchCompositionsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<input type="hidden" name="composition2_id" formControlName="composition2_id" value="" />
+
+						<ng-template #rtcomposition2 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r?.title }}</span><br />
+								<small class="grayout" >
+									{{ r?.composers }}
+									{{
+									r?.instrument.name
+										? " - " + r?.instrument.name
+										: " - " + r?.instrument.group
+									}}
+									{{
+									r?.meta.uil.grade
+										? " - Grade:" + r?.meta.uil.grade
+										: ""
+									}}
+									{{
+									r?.publisher.name
+										? " - " + r?.publisher.name
+										: ""
+									}}
+								</small>
+							</span>
+
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="composition3opt" formControlName="composition3opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Composition 3</label>
+						<input 
+							[ngbTypeahead]="searchCompositions" 
+							[inputFormatter]="formatCompositionMatches"
+							[resultTemplate]="rtcomposition3" 
+							class="form-control" 
+							type="text" 
+							name="composition3"
+							formControlName="composition3" 
+							placeholder="Type to search catalog..."
+							(selectItem)="selectedComposition3($event)" />
+
+						<span *ngIf="searchingCompositions" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchCompositionsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<input type="hidden" name="composition3_id" formControlName="composition3_id" value="" />
+
+						<ng-template #rtcomposition3 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r?.title }}</span><br />
+								<small class="grayout" >
+									{{ r?.composers }}
+									{{
+									r?.instrument.name
+										? " - " + r?.instrument.name
+										: " - " + r?.instrument.group
+									}}
+									{{
+									r?.meta.uil.grade
+										? " - Grade:" + r?.meta.uil.grade
+										: ""
+									}}
+									{{
+									r?.publisher.name
+										? " - " + r?.publisher.name
+										: ""
+									}}
+								</small>
+							</span>
+						</ng-template>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-4 form-group" >
+						
+						<label class="control-label " >Major 1</label>
+						<input 
+							[ngbTypeahead]="searchMajors" 
+							[inputFormatter]="formatMajorMatches" 
+							[resultTemplate]="rtmajor1"
+							class="form-control" 
+							type="text" 
+							name="major1" 
+							formControlName="major1"
+							placeholder="Type to search majors..." />
+
+						<span *ngIf="searchingMajors" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMajorsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmajor1 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="major2opt" formControlName="major2opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Major 2</label>
+						<input 
+							[ngbTypeahead]="searchMajors" 
+							[inputFormatter]="formatMajorMatches" 
+							[resultTemplate]="rtmajor2"
+							class="form-control" 
+							type="text" 
+							name="major2" 
+							formControlName="major2"
+							placeholder="Type to search majors..." />
+
+						<span *ngIf="searchingMajors" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMajorsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmajor2 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="major3opt" formControlName="major3opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+					
+						<label class="control-label " >Major 3</label>
+						<input 
+							[ngbTypeahead]="searchMajors" 
+							[inputFormatter]="formatMajorMatches" 
+							[resultTemplate]="rtmajor3"
+							class="form-control" 
+							type="text" name="major3" 
+							formControlName="major3"
+							placeholder="Type to search majors..." />
+
+						<span *ngIf="searchingMajors" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMajorsFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmajor3 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-4 form-group" >
+						
+						<label class="control-label " >Ensemble 1</label>
+						<input 
+							[ngbTypeahead]="searchEnsembles" 
+							[inputFormatter]="formatEnsembleMatches"
+							[resultTemplate]="rtensemble1" 
+							class="form-control" 
+							type="text" 
+							name="ensemble1"
+							formControlName="ensemble1" 
+							placeholder="Type to search ensembles..." />
+
+						<span *ngIf="searchingEnsembles" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchEnsemblesFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtensemble1 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+					
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="ensemble2opt" formControlName="ensemble2opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Ensemble 2</label>
+						<input 
+							[ngbTypeahead]="searchEnsembles" 
+							[inputFormatter]="formatEnsembleMatches"
+							[resultTemplate]="rtensemble2" 
+							class="form-control" 
+							type="text" 
+							name="ensemble2"
+							formControlName="ensemble2" 
+							placeholder="Type to search ensembles..." />
+
+						<span *ngIf="searchingEnsembles" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchEnsemblesFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtensemble2 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="ensemble3opt" formControlName="ensemble3opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Ensemble 3</label>
+						<input 
+							[ngbTypeahead]="searchEnsembles" 
+							[inputFormatter]="formatEnsembleMatches"
+							[resultTemplate]="rtensemble3" 
+							class="form-control" 
+							type="text" 
+							name="ensemble3"
+							formControlName="ensemble3" 
+							placeholder="Type to search ensembles..." />
+
+						<span *ngIf="searchingEnsembles" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchEnsemblesFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtensemble3 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+				</div>
+
+				<div class="form-row" >
+					
+					<div class="col-md-4 form-group" >
+						
+						<label class="control-label " >Military 1</label>
+						<input 
+							[ngbTypeahead]="searchMilitary" 
+							[inputFormatter]="formatMilitaryMatches"
+							[resultTemplate]="rtmilitary1" 
+							class="form-control" 
+							type="text" 
+							name="military1"
+							formControlName="military1" 
+							placeholder="Type to search military..." />
+
+						<span *ngIf="searchingMilitary" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMilitaryFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmilitary1 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="military2opt" formControlName="military2opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Military 2</label>
+						<input
+							[ngbTypeahead]="searchMilitary" 
+							[inputFormatter]="formatMilitaryMatches"
+							[resultTemplate]="rtmilitary2" 
+							class="form-control" 
+							type="text" 
+							name="military2"
+							formControlName="military2" 
+							placeholder="Type to search military..." />
+
+						<span *ngIf="searchingMilitary" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMilitaryFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmilitary2 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+					<div class="col-md-1 form-group" >
+						
+						<label class="control-label " >&nbsp;</label>
+						<select class="form-control " name="military3opt" formControlName="military3opt" >
+							<option>AND</option>
+							<option>OR</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group" >
+						
+						<label class="control-label " >Military 3</label>
+						<input 
+							[ngbTypeahead]="searchMilitary" 
+							[inputFormatter]="formatMilitaryMatches"
+							[resultTemplate]="rtmilitary3" 
+							class="form-control" 
+							type="text" 
+							name="military3"
+							formControlName="military3" 
+							placeholder="Type to search military..." />
+
+						<span *ngIf="searchingMilitary" >searching...</span>
+						<div class="invalid-feedback" *ngIf="searchMilitaryFailed" >
+							Sorry, suggestions could not be loaded.
+						</div>
+
+						<ng-template #rtmilitary3 let-r="result" let-t="term" >
+							<span class="device" >
+								<span class="grayout" >{{ r }}</span>
+							</span>
+						</ng-template>
+
+					</div>
+
+				</div>
+		</div>
+
+		<div class="text-center" >
+			
+			<button type="submit" class="btn " (click)="submitAttempted = true" >
+				<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+				{{ loading ? "Searching..." : "Search" }}
+			</button>
+			&nbsp;
+			<button type="button" class="btn recruiter-search-reset-btn btn-default" (click)="resetForm()" >
+				Reset
+			</button>
+			&nbsp;
+			<button type="button" class="btn " (click)="saveSearch()" >
+				Save
+			</button>
+			<span>&nbsp; &nbsp;</span>
+
+		</div>
+
+	</form>
+
+</div>
+
+<div class="card-body" *ngIf="requestFailed" >
+
+	<div class="col-md-12" >
+
+		<div class="alert alert-danger" role="alert" >
+			{{ feedback }}
+		</div>
+
+	</div>
+
+</div>

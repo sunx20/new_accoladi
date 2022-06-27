@@ -1,0 +1,67 @@
+.beta-box {
+	border-radius: 25px;
+	border: 2px solid #bc1d01;
+	background-color: #e5daae;
+	color: #000;
+	padding: 20px;
+	max-width: 600px;
+}
+
+.beta-box2 {
+	border-radius: 25px;
+	border: 2px solid #8d2325;
+	background-color: #e5daae;
+	color: #000;
+	padding: 20px;
+}
+
+.loading {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+
+.loading-bar {
+	display: inline-block;
+	width: 15px;
+	height: 50px;
+	border-radius: 4px;
+	animation: loading 2s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(1) {
+	background-color: #8d2325;
+	animation-delay: 0;
+}
+
+.loading-bar:nth-child(2) {
+	background-color: #d0732f;
+	animation-delay: 0.09s;
+}
+
+.loading-bar:nth-child(3) {
+	background-color: #f7f3b1;
+	animation-delay: 0.18s;
+}
+
+.loading-bar:nth-child(4) {
+	background-color: #ebbe4c;
+	animation-delay: 0.27s;
+}
+
+.loading-bar:nth-child(5) {
+	background-color: #4e291a;
+	animation-delay: 0.36s;
+}
+
+@keyframes loading {
+	0% {
+		transform: scale(2.2);
+	}
+	20% {
+		transform: scale(2.2, 1);
+	}
+	40% {
+		transform: scale(2.2);
+	}
+}

@@ -1,0 +1,89 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/{{userType}}/education" >Education Data</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Schools
+					</li>
+				</ol>
+
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+
+			<a class="btn" href="javascript:;" (click)="addStudentES()" >
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Schools
+			</a>
+
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>
+				Schools
+			</h2>
+		</header>
+
+		<div class="general-table" >
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr *ngFor="let school of education" >
+						<td width="5%" >
+							<img *ngIf="school.current" style="width:12px;" src="assets/img/favorite-star-42.png" />
+
+							<img *ngIf="!school.current" style="width:12px;"
+								src="assets/img/not-yet-favorite-star-41.png" />
+						</td>
+						<td width="35%" >
+							<span class="bumpup-txt" >
+								<u>
+									{{ school.name }}
+								</u>
+							</span>
+							<br />
+							{{ school.city }} {{ school.state }}
+						</td>
+						<td width="25%" >
+							<strong>
+								Duration
+							</strong>
+							<br />
+							{{ school.attended_from }} - {{ school.attended_to }}
+						</td>
+						<td width="3%" >
+							<a href="javascript:;" (click)="updateStudentES(school._id)" >
+								<img style="width:20px;" src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+						<td width="3%" >
+							<img style="width:13px;cursor: pointer;" (click)="removeStudentES(school._id)"
+								src="assets/img/close-x-22.png" />
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+
+</div>

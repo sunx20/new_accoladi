@@ -1,0 +1,56 @@
+/*-------------------------------------------
+	Footer Section Start
+-------------------------------------------
+#footer {
+	background: url(/assets/images/section-2-bg.png) no-repeat center;
+	background-size: 100% 100%;
+	padding: 6rem 0 3rem;
+}
+
+#footer .footerMain {
+	padding-top: 50px;
+	font-size: 16px;
+	color: #333;
+}
+.footerMain h6 {
+  font-weight: 700;
+}
+.footerMain .col-md-3.col-sm-6.col-6 {
+  padding-top: 10px;
+}
+#footer .footerMain a {
+	display: inline-block;
+  text-decoration: none !important;
+  font-size: 14px;
+  color: #333;
+}
+#footer table {
+  margin-top: 70px;
+}
+#footer table .icons a {
+  padding: 0 8px !important;
+}
+#footer i.fa {
+	font-size: 40px;
+  color: #fff;
+  margin: 5px 0;
+  padding-top: 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #333;
+}
+@media (max-width: 767.98px) {
+	
+}
+
+@media (max-width: 500px) {
+
+}*/
+
+#footer .footerMain a {
+	display: inline-block;
+  text-decoration: none !important;
+  color: #333;
+}

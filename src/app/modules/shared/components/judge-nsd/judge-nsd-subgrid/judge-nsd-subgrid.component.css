@@ -1,0 +1,6 @@
+.k-grid-header, .k-grid-toolbar, .k-grouping-header, .k-grid-add-row, .k-grid-footer {
+    display: none !important;
+    color: #656565 !important;
+    background-color: #f6f6f6 !important;
+}
+

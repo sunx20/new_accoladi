@@ -1,0 +1,17 @@
+@media (min-width: 992px){
+:host >>> .modal-lg {
+    max-width: 1000px !important ;
+}
+}
+
+.set-padding{
+    margin-right: 10px;
+}
+
+.fist-col-padding{
+    margin-right: -70px;
+}
+
+.form-cell-width{
+    width: 58px;
+}

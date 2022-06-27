@@ -1,0 +1,46 @@
+<section class="module" >
+	<div class="general-table" >
+		<table class="table " >
+			<thead>
+				<tr>
+					<th width="25%" >School</th>
+					<th width="25%" >Person</th>
+					<th width="25%" >Position</th>
+					<th>Subject</th>
+					<th>Style</th>
+					<th class="text-right" >Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let pp of savedPremierProgramsList; let i = index" >
+					<td>{{ pp.school }} <i>({{ pp.year }})</i></td>
+					<td>
+						<ng-container *ngIf="pp.url && pp.url.includes('://')" >
+						<a href="{{pp.url}}" target="_new" ><span *ngIf="pp.person.length===0" >Department</span>{{ pp.person }}</a>
+						</ng-container>
+						
+						<ng-container *ngIf="pp.url && !pp.url.includes('://')" >
+						<a href="http://{{pp.url}}" target="_new" ><span *ngIf="pp.person.length===0" >Department</span>{{ pp.person }}</a>
+						</ng-container>
+
+						<ng-container *ngIf="!pp.url" >
+						<span *ngIf="pp.person.length===0" >Department</span>{{ pp.person }}
+						</ng-container>
+					</td>
+					<td>{{ pp.position }}</td>
+					<td>{{ pp.subject }}</td>
+					<td>{{ pp.style }}</td>
+					<td class="text-right" nowrap="nowrap" >
+						<button
+							type="button"
+							class="btn btn-sm "
+							(click)="remove(pp._id)" >
+							Remove
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

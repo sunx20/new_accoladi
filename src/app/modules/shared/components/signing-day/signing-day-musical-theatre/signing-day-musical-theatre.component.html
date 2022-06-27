@@ -1,0 +1,222 @@
+<div class="modal-header" >
+	<h2> National Signing Day 2021</h2>
+</div>
+
+<form class="font-12" [formGroup]="form" >
+
+	<div class="modal-body" >
+
+		<div class="container " >
+
+			<div class="row" >
+
+				<div class="col-md-12" >
+					Area of Consideration : {{value.area.group}}<br>
+					{{type}}
+				</div>
+
+			</div>
+
+			<div class="modal_1" >
+
+				<div class="row mt-2" >
+
+					<div class="col-2" >
+
+					</div>
+
+					<div class="col-4" >
+						Piece Performed *
+					</div>
+
+					<div *ngIf="type == 'Dance'" class="col-4" >
+						Type *
+					</div>
+
+					<div class="col-1" >
+
+					</div>
+
+				</div>
+
+				<div class="row" >
+
+					<div class="col-2" >
+
+					</div>
+
+					<div class="col-4" >
+
+						<input name="mpiecePerformed"
+								type="text"
+								width="100"
+								class="input-full-width"
+								formControlName="piecePerformed"
+								placeholder="Piece performed" >
+
+					</div>
+
+					<div *ngIf="type == 'Dance'" class="col-4" >
+
+						<select name="mtype"
+								type="text"
+								formControlName="dance_type"
+								class="form-control" >
+							<option value="" selected >Select</option>
+							<option *ngFor="let t of dance_types" >{{ t }}</option>
+						</select>
+
+					</div>
+
+					<div class="col-1" >
+
+					</div>
+
+				</div>
+
+				<div *ngIf="type == 'Dance'" class="row mt-2" >
+
+					<div class="col-2" >
+
+					</div>
+
+					<div class="col-8" >
+						Company
+					</div>
+
+					<div class="col-1" >
+
+					</div>
+
+				</div>
+
+				<div *ngIf="type == 'Dance'" class="row" >
+
+					<div class="col-2" >
+
+					</div>
+
+					<div class="col-8" >
+
+						<input name="mcompany"
+								type="text"
+								width="100"
+								class="input-full-width"
+								formControlName="company"
+								placeholder="Company"   >
+
+					</div>
+
+					<div class="col-1" >
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-2" >
+
+				</div>
+
+				<div class="col-4" >
+					Show
+				</div>
+
+				<div class="col-4" >
+					Role
+				</div>
+
+				<div class="col-1" >
+
+				</div>
+
+			</div>
+
+			<div class="row" >
+
+				<div class="col-2" >
+
+				</div>
+
+				<div class="col-4" >
+
+					<input name="mshow"
+							type="text"
+							width="100"
+							class="input-full-width"
+							formControlName="show"
+							placeholder="Show" >
+
+				</div>
+
+				<div class="col-4" >
+
+					<input name="mrole"
+							type="text"
+							class="input-full-width"
+							formControlName="role"
+							placeholder="Role"  >
+
+				</div>
+
+				<div class="col-1" >
+
+				</div>
+
+			</div>
+
+			<div class="row mt-2" >
+
+				<div class="col-2" >
+
+				</div>
+
+				<div class="col-4" >
+					Video URL : (Youtube or Vimeo)
+				</div>
+
+			</div>
+
+			<div class="row" >
+
+				<div class="col-2" >
+
+				</div>
+
+				<div class="col-8" >
+
+					<input type="text"
+							name="video"
+							class="form-control "
+							formControlName="video"
+							[class.state-error]="isFieldInvalid('video')"
+							(input)="getVideoUrl($event.target.value)"
+							placeholder="Provide FULL url - like https://youtu.be/nnn-AA" />
+
+					<app-video-player *ngIf="showVideo" [video]="videoUrl" >
+					</app-video-player>
+
+				</div>
+
+				<div class="col-2 pl-0" >
+
+					<button type="button"
+							class="float-right btn btn-danger"
+							[disabled]="!form.valid"
+							(click)="onAdd()" >
+						<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+						Add
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</form>

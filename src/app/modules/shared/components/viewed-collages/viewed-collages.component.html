@@ -1,0 +1,37 @@
+<div class="px-4 py-5">
+	<section class="module">
+		<div class="general-table" *ngIf="viewedColleges.length > 0">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>College Name</th>
+						<th>State</th>
+						<th>url</th>
+						<th class="text-center">Date Viewed</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let college of viewedColleges">
+						<td>
+							<span class="bumpup-txt">
+								{{ college.name }}
+							</span>
+						</td>
+						<td>
+							{{ college.state }}
+						</td>
+						<td>
+							<a target="_blank" [href]="['http://'+college.url]"><i class="fas fa-eye"></i></a>
+						</td>
+						<td class="text-center">
+							<span>{{ college.dateViewed | date }}</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="text-center align-middle pt-3" *ngIf="!(viewedColleges.length > 0)">
+			<strong>Here you can see colleges where viewed you !</strong>
+		</p>
+	</section>
+</div>

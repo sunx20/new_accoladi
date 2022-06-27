@@ -1,0 +1,107 @@
+<app-progress-bar [role]="role" [wizard]="'location-info'" [type]="type"></app-progress-bar>
+
+<div class="modal-header">
+	
+	<h4 class="modal-title">
+		Contact/Location Info
+	</h4>
+
+</div>
+
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+
+	<div class="modal-body">
+
+		<div class="container">
+
+			<div class="form-row">
+
+				<div class="col-md-6 form-group">
+
+					<label class="control-label" for="current_password">
+						Country
+					</label>
+					<input id="country" type="text" class="form-control" formControlName="country" name="country"
+						placeholder="Country" />
+
+				</div>
+
+				<div class="col-md-6 form-group">
+
+					<label class="control-label" for="current_password">
+						Postal Code
+					</label>
+					<input id="postalCode" type="text" class="form-control" formControlName="postalCode"
+						name="postalCode" placeholder="Postal Code" />
+
+				</div>
+
+				<div class="col-md-6 form-group">
+					
+					<label class="control-label" for="countryCode">
+						Country Code
+					</label>
+					<input id="countryCode" type="text" class="form-control" formControlName="countryCode"
+						name="countryCode" placeholder="Country Code" />
+
+				</div>
+
+				<div class="col-md-6 form-group">
+					
+					<label class="control-label" for="phone">
+						Phone
+					</label>
+					<input id="phone" type="text" class="form-control" formControlName="phone" name="phone"
+						placeholder="Phone" />
+					
+					<div *ngIf="form.controls['phone'].hasError('pattern') && !form.controls['phone'].valid"
+						class="error-msg" translate>Invalid Phone Number</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row">
+
+				<div class="col-md-12">
+
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+
+		<button type="button" class="btn gray-btn float-left" (click)="onClickBack()">
+			Back
+		</button>
+
+		<button type="button" class="btn" [disabled]="requestSuccess" appDisableDoubleClick (click)="submitForm()">
+
+			<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Continue" 
+					: "Done" 
+			}}
+
+		</button>
+
+	</div>
+
+</form>

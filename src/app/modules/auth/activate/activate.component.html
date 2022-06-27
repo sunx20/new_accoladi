@@ -1,0 +1,59 @@
+<div *ngIf="!activationSuccess" class="container" >
+	
+	<br />
+	
+	<h2 class="d-flex justify-content-center" >
+		Account Activation
+	</h2>
+
+	<p style="text-align: center;" >
+		Processing ...
+	</p>
+	
+	<br />
+
+	<div class="form-row" >
+	
+		<div class="offset-md-4 col-md-4" >
+	
+			<div
+				*ngIf="activationFailed"
+				class="alert alert-danger"
+				role="alert" >
+				Activation failed!
+			</div>
+
+			<br />
+
+		</div>
+
+	</div>
+
+</div>
+
+<div *ngIf="activationSuccess" class="container" >
+
+	<div class="row" >
+
+		<div class="offset-md-3 col-md-6" >
+
+			<br />
+			<br />
+			<br />
+
+			<p class="text-center" >
+				Account successfully activated!
+			</p> 
+
+			<p class="col-md-12 text-center" >
+				<a
+					class="btn  "
+					role="button"
+					[routerLink]="['/login']" >Log In!</a>
+			</p>
+
+		</div>
+
+	</div>
+	
+</div>

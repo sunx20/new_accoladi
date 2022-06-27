@@ -1,0 +1,51 @@
+<ng-container>
+
+	<div class="container-fluid role-container" >
+
+		<div class="row" >
+
+			<nav class="col-md-2 sidebar"
+				[class.reveal]="showSidebar" >
+
+				<app-side-bar></app-side-bar>
+
+			</nav>
+
+			<main role="main"
+					class="employer col-md-9 ml-sm-auto col-lg-10" >
+
+				<ng-container *ngIf=displayMessage >
+
+					<section id="unpaid-message-banner"
+							name="unpaid-message-banner"
+							class="unpaid-message py-3" >
+
+						<div>
+
+							<div class="row" >
+
+								<div class="col-lg-10 offset-lg-1" >
+									
+									<p>
+										You are enjoying FREE features. Update your membership for FULL access. <a class="btn" role="button" [routerLink]="['/student/premium']"> Just $9.95/mo! </a>
+									</p>
+									
+								</div>
+
+							</div>
+
+						</div>
+
+					</section>
+
+				</ng-container>
+
+				<router-outlet></router-outlet>
+
+			</main>
+
+		</div>
+
+	</div>
+
+</ng-container>

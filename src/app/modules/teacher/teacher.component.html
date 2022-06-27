@@ -1,0 +1,129 @@
+<ng-container>
+
+	<div class="container-fluid role-container" >
+
+		<div class="row" >
+
+			<nav class="col-md-2 sidebar"
+				 [class.reveal]="showSidebar" >
+
+				<app-side-bar></app-side-bar>
+
+			</nav>
+
+			<main role="main"
+				  class="employer col-md-9 ml-sm-auto col-lg-10" >
+
+				<br />&nbsp;
+
+				<section *ngIf="showWelcome"
+						 class="module py-3"
+						 style="background-image:url('assets/img/instruments-889.png');
+								background-size: 50%;
+								background-repeat: no-repeat;
+								background-position: right;" >
+
+					<div>
+
+						<div class="row" >
+
+							<div class="col-lg-5" >
+
+								<h1>Hello {{ teacher.first_name }} {{ teacher.last_name }}</h1>
+								
+								<button type="button" 
+										(click)="open(gSContent)"
+										class="btn"  >
+									Getting Started Checklist
+								</button>
+
+							</div>
+
+							<div class="col-lg-6" >&nbsp;</div>
+
+						</div>
+
+					</div>
+
+				</section>
+			
+				<section *ngIf="showMockProfileMsg"
+						 id="unpaid-message-banner"
+						 name="unpaid-message-banner"
+						 class="unpaid-message py-3" >
+		
+					<div class="row" >
+	
+						<div class="col-lg-10 offset-lg-1 pb-1" >
+	
+							"My Sample Profile" is a replica of the student profile and data entry forms. 
+							You can model your own career and show students step-by-step how to fill in their own profile for maximum impact with college recruiters and faculty.
+
+						</div>
+	
+					</div>
+		
+				</section>
+
+				<br>
+
+				<router-outlet></router-outlet>
+
+			</main>
+
+		</div>
+
+	</div>
+
+</ng-container>
+
+<ng-template #gSContent let-modal >
+
+	<div class="modal-body" >
+
+		<h3>Getting Started Checklist</h3>
+
+		<br />
+
+		<ol>
+			<li>Add account information (like your name, school affiliation, contact information, etc.)</li>
+			<li>Invite students to create accounts
+				<ol>
+					<li>Go to the Students tab on your dashboard</li>
+					<li>Click “Add”</li>
+					<li>Fill in their information, and they will receive an email notification</li>
+					<li>Once the student creates an account, they will be linked to yours</li>
+				</ol>
+			</li>
+			<li>Add students who already have accounts
+				<ol>
+					<li>Ask them to add you from their dashboard</li>
+					<li>Link the student to your account</li>
+				</ol>
+			</li>
+			<li>Encourage students to add experiences</li>
+			<li>Encourage students to add videos</li>
+			<li>Browse your students’ accounts to help them make their profiles the best they can be</li>
+			<li>Check out additional resources</li>
+			<li>
+				<ol>
+					<li>Grade by grade guide</li>
+					<li>College search</li>
+					<li>Non-institutional scholarship search</li>
+				</ol>
+			</li>
+		</ol>
+		
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button"
+				(click)="modal.close('Close click')"
+				class="btn gray-btn" >
+			Close
+		</button>
+
+	</div>
+
+</ng-template>

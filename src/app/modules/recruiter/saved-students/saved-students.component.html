@@ -1,0 +1,128 @@
+<div class="card " >
+
+	<div class="card-body" >
+
+		<div class="row mb-2" >
+			<div class="col-md-2" ></div>
+			<div class="col-md-5" ></div>
+			<div class="col-md-2" ></div>
+			<div class="col-md-3" >
+				<input
+					type="text"
+					class="form-control"
+					(input)="filterValue($event.target.value)"
+					placeholder="Search.." >
+			</div>
+		</div>
+
+		<h3>Students you have saved</h3>
+
+		<table class="table table-condensed" >
+
+			<thead>
+				<tr>
+					<th scope="col" >#</th>
+					<th scope="col" class="text-left" sortable="first_name" (sort)="onSort($event)" >First Name</th>
+					<th scope="col" >Talents</th>
+					<th scope="col" class="text-left th-90" sortable="state" (sort)="onSort($event)" >State</th>
+					<th scope="col" class="text-left" sortable="graduation_year" (sort)="onSort($event)" >Grad. Year</th>
+					<th scope="col" class="text-center" ></th>
+				</tr>
+			</thead>
+
+			<tbody *ngIf="!savedStudentsList || savedStudentsList.length === 0" >
+				<tr *ngFor="let item of savedStudentsList; let i = index" >
+					<th colspan="7" scope="row" >No Students</th>
+				</tr>
+			</tbody>
+
+			<tbody *ngIf="savedStudentsList && savedStudentsList.length > 0" >
+				<tr *ngFor="let item of savedStudentsList; let i = index" >
+					<th scope="row" >
+						{{ i + 1 + (page - 1) * pageSize }}
+					</th>
+					<td class="text-left" >
+						{{ item.first_name }} <br />
+					</td>
+					<td>
+						<div *ngIf="item.user_id && item.user_id.talents" >
+							<small *ngFor="let talent of item.user_id.talents" >
+								{{ talent.talent }} <br />
+							</small>
+						</div>
+					</td>
+					<td>
+						{{ item.state }}
+					</td>
+					<td>
+						{{ item.graduation_year }}
+					</td>
+					<td class="text-right" nowrap="nowrap" >
+
+						<i *ngIf="item.user_id"
+							title="Share student with a colleague"
+							class="fas fa-share-alt"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="shareStudent(item.user_id._id)" ></i>
+
+							&nbsp;
+
+						<i *ngIf="item.user_id"
+							title="View student profile"
+							class="fas fa-address-card"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="modalProfile(item.user_id._id)" ></i>
+
+							&nbsp;
+
+						<i *ngIf="item.user_id"
+							title="Send a message to this student"
+							class="fas fa-comments"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="sendMessage(item.user_id._id)" ></i>
+
+							&nbsp;
+
+						<i *ngIf="item.user_id"
+							title="Delete student from your saved student list"
+							class="fas fa-trash"
+							style="color:#e2a90a;cursor:pointer;"
+							(click)="removeSaved(item.user_id._id)" ></i>
+
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<div class="d-flex justify-content-between p-2" >
+
+			<ngb-pagination
+				[maxSize]="10" 
+				[rotate]="true" 
+				[ellipses]="false" 
+				[boundaryLinks]="true"
+				class="d-flex justify-content-center"
+				[collectionSize]="totalSavedStudents"
+				[(page)]="page"
+				[pageSize]="pageSize"
+				(pageChange)="pageChange($event)" >
+			</ngb-pagination>
+
+			<select
+				class="custom-select"
+				style="width: auto"
+				name="pageSize"
+				[(ngModel)]="pageSize"
+				(change)="pageChange($event)" >
+				<option [ngValue]="10" >10 items per page</option>
+				<option [ngValue]="25" >25 items per page</option>
+				<option [ngValue]="50" >50 items per page</option>
+			</select>
+
+		</div>
+
+	</div>
+
+</div>

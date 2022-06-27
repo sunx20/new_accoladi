@@ -1,0 +1,86 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/{{userType}}/education" >Education Data</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Scholastic Information
+					</li>
+				</ol>
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right" >
+			<a class="btn" href="javascript:;" (click)="updateStudentSI()" >
+				<img class="mr-2" src="assets/img/sa-edit.svg" />
+				Update Information
+			</a>
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2>Scholastic Information</h2>
+		</header>
+
+		<div>
+
+			<div class="pl-5 py-3" >
+
+				<table class="top-align bumpup-txt" >
+
+					<tbody>
+						<tr>
+							<td width="50%" >
+								<strong>Graduation Year:</strong>
+							</td>
+							<td width="50%" >
+								{{ scholastics?.graduation_year }}
+							</td>
+						</tr>
+
+						<tr>
+							<td width="50%" >
+								<strong>GPA:</strong>
+							</td>
+							<td width="50%" >
+								{{ scholastics?.gpa }}
+							</td>
+						</tr>
+
+						<tr>
+							<td width="50%" >
+								<strong>SAT:</strong>
+							</td>
+							<td width="50%" >
+								{{ scholastics?.sat }}
+							</td>
+						</tr>
+						<tr>
+							<td width="50%" >
+								<strong>ACT:</strong>
+							</td>
+							<td width="50%" >
+								{{ scholastics?.act }}
+							</td>
+						</tr>
+					</tbody>
+	
+				</table>
+	
+			</div>
+	
+		</div>
+	
+	</section>
+
+</div>

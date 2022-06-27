@@ -1,0 +1,255 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-12" >
+
+			<nav aria-label="breadcrumb" >
+
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/{{userType}}/search" >Search</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Colleges
+					</li>
+				</ol>
+
+			</nav>
+
+		</div>
+
+	</div>
+
+	<div *ngIf="!showCS" >
+
+		<section class="module" >
+
+			<div>
+				<h2>
+					<img src="assets/img/search-icon-38.png" style="max-width:16px; margin-right:8px;" />
+					Search Colleges
+				</h2>
+				<br />
+				<p>
+					Search our directory of accredited music schools in a way that makes sense for you. <br />
+					In addition to accredited public and private institutions, we have included a selection of HBCUs and
+					schools with religious affiliations that offer music programs.
+				</p>
+			</div>
+
+			<form
+				class="my-4 mx-5"
+				novalidate="novalidate"
+				autocomplete="off"
+				[formGroup]="form"
+				(ngSubmit)="submitForm()" >
+
+				<div class="form-group mb-4" >
+
+					<div class="form-row mb-3" >
+
+						<div class="col-md-3 form-group" >
+							
+							<label class="control-label" >
+								Name
+							</label>
+							<input
+								class="form-control "
+								type="text"
+								formControlName="name"
+								placeholder="Name" />
+
+						</div>
+
+						<div class="col-md-3 form-group" >
+							
+							<label class="control-label" >
+								State
+							</label>
+							<select
+								class="form-control "
+								name="state"
+								formControlName="state"
+								placeholder="State"	>
+								<option value="" >
+									Any
+								</option>
+								<option
+									*ngFor="let state of states"
+									[ngValue]="state.abbr"	>
+									{{ state.name }}
+								</option>
+							</select>
+
+						</div>
+
+						<div class="col-md-3 form-group" >
+							
+							<label class="control-label" >City</label>
+							<input
+								class="form-control "
+								type="text"
+								formControlName="city"
+								placeholder="City" />
+
+						</div>
+
+						<div class="col-md-3 form-group" >
+
+							<label class="control-label" >
+								Public / Private
+							</label>
+							<select
+								class="form-control "
+								formControlName="type"
+								placeholder="Type" >
+								<option value="" >
+									Any
+								</option>
+								<option
+									*ngFor="let type of types"
+									[ngValue]="type.value" >
+									{{ type.label }}
+								</option>
+							</select>
+
+						</div>
+
+					</div>
+
+					<div class="form-row  mb-3" >
+						
+						<div class="col-md-12 form-group" >
+							
+							<div class="d-flex justify-content-center" >
+								
+								<button
+									type="button"
+									class="btn recruiter-search-reset-btn gray-btn"
+									(click)="resetForm()" >
+									Reset
+								</button>
+
+								<span>&nbsp; &nbsp;</span>
+								
+								<button
+									type="submit"
+									class="btn btn-default"
+									(click)="submitAttempted=true; submitForm()"  
+									appDisableDoubleClick >
+									<span
+										*ngIf="loading"
+										class="spinner-border spinner-border-sm"
+										role="status"
+										aria-hidden="true" >
+									</span>
+									{{ loading ? "Searching..." : "Search" }}
+								</button>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</form>
+
+		</section>
+
+		<div class="row" *ngIf="requestFailed" >
+
+			<div class="col-md-12" >
+
+				<div class="alert alert-danger" role="alert" >
+					{{ feedback }}
+				</div>
+
+			</div>
+
+		</div>
+
+		<h3 *ngIf="searchResults && searchResults.length" class="mb-4 mt-5" >
+			Search Results ({{ total }})
+		</h3>
+
+		<section class="module" *ngIf="searchResults && searchResults.length" >
+
+			<div class="general-table" >
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th width="25%" >Name</th>
+							<th width="25%" >City</th>
+							<th width="16%" >State</th>
+							<th width="16%" *ngIf=" userService.currentUser.role.toLowerCase() === 'student' " >
+								Favorite
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr *ngFor="let s of searchResults" >
+							<td>
+								<a *ngIf="s.address.state.length > 0" routerLink="/colleges/{{ s.address.state | uppercase  }}/{{ s.name | replace:' ':'_' }}" >{{ s.name }}</a>
+								<a *ngIf="s.address.state.length == 0" routerLink="/colleges/ANY/{{ s.name | replace:' ':'_' }}" >{{ s.name }}</a>
+							</td>
+							<td>{{ s.address.city }}</td>
+							<td>{{ extractState(s) }}</td>
+							<td *ngIf=" userService.currentUser.role.toLowerCase() === 'student' " >
+								
+								<div *ngIf=" !isSavingCollege(s._id) && user?.role.toLowerCase() === 'student' "
+									(click)="saveCollege(s._id, s.name)" >
+									
+									<img *ngIf="!inCPList(s._id)" style="max-width:21px"
+										src="assets/img/not-yet-favorite-star-41.png" />
+
+									<img *ngIf="inCPList(s._id)" style="max-width:21px"
+										src="assets/img/favorite-star-42.png" />
+
+								</div>
+
+								<span *ngIf="isSavingCollege(s._id)" class="spinner-border spinner-border-sm"
+									role="status" aria-hidden="true" >
+								</span>
+								
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</section>
+
+		<section class="module" *ngIf="searchResults && !searchResults.length" >
+
+			<div class="general-table" >
+				No colleges found with that specified criteria.
+			</div>
+
+		</section>
+
+		<div *ngIf="searchResults && searchResults.length" class="d-flex justify-content-center p-2" >
+
+			<ngb-pagination  
+				[maxSize]="10" 
+				[collectionSize]="total"
+				[rotate]="true" 
+				[(page)]="page" 
+				[pageSize]="pageSize"  
+				[boundaryLinks]
+				(pageChange)="pageChange($event)"
+				class="d-flex justify-content-center" >
+			</ngb-pagination>
+
+		</div>
+
+	</div>
+
+</div>

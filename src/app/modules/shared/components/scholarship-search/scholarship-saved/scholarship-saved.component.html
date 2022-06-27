@@ -1,0 +1,38 @@
+<section class="module" >
+
+	<div class="general-table" >
+
+		<table class="table " >
+
+			<thead>
+				<tr>
+					<th width="25%" >Name</th>
+					<th width="25%" >Organization</th>
+					<th>State</th>
+					<th>Type</th>
+					<th class="text-right" >Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let s of savedScholarshipsList; let i = index" >
+					<td>{{ s && s.name ? s.name : "" }}</td>
+					<td>{{ s && s.organization ? s.organization.name : "" }}</td>
+					<td>{{ extractState(s) }}</td>
+					<td>{{ extractType(s) }}</td>
+					<td class="text-right" nowrap="nowrap" >
+						<button
+							type="button"
+							class="btn btn-sm "
+							(click)="remove(s._id)" >
+							Remove
+						</button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	
+</section>

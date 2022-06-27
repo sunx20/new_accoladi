@@ -1,0 +1,10 @@
+.error-msg {
+	color: red;
+	margin-top: 5px;
+	font-size: 0.8rem;
+}
+
+.student-title {
+	font-size: 1.25em;
+	font-weight: bold;
+}

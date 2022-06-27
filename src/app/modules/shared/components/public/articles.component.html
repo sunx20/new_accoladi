@@ -1,0 +1,672 @@
+<style>
+	a {
+		-webkit-font-smoothing: antialiased;
+		color: #333;
+	}
+</style>
+<div id="article-page" class="article-page" >
+
+	<ng-container *ngIf="htmlData" >
+
+		<h1 [routerLink]="['/public/articles/']" class=" finger" style="margin: 20px 100px;" >Advice</h1>
+
+		<!-- article -->
+		<div [innerHtml]="htmlData" class="d-flex p-2 justify-content-between" style="margin: 0px 100px;"></div>
+
+		<a [routerLink]="['/public/articles/']" class=" finger" style="margin: 10px 100px;" >&lt;&lt; Return To Advice</a>
+
+	</ng-container>
+
+	<ng-container *ngIf="!htmlData" >
+
+		<div class="article-header-title text-center">
+			<h1>Advice</h1>
+			<hr class="article-hr">
+			<h3>Choosing A School</h3>
+		</div>
+
+		<!-- Choosing A School Start -->
+		<div id="choosing-school">
+
+			<div class="container-fluid">
+
+				<div class="row">
+
+					<div class="col-md-8 main-img">
+
+						<div class="main-img-body">
+
+							<a [routerLink]="['/public/articles/its_your_choice_finding_the_school_thats_your_right_fit']" >
+								<img src="assets/images/articles/Cello_Player_-_White_Female_in.png" alt="">
+								<div class="main-img-bottom">
+									<h1>It's Your Choice</h1>
+									<h3>Finding the School That's Your Right Fit</h3>
+								</div>
+							</a>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-4 text-center ">
+
+						<div class="row school-type">
+
+							<div class="col-6 px-0">
+								<a [routerLink]="['/public/articles/premier_programs']" >
+									<img src="assets/images/articles/Concert_Hall.png" class="img-fluid" alt="">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 school-item">
+								<a [routerLink]="['/public/articles/premier_programs']" >
+									<h3>Premier Programs <br><small>Only For You</small></h3>
+								</a>
+							</div>
+
+						</div>
+
+						<hr class="article-hr">
+
+						<div class="row school-type">
+
+							<div class="col-6 px-0">
+								<a [routerLink]="['/public/articles/a_great_performer-not_enough_anymore']" >
+									<img src="assets/images/articles/Girl_Playing_Guitar_and_Writin.png" class="img-fluid" alt="">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 school-item">
+								<a [routerLink]="['/public/articles/a_great_performer-not_enough_anymore']" >
+									<h3>A Great Performer <br><small>Not Enough Anymore</small></h3>
+								</a>
+							</div>
+
+						</div>
+
+						<hr class="article-hr">
+
+						<div class="row school-type">
+
+							<div class="col-6 px-0">
+								<a [routerLink]="['/public/articles/hate_taking_tests']" >
+									<img src="assets/images/articles/Celebrating_Teenage_Boy_at_Com.png" class="img-fluid" alt="">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 school-item">
+								<a [routerLink]="['/public/articles/hate_taking_tests']" >
+									<h3>Hate Taking Tests <br><small>Test Optional Colleges</small></h3>
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Choosing A School End -->
+
+		<!-- Money Matter Section Start -->
+		<div id="money-matters">
+
+			<div class="container-fluid">
+
+				<div class="article-header-title text-center">
+					<h3 class="text-center">Money Matters</h3>
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body">
+							<a [routerLink]="['/public/articles/the_money_hunt']" >
+								<img src="assets/images/articles/bank_vault_with_open_door.png" alt="">
+								<div class="money-item-bottom">
+									<h5>The Money Hunt</h5>
+									<p>Little Known Source of Scholarship Funds</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body">
+							<a [routerLink]="['/public/articles/mo_money_mo_money']" >
+								<img src="assets/images/articles/ohio-state-football_Team_Runni.png" alt="">
+								<div class="money-item-bottom">
+									<h5>Mo Money, Mo Money</h5>
+									<p>Performing Art Scholarships Outnumber Athletic Scholarships</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/it_all_adds_up']" >
+								<img src="assets/images/articles/daddaughtermoney.png" alt="">
+								<div class="money-item-bottom">
+									<h5>It All Adds Up</h5>
+									<p>Unexpected Costs In Performing Arts</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/college_is_not_cheap']" >
+								<img src="assets/images/articles/Guy_at_computer_with_Scholarsh.png" alt="">
+								<div class="money-item-bottom">
+								<h5>College Is Not Cheap</h5>
+									<p>Scholarships, Grants and Loans</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/stained_glass_scholarships']" >
+								<img src="assets/images/articles/violin_in_front_of_Stained_Gla.png" alt="">
+								<div class="money-item-bottom">
+									<h5>Stained-Glass Scholarships</h5>
+									<p>Religious Organizations Provide Opportunities</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/turning_over_every_rock_paying_for_college']" >
+								<img src="assets/images/articles/Money_Bags_and_Graduation_Cap.png" alt="">
+								<div class="money-item-bottom">
+									<h5>Turning Over Every Rock</h5>
+									<p>Paying for College</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Money Matter Section End -->
+
+		<!-- Global Option Section End -->
+		<div id="global-option">
+
+			<div class="container-fluid">
+
+				<div class="article-header-title text-center">
+					<h3 class="text-center">Global Options</h3>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-7 col-md-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/a_cost-effective_option-studying_music_in_a_foreign_country']" >
+								<img src="assets/images/articles/Three_cello_Players_in_Switzer.png" alt="">
+								<div class="money-item-bottom">
+									<h2>A Cost-Effective Option</h2>
+									<p>Studying Music In a Foreign Country</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-lg-5  col-md-6 money-item">
+
+						<div class="money-item-body finger">
+							<a [routerLink]="['/public/articles/got_a_passport_how_to_be_an_international_student']" >
+								<img src="assets/images/articles/Passport_on_World_Map.png" alt="">
+								<div class="money-item-bottom">
+									<h2>Got A Passport?</h2>
+									<p>How To Be An International Student</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<hr class="article-hr">
+
+			<div class="container-fluid">
+
+				<div class="row global-countries">
+
+					<div class="col-sm-4 text-center">
+						<a [routerLink]="['/public/articles/accoladi_global-south_africa']" >
+							<img src="assets/images/articles/Map_of_South_Africa_with_Cap_a.png" class="img-fluid" alt="">
+							<h4>South Africa</h4>
+						</a>
+					</div>
+
+					<div class="col-sm-4 text-center">
+						<a [routerLink]="['/public/articles/accoladi_global-hong_kong']" >
+							<img src="assets/images/articles/Hong_Kong_Flag_and_Graduating_.png" class="img-fluid" alt="">
+							<h4>Hong Kong</h4>
+						</a>
+					</div>
+
+					<div class="col-sm-4 text-center">
+						<a [routerLink]="['/public/articles/accoladi_global-singapore']" >
+							<img src="assets/images/articles/Singapore_with_Cap_and_Books.png" class="img-fluid" alt="">
+							<h4>Singapore</h4>
+						</a>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Global Option Section End -->
+
+		<!-- Article List Section Start -->
+		<div id="article-list">
+
+			<div class="container-fluid">
+
+				<div class="row">
+
+					<div class="col-md-4 col-sm-6 list-col-bd">
+
+						<h1 class="text-center">Auditions</h1>
+
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/an_audition_is_more_than_a_musical_try-out']" >
+									<img src="assets/images/articles/music-pedagogy-piano-m-1.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/an_audition_is_more_than_a_musical_try-out']" >
+									<h3>An Audition <br>Is More Than a Musical Try Out</h3>
+								</a>
+							</div>
+						</div>
+
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/deadlines_are_for_real_understanding_the_audition_process_part_1']" >
+									<img src="assets/images/articles/Deadlines_-_Now.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/deadlines_are_for_real_understanding_the_audition_process_part_1']" >
+									<h3>Deadlines <br>Are For Real</h3>
+								</a>
+							</div>
+						</div>
+
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/7_steps_in_making_a_great_audition_video']" >
+									<img src="assets/images/articles/Filming_Girl_Playing_Guitar.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/7_steps_in_making_a_great_audition_video']" >
+									<h3>7 Steps <br>in Making a Great Audition Video</h3>
+								</a>
+							</div>
+						</div>
+
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/how_to_minimize_audition_nerves']" >
+									<img src="assets/images/articles/Audition_Nerves_II.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/how_to_minimize_audition_nerves']" >
+									<h3>How to <br>Minimize Audition Nerves</h3>
+								</a>
+							</div>
+						</div>
+
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/the_secret_of_the_auditions_process_the_temple_of_audition_doom']" >
+									<img src="assets/images/articles/SECRETS.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/the_secret_of_the_auditions_process_the_temple_of_audition_doom']" >
+									<h3>Secrets <br>Of The Audition Process</h3>
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6 list-col-bd2">
+
+						<h1 class="text-center">Repertoire</h1>
+						<div class="row list-item">
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/your_solo_repertoire_list_what_should_you_include']" >
+									<img src="assets/images/articles/Violinist_in_Black_Background.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/your_solo_repertoire_list_what_should_you_include']" >
+									<h3>Your Solo <br>Repertoire</h3>
+								</a>
+							</div>
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/making_the_grade_understanding_the_audition_process_part_3']" >
+									<img src="assets/images/articles/Clarinet_Player_-_Hispanic_Mal.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/making_the_grade_understanding_the_audition_process_part_3']" >
+									<h3>Making <br>The Grade</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/your_solos_history_be_ready_for_a_quiz_at_your_audition']" >
+									<img src="assets/images/articles/iShocked_1.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/your_solos_history_be_ready_for_a_quiz_at_your_audition']" >
+									<h3>Know All <br>About It</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/its_all_in_the_name_understanding_the_audition_process_part_3c']" >
+									<img src="assets/images/articles/My_Name_I.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/its_all_in_the_name_understanding_the_audition_process_part_3c']" >
+									<h3>It's All In<br>The Name</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/etude_vs_solo']" >
+									<img src="assets/images/articles/Myth_Busting.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/etude_vs_solo']" >
+									<h3>Etude <br>Vs Solo</h3>
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6">
+
+						<h1 class="text-center">Sightreading</h1>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/sightreading_101']" >
+									<img src="assets/images/articles/Sightreading_101.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/sightreading_101']" >
+									<h3>Sightreading <br>101</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/sightreading_tells_your_musical_story']" >
+									<img src="assets/images/articles/Story_Matters.png">
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/sightreading_tells_your_musical_story']" >
+									<h3>Sightreading <br>Tells Your Musical Story</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/musical_terms_and_sightreading']" >
+									<img src="assets/images/articles/Words_Have_Power.png" >
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/musical_terms_and_sightreading']" >
+									<h3>Musical Terms <br>And Sightreading</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/sightreading_scenarios']" >
+									<img src="assets/images/articles/KaBoom.png" >
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/sightreading_scenarios']" >
+									<h3>Sightreading <br>Scenarios</h3>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="row list-item">
+
+							<div class="col-6">
+								<a [routerLink]="['/public/articles/practicing_sightreading']" >
+									<img src="assets/images/articles/Have_a_Plan_for_Success.png" >
+								</a>
+							</div>
+
+							<div class="col-6 px-0 list-item-text">
+								<a [routerLink]="['/public/articles/practicing_sightreading']" >
+									<h3>Practicing <br>Sightreading</h3>
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Article List Section End -->
+
+		<!-- Degree & Major Section Start -->
+		<div id="degree-major">
+
+			<div class="container-fluid">
+
+				<div class="article-header-title text-center">
+					<h3 class="text-center">Degrees and Majors</h3>
+				</div>
+
+				<div class="row">
+
+					<div class="col-12 col-sm-10 offset-sm-1 degree-item">
+
+						<div class="degree-item-body">
+							<a [routerLink]="['/public/articles/the_power_of_double_majoring']" >
+								<img src="assets/images/articles/Puzzle.png" alt="">
+								<div class="degree-item-bottom">
+									<h1>Power In Double Majoring</h1>
+									<span>Why You Should Consider It</span>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+				<hr class="article-hr" />
+
+				<div class="row justify-content-md-center degree-small-boxes">
+
+					<div class="col-md-3 col-sm-6 degree-item">
+
+						<div class="degree-item-body">
+							<a [routerLink]="['/public/articles/what_difference_does_it_make_differences_in_higher_ed_options']" >
+								<img src="assets/images/articles/College.png" alt="">
+								<div class="degree-item-bottom">
+									<h5>What Difference Does it Make?</h5>
+									<p>Institutional Options</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-3 col-sm-6 degree-item">
+
+						<div class="degree-item-body">
+							<a [routerLink]="['/public/articles/types_of_degrees']" >
+								<img src="assets/images/articles/a_matter_of_degrees.jpg" alt="">
+								<div class="degree-item-bottom">
+									<h5>A Matter of Degrees</h5>
+									<p>Understanding Undergraduate and Musical Degrees</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-3 col-sm-6 degree-item">
+
+						<div class="degree-item-body">
+							<a [routerLink]="['/public/articles/differences_between_degrees_and_majors']" >
+								<img src="assets/images/articles/College_Cap_and_Gown_with_Diff.png" alt="">
+								<div class="degree-item-bottom">
+									<h5>It Must Mean Something</h5>
+									<p>Difference Between Degrees And Majors</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="article-header-title text-center">
+					<h3 class="text-center">Additional Information</h3>
+				</div>
+
+				<div class="row degree-small-boxes">
+
+					<div class="offset-md-3 col-md-3 col-sm-6 degree-item">
+
+						<div class="degree-item-body finger">
+							<a [routerLink]="['/public/articles/why_ensembles_matter_even_if_you_are_not_a_music_major']" >
+								<img src="assets/images/articles/Choir_-_College_Choir.png" alt="">
+								<div class="degree-item-bottom">
+									<h5>Why Ensembles Matter?</h5>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-3 col-sm-6 degree-item">
+
+						<div class="degree-item-body finger">
+							<a [routerLink]="['/public/articles/relationship_between_music_theory_and_college_tuition']" >
+								<img src="assets/images/articles/MG_3597.png" alt="">
+								<div class="degree-item-bottom">
+									<h5>The Direct Relationship</h5>
+									<p>Music Theory & College Tuition</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Degree & Major Section Start -->
+	</ng-container>
+
+	<div class="pb-5">
+		<app-footer></app-footer>
+	</div>
+
+</div>

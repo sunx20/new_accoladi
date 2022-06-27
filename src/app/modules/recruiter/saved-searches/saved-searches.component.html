@@ -1,0 +1,54 @@
+<div class="card " >
+	
+	<div class="card-body" *ngIf="recruiter" >
+	
+		<h3>
+			Saved Searches
+		</h3>
+	
+		<table class="table table-condensed" >
+	
+			<caption>
+				This is a list of saved searches you have run, along with the
+				results, for purposes of easy recall and comparisons
+			</caption>
+
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Date Searched</th>
+					<th>Label</th>
+					<th>Category</th>
+					<th></th>
+					<th class="text-center" >Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let s of savedSearchesList; let i = index" >
+					<th scope="row" >{{ i + 1 }}</th>
+					<td>{{ s?.date_saved | amDateFormat: "LL" }}</td>
+					<td>{{ s?.label }}</td>
+					<td>{{ s?.category }}</td>
+					<td>&nbsp;</td>
+					<td class="text-right" nowrap="nowrap" >
+						<button type="button" class="btn btn-sm  " (click)="viewCriteria(s)" >
+							View Criteria
+						</button>
+						&nbsp;
+						<button type="button" class="btn btn-sm  " (click)="rerunSearch(s)" >
+							Re-Run Search
+						</button>
+						&nbsp;
+						<button type="button" class="btn btn-sm  " (click)="remove(s._id)" >
+							Remove
+						</button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	
+</div>

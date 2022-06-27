@@ -1,0 +1,9 @@
+.margin-top {
+	margin-top: 31px !important;
+}
+
+.error-msg {
+	color: red;
+	margin-top: 5px;
+	font-size: 0.8rem;
+}

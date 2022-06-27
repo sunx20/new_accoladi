@@ -1,0 +1,117 @@
+<div class="modal-header">
+  <h4 class="modal-title">Score this Student - {{student_name}}</h4>
+</div>
+
+<form>
+
+  <div class="modal-body">
+
+    <div class="container">
+      <form [formGroup]="profileForm" >
+      <div class="form-row">
+
+        
+          <div class="row col-12 mt-1">
+            <div class="col-4">Category</div>
+            <div class="col-2">{{SongI}}</div>
+            <div class="col-2">{{SongII}}</div>
+            <div class="col-2">{{SongIII}}</div>
+            <div class="col-2">General Comments</div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Breath Support</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_BreathSupport" type="number" name="SongI_BreathSupport" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_BreathSupport" type="number" name="SongII_BreathSupport" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_BreathSupport" type="number" name="SongIII_BreathSupport" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_BreathSupport" type="text" name="GeneralComments_BreathSupport"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Pronunciation</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Pronunciation" type="number" name="SongI_Pronunciation" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Pronunciation" type="number" name="SongII_Pronunciation" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Pronunciation" type="number" name="SongIII_Pronunciation" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Pronunciation" type="text" name="GeneralComments_Pronunciation"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Intonation</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Intonation" type="number" name="SongI_Intonation" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Intonation" type="number" name="SongII_Intonation" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Intonation" type="number" name="SongIII_Intonation" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Intonation" type="text" name="GeneralComments_Intonation" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Rhythm</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Rhythm" type="number" name="SongI_Rhythm" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Rhythm" type="number" name="SongII_Rhythm" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Rhythm" type="number" name="SongIII_Rhythm" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Rhythm" type="text" name="GeneralComments_Rhythm"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Tempo</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Tempo" type="number" name="SongI_Tempo" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Tempo" type="number" name="SongII_Tempo" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Tempo" type="number" name="SongIII_Tempo" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Tempo" type="text" name="GeneralComments_Tempo"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Dynamics</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Dynamics" type="number" name="SongI_Dynamics" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Dynamics" type="number" name="SongII_Dynamics" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Dynamics" type="number" name="SongIII_Dynamics" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Dynamics" type="text" name="GeneralComments_Dynamics" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Phrasing</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Phrasing" type="number" name="SongI_Phrasing" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Phrasing" type="number" name="SongII_Phrasing" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Phrasing" type="number" name="SongIII_Phrasing" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Phrasing" type="text" name="GeneralComments_Phrasing" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Interpretation</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Interpretation" type="number" name="SongI_Interpretation" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Interpretation" type="number" name="SongII_Interpretation" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Interpretation" type="number" name="SongIII_Interpretation" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Interpretation" type="text" name="GeneralComments_Interpretation"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Presentation</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Presentation" type="number" name="SongI_Presentation" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Presentation" type="number" name="SongII_Presentation" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Presentation" type="number" name="SongIII_Presentation" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Presentation" type="text" name="GeneralComments_Presentation"/></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Memorization or Overall Impression</div>
+            <div class="col-2"><input class="form-cell" formControlName="SongI_Memorization" type="number" name="SongI_Memorization" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongII_Memorization" type="number" name="SongII_Memorization" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="SongIII_Memorization" type="number" name="SongIII_Memorization" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="GeneralComments_Memorization" type="text" name="GeneralComments_Memorization" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-4">Total</div>
+            <div class="col-2"><input class="form-cell" formControlName="Total_SongI" type="number" id="val1" name="Total_SongI" [min]="0" [max]="10" (input)="onSongOneChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="Total_SongII" type="number" id="val2" name="Total_SongII" [min]="0" [max]="10" (input)="onSongTwoChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="Total_SongIII" type="number" id="val3" name="Total_SongIII" [min]="0" [max]="10" (input)="onSongThreeChange($event.target.value)"/></div>
+            <div class="col-2"><input class="form-cell" formControlName="Total_GeneralComments" type="text" id="val4" name="Total_GeneralComments"/></div>
+          </div>
+   
+
+      </div>
+      <div>Judges Score: {{judgesScore}}</div>
+    </form>
+
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn gray-btn" (click)="close()">
+          Cancel
+        </button>
+        <button type="submit"   (click)="sumbit()" class="btn-primary btn">
+         Submit
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

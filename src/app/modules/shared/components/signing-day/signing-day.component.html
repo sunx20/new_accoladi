@@ -1,0 +1,327 @@
+<div class="px-4 py-5" >
+
+	<div class="row mb-3 d-flex align-items-center" >
+
+		<div class="col-md-6" >
+
+			<nav aria-label="breadcrumb" >
+
+				<ol class="breadcrumb" >
+
+					<li class="breadcrumb-item active" aria-current="page" >
+						National Signing Day 2021
+					</li>
+
+				</ol>
+
+			</nav>
+
+		</div>
+
+	</div>
+
+	<section class="module" >
+
+		<header>
+			<h2> National Signing Day 2021</h2>
+		</header>
+
+		<div class="general-table" >
+
+			<table class="table" >
+
+				<tbody>
+
+					<tr>
+						<td class="align-top" >
+
+							<p *ngIf="data?.length" >
+								You have applied to Performers National Signing Day&trade; You will use this section of Accoladi.com to provide performance requirements.
+								Below, you will see a heading for the "Category" you applied, and an "Add Performance" button.
+							</p>
+
+							<ol *ngIf="data?.length" >
+
+								<li>
+									Add performance information. You are allowed a set number of items based on the category for which you applied.
+								</li>
+
+								<li>
+									Make sure to have a URL from YouTube or Vimeo to include. The judging is based on your performance in the video.
+								</li>
+
+								<li>
+									Fill in as much data as you can under "My Performances" section of Accoladi.com. Judges will have access
+									to your full profile, so having information filled in can only help you. Plus, you will always be searchable by colleges
+									looking for talent before and after Performers National Signing Day&trade;
+								</li>
+
+							</ol>
+
+							<p *ngIf="!data?.length" >
+								Performers National Signing Day&trade; is an exciting, life-changing, first-of-its-kind nationwide collegiate audition and recruitment event.
+								This multi-day, invitation only event lets high school juniors and seniors showcase their talent for hundreds of collegiate faculty letting schools review performances and offer scholarships directly to students.
+							</p>
+
+							<p *ngIf="!data?.length" style="text-align:center;" >
+								
+								<a target="_blank" href="https://performersnationalsigningday.com/student-application/" >
+									<button type="button"
+										class="btn mr-1" >
+										Apply for Performers National Signing Day
+									</button>
+								</a>
+
+							</p>
+
+						</td>
+
+						<!-- 
+						<td class="align-top text-center" width="200" >
+
+							<a href="javascript:;"
+								(click)="playVideo('https://vimeo.com/349239752')" >
+								<img src="assets/img/general_performance_video_thumb.jpg" /><br>
+								Watch Video
+							</a>
+
+						</td> 
+						-->
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<div class="div-border" *ngFor=" let d of data; let i = index " >
+
+				<div class="row mt-2 ml-2 mr-2 mb-2" >
+
+					<div class="col-4 mt-2" >
+						<span> {{d.area.group}} </span>
+						<span *ngIf="d.area.sub_group" >, {{d.area.sub_group}} </span>
+						<span>, {{d.area.talent}}</span>
+					</div>
+
+					<div class="col-2" >
+						{{d.year}}
+					</div>
+
+					<div class="col-6" >
+
+						<button (click)="addAudition(d,'Audition')" class="btn float-right mr-1" >
+							<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+							Add Audition Information
+						</button>
+						<!--
+						<button (click)="addPerformance(d,'Song')" class="btn float-right mr-1" >
+							<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+							Add Performance
+						</button>
+
+						<button *ngIf="!d.area.sub_group" (click)="addPerformance(d,'Monologue')"
+							class="btn float-right mr-1" >
+							<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+							Add Monologue
+						</button>
+
+						<button *ngIf="!d.area.sub_group" (click)="addPerformance(d,'Dance')"
+							class="btn float-right  mr-1" >
+							<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+							Add Dance
+						</button>
+						-->
+					</div>
+
+				</div>
+
+				<div *ngFor=" let p of d.performances; let i = index " >
+
+					<div class="row mt-2 ml-2 mr-2" >
+
+						<div class="col-1" >
+
+							<button *ngIf="p.video_url"
+								type="button"
+								class="btn btn-play"
+								(click)="playVideo(p.video_url)" >
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+
+						</div>
+
+						<div class="col-6" >
+
+							<span class="bumpup-txt" >
+								<u>{{ p.composition_title }}</u>
+							</span>
+
+							<br />
+
+							{{ p.type }} {{ p.talent }}
+
+							<br />
+
+							<p *ngIf="p.composers?.length" >
+								<em>
+									{{ p.composers }}
+								</em>
+							</p>
+
+						</div>
+
+						<div class="col-1" >
+							{{ p.date_performed }}
+						</div>
+
+						<div class="col-2" >
+
+						</div>
+
+						<div class="col-2 pad-20-right" >
+
+							<img (click)="onDelete(d.student_id,d._id,p._id,p.type)" 
+								style="width:13px;cursor: pointer;"
+								class="float-right mt-4" 
+								src="assets/img/close-x-22.png" />
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div *ngFor=" let mt of d.musical_theater; let i = index " >
+
+					<div class="row mt-2 ml-2 mr-2" >
+
+						<div class="col-1" >
+
+							<button *ngIf="mt.video_url"
+								type="button"
+								class="btn btn-play"
+								(click)="playVideo(mt.video_url)" >
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+
+						</div>
+
+						<div class="col-6" >
+
+							<span class="bumpup-txt" >
+								<u>{{ mt.show }} - {{ mt.role }}</u>
+							</span>
+							<br />
+							{{ mt.type }}
+
+						</div>
+
+						<div class="col-2" >
+
+						</div>
+
+						<div class="col-3 pad-20-right" >
+
+							<img src="assets/img/close-x-22.png"
+								style="width:13px;cursor: pointer;"
+								class="float-right mt-4"
+								(click)="onDelete(d.student_id,d._id,mt._id, mt.type)" />
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div *ngFor=" let da of d.dance; let i = index ">
+
+					<div class="row mt-2 ml-2 mr-2">
+
+						<div class="col-1">
+
+							<button *ngIf="da.video_url" 
+								type="button" 
+								class="btn btn-play" 
+								(click)="playVideo(da.video_url)">
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+
+						</div>
+
+						<div class="col-6">
+
+							<span class="bumpup-txt">
+								<u>{{ da.piece }} - {{ da.dance_type }}</u>
+							</span>
+							<br />
+							{{ da.type }}
+
+						</div>
+
+						<div class="col-2">
+
+						</div>
+
+						<div class="col-3 pad-20-right">
+
+							<img src="assets/img/close-x-22.png" 
+								style="width:13px;cursor: pointer;" 
+								class="float-right mt-4"
+								(click)="onDelete(d.student_id,d._id,da._id, da.type)" />
+
+						</div>
+
+					</div>
+
+				</div>
+				
+				<div *ngFor=" let aud of d.audition; let i = index ">
+
+					<div class="row mt-2 ml-2 mr-2">
+
+						<div class="col-1" >
+
+							<button *ngIf="aud.video_url"
+								type="button"
+								class="btn btn-play"
+								(click)="playVideo(aud.video_url)" >
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+
+						</div>
+
+
+						<div class="col-8">
+
+							<span class="bumpup-txt">
+								<u>{{ aud.performed }} ({{ aud.composer }}) - {{ aud.type }}</u>
+							</span>
+							<br />
+							{{ aud.company }} {{ aud.show }} {{ aud.role }}
+							<br />
+							{{ aud.comments }}
+
+						</div>
+
+						<div class="col-3 pad-20-right">
+
+							<img src="assets/img/close-x-22.png" 
+								style="width:13px;cursor: pointer;" 
+								class="float-right mt-4"
+								(click)="onDelete( d._id, aud._id, aud.aud_type )" />
+
+						</div>
+
+					</div>
+
+				</div>
+
+				&nbsp;
+
+			</div>
+
+		</div>
+
+	</section>
+
+</div>

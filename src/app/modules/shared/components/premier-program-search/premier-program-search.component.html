@@ -1,0 +1,370 @@
+<div class="px-4 py-5">
+
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/search">Search</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Premier College Programs
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+
+	<div
+		*ngIf="userService.currentUser.role.toLowerCase() === 'student'"
+		class="form-check" >
+		<input
+			type="checkbox"
+			class="form-check-input m-1"
+			id="exampleCheck1"
+			[(ngModel)]="showFPP"
+			(ngModelChange)="showFPPChanged($event)" />
+		<label class="form-check-label" for="exampleCheck1">
+			Show favorite Premier College Programs
+		</label>
+	</div>
+
+	<app-premier-program-saved
+		*ngIf="showFPP && userService.currentUser.role.toLowerCase() === 'student'" >
+	</app-premier-program-saved>
+
+	<div *ngIf="!showFPP">
+
+		<section class="module">
+
+			<div>
+
+				<h2>
+
+					<img
+						style="max-width:16px; margin-right:8px;"
+						src="assets/img/search-icon-38.png" />
+
+					 College Programs
+
+				</h2>
+
+				<p>
+					Welcome to our NEW preeminent, independently researched, and proprietary directory
+					of verified collegiate performing fine arts programs! The directory is a trusted resource
+					for you to search and evaluate thousands of music programs nationwide that are
+					exceptional in the disciplines of instrument, keyboard, vocal, dance, or musical theater.
+				</p>
+
+				<p>
+					What is a Premier College Program?
+				</p>
+
+				<p>
+					Collegiate institutions with music programs that have:
+				</p>
+				<ul>
+					<li>Instructor(s) that are or have been a principal performer in a nationally recognized ensemble
+					</li>
+					<li>Instructor(s) that are or have had a world-renowned solo performance career</li>
+					<li>Students who have gone on to perform in nationally recognized ensembles or solo careers</li>
+					<li>Annual ensembles with acclaimed performances</li>
+					<li>Large career/alumni networks and graduation rates</li>
+					<li>Multiple degree options in numerous musical emphasis’s</li>
+				</ul>
+
+
+			</div>
+
+			<form
+				class="my-4 mx-5"
+				novalidate="novalidate"
+				autocomplete="off"
+				[formGroup]="form"
+				(ngSubmit)="submitForm()" >
+
+				<div class="form-row">
+
+					<div class="col-md-3 form-group">
+
+						<label class="control-label">
+							Subject / Talent
+						</label>
+
+						<select 
+							class="form-control " 
+							name="subject" 
+							formControlName="subject" 
+							placeholder="subject">
+							
+							<option value="">
+								Pick One...
+							</option>
+						
+							<option *ngFor="let subject of subjects" [ngValue]="subject">
+								{{ subject }}
+							</option>
+						
+						</select>
+
+					</div>
+
+					<div class="col-md-3 form-group">
+
+						<label class="control-label">
+							Style
+						</label>
+
+						<select 
+							class="form-control " 
+							name="style" 
+							formControlName="style" 
+							placeholder="style">
+							
+							<option value="">
+								Any
+							</option>
+							
+							<option *ngFor="let style of styles" [ngValue]="style">
+								{{ style }}
+							</option>
+						
+						</select>
+
+					</div>
+
+					<div class="col-md-6 form-group">
+
+						<label class="control-label">
+							School
+						</label>
+
+						<input 
+							id="school" 
+							type="text" 
+							class="form-control " 
+							formControlName="school" 
+							name="school"
+							placeholder="School Name" />
+
+					</div>
+
+				</div>
+
+				<div class="form-row">
+
+					<div class="col-md-12 form-group">
+
+						<div class="d-flex justify-content-center">
+
+							<button 
+								type="button" 
+								class="btn recruiter-search-reset-btn gray-btn" 
+								(click)="resetForm()" >
+								Reset
+							</button>
+
+							<span>&nbsp; &nbsp;</span>
+
+							<button 
+								type="submit" 
+								class="btn " 
+								(click)="submitAttempted = true" >
+
+								<span 
+									*ngIf="loading" 
+									class="spinner-border spinner-border-sm" 
+									role="status"
+									aria-hidden="true" >
+								</span>
+
+								{{ 
+									loading 
+									? "Searching..." 
+									: "Search" 
+								}}
+							</button>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</form>
+
+		</section>
+
+		<div class="row" *ngIf="requestFailed">
+
+			<div class="col-md-12">
+
+				<div class="alert alert-danger" role="alert">
+					{{ feedback }}
+				</div>
+
+			</div>
+
+		</div>
+
+		<h3 *ngIf="searchResults && searchResults.length" class="mb-4 mt-5">
+			Search Results ({{ total }})
+		</h3>
+
+		<div *ngIf="searchResults && searchResults.length" class="mb-4 mt-5">
+			PLEASE NOTE: Because of subjective ratings criteria, 
+			not all schools you may judge as "premier" may show on our list.
+			Contact Accoladi.com if you have thoughts on our premier college programs list.
+		</div>
+
+		<section class="module" *ngIf="searchResults && searchResults.length">
+
+			<div class="general-table">
+
+				<table class="table">
+
+					<thead>
+						<tr>
+							<th colspan="2">School</th>
+							<th>Style</th>
+							<th>Position</th>
+							<th><span *ngIf="userService.currentUser.role.toLowerCase() === 'student' ">Favorite</span>
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<!-- <tr *ngFor="let pp of searchResults" >
+							<td class="text-left" >
+								<a href="javascript:;" (click)="viewDetails(pp._id)" >{{ pp.school }}</a><br>
+								{{ pp.subject }} {{ pp.style }}<br/>
+								{{ pp.person }} {{ pp.position }} {{ pp.url }}<br/>
+								{{ pp.notes }} {{ pp.year }}
+							</td>
+							<td class="text-left" >
+								<div
+									class="img-hover-switch"
+									*ngIf=" userService.currentUser.role.toLowerCase() === 'student' && !inSPPList(pp._id) "
+									(click)="saveScholarship(s)" >
+									<img
+										*ngIf="!isSavingPremierProgram(pp._id)"
+										style="max-width:21px"
+										src="assets/img/not-yet-favorite-star-41.png" />
+									<img
+										*ngIf="!isSavingPremierProgram(pp._id)"
+										style="max-width:21px"
+										src="assets/img/favorite-star-42.png" />
+									<span
+										*ngIf="isSavingPremierProgram(pp._id)"
+										class="spinner-border spinner-border-sm"
+										role="status"
+										aria-hidden="true" ></span>
+								</div>
+								<img
+									*ngIf="inSPPList(pp._id)"
+									style="max-width:21px"
+									src="assets/img/favorite-star-42.png" />
+							</td>
+						</tr> -->
+
+						<ng-container *ngFor="let item of groupArr">
+							<tr>
+								<td colspan="4"><b>{{item.school}}</b></td>
+							</tr>
+							<tr *ngFor="let sub of item.groupItem">
+								<td>&nbsp;</td>
+								<td>
+									
+									<ng-container *ngIf="sub.url && sub.url.includes('://')">
+										<a href="{{sub.url}}" target="_new">
+											<span *ngIf="sub.person.length===0">Department</span>{{ sub.person }}
+											<br>{{ sub.subject }} {{ sub.year }}
+											<br>{{ sub.school_state }}
+										</a>
+									</ng-container>
+
+									<ng-container *ngIf="sub.url && !sub.url.includes('://')">
+										<a href="http://{{sub.url}}" target="_new">
+											<span *ngIf="sub.person.length===0">Department</span>{{ sub.person }}
+											<br>{{ sub.subject }} {{ sub.year }}
+											<br>{{ sub.school_state }}
+										</a>
+									</ng-container>
+
+									<ng-container *ngIf="!sub.url">
+										<span *ngIf="sub.person.length===0">Department</span>{{ sub.person }}
+										<br>{{ sub.subject }} {{ sub.year }}
+										<br>{{ sub.school_state }}
+									</ng-container>
+								
+								</td>
+								<td>
+									{{ sub.style }}
+								</td>
+								<td>
+									{{ sub.position }}
+								</td>
+								<td class="text-left">
+									
+									<div class="img-hover-switch"
+										*ngIf=" userService.currentUser.role.toLowerCase() === 'student' && !inSPPList(sub._id) "
+										(click)="savePremierProgram(sub)">
+								
+										<img *ngIf="!isSavingPremierProgram(sub._id)" 
+											style="max-width:21px"
+											src="assets/img/not-yet-favorite-star-41.png" />
+								
+										<img *ngIf="!isSavingPremierProgram(sub._id)" 
+											style="max-width:21px"
+											src="assets/img/favorite-star-42.png" />
+								
+										<span *ngIf="isSavingPremierProgram(sub._id)"
+											class="spinner-border spinner-border-sm" 
+											role="status"
+											aria-hidden="true"></span>
+
+									</div>
+								
+									<img *ngIf="inSPPList(sub._id)" 
+										style="max-width:21px"
+										src="assets/img/favorite-star-42.png" />
+								
+									</td>
+							</tr>
+						</ng-container>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</section>
+
+		<section *ngIf="searchResults && !searchResults.length" class="module">
+
+			<div class="general-table">
+				No programs found with that specified criteria.
+			</div>
+
+		</section>
+
+		<!-- <div *ngIf="searchResults && searchResults.length && userService.currentUser.role.toLowerCase() === 'student'"
+			class="d-flex justify-content-center p-2" >
+
+			<ngb-pagination
+				class="d-flex justify-content-center"
+				[maxSize]="10"
+				[collectionSize]="total"
+				[rotate]="true"
+				[(page)]="page"
+				[pageSize]="pageSize"
+				(pageChange)="pageChange($event)"
+				[boundaryLinks] >
+			</ngb-pagination>
+
+		</div> -->
+
+	</div>
+
+</div>

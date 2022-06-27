@@ -1,0 +1,183 @@
+<div class="px-4 py-5">
+
+	<div class="row mb-3 d-flex align-items-center">
+
+		<div class="col-md-6">
+
+			<nav aria-label="breadcrumb">
+
+				<ol class="breadcrumb">
+
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/performance" routerLinkActive="active">
+							Performance
+						</a>
+					</li>
+
+					<li class="breadcrumb-item active" aria-current="page">
+						Festivals & Competitions
+					</li>
+
+				</ol>
+
+			</nav>
+
+		</div>
+
+		<div class="col-md-6 text-right">
+
+			<a class="btn" href="javascript:;" (click)="addStudentFC()">
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Festivals & Competitions
+			</a>
+
+		</div>
+
+	</div>
+
+	<section class="module">
+
+		<header>
+			<h2>Festivals & Competitions</h2>
+		</header>
+
+		<div class="general-table">
+
+			<table class="table">
+
+				<tbody>
+
+					<tr>
+						<td class="align-top">
+
+							<p>
+								Solo/Ensemble Festivals and Competitions happen
+								outside of your school, but you might
+								participate in them with your school ensemble.
+								You or your ensemble will get a score, rating,
+								or ranking at festivals and competitions. If you
+								have the judge’s name, your scores, and judge’s
+								comments, add them to each entry.
+							</p>
+
+							<p>
+								Here are some examples of what a Solo/Ensemble
+								Festival or Competition might be called:
+							</p>
+
+							<ul>
+
+								<li>
+									National Association of the Teachers of
+									Singing Solo Competition
+								</li>
+
+								<li>Steinway National Concerto Competition</li>
+
+								<li>
+									The South Carolina Band Director’s
+									Association State Solo and Ensemble Festival
+								</li>
+
+							</ul>
+
+							<p>
+								This is NOT a Solo/Ensemble Festival or
+								Competition:<br />
+								Parker High School’s Talent Show where you
+								performed in a trumpet duet and won first-place.
+							</p>
+
+							<p>
+								Questions Asked:<br />
+								Event Name *, State *, Type * (Chorus, Solo, Sm.
+								Ensemble, Ensemble, Orchestra, etc), Instrument
+								/ Voice Part *, Composition Performed, Date
+								Performed, Grade (6-12), Section, Chair, Judge,
+								Rating, Placement, Judge's Comments, Link to
+								video of festival-competition
+							</p>
+
+						</td>
+						<td class="align-top text-center" width="200">
+
+							<a href="javascript:;" (click)="playVideo('https://vimeo.com/349239651')">
+								<img src="assets/img/festivals_competitions_video_thumb.jpg" /><br>
+								Watch Video
+							</a>
+
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<table class="table">
+
+				<tbody>
+
+					<tr *ngFor=" let item of festivals_competitions; let i = index ">
+						<td width="5%">
+
+							<button type="button" class="btn btn-play" (click)="playVideo(item.video_url)"
+								*ngIf="item.video_url">
+
+								<img src="assets/img/play-arrow-black-19.png" />
+
+							</button>
+
+						</td>
+						<td width="20%">
+
+							<span class="bumpup-txt">
+								<u>
+									{{ item.event }}
+								</u>
+							</span>
+
+							<br />
+
+							{{ item.composition_title }}
+
+							<br />
+
+							{{ item.talent }}
+
+						</td>
+						<td width="15%">
+
+							<!-- <strong>Judge's Score</strong><br />
+							<img
+								style="width:63px;"
+								src="assets/img/score-four-127.png"
+							/> -->
+
+						</td>
+						<td width="30%">
+							{{ item.date_performed }}
+						</td>
+						<td width="3%">
+
+							<a href="javascript:;" (click)="updateStudentFC(item._id)">
+								<img style="width:20px;" src="assets/img/sa-edit.svg" />
+							</a>
+
+						</td>
+						<td width="3%">
+
+							<img (click)="removeStudentFC(item._id)" style="width:13px;cursor: pointer;"
+								src="assets/img/close-x-22.png" />
+
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</section>
+
+</div>

@@ -1,0 +1,17 @@
+
+
+
+<div class="form-group" >
+	<ng-template #t let-fill="fill">
+		<span class="star" [class.full]="fill === 20">
+			<span class="half" [style.width.%]="fill">	&#9733; </span>&#9733;
+		</span>
+	</ng-template>
+
+	<ngb-rating [formControl]="currentRate" [starTemplate]="t" max="5" ></ngb-rating>
+
+	<div class="form-text small">
+		<div *ngIf="currentRate.valid" class="text-success">Rated!</div>
+		<div *ngIf="currentRate.invalid" class="text-danger">Rate student</div>
+	</div>
+</div>

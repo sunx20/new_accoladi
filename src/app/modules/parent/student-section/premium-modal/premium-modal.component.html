@@ -1,0 +1,6 @@
+<app-premium
+	*ngIf="parent_id && student_id"
+	[parent_id]="parent_id"
+	[student_id]="student_id"
+	(close)="activeModal.close()" >
+</app-premium>

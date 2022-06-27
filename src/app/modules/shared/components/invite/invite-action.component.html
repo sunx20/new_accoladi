@@ -1,0 +1,170 @@
+<div *ngIf="success" class="container" >
+
+	<div class="row" >
+
+		<div class="col-md-12" >
+
+			<div class="card" >
+
+				<div class="card-header" >
+					<h5>Invitation Action</h5>
+				</div>
+
+				<div class="card-body" >
+
+					<div class="row" >
+
+						<div class="col-md-12" >
+							<p>
+								Your friend {{ sender }} is using
+								Accoladi.com to track their progress
+								toward getting a music scholarship. <br />
+								They think you'd like it too! When you click the
+								link below, you'll take the first step toward
+								creating a profile that will help you get
+								noticed by college and camp recruiters. <br />
+								When you join Accoladi.com, you'll
+								find out the step-by-step approach you need to
+								take get a college scholarship to a school that
+								needs your talent!
+								<br /><br />
+								Click the link and get started on a path that
+								could change your life!
+								<br /><br />
+
+								Musically yours, <br />
+								The Accoladi.com Team
+							</p>
+						</div>
+
+					</div>
+
+					<br />
+					<br />
+
+					<div class="row" >
+						
+						<div class="col-md-3 offset-md-3" >
+						
+							<div class=" inv-login text-center" >
+						
+								<a [routerLink]="['/login']"
+									[queryParams]="{ ack: true, inv: key }" >
+									Already have an account and want to accept
+									invitation
+								</a>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3" >
+							
+							<div class=" inv-register text-center" >
+								
+								<a [routerLink]="['/register']"
+									[queryParams]="{ ack: true, inv: key }" >
+									Need an account and want to accept
+									invitation
+								</a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<br />
+					<br />
+
+					<div class="row" >
+						
+						<div class="col-md-6 offset-md-3 " >
+						
+							<div class=" text-center" >
+								
+								<p>
+									If you do not wish to accept the
+									responsibilities of the invitation, <br />
+									but would like to join with no obligation
+									<br />
+									<a [routerLink]="['/register']" >Sign Up Here</a>
+								</p>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div *ngIf="failed" class="container" >
+	
+	<div class="row" >
+	
+		<div class="col-md-12" >
+	
+			<div class="card" >
+	
+				<div class="card-header" >
+	
+					<h5>Invitation Action</h5>
+	
+				</div>
+	
+				<div class="card-body" >
+					<p>
+						We Failed to locate an invitation that matched, If you
+						think this is an error, Please contact the person who
+						sent the invitation, and ask them to send another.
+						<br />
+						It is possible that too much time has passed since the
+						invitation was sent, We don't keep 'em around forever.
+						It is also possible that you mistyped the URL. <br />
+						It is recomended that you copy and paste the URL from
+						the email you recieved. <br />
+						However, You do not NEED an invitation to sign up! You
+						can sign up now and communicate with the person who
+						invited you to make any changes you like! Want an
+						account? Sign Up Here
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div *ngIf="checking" class="container" >
+
+	<div class="row" >
+	
+		<div class="offset-md-4 col-md-4" >
+			
+			<br />
+			<br />
+			<br />
+
+			<div class="alert alert-success" role="alert" >
+				Checking invitation ...
+			</div>
+
+			<br />
+
+		</div>
+
+	</div>
+	
+</div>

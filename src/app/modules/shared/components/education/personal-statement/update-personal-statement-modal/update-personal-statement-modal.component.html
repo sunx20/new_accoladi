@@ -1,0 +1,94 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		College Intro Statement
+	</h4>
+	 
+</div>
+
+<form
+	novalidate="novalidate"
+	autocomplete="off"
+	[formGroup]="form"
+	(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-12 form-group required"
+					[ngClass]="displayFieldCss('statement')" >
+
+					<textarea
+						class="form-control"
+						id="statement"
+						rows="6"
+						autocomplete="off"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('statement')"
+						formControlName="statement"
+						name="statement"
+						placeholder="Write Your College Intro Statement" >
+					</textarea>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<div *ngIf="requestSuccess"
+						class="alert alert-success"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed"
+						class="alert alert-danger"
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button" 
+				class="btn gray-btn" 
+				(click)="close()" >
+			Cancel
+		</button>
+		
+		<button type="submit"
+				[disabled]="requestSuccess"
+				class="btn yellow-btn" >
+
+			<span *ngIf="loading"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true" ></span>
+
+			{{ 
+				loading 
+				? 
+				"Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+
+		</button>
+
+	</div>
+
+</form>

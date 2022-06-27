@@ -1,0 +1,146 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+	<a class="navbar-brand" [routerLink]="['/']">
+		<img class="img-fluid logo-main" src="assets/images/logo.png" alt="Cleffy, Accoladi's mascot and logo" />
+	</a>
+	<div class="group d-flex align-items-center">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+			aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"
+			(click)="isShown = !isShown">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+
+	<div class="collapse justify-content-end navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarTogglerDemo03">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/about']" (click)="isShown=false">About Us</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/articles']" (click)="isShown=false">Advice</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/resources']" (click)="isShown=false">Resources</a>
+			</li>
+			<!--
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/students']" (click)="isShown=false" >Student</a>
+			</li>
+			-->
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/teachers']" (click)="isShown=false">Teacher</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/public/higher-ed']" (click)="isShown=false">Higher Ed</a>
+			</li>
+			<li class="nav-item" *ngIf="loggedIn">
+				<a class="nav-link" (click)="onAccountClick()" *ngIf="loggedIn">My Account</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLink]="['/login']" (click)="isShown=false" *ngIf="!loggedIn">Login</a>
+				<a class="nav-link" (click)="onLogoutClick()" *ngIf="loggedIn">Logout</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<!--
+	<nav *ngIf="!loggedIn"
+		class="navbar sticky-top bg-red flex-md-nowrap p-0" >
+
+		<a href="https://www.Accoladi.com" class="navbar-brand" >
+			<img src="assets/images/logo.png" />
+		</a>
+
+		<a [routerLink]="['/login']"
+			style="padding-right: 20px; color: #fff;" >
+			login
+		</a>
+
+	</nav>
+
+	<nav *ngIf="loggedIn"
+		class="navbar sticky-top flex-md-nowrap p-0" >
+
+		<button type="button"
+				(click)="toggleSidebar()"
+				class="btn navbar-toggle"
+				[class.active]="isSidebarOpen" >
+			<span class="sr-only" >Toggle navigation</span>
+			<span class="icon-bar top-bar" ></span>
+			<span class="icon-bar middle-bar" ></span>
+			<span class="icon-bar bottom-bar" ></span>
+		</button>
+
+		<a href="http://www.Accoladi.com" class="navbar-brand" >
+			<img src="assets/images/logo.png" />
+		</a>
+
+		<div ngbDropdown class="usermenu" >
+
+			<div class="container" >
+
+				<div class="row" >
+
+					<div class="col-md-6 col-sm-6 hidden-sm hidden-xs" id="userInfo" >
+
+						<div style="color:white; font-size: small; text-align: right" >
+
+							<label style="margin-bottom: 0px; text-transform: capitalize" >
+								{{fullname}}
+							</label>
+
+							<br/>
+
+							<label style="font-size:smaller; margin-bottom: 0px; font-style: oblique;" >
+								{{email}}
+							</label>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-6 col-sm-6" >
+
+						<div class="select-dropdown" >
+
+							<div class="avatar" >
+								<img [src]="profileImage? profileImage : defaultProfileImage" class="profileImage" alt="Profile Image" />
+							</div>
+
+							<input id="usermenu"
+									type="text"
+									value=""
+									ngbDropdownToggle
+									readonly />
+
+							<i ngbDropdownToggle >▾</i>
+
+							<ul id="dropdown"
+								ngbDropdownMenu
+								style="left:27%" >
+
+								<li ngbDropdownItem
+									(click)="onLogoutClick()" >
+									<img src="assets/img/logout-icon-35.png" /> Logout
+								</li>
+
+								<li ngbDropdownItem
+									(click)="onAccountClick()" >
+									<img src="assets/img/settings-icon-39.png" /> Account
+								</li>
+
+							</ul>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</nav>
+-->

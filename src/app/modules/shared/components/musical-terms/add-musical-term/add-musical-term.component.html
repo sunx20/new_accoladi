@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="row mr-3 ml-3">
+  <div class="form-group  col-md-6">
+    <label for="term">Term</label>
+    <div class="input-group">
+      <input id="term" class="form-control" formControlName="term">
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label >Publish status</label>
+    <select class="form-control" formControlName="publish" style="border: 1px solid #ced4da;
+    border-radius: .25rem;">
+      <option value="true">Published</option>
+      <option value="false">Unpublished</option>
+    </select>
+  </div>
+
+  <div class="form-group col-md-12">
+    <label for="term">Definition</label>
+    <div class="input-group">
+      <input id="definition" class="form-control" formControlName="definition">
+    </div>
+  </div>
+
+  <div class="form-group col-md-12">
+    <label for="term">Video url</label>
+    <div class="input-group">
+      <input id="video_url" class="form-control" formControlName="video_url">
+    </div>
+  </div>
+
+ 
+  <div class="text-center col-md-12 mt-3">
+
+    <button type="button" class="btn recruiter-search-reset-btn " (click)="resetForm()">
+      Reset
+    </button>
+    &nbsp;
+    <button  [disabled]= "form.invalid" type="submit" class="btn  btn-default " (click)="submitAttempted = true">
+      <span *ngIf="saving" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      {{ saving ? "saving..." : "save" }}
+    </button>
+    &nbsp;
+  </div>
+</form>

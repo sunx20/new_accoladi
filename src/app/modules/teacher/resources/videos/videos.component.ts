@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+
+@Component({
+	selector: 'app-videos',
+	templateUrl: './videos.component.html'
+})
+
+export class VideosComponent {
+
+	videos: any[];
+
+	constructor() {
+		this.videos = [];
+	}
+
+}

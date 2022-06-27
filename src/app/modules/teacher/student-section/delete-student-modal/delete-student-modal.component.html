@@ -1,0 +1,61 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >Delete Student</h4>
+
+</div>
+
+<div class="modal-body" >
+
+	<div class="container" >
+
+		<p *ngIf="!requestSuccess" >
+			Are you sure you want to delete this item? <br />
+		</p>
+
+		<div class="form-row" >
+
+			<div class="col-md-12" >
+
+				<div *ngIf="requestSuccess"
+					 role="alert"
+					 class="alert alert-success" >
+					{{ feedback }}
+				</div>
+
+				<div *ngIf="requestFailed"
+					 role="alert"
+					 class="alert alert-danger" >
+					{{ feedback }}
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal-footer d-flex justify-content-between" >
+
+	<button type="button" 
+			(click)="close()" 
+			class="btn gray-btn" >
+		Cancel
+	</button>
+
+	<button (click)="delete()"
+			[disabled]="requestSuccess"
+			class="btn btn-danger" >
+		<span *ngIf="loading"
+			  role="status"
+			  class="spinner-border spinner-border-sm"
+			  aria-hidden="true" ></span>
+		{{ 
+			!requestSuccess 
+			? "Delete" 
+			: "Done" 
+		}}
+	</button>
+
+</div>

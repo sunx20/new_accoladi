@@ -1,0 +1,314 @@
+<style>
+	.public-scholarship-page {
+		margin-top: 3em;
+	}
+</style>
+
+<div class="public-scholarship-page gold-page">
+
+	<ng-container *ngIf="showScholarship" >
+
+		<div class="container" >
+			<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" >
+				<div class="col-md-12 px-0" >
+					<h1>{{ scholarship.name }}</h1>
+					<h2 class="font-italic" [ngSwitch]="scholarship.type" >
+					Type: 
+						<span *ngSwitchCase="M" >Music</span>
+						<span *ngSwitchCase="D" >Dance</span>
+						<span *ngSwitchCase="T" >Theater</span>
+						<span *ngSwitchDefault>General</span>
+					</h2>
+				</div>
+			</div>
+		</div>
+
+		<main role="main" class="container" >
+			<div class="row" >
+				
+				<aside class="col-md-4 blog-sidebar" >
+					
+					<div class="p-3 mb-3 bg-light rounded" >
+						<h4 class="font-italic" >Awarded</h4>
+						<p class="mb-0" >Amount Awarded: {{ scholarship.award_amount }}</p>
+						<p class="mb-0" >Number Of Awards: {{ scholarship.award_number_of }}</p>
+						<p class="mb-0" >Period: {{ scholarship.award_period }}</p>
+					</div>
+					
+					<div class="p-3 bg-light rounded" >
+						<h4 class="font-italic" >Requirements</h4>
+						<p class="mb-0" >Must Attend In: {{ scholarship.must_attend_in }}</p>
+						<p class="mb-0" >Nat'l Applications: {{ scholarship.regional_restricted }}</p>
+						<p class="mb-0" >Application Deadline: {{ scholarship.deadline }}</p>
+						<p class="mb-0" >Application Fee: {{ scholarship.fee }}</p>
+					</div>
+
+					<div class="p-3 bg-light rounded" >
+						<h4 class="font-italic" >Applies To</h4>
+						<p class="mb-0" >Ages: {{ scholarship.ages }}</p>
+						<p class="mb-0" >Discipline: {{ scholarship.discipline }}</p>
+						<p class="mb-0" >Must Be Used For: {{ scholarship.applies_to }}</p>
+					</div>
+				</aside> 
+				
+				<div class="col-md-8 blog-main" >
+
+					<h2 class="pb-3 mb-4 border-bottom" >
+						<a href="{{ scholarship.org_url }}" target="_new" >{{ scholarship.org_name }}</a>
+					</h2>
+					
+					<p>
+						{{ scholarship.org_address_city }}<br>
+						{{ scholarship.org_address_state }}<br>
+						{{ scholarship.org_address_postal_code }}
+					</p>
+
+					<h3 class="pb-3 mb-4 font-italic" *ngIf="scholarship.applies_to" >
+						Used For: <span *ngIf="" >{{ scholarship.applies_to }}</span>
+					</h3>
+
+					<div class="blog-post" >
+						<h3 class="blog-post-title" style="border-bottom: thin black solid;" >Notes</h3>
+
+						<div style="padding-left:10px;" >
+							<div>{{ scholarship.notes }}</div>
+						</div>
+						<hr>
+					</div>
+					
+					<nav class="blog-pagination" >
+						<button class="btn btn-outline-primary" routerLink="/scholarships/{{ state }}/" >Return to {{ state }}</button>&nbsp;
+						<a class="btn btn-outline-secondary finger" [routerLink]="['/scholarships/']" >Return to "Find"</a>
+					</nav>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<footer class=" justify-content-center" >
+			<p style="padding: 0 30px;" >
+				Information is maintained to the best of Accoladi.com's ability.
+				Data may have changed since our last update. Students and Parents are responsible
+				to make sure infromation is relevant to them by checking with the scholarship directly.
+			</p>
+		</footer>
+
+	</ng-container>
+
+	<ng-container *ngIf="showScholarshipList" >
+		
+		<h1 class="heading text-center">Scholarship List</h1>
+
+		<div class="table-responsive" >
+
+			<table id="scholarshipStateList" class="table table-striped mx-auto w-auto" style="width:70%; text-align:center;" >
+				<thead class="thead-dark" style="cursor: pointer;" >
+					<tr>
+						<!-- <th>Row</th> -->
+						<th (click)="sortTable(0)" class="align-top" >Scholarship Name</th>
+						<th (click)="sortTable(1)" class="align-top" >Use In State</th>
+						<th (click)="sortTable(2)" class="align-top" >Amounts</th>
+						<!-- <th (click)="sortTable(3)" class="align-top" >Org City, State</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let scholarship of scholarshipList; let i=index" >
+						<!-- <td>{{ i+1 }}</td> -->
+						<td routerLink="/scholarships/{{ state }}/{{ scholarship.name | replace : ' ' : '_' }}" style="cursor: pointer;" class="text-left" >{{ scholarship.name }}</td>
+						<td>{{ scholarship.must_attend_in }}</td>
+						<td>{{ scholarship.award_amount }}</td>
+						<!-- <td>{{ scholarship.organization_address_city }} {{ scholarship.organization_address_state }}</td> -->
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</ng-container>
+
+	<ng-container *ngIf="!showScholarshipList && !showScholarship" >
+
+		<h1 class="heading text-center">FIND SCHOLARSHIPS</h1>
+		
+		<div class="container" >
+
+			<div class="row" >
+
+				<div class="col-md-12" >
+
+					<div class="content" >
+
+						<p>As a performing arts student, you can earn scholarships for almost anything.
+						A great source of scholarships is through private sector organizations like non-profits,
+						corporations, employers, religious institutions, competitions, civic groups,
+						companies, trusts, and community foundations.
+						These scholarships can often be used at any college, university, or conservatory,
+						and there is no limit on how many you can earn. At Accoladi.com,
+						we’re making it easier for students to recognize, afford, and achieve their collegiate dreams
+						with tools and resources to help you pay for college. Check out our growing collection of scholarship opportunities.</p>
+
+						<p style="color: red;">**Search results limited to 5, full access to 16,500 scholarships available to paid members.  </p>
+						<p style="color: red;">PLEASE NOTE: Because of fluctuating market conditions, not all scholarships may be available. Check link for updated availability.</p>
+
+
+						<div class="join-pitch text-center" >
+
+							<h4>Become a member today for even more resources and greater access to our library</h4>
+							<button  [routerLink]="['/public/get-connected']" class="btn btn-sm join-pitch-btn" >Get Started</button>
+
+						</div>
+
+						<div class="row" >
+
+							<div class="d-none d-sm-block col-12 text-center finger" >
+
+								<img src="assets/images/usa-map-blue.png" usemap="#image-map" >
+								<!-- [routerLink]="['/path/']"  -->
+								<map name="image-map" >
+									<area [routerLink]="['/scholarships/AL/']" alt=" ALABAMA " TITLE=" ALABAMA " coords="648,351,657,351,656,343,690,339,688,325,691,315,685,311,675,275,643,279,644,291,642,318" shape="poly" >
+									<area [routerLink]="['/scholarships/AK/']" alt=" ALASKA " TITLE=" ALASKA " coords="14,297,170,176" shape="rect" >
+									<area [routerLink]="['/scholarships/AZ/']" alt=" ARIZONA " TITLE=" ARIZONA " coords="363,330,371,244,311,235,311,246,300,244,302,261,304,275,292,285,297,293,287,299,312,316,337,328" shape="poly" >
+									<area [routerLink]="['/scholarships/AR/']" alt=" ARKANSAS " TITLE=" ARKANSAS " coords="557,263,607,261,607,269,619,267,615,286,610,295,604,306,605,316,566,318,567,309,561,305" shape="poly" >
+									<area [routerLink]="['/scholarships/CA/']" alt=" CALIFORNIA " TITLE=" CALIFORNIA " coords="210,126,261,139,251,181,303,272,292,285,297,295,286,297,259,295,244,265,220,253,227,240,214,215,220,206,214,204,211,185,204,169,207,161,200,152" shape="poly" >
+									<area [routerLink]="['/scholarships/CO/']" alt=" COLORADO " TITLE=" COLORADO " coords="386,178,467,188,467,200,462,250,375,243" shape="poly" >
+									<area [routerLink]="['/scholarships/CT/']" alt=" CONNECTICUT " TITLE=" CONNECTICUT " coords="803,140,808,159,822,151,815,136" shape="poly" >
+									<area [routerLink]="['/scholarships/DE/']" alt=" DELAWARE " TITLE=" DELAWARE " coords="782,187,797,197,802,209,791,222,783,211" shape="poly" >
+									<area [routerLink]="['/scholarships/FL/']" alt=" FLORIDA " TITLE=" FLORIDA " coords="660,345,657,354,674,354,686,362,705,353,715,358,727,374,729,385,735,385,731,397,757,424,766,422,771,406,766,386,758,376,763,368,739,338,730,342,727,349,716,339,695,342,689,339" shape="poly" >
+									<area [routerLink]="['/scholarships/GA/']" alt=" GEORGIA " TITLE=" GEORGIA " coords="675,277,694,277,703,278,711,282,723,297,743,318,737,329,739,339,731,341,727,348,718,340,706,343,691,343,691,317,684,307" shape="poly" >
+									<area [routerLink]="['/scholarships/HI/']" alt=" HAWAII " TITLE=" HAWAII " coords="243,399,147,334" shape="rect" >
+									<area [routerLink]="['/scholarships/ID/']" alt=" IDAHO " TITLE=" IDAHO " coords="297,145,364,157,365,114,354,114,342,106,340,95,331,95,339,80,331,66,330,39,319,33,308,79,314,89,298,108" shape="poly" >
+									<area [routerLink]="['/scholarships/IL/']" alt=" ILLINOIS " TITLE=" ILLINOIS " coords="626,247,639,242,643,234,639,230,646,217,642,212,642,170,635,160,607,162,609,170,600,180,601,189,595,195,596,204,599,211,607,214,614,221,610,232" shape="poly" >
+									<area [routerLink]="['/scholarships/IN/']" alt=" INDIANA " TITLE=" INDIANA " coords="640,167,648,169,671,170,678,208,674,218,660,229,640,234,647,218,643,208" shape="poly" >
+									<area [routerLink]="['/scholarships/IA/']" alt=" IOWA " TITLE=" IOWA " coords="533,153,594,150,596,157,600,160,607,166,607,172,600,179,600,188,595,196,586,195,544,194" shape="poly" >
+									<area [routerLink]="['/scholarships/KS/']" alt=" KANSAS " TITLE=" KANSAS " coords="463,248,469,201,550,204,556,226,556,252" shape="poly" >
+									<area [routerLink]="['/scholarships/KY/']" alt=" KENTUCKY " TITLE=" KENTUCKY " coords="626,250,636,243,644,233,655,231,664,227,675,217,679,209,691,217,699,217,707,218,706,223,713,229,711,237,697,248,640,253,632,256" shape="poly" >
+									<area [routerLink]="['/scholarships/LA/']" alt=" LOUISIANA " TITLE=" LOUISIANA " coords="566,320,602,319,606,328,601,337,599,348,605,348,623,349,625,358,631,362,635,372,611,376,595,375,573,370,575,346" shape="poly" >
+									<area [routerLink]="['/scholarships/ME/']" alt=" MAIN " TITLE=" MAIN " coords="829,38,849,39,857,64,871,74,863,84,849,94,836,102,836,111,827,106,816,83,821,75" shape="poly" >
+									<area [routerLink]="['/scholarships/MD/']" alt=" MARYLAND " TITLE=" MARYLAND " coords="754,188,778,183,784,186,778,194,783,209,771,207,769,195,755,194" shape="poly" >
+									<area [routerLink]="['/scholarships/MA/']" alt=" MASSACHUSETTS " TITLE=" MASSACHUSETTS " coords="804,128,831,122,833,127,845,126,851,132,843,144,835,144,828,137,820,134,804,139" shape="poly" >
+									<area [routerLink]="['/scholarships/MI/']" alt=" MICHIGAN " TITLE=" MICHIGAN " coords="605,96,628,79,645,94,671,88,683,96,691,110,699,130,699,144,692,160,671,170,645,169,647,130,644,117,635,121,628,112" shape="poly" >
+									<area [routerLink]="['/scholarships/MN/']" alt=" MINNESOTA " TITLE=" MINNESOTA " coords="536,149,537,126,532,108,536,102,529,56,551,55,566,63,587,69,610,75,596,84,588,94,577,99,581,104,576,108,575,116,575,123,585,130,595,140,595,147" shape="poly" >
+									<area [routerLink]="['/scholarships/MS/']" alt=" MISSISSIPPI " TITLE=" MISSISSIPPI " coords="628,358,647,353,642,334,639,318,644,294,642,280,615,284,611,291,604,300,604,314,607,324,607,331,599,346,623,347" shape="poly" >
+									<area [routerLink]="['/scholarships/MO/']" alt=" MISSOURI " TITLE=" MISSOURI " coords="546,196,593,196,599,211,606,214,609,219,610,228,614,233,620,239,627,242,623,248,626,254,619,260,618,266,608,265,606,260,559,261,558,250,557,222" shape="poly" >
+									<area [routerLink]="['/scholarships/MT/']" alt=" MONTANA " TITLE=" MONTANA " coords="333,41,455,55,447,120,373,115,365,112,352,114,341,98,335,94,339,79,329,60" shape="poly" >
+									<area [routerLink]="['/scholarships/NE/']" alt=" NEBRASKA " TITLE=" NEBRASKA " coords="468,200,467,187,442,183,447,154,512,159,527,164,539,175,542,191,544,201" shape="poly" >
+									<area [routerLink]="['/scholarships/NV/']" alt=" NEVADA " TITLE=" NEVADA " coords="297,259,300,243,309,243,330,154,260,140,249,183" shape="poly" >
+									<area [routerLink]="['/scholarships/NH/']" alt=" NEW HAMPSHIRE " TITLE=" NEW HAMPSHIRE " coords="815,86,809,89,816,95,809,105,811,127,827,121,831,110,823,105" shape="poly" >
+									<area [routerLink]="['/scholarships/NJ/']" alt=" NEW JERSEY " TITLE=" NEW JERSEY " coords="792,158,802,158,808,166,806,175,800,188,789,184,793,172,785,167" shape="poly" >
+									<area [routerLink]="['/scholarships/NM/']" alt=" NEW MEXICO " TITLE=" NEW MEXICO " coords="375,242,450,253,439,327,365,330" shape="poly" >
+									<area [routerLink]="['/scholarships/NY/']" alt=" NEW YORK " TITLE=" NEW YORK " coords="728,152,735,143,736,134,763,124,763,116,775,96,789,97,797,113,803,127,803,139,804,151,807,157,819,155,822,161,804,164,797,155,789,154,779,146,764,147,735,156" shape="poly" >
+									<area [routerLink]="['/scholarships/NC/']" alt=" NORTH CAROLINA " TITLE=" NORTH CAROLINA " coords="692,272,699,264,710,257,720,246,794,235,799,247,791,254,799,259,790,263,783,268,777,279,769,281,748,271,732,268,720,268,705,278" shape="poly" >
+									<area [routerLink]="['/scholarships/ND/']" alt=" NORTH DAKOTA " TITLE=" NORTH DAKOTA " coords="451,105,456,55,533,61,529,71,531,109" shape="poly" >
+									<area [routerLink]="['/scholarships/OH/']" alt=" OHIO " TITLE=" OHIO " coords="672,170,695,165,706,170,721,161,725,171,724,189,719,198,712,206,707,210,709,218,702,216,688,216,679,208" shape="poly" >
+									<area [routerLink]="['/scholarships/OK/']" alt=" OKLAHOMA " TITLE=" OKLAHOMA " coords="449,250,555,251,562,308,547,300,535,305,511,301,491,288,489,261,451,258" shape="poly" >
+									<area [routerLink]="['/scholarships/OR/']" alt=" OREGON " TITLE=" OREGON " coords="211,122,261,138,296,146,302,111,296,109,311,90,307,83,260,76,245,70,235,62" shape="poly" >
+									<area [routerLink]="['/scholarships/PA/']" alt=" PENNSYLVANIA " TITLE=" PENNSYLVANIA " coords="724,158,732,153,736,158,780,146,789,155,790,161,783,167,793,172,789,179,798,187,795,192,782,183,735,193,727,187" shape="poly" >
+									<area [routerLink]="['/scholarships/RI/']" alt=" RHODE ISLAND " TITLE=" RHODE ISLAND " coords="814,137,823,135,835,145,823,153" shape="poly" >
+									<area [routerLink]="['/scholarships/SC/']" alt=" SOUTH CAROLINA " TITLE=" SOUTH CAROLINA " coords="706,276,729,268,750,272,767,283,764,297,754,308,742,317" shape="poly" >
+									<area [routerLink]="['/scholarships/SD/']" alt=" SOUTH DAKOTA " TITLE=" SOUTH DAKOTA " coords="447,151,452,104,530,110,534,122,533,150,531,162,508,154" shape="poly" >
+									<area [routerLink]="['/scholarships/TN/']" alt=" TENNESSEE " TITLE=" TENNESSEE " coords="618,283,619,266,624,255,641,258,644,254,720,248,716,255,710,257,704,262,698,263,693,274" shape="poly" >
+									<area [routerLink]="['/scholarships/TX/']" alt=" TEXAS " TITLE=" TEXAS " coords="392,325,439,327,450,256,488,261,488,288,515,302,536,306,549,300,563,306,563,324,572,342,571,368,523,398,522,427,491,412,474,376,444,369,430,376" shape="poly" >
+									<area [routerLink]="['/scholarships/UT/']" alt=" UTAH " TITLE=" UTAH " coords="334,152,360,161,360,174,383,179,373,243,312,232" shape="poly" >
+									<area [routerLink]="['/scholarships/VT/']" alt=" VERMONT " TITLE=" VERMONT " coords="791,96,800,118,803,127,810,124,807,107,815,94,808,88" shape="poly" >
+									<area [routerLink]="['/scholarships/VA/']" alt=" VIRGINIA " TITLE=" VIRGINIA " coords="703,246,713,236,726,234,735,226,739,216,747,208,759,196,767,197,771,202,775,209,782,209,786,219,789,225,794,230,787,234,722,247" shape="poly" >
+									<area [routerLink]="['/scholarships/WA/']" alt=" WASHINGTON " TITLE=" WASHINGTON " coords="235,20,260,30,259,17,320,32,307,82,267,77,257,70,245,71,239,58" shape="poly" >
+									<area [routerLink]="['/scholarships/WV/']" alt=" WEST VIRGINIA " TITLE=" WEST VIRGINIA " coords="705,217,709,209,715,203,720,197,723,185,730,192,736,193,747,193,755,190,755,197,748,203,743,210,737,216,735,224,728,233,720,234,713,234,711,227" shape="poly" >
+									<area [routerLink]="['/scholarships/WI/']" alt=" WISCONSIN " TITLE=" WISCONSIN " coords="636,158,605,161,595,155,595,146,595,136,578,123,576,110,580,98,602,98,607,97,615,103,623,109,629,113,632,118,640,117" shape="poly" >
+									<area [routerLink]="['/scholarships/WY/']" alt=" WYOMING " TITLE=" WYOMING " coords="369,114,447,121,443,181,411,181,387,177,360,173" shape="poly" >
+								</map>
+
+							</div>
+
+						</div>
+
+						&nbsp;<br>
+
+						<div class="row justify-content-center" >
+
+							<div class="col-6 col-lg-2" >
+
+								<a class=" finger" [routerLink]="['/scholarships/AL/']" title=" ALABAMA " >Alabama</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/AK/']" title=" ALASKA " >Alaska</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/AZ/']" title=" ARIZONA " >Arizona</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/AR/']" title=" ARKANSAS " >Arkansas</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/CA/']" title=" CALIFORNIA " >California</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/CO/']" title=" COLORADO " >Colorado</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/CT/']" title=" CONNECTICUT " >Connecticut</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/DE/']" title=" DELAWARE " >Delaware</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/FL/']" title=" FLORIDA " >Florida</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/GA/']" title=" GEORGIA " >Georgia</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/HI/']" title=" HAWAII " >Hawaii</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/ID/']" title=" IDAHO " >Idaho</a><br/>
+
+							</div>
+
+							<div class="col-6 col-lg-2" >
+
+								<a class=" finger" [routerLink]="['/scholarships/IL/']" title=" ILLINOIS " >Illinois</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/IN/']" title=" INDIANA " >Indiana</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/IA/']" title=" IOWA " >Iowa</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/KS/']" title=" KANSAS " >Kansas</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/KY/']" title=" KENTUCKY " >Kentucky</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/LA/']" title=" LOUISIANA " >Louisiana</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/ME/']" title=" MAINE " >Maine</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MD/']" title=" MARYLAND " >Maryland</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MA/']" title=" MASSACHUSETTS " >Massachusetts</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MI/']" title=" MICHIGAN " >Michigan</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MN/']" title=" MINNESOTA " >Minnesota</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MS/']" title=" MISSISSIPPI " >Mississippi</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/MO/']" title=" MISSOURI " >Missouri</a><br/>
+
+							</div>
+
+							<div class="col-6 col-lg-2" >
+
+								<a class=" finger" [routerLink]="['/scholarships/MT/']" title=" MONTANA " >Montana</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NE/']" title=" NEBRASKA " >Nebraska</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NV/']" title=" NEVADA " >Nevada</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NH/']" title=" NEW HAMPSHIRE " >New Hampshire</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NJ/']" title=" NEW JERSEY " >New Jersey</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NM/']" title=" NEW MEXICO " >New Mexico</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NY/']" title=" NEW YORK " >New York</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/NC/']" title=" NORTH CAROLINA " >North Carolina</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/ND/']" title=" NORTH DAKOTA " >North Dakota</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/OH/']" title=" OHIO " >Ohio</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/OK/']" title=" OKLAHOMA " >Oklahoma</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/OR/']" title=" OREGON " >Oregon</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/PA/']" title=" PENNSYLVANIA " >Pennsylvania</a><br/>
+
+							</div>
+
+							<div class="col-6 col-lg-2" >
+
+								<a class=" finger" [routerLink]="['/scholarships/RI/']" title=" RHODE ISLAND " >Rhode Island</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/SC/']" title=" SOUTH CAROLINA " >South Carolina</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/SD/']" title=" SOUTH DAKOTA " >South Dakota</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/TN/']" title=" TENNESSEE " >Tennessee</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/TX/']" title=" TEXAS " >Texas</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/UT/']" title=" UTAH " >Utah</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/VT/']" title=" VERMONT " >Vermont</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/VA/']" title=" VIRGINIA " >Virginia</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/WA/']" title=" WASHINGTON " >Washington</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/WV/']" title=" WEST VIRGINIA " >West Virginia</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/WI/']" title=" WISCONSIN " >Wisconsin</a><br/>
+								<a class=" finger" [routerLink]="['/scholarships/WY/']" title=" WYOMING " >Wyoming</a><br/>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</ng-container>
+
+	<app-footer></app-footer>
+
+</div>

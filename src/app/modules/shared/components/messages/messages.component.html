@@ -1,0 +1,94 @@
+<div class="card">
+
+	<div class="card-header messages-card-header">
+
+		<div class="row">
+
+			<div class="col-md-6">
+
+				<h4>
+					Direct Messages
+				</h4>
+
+			</div>
+
+			<div class="col-md-6" *ngIf="showNewMessageBtn">
+
+				<button *ngIf="user.role === 'Teacher' || user.role === 'Parent'" type="button" class="btn float-right "
+					(click)="newMessage()">
+
+					<i class="fa fa-plus"></i>
+					New Message
+
+				</button>
+
+				&nbsp;
+
+				<a href="javascript:;" class=" {{ loadingMessages ? 'sync-messages' : '' }} float-right "
+					(click)="getThreads()" style="display: inline-block; padding: 10px; color:#e2a90a; ">
+
+					<i class="fa fa-sync-alt"></i>
+
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-body">
+
+		<p *ngIf="loadingMessages">
+			Loading messages...
+		</p>
+
+		<table *ngIf="user && !loadingMessages" class="table table-bordered">
+
+			<tbody>
+
+				<tr *ngFor="let mt of messageThreads; let i = index">
+
+					<td class="mouse-pointer" (click)="enterConversation(mt)">
+
+						<b>
+							{{ getOPUsername(mt) }}
+						</b>
+
+						<p style="color: gray; font-size: 12px;  margin: 0;">
+							{{ mt?.last_msg.message }}
+						</p>
+
+						<small>
+							{{ mt?.last_msg.date_sent | date }}
+						</small>
+
+					</td>
+
+					<td class=" mouse-pointer" style="width: 39px;" (click)="deleteConversation(mt._id)">
+
+						<i class="fa fa-trash text-danger float-right "> </i>
+
+					</td>
+
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+	<div class="card-footer messages-card-footer">
+
+		<span *ngIf="!loadingMessages">
+			You have {{ messageThreads?.length || 0 }} conversations
+		</span>
+
+		<span *ngIf="loadingMessages">
+			Loading messages...
+		</span>
+
+	</div>
+
+</div>

@@ -1,0 +1,108 @@
+<div class="modal-header">
+  <h4 class="modal-title">School</h4>
+</div>
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-row">
+        <div class="col-md-5 form-group required">
+          <label for="state" class="control-label">State</label>
+          <select id="state" class="form-control " [class.state-error]="isFieldInvalid('state')" name="state"
+            formControlName="state">
+            <option value="" disabled selected>State - Select One...</option>
+            <option *ngFor="let state of states" value="{{ state.abbr }}">{{ state.name }}</option>
+          </select>
+          <app-field-error-display [displayError]="isFieldInvalid('state')" errorMsg="Please select a state">
+          </app-field-error-display>
+        </div>
+
+        <div class="col-md-5 form-group required">
+          <label class="control-label " for="school">School</label>
+          <input [ngbTypeahead]="searchSchools" [inputFormatter]="formatMatches" [resultTemplate]="rt"
+            class="form-control" type="text" name="school" placeholder="Search schools..." formControlName="school"
+            id="school" (selectItem)="selectedSchool($event)" />
+          <span *ngIf="loadingSchools">loading schools...</span>
+          <!-- <div class="" *ngIf="seinvalid-feedbackarchFailed">
+            Sorry, suggestions could not be loaded.
+          </div> -->
+          <div class="invalid-feedback" *ngIf="searchFailed">
+            Sorry, suggestions could not be loaded.
+          </div>
+          <input type="hidden" name="school_id" formControlName="school_id" value="" />
+          <ng-template #rt let-r="result" let-t="term">
+            <span class="device">
+              <span class="grayout">{{ r?.name }}</span><br />
+              <small class="grayout">
+                {{ r?.address.city + ", " + r?.address.state }}
+              </small>
+            </span>
+          </ng-template>
+
+          <app-field-error-display [displayError]="isFieldInvalid('school')" errorMsg="Please select school name">
+          </app-field-error-display>
+        </div>
+
+        <div class="col-md-2 mt-4 text-right">
+          <button *ngIf="noresult" (click)="addSchool()" class="btn">
+            <img class="mr-2" src="assets/img/sa-add-08.svg" /> Add</button>
+        </div>
+
+        <div class="col-md-5 form-group ">
+          <label for="attended_from" class="control-label">Year Started</label>
+          <select id="attended_from" class="form-control  " name="attended_from" formControlName="attended_from">
+            <option value="" disabled selected>Select</option>
+            <option *ngFor="let year of years" [ngValue]="year">
+              {{ year }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-5 form-group ">
+          <label for="attended_to" class="control-label">Year Ended</label>
+          <select id="attended_to" class="form-control  " name="attended_to" formControlName="attended_to">
+            <option value="" disabled selected>Select</option>
+            <option *ngFor="let year of years" [ngValue]="year">
+              {{ year }}
+            </option>
+          </select>
+          <small>(use school year end, if not currently
+            attending)</small>
+        </div>
+
+        <div class="col-md-2 form-group">
+          <div class="checkbox">
+            <label for="current" class="control-label">
+              <input id="current" type="checkbox" name="current" formControlName="current" />
+              Current</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+            {{ feedback }}
+          </div>
+          <div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+            {{ feedback }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-between">
+    <div class="col-md-12">
+      <button type="button" style="float: left" class="btn gray-btn mr-1" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" style="float: left" class="btn gray-btn" (click)="BackToPreviousProfile()">
+        Back
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)=" submitAndNext()">
+        Next
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)="submitAttempted=true; submitForm()">Save
+      </button>
+    </div>
+  </div>
+
+</form>

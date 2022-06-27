@@ -1,0 +1,28 @@
+<div class="modal-body"  *ngIf="embeded_video"  >
+	
+	<!-- 16:9 aspect ratio -->
+	<div *ngIf="embeded_video" class="embed-responsive embed-responsive-16by9" >
+		
+		<iframe
+			class="embed-responsive-item"
+			[src]="sanitizer.bypassSecurityTrustResourceUrl(embeded_video)"
+			frameborder="0"
+			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen >
+		</iframe>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+		<button type="button" class="btn gray-btn" (click)="closeEmbeddedVideo()" >
+			Close
+		</button>
+	</div>
+
+</div>
+
+<div >
+	<div *ngIf="isNotembedeVideo" style="color:red !important; font-size: .8rem !important; margin-top: 5px !important">
+		Please provide a valid URL
+	</div>
+</div>

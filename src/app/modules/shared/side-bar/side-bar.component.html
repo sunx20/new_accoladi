@@ -1,0 +1,65 @@
+<div id="dynamic-side-nav" 
+	 name="dynamic-side-nav" 
+	 class="sidebar-sticky" >
+
+	<ul class="nav flex-column" >
+
+		<div *ngFor="let sidebar of sideBarNav" >
+
+			<li id="nav-dynamic-{{ sidebar.name }}"
+				class="nav-item {{ sidebar.class }}" >
+
+				<a class="nav-link main-menu" 
+					routerLink="{{ sidebar.link }}" 
+					routerLinkActive="active" 
+					[routerLinkActiveOptions]="{ exact: true }" >
+
+					<div class="icon" >
+
+						<i class="{{ sidebar.icon }}" 
+							style="padding-top: 10px; color: #666;" ></i>
+
+					</div>
+
+					<span>
+						{{ sidebar.label }}
+					</span>
+
+				</a>
+
+				<div *ngIf="sidebar.sub.length!=0" 
+					 id="submenu1" 
+					 class="collapse" 
+					 [class.show]="this.currentPath === sidebar.name || isSidebarOpen" 
+					 attr.aria-expanded="{{ this.currentPath === sidebar.name }}" >
+
+					<ul class="flex-column nav" >
+
+						<li *ngFor="let sideNav of sidebar.sub" class="nav-item pro5 " >
+
+							<a *ngIf="sideNav.label=='Show Tour'" 
+								(click)="showHomeTour()"
+								class="nav-link" >
+								{{sideNav.label}}
+							</a>
+
+							<a *ngIf="sideNav.label!='Show Tour'"
+								routerLink="{{ sideNav.link }}" 
+								routerLinkActive="active" 
+								class="nav-link"  >
+								{{sideNav.label}}
+							</a>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+			</li>
+
+		</div>
+
+	</ul>
+
+</div>

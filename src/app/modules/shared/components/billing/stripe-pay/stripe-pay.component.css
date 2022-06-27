@@ -1,0 +1,439 @@
+.modal-body .submitted form,
+.modal-body .submitting form {
+	opacity: 0;
+	transform: scale(0.9);
+	pointer-events: none;
+}
+
+.modal-body .submitted .success,
+.modal-body .submitting .success {
+	pointer-events: all;
+}
+
+.modal-body .submitting .success .icon {
+	opacity: 1;
+}
+
+.modal-body .submitted .success > * {
+	opacity: 1;
+	transform: none !important;
+}
+
+.modal-body .submitted .success > :nth-child(2) {
+	transition-delay: 0.1s;
+}
+
+.modal-body .submitted .success > :nth-child(3) {
+	transition-delay: 0.2s;
+}
+
+.modal-body .submitted .success > :nth-child(4) {
+	transition-delay: 0.3s;
+}
+
+.modal-body .submitted .success .icon .border,
+.modal-body .submitted .success .icon .checkmark {
+	opacity: 1;
+	stroke-dashoffset: 0 !important;
+}
+
+.modal-body .caption {
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	padding: 15px 10px 0;
+	color: #aab7c4;
+	font-family: Roboto, "Open Sans", "Segoe UI", sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.modal-body .caption * {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.modal-body .caption .no-charge {
+	color: #cfd7df;
+	margin-right: 10px;
+}
+
+.modal-body .caption a.source {
+	text-align: right;
+	color: inherit;
+	transition: color 0.1s ease-in-out;
+	margin-left: 10px;
+}
+
+.modal-body .caption a.source:hover {
+	color: #6772e5;
+}
+
+.modal-body .caption a.source:active {
+	color: #43458b;
+}
+
+.modal-body .caption a.source svg {
+	margin-right: 10px;
+}
+
+.modal-body .caption a.source svg path {
+	fill: currentColor;
+}
+
+.modal-body form input::-webkit-input-placeholder {
+	opacity: 1;
+}
+
+.modal-body form input::-moz-placeholder {
+	opacity: 1;
+}
+
+.modal-body form input:-ms-input-placeholder {
+	opacity: 1;
+}
+
+.modal-body .error {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	margin-top: 20px;
+	left: 0;
+	padding: 0 15px;
+	font-size: 13px !important;
+	opacity: 0;
+	transform: translateY(10px);
+	transition-property: opacity, transform;
+	transition-duration: 0.35s;
+	transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal-body .error.visible {
+	opacity: 1;
+	transform: none;
+}
+
+.modal-body .error .message {
+	font-size: inherit;
+}
+
+.modal-body .error svg {
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	margin-top: -1px;
+	margin-right: 10px;
+}
+
+.modal-body .success {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	text-align: center;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.modal-body .success > * {
+	transition-property: opacity, transform;
+	transition-duration: 0.35s;
+	transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+	opacity: 0;
+	transform: translateY(50px);
+}
+
+.modal-body .success .icon {
+	margin: 15px 0 30px;
+	transform: translateY(70px) scale(0.75);
+}
+
+.modal-body .success .icon svg {
+	will-change: transform;
+}
+
+.modal-body .success .icon .border {
+	stroke-dasharray: 251;
+	stroke-dashoffset: 62.75;
+	transform-origin: 50% 50%;
+	transition: stroke-dashoffset 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+	animation: spin 1s linear infinite;
+}
+
+.modal-body .success .icon .checkmark {
+	stroke-dasharray: 60;
+	stroke-dashoffset: 60;
+	transition: stroke-dashoffset 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) 0.35s;
+}
+
+.modal-body .success .title {
+	font-size: 17px;
+	font-weight: 500;
+	margin-bottom: 8px;
+}
+
+.modal-body .success .message {
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 25px;
+	line-height: 1.6em;
+}
+
+.modal-body .success .message span {
+	font-size: inherit;
+}
+
+.modal-body .success .reset:active {
+	transition-duration: 0.15s;
+	transition-delay: 0s;
+	opacity: 0.65;
+}
+
+.modal-body .success .reset svg {
+	will-change: transform;
+}
+
+footer {
+	position: relative;
+	max-width: 750px;
+	padding: 50px 20px;
+	margin: 0 auto;
+}
+
+.optionList {
+	margin: 6px 0;
+}
+
+.optionList li {
+	display: inline-block;
+	margin-right: 13px;
+}
+
+.optionList a {
+	color: #aab7c4;
+	transition: color 0.1s ease-in-out;
+	cursor: pointer;
+	font-size: 15px;
+	line-height: 26px;
+}
+
+.optionList a.selected {
+	color: #6772e5;
+	font-weight: 600;
+}
+
+.optionList a:hover {
+	color: #32325d;
+}
+
+.optionList a.selected:hover {
+	cursor: default;
+	color: #6772e5;
+}
+
+.sa-stripe-two {
+	background-color: #9169d8;
+}
+
+.sa-stripe-two * {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.sa-stripe-two form {
+}
+
+#sa-stripe-two-paymentRequest {
+	max-width: 500px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.sa-stripe-two fieldset {
+	border: 1px solid #b5a4ed;
+	padding: 15px;
+	border-radius: 6px;
+}
+
+.sa-stripe-two fieldset legend {
+	margin: 0 auto;
+	padding: 0 10px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	color: #cdd0f8;
+	background-color: #9169d8;
+}
+
+.sa-stripe-two fieldset legend + * {
+	clear: both;
+}
+
+.sa-stripe-two .card-only {
+	display: block;
+}
+.sa-stripe-two .payment-request-available {
+	display: none;
+}
+
+.sa-stripe-two .row {
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0 0 10px;
+}
+
+.sa-stripe-two .field {
+	position: relative;
+	width: 100%;
+}
+
+.sa-stripe-two .field + .field {
+	margin-left: 10px;
+}
+
+.sa-stripe-two label {
+	width: 100%;
+	color: #cdd0f8;
+	font-size: 13px;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.sa-stripe-two .input {
+	width: 100%;
+	color: #fff;
+	background: transparent;
+	padding: 5px 0 6px 0;
+	border-bottom: 1px solid #a988ec;
+	transition: border-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.sa-stripe-two .input::-webkit-input-placeholder {
+	color: #bfaef6;
+}
+
+.sa-stripe-two .input::-moz-placeholder {
+	color: #bfaef6;
+}
+
+.sa-stripe-two .input:-ms-input-placeholder {
+	color: #bfaef6;
+}
+
+.sa-stripe-two .input.StripeElement--focus,
+.sa-stripe-two .input:focus {
+	border-color: #fff;
+}
+.sa-stripe-two .input.StripeElement--invalid {
+	border-color: #ffc7ee;
+}
+
+.sa-stripe-two input:-webkit-autofill,
+.sa-stripe-two select:-webkit-autofill {
+	-webkit-text-fill-color: #fce883;
+	transition: background-color 100000000s;
+	-webkit-animation: 1ms void-animation-out;
+}
+
+.sa-stripe-two .StripeElement--webkit-autofill {
+	background: transparent !important;
+}
+
+.sa-stripe-two input,
+.sa-stripe-two button,
+.sa-stripe-two select {
+	-webkit-animation: 1ms void-animation-out;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border-style: none;
+	border-radius: 0;
+}
+
+.sa-stripe-two select.input,
+.sa-stripe-two select:-webkit-autofill {
+	background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#fff" d="M5.35355339,4.64644661 L9.14644661,0.853553391 L9.14644661,0.853553391 C9.34170876,0.658291245 9.34170876,0.341708755 9.14644661,0.146446609 C9.05267842,0.0526784202 8.92550146,-2.43597394e-17 8.79289322,0 L1.20710678,0 L1.20710678,0 C0.930964406,5.07265313e-17 0.707106781,0.223857625 0.707106781,0.5 C0.707106781,0.632608245 0.759785201,0.759785201 0.853553391,0.853553391 L4.64644661,4.64644661 L4.64644661,4.64644661 C4.84170876,4.84170876 5.15829124,4.84170876 5.35355339,4.64644661 Z" id="shape"></path></svg>');
+	background-position: 100%;
+	background-size: 10px 5px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-right: 20px;
+}
+
+.sa-stripe-two button {
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin: 20px 0 0;
+	background-color: #fff;
+	border-radius: 6px;
+	color: #9169d8;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.sa-stripe-two button:active {
+	background-color: #cdd0f8;
+}
+
+.sa-stripe-two .error svg .base {
+	fill: #fff;
+}
+
+.sa-stripe-two .error svg .glyph {
+	fill: #9169d8;
+}
+
+.sa-stripe-two .error .message {
+	color: #fff;
+}
+
+.sa-stripe-two .success .icon .border {
+	stroke: #bfaef6;
+}
+
+.sa-stripe-two .success .icon .checkmark {
+	stroke: #fff;
+}
+
+.sa-stripe-two .success .title {
+	color: #fff;
+}
+
+.sa-stripe-two .success .message {
+	color: #cdd0f8;
+}
+
+.sa-stripe-two .success .reset path {
+	fill: #fff;
+}
+
+.error-message {
+	color: red;
+}
+
+.success-message {
+	color: green;
+}

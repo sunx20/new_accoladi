@@ -1,0 +1,152 @@
+<app-progress-bar [role]="role" [wizard]="'parent-info'" ></app-progress-bar>
+
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		Parent Info
+	</h4>
+
+</div>
+
+<form novalidate="novalidate" 
+		autocomplete="off" 
+		[formGroup]="form" 
+		(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group required" 
+					[ngClass]="displayFieldCss('first_name')" >
+
+					<label class="control-label " for="first_name" >First Name</label>
+					<input id="first_name" 
+							name="first_name" 
+							type="text" 
+							formControlName="first_name"
+							placeholder="First Name"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('first_name')"  />
+
+					<app-field-error-display 
+						[displayError]="isFieldInvalid('first_name')"
+						errorMsg="Please provide your first name" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-6 form-group required" 
+					[ngClass]="displayFieldCss('last_name')" >
+
+					<label class="control-label" for="last_name" >Last Name</label>
+					<input id="last_name" 
+							name="last_name"
+							type="text" 
+							formControlName="last_name" 
+							placeholder="Last Name"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('last_name')"  />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('last_name')"
+						errorMsg="Please provide your last name" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group required" 
+					[ngClass]="displayFieldCss('email')" >
+
+					<label for="email" class="control-label " >Email</label>
+					<input id="email" 
+							name="email" 
+							type="text" 
+							formControlName="email"
+							placeholder="Email must be different than student email"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('email')"  />
+							<br>(must be different than student email)
+
+					<app-field-error-display 
+						*ngIf="f.email.errors && f.email.errors.required"
+						[displayError]="isFieldInvalid('email')" 
+						errorMsg="Please provide email" >
+					</app-field-error-display>
+
+					<app-field-error-display 
+						*ngIf="f.email.errors && f.email.errors.email"
+						[displayError]="isFieldInvalid('email')" 
+						errorMsg="Please provide a valid email" >
+					</app-field-error-display>
+
+					<app-field-error-display 
+						*ngIf="f.email.errors && f.email.errors.emailTaken"
+						[displayError]="isFieldInvalid('email')" 
+						errorMsg="This email is already taken" >
+					</app-field-error-display>
+					
+				</div>
+
+				<div class="col-md-6 form-group" [ngClass]="displayFieldCss('phone')" >
+					
+					<label class="control-label" for="phone" >
+						Phone
+					</label>
+
+					<input id="phone"  
+							name="phone"
+							type="text"  
+							formControlName="phone"
+							placeholder="Phone"
+							class="form-control margin-top" />
+					<div *ngIf="form.controls['phone'].hasError('pattern') && !form.controls['phone'].valid"
+						class="error-msg" translate>Invalid Phone Number</div>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+			
+				<div class="col-md-12" >
+				
+					<div *ngIf="requestSuccess" 
+						class="alert alert-success" 
+						role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" 
+						class="alert alert-danger" 
+						role="alert" >
+						{{ feedback }}
+					</div>
+				
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button" class="btn gray-btn float-left" (click)="onClickBack()" >
+			Back
+		</button>
+
+		<button type="submit" [disabled]="requestSuccess" class="btn " >
+			Continue
+		</button>
+
+	</div>
+
+</form>

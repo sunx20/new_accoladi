@@ -1,0 +1,14 @@
+<div class="pt-3 pl-4 mb-3" style="margin-left: 84px;">
+  <div class="row">
+    <button type="button" (click)="cancelSubscription('i')" class="btn btn-lg col-8">Cancel immediately</button>
+  </div>
+  <div class="row mt-1">
+    <button *ngIf="!data.cancel_at_period_end" type="button" (click)="cancelSubscription('s')" class="btn btn-lg col-8">Do not renew at end of subscription</button>
+  </div>
+  <div class="row mt-1">
+    <button *ngIf="data.cancel_at_period_end" type="button" (click)="cancelSubscription('a')" class="btn btn-lg col-8">Activate recurring payments</button>
+  </div>
+  <div class="row mt-1">
+    <button  type="button" (click)="cancelSubscription('skip')" class="btn btn-lg col-8">Skip</button>
+  </div>
+</div>

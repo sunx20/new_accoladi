@@ -1,0 +1,123 @@
+<section class="module">
+
+	<div>
+		<h2>
+			<img style="max-width:16px; margin-right:8px;" src="assets/img/search-icon-38.png" />
+			<img style="max-width:16px; margin-right:8px;" src="assets/img/search-icon-38.png" />
+			Search Music History Guides
+		</h2>
+		<br />
+	</div>
+
+	<form class="my-4 mx-5" novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+
+		<div class="form-group mb-4">
+
+			<div class="form-row mb-3">
+
+				<div class="col-md-3 form-group">
+					<label class="control-label">
+						Name
+					</label>
+					<input class="form-control " type="text" formControlName="name" placeholder="any" />
+				</div>
+				<div class="col-md-3 form-group">
+					<label class="control-label">Biography</label>
+					<input class="form-control " type="text" formControlName="biography" placeholder="any" />
+				</div>
+				<div class="col-md-3 form-group">
+					<label class="control-label">Genres</label>
+					<input class="form-control " type="text" formControlName="genres" placeholder="any" />
+				</div>
+				<div class="col-md-3 form-group">
+					<label class="control-label">Composition</label>
+					<input class="form-control " type="text" formControlName="composition" placeholder="any" />
+				</div>
+			</div>
+
+			<div class="form-row  mb-3">
+
+				<div class="col-md-12 form-group">
+
+					<div class="d-flex justify-content-center">
+
+						<button type="button" class="btn recruiter-search-reset-btn gray-btn" (click)="resetForm()">
+							Reset
+						</button>
+
+						<span>&nbsp; &nbsp;</span>
+
+						<button type="submit" class="btn btn-default" (click)="submitAttempted=true; submitForm()"
+							appDisableDoubleClick>
+							<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+								aria-hidden="true">
+							</span>
+							{{ loading ? "Searching..." : "Search" }}
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</form>
+
+</section>
+
+<h3 *ngIf="searchResults && searchResults.length && submitAttempted" class="mb-4 mt-5">
+	Search Results ({{ total }})
+</h3>
+
+<section class="module" *ngIf="searchResults && searchResults.length">
+
+	<div class="general-table">
+
+		<table class="table">
+
+			<tbody>
+				<ng-container *ngFor="let guide of searchResults ; let i = index">
+
+					<tr>
+
+						<td width="100%">
+							<ng-container>
+								<h5>{{guide.name}}</h5>
+								<div class="row">
+									<div class="col-4">Genres : &nbsp; {{guide.genres}}</div>
+									<div class="col-4">Biography : &nbsp; {{guide.biography}}</div>
+									<div class="col-4">
+										<div class="row" *ngFor="let example of guide.examples;let j = index">
+											<div class="col-8">Composition : {{example.composition}}</div>
+											<div class="col-4">
+												<a href="{{example.video_url  ? example.video_url:''}}" target="_new">
+													view
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</ng-container>
+						</td>
+
+					</tr>
+
+				</ng-container>
+			</tbody>
+
+		</table>
+
+	</div>
+
+</section>
+
+<section *ngIf="searchResults && !searchResults.length && submitAttempted" class="module">
+
+	<div class="general-table">
+		No results found with that specified criteria.
+	</div>
+
+</section>

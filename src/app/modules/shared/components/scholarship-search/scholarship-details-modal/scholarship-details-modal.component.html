@@ -1,0 +1,185 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >
+		Scholarship details
+	</h4>
+
+</div>
+
+<div class="modal-body" >
+
+	<div class="container" >
+
+		<div *ngIf="scholarship"
+			class="row">
+
+			<div class="col-md-12" >
+
+				<strong>SCHOLARSHIP</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Name</th>
+							<th scope="col" >Type</th>
+							<th scope="col" >Discipline</th>
+							<th scope="col" >Ages</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ scholarship.name }}</td>
+							<td>{{ extractType(scholarship) }}</td>
+							<td>{{ scholarship.discipline }}</td>
+							<td>{{ scholarship.ages }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>AWARD</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Amount</th>
+							<th scope="col" >Number of</th>
+							<th scope="col" >Period</th>
+							<th scope="col" >Currency</th>
+							<th scope="col" >Deadline</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ scholarship.award.amount }}</td>
+							<td>{{ scholarship.award.number_of }}</td>
+							<td>{{ scholarship.award.period }}</td>
+							<td>{{ scholarship.award.currency }}</td>
+							<td>{{ scholarship.deadline }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>APPLIES TO</strong>
+
+				<table class="table" >
+
+					<tbody>
+						<tr>
+							<td>
+								{{ scholarship.applies_to }}
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>REQUIREMENTS</strong>
+
+				<table class="table" >
+
+					<thead>
+						<tr>
+							<th scope="col" >Fee</th>
+							<th scope="col" >Must Attend In</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ scholarship.fee }}</td>
+							<td>{{ extractState( scholarship.must_attend_in.state ) }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>OFFERED BY</strong>
+
+				<table class="table" >
+
+					<tbody>
+						<tr>
+							<td>
+								<span *ngIf="scholarship.organization.name">
+									{{ scholarship.organization.name }}
+								</span>
+								<span *ngIf="scholarship.organization.contact">
+									<br/>Contact: {{ scholarship.organization.contact }}
+								</span>
+
+								<span *ngIf="scholarship.organization.contact || scholarship.organization.name">
+									&nbsp;<br/>&nbsp;<br/>
+								</span>
+
+								<span *ngIf="scholarship.organization.address.street1">
+									{{ scholarship.organization.address.street1 }}<br/>
+								</span>
+								<span *ngIf="scholarship.organization.address.city">
+									{{ scholarship.organization.address.city }}
+								</span>
+								<span *ngIf="scholarship.organization.address.state">
+									{{ scholarship.organization.address.state }}
+								</span>
+								<span *ngIf="scholarship.organization.address.postal_code"><br/>
+									{{ scholarship.organization.address.postal_code }}
+								</span>
+
+								<span *ngIf="scholarship.organization.city || scholarship.organization.state">
+									&nbsp;<br/>
+									&nbsp;<br/>
+								</span>
+
+								<span *ngIf="scholarship.organization.phone">
+									{{ scholarship.organization.phone }}
+								</span>
+								<span *ngIf="scholarship.organization.fax">
+									<br/>FAX: {{ scholarship.organization.fax }}
+								</span>
+								<span *ngIf="scholarship.organization.url" >
+									<br/><a href="{{ scholarship.organization.url }}" target="_new" >View Site</a>
+								</span>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<strong>NOTES</strong>
+
+				<table class="table">
+
+					<tbody>
+						<tr>
+							<td>
+								<span *ngIf="scholarship.notes">
+									{{ scholarship.notes }}
+								</span>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal-footer d-flex justify-content-between" >
+
+	<button type="button"
+			class="btn gray-btn"
+			(click)="close()" >
+		Cancel
+	</button>
+
+</div>

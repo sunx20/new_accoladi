@@ -1,0 +1,500 @@
+<div class="px-4 py-5" >
+<<<<<<< working copy
+	
+	<!-- 
+	<div class="row mb-3 d-flex align-items-center" >
+	
+		<div class="col-md-12" >
+	
+			<nav aria-label="breadcrumb" >
+	
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/student/search" >Search</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Repertoire Search
+					</li>
+				</ol>
+			</nav>
+	
+		</div>
+	
+	</div> 
+	-->
+	
+	<!-- Search Card Module-->
+	<div>
+	
+		<section class="module" >
+	
+			<!-- Title -->
+			<div>
+				<h2>
+					<img style="max-width:16px; margin-right:8px;" 
+						src="assets/img/search-icon-38.png" /> 
+					Search Repertoire
+				</h2>
+			</div>
+=======
+	<div class="row mb-3 d-flex align-items-center" >
+		<div class="col-md-12" >
+			<!-- Breadcrumb -->
+			<nav aria-label="breadcrumb" >
+				<ol class="breadcrumb" >
+					<li class="breadcrumb-item" >
+						<a routerLink="/student/search" >Search</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page" >
+						Repertoire Search
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<!-- Search Card Module-->
+	<div>
+		<section class="module" >
+			<!-- Title -->
+			<div>
+				<h2>
+					<img style="max-width:16px; margin-right:8px;" src="assets/img/search-icon-38.png" /> Search Repertoire
+				</h2>
+			</div>
+			<!-- Search Form -->
+			<form class="my-4 mx-5" novalidate="novalidate" autocomplete="off" [formGroup]="searchForm" >
+				<!-- Row:1 -->
+				<div class="form-row" >
+					<!-- Instrument / Voice -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Instrument/Voice</label>
+						<select class="form-control" name="instrument" formControlName="instrument" >
+							<option disabled="true" selected="" value="" >Select One...</option>
+							<optgroup [label]="item.key" *ngFor="let item of instrumentList | keyvalue" >
+								<option *ngFor="let c of item.value" [ngValue]="c.name" >{{ c.name }}</option>
+							</optgroup>
+						</select>
+					</div>
+					<!-- Gread level -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Gread level</label>
+						<select class="form-control" name="gradeLevel" formControlName="gradeLevel" >
+							<option value="" >Select</option>
+							<option *ngFor="let item of gradeLevelList" [ngValue]="item.id" >
+								{{ item.name }}
+							</option>
+						</select>
+					</div>
+					<!-- Composer/Arranger -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Composer/Arranger</label>
+						<input class="form-control" type="text" formControlName="composer" placeholder="Search by Composer/Arranger" />
+					</div>
+					<!-- Composition -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Composition</label>
+						<input class="form-control" type="text" formControlName="composition" placeholder="Search by Composition" />
+					</div>
+				</div>
+				<!-- Row:2 -->
+				<div class="form-row" >
+					<!-- Collection -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Collection</label>
+						<input class="form-control" type="text" formControlName="collection" placeholder="Search by Collection" />
+					</div>
+					<!-- Publisher -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Publisher</label>
+						<input class="form-control" type="text" formControlName="publisher" placeholder="Search by Publisher" />
+					</div>
+					<!-- SKU# -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >SKU#</label>
+						<input class="form-control" type="text" formControlName="sku" placeholder="Search by SKU#" />
+					</div>
+				</div>
+>>>>>>> merge rev
+
+<<<<<<< working copy
+			<!-- Search Form -->
+			<form class="my-4 mx-5" 
+				novalidate="novalidate" 
+				autocomplete="off" 
+				[formGroup]="searchForm" >
+			
+				<div class="form-row" >
+					
+					<!-- Instrument / Voice -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Instrument/Voice</label>
+						<select class="form-control" 
+							name="instrument" 
+							formControlName="instrument" >
+							<!-- <option value="" >Select</option>
+							<option *ngFor="let item of instrumentList" [ngValue]="item.name" >
+								{{ item.name }}
+							</option> -->
+							<option disabled="true" selected="" value="">Select One...</option>
+							<optgroup label="Voice">
+								<option value="Alto"> Alto </option>
+								<option value="Soprano"> Soprano </option>
+								<option value="Mezzo-Soprano"> Mezzo-Soprano </option>
+								<option value="Contralto"> Contralto </option>
+								<option value="Counter-Tenor"> Counter-Tenor </option>
+								<option value="Tenor"> Tenor </option>
+								<option value="Baritone"> Baritone </option>
+								<option value="Bass"> Bass </option>
+							</optgroup>
+							<optgroup label="Woodwind">
+								<option value="Alto Clarinet"> Alto Clarinet </option>
+								<option value="Alto Saxophone"> Alto Saxophone </option>
+								<option value="Baritone Saxophone"> Baritone Saxophone </option>
+								<option value="Bass Clarinet"> Bass Clarinet </option>
+								<option value="Bassoon"> Bassoon </option>
+								<option value="Clarinet Bb / A"> Clarinet Bb / A </option>
+								<option value="Clarinet Eb"> Clarinet Eb </option>
+								<option value="Contra-Bass Clarinet"> Contra-Bass Clarinet </option>
+								<option value="English Horn / Cor Anglais"> English Horn / Cor Anglais </option>
+								<option value="Flute"> Flute </option>
+								<option value="Oboe"> Oboe </option>
+								<option value="Piccolo"> Piccolo </option>
+								<option value="Soprano Saxophone"> Soprano Saxophone </option>
+								<option value="Tenor Saxophone"> Tenor Saxophone </option>
+								<option value="Contrabassoon"> Contrabassoon </option>
+							</optgroup>
+							<optgroup label="Brass">
+								<option value="Bass Trombone"> Bass Trombone </option>
+								<option value="Euphonium"> Euphonium </option>
+								<option value="French Horn"> French Horn </option>
+								<option value="Tenor Trombone"> Tenor Trombone </option>
+								<option value="Trombone"> Trombone </option>
+								<option value="Trumpet / Cornet"> Trumpet / Cornet </option>
+								<option value="Tuba"> Tuba </option>
+								<option value="Piccolo Trumpet"> Piccolo Trumpet </option>
+								<option value="Bass Trumpet"> Bass Trumpet </option>
+							</optgroup>
+							<optgroup label="String">
+								<option value="Acoustic Guitar"> Acoustic Guitar </option>
+								<option value="Cello"> Cello </option>
+								<option value="Harp"> Harp </option>
+								<option value="Double Bass"> Double Bass </option>
+								<option value="Violin"> Violin </option>
+								<option value="Viola"> Viola </option>
+								<option value="Seven-String Guitar"> Seven-String Guitar </option>
+								<option value="Electric Guitar"> Electric Guitar </option>
+								<option value="Electric Bass"> Electric Bass </option>
+								<option value="Lute"> Lute </option>
+								<option value="Baroque Guitar"> Baroque Guitar </option>
+								<option value="Contra-Bass Guitar"> Contra-Bass Guitar </option>
+							</optgroup>
+							<optgroup label="Keyboard">
+								<option value="Keyboard (Keys / General)"> Keyboard (Keys / General) </option>
+								<option value="Piano"> Piano </option>
+								<option value="Electric Piano"> Electric Piano </option>
+								<option value="Hammond B-3 Organ"> Hammond B-3 Organ </option>
+								<option value="Harpsichord"> Harpsichord </option>
+								<option value="Clavichord"> Clavichord </option>
+								<option value="Organ"> Organ </option>
+								<option value="Contemporary Media"> Contemporary Media </option>
+							</optgroup>
+							<optgroup label="Percussion">
+								<option value="Percussion (General)"> Percussion (General) </option>
+								<option value="Timpani"> Timpani </option>
+								<option value="Mallet Instruments (General)"> Mallet Instruments (General) </option>
+								<option value="Marimba"> Marimba </option>
+								<option value="Vibraphone"> Vibraphone </option>
+								<option value="Xylophone"> Xylophone </option>
+								<option value="Steel Drums"> Steel Drums </option>
+								<option value="Gamalan"> Gamalan </option>
+								<option value="Tabla"> Tabla </option>
+								<option value="Conga / Bongo"> Conga / Bongo </option>
+								<option value="Drum Set"> Drum Set </option>
+								<option value="Rudimental Drums (Traditional)"> Rudimental Drums (Traditional) </option>
+								<option value="Rudimental Drums (Modern)"> Rudimental Drums (Modern) </option>
+							</optgroup>
+						</select>
+					</div>
+					
+					<!-- Grade level -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Gread level</label>
+						<select class="form-control" 
+							name="gradeLevel" 
+							formControlName="gradeLevel" >
+							<option value="" >Select</option>
+							<option *ngFor="let item of gradeLevelList" [ngValue]="item.id" >
+								{{ item.name }}
+							</option>
+						</select>
+					</div>
+					
+					<!-- Composer/Arranger -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Composer/Arranger</label>
+						<input class="form-control" 
+							type="text" 
+							formControlName="composer"
+							placeholder="Search by Composer/Arranger" />
+					</div>
+					
+					<!-- Composition -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Composition</label>
+						<input class="form-control" 
+							type="text" 
+							formControlName="composition"
+							placeholder="Search by Composition" />
+					</div>
+=======
+				<!-- Action Buttons -->
+				<div class="form-row" >
+					<div class="col-md-12 form-group" >
+						<div class="d-flex justify-content-center" >
+							<button type="button" class="btn recruiter-search-reset-btn gray-btn" (click)="onResetForm()" > Reset </button>
+							<span>&nbsp; &nbsp;</span>
+							<button type="button" class="btn " (click)="submitAttempted=true; onSubmitForm();" appDisableDoubleClick>
+								<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" > </span>
+								{{ loading ? "Searching..." : "Search" }}
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</section>
+
+		<!-- Error: Notification -->
+		<div *ngIf="requestFailed" class="row" >
+			<div class="col-md-12" >
+				<div class="alert alert-danger" role="alert" > {{ feedback }} </div>
+			</div>
+		</div>
+
+		<!-- Result Count -->
+		<h3 *ngIf="searchResults && searchResults.length" class="mb-4 mt-5" >
+			Search Results ({{ total }})
+		</h3>
+>>>>>>> merge rev
+
+<<<<<<< working copy
+				</div>
+				
+				<div class="form-row" >
+					
+					<!-- Collection -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Collection</label>
+						<input class="form-control" 
+							type="text" 
+							formControlName="collection"
+							placeholder="Search by Collection" />
+					</div>
+					
+					<!-- Publisher -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >Publisher</label>
+						<input class="form-control" 
+							type="text" 
+							formControlName="publisher"
+							placeholder="Search by Publisher" />
+					</div>
+					
+					<!-- SKU# -->
+					<div class="col-md-3 form-group" >
+						<label class="control-label" >SKU#</label>
+						<input class="form-control" 
+							type="text" 
+							formControlName="sku" 
+							placeholder="Search by SKU#" />
+					</div>
+
+				</div>
+
+				<!-- Action Buttons -->
+				<div class="form-row" >
+					
+					<div class="col-md-12 form-group" >
+					
+						<div class="d-flex justify-content-center" >
+						
+							<button type="button" 
+								class="btn recruiter-search-reset-btn gray-btn"
+								(click)="onResetForm()" > Reset </button>
+							
+							<span>&nbsp; &nbsp;</span>
+							
+							<button type="button" 
+								class="btn " 
+								(click)="submitAttempted=true; onSubmitForm();"
+								appDisableDoubleClick >
+								
+								<span *ngIf="loading" 
+									class="spinner-border spinner-border-sm" 
+									role="status"
+									aria-hidden="true" > </span>
+								
+								{{ loading ? "Searching..." : "Search" }}
+
+							</button>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</form>
+
+		</section>
+=======
+		<section *ngIf="searchResults && searchResults.length" class="module" >
+			<div class="general-table" >
+				<!-- Result Table -->
+				<table class="table table-responsive" >
+					<thead>
+						<tr>
+							<th>Composer/Arranger</th>
+							<th>Title</th>
+							<th>Collection</th>
+							<th>Publisher</th>
+							<th>SKU</th>
+							<th>Grede Level</th>
+							<th>Instrument</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr *ngFor="let item of searchResults;let i=index;" >
+							<td class="text-left" >{{ item.composers }}</td>
+							<td class="text-left" >{{ item.title }}</td>
+							<td class="text-left" >{{ item.collection }}</td>
+							<td class="text-left" >{{ item.publisher.name }}</td>
+							<td class="text-left" >{{ item.publisher.sku }}</td>
+							<td class="text-left" >{{ item.suggested_grade_level }}</td>
+							<td class="text-left" >{{ item.instrument.name }}</td>
+						</tr>
+					</tbody>
+>>>>>>> merge rev
+
+<<<<<<< working copy
+		<!-- Error: Notification -->
+		<div *ngIf="requestFailed" class="row" >
+			
+			<div class="col-md-12" >
+			
+				<div class="alert alert-danger" role="alert" > 
+					{{ feedback }} 
+				</div>
+			
+			</div>
+
+		</div>
+
+		<!-- Result Count -->
+		<h3 *ngIf="searchResults && searchResults.length" 
+			class="mb-4 mt-5" >
+			Search Results ({{ total }})
+		</h3>
+=======
+				</table>
+
+			</div>
+
+		</section>
+>>>>>>> merge rev
+
+<<<<<<< working copy
+		<section *ngIf="searchResults && searchResults.length" 
+				class="module" >
+		
+			<div class="general-table" >
+		
+				<!-- Result Table -->
+				<table class="table" >
+		
+					<thead>
+						<tr>
+							<th>Composer/Arranger</th>
+							<th>Title</th>
+							<th>Collection</th>
+							<th>Publisher</th>
+							<th>SKU</th>
+							<th>Grede Level</th>
+							<th>Instrument</th>
+						</tr>
+					</thead>
+=======
+		<section *ngIf="searchResults && !searchResults.length" class="module" >
+			<div class="general-table" >
+				No scholarships found with that specified criteria.
+			</div>
+		</section>
+
+		<div *ngIf="searchResults && searchResults.length" 
+			 class="d-flex justify-content-center p-2" >
+>>>>>>> merge rev
+
+<<<<<<< working copy
+					<tbody>
+						<tr *ngFor="let item of searchResults; let i=index;" >
+							<td class="text-left" >{{ item.composers }}</td>
+							<td class="text-left" >{{ item.title }}</td>
+							<td class="text-left" >{{ item.collection }}</td>
+							<td class="text-left" >{{ item.publisher.name }}</td>
+							<td class="text-left" >{{ item.publisher.sku }}</td>
+							<td class="text-left" >{{ item.suggested_grade_levels }}</td>
+							<td class="text-left" >{{ item.instrument.name }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</section>
+=======
+			<ngb-pagination 
+				class="d-flex justify-content-center"
+				[maxSize]="10"
+				[collectionSize]="total"
+				[rotate]="true"
+				[(page)]="page"
+				[pageSize]="pageSize"
+				(pageChange)="pageChange($event)"
+				[boundaryLinks] >
+			</ngb-pagination>
+		</div>
+>>>>>>> merge rev
+
+<<<<<<< working copy
+		<section *ngIf="searchResults && !searchResults.length" 
+				class="module" >
+		
+			<div class="general-table" >
+				No Repertoire found with that specified criteria.
+			</div>
+		
+		</section>
+
+		<div *ngIf="searchResults && searchResults.length" 
+			class="d-flex justify-content-center p-2" >
+		
+			<ngb-pagination 
+				class="d-flex justify-content-center" 
+				[maxSize]="10" 
+				[collectionSize]="total"
+				[rotate]="true" 
+				[(page)]="page" 
+				[pageSize]="pageSize" 
+				[boundaryLinks]
+				(pageChange)="pageChange($event)" >
+			</ngb-pagination>
+		
+		</div>
+
+	</div>
+
+</div>=======
+	</div>
+</div>
+>>>>>>> merge rev

@@ -1,0 +1,135 @@
+<app-progress-bar [role]="role" [wizard]="'personal-info'" [type]="type" ></app-progress-bar>
+
+<div class="modal-header" >
+
+	<h4 class="modal-title" ><span class="student-title" *ngIf="type=='Child'" >Student : </span>Personal Info</h4>
+
+</div>
+
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<div class="form-row" >
+
+				<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('first_name')" >
+
+					<label class="control-label " for="first_name" >First Name</label>
+					<input id="first_name" type="text" class="form-control "
+						[class.state-error]="isFieldInvalid('first_name')" formControlName="first_name"
+						name="first_name" placeholder="First Name" />
+
+					<app-field-error-display [displayError]="isFieldInvalid('first_name')"
+						errorMsg="Please provide your first name" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-6 form-group required" [ngClass]="displayFieldCss('last_name')" >
+
+					<label class="control-label" for="last_name" >Last Name</label>
+					<input id="last_name" type="text" class="form-control "
+						[class.state-error]="isFieldInvalid('last_name')" formControlName="last_name" name="last_name"
+						placeholder="Last Name" />
+
+					<app-field-error-display [displayError]="isFieldInvalid('last_name')"
+						errorMsg="Please provide your last name" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" *ngIf="ShowChildElement" >
+
+				<div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_day')" >
+
+					<label class="control-label" >
+						Day of birth
+					</label>
+					<input name="dob_day" type="number" min="1" max="31" class="form-control "
+						[class.state-error]="isFieldInvalid('dob_day')" formControlName="dob_day" placeholder="dd" />
+
+					<app-field-error-display [displayError]="isFieldInvalid('dob_day')"
+						errorMsg="Please provide valid day of birth (01-31)" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-4  form-group required" [ngClass]="displayFieldCss('dob_month')" >
+
+					<label class="control-label" >
+						Month of birth
+					</label>
+					<select name="dob_month" id="dob_month" class="form-control "
+						[class.state-error]="isFieldInvalid('dob_month')" formControlName="dob_month" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let month of months; let i = index" value="{{ i + 1 }}" >
+							{{ month }}
+						</option>
+					</select>
+					
+					<app-field-error-display [displayError]="isFieldInvalid('dob_month')"
+						errorMsg="Please provide valid month of birth (01-12)" >
+					</app-field-error-display>
+
+				</div>
+
+
+				<div class="col-md-4 form-group required" [ngClass]="displayFieldCss('dob_year')" >
+
+					<label class="control-label" >
+						Year of birth
+					</label>
+					<input *ngIf="dob_min_year && dob_max_year" name="dob_year" type="number" [min]="dob_min_year"
+						[max]="dob_max_year" class="form-control " [class.state-error]="isFieldInvalid('dob_year')"
+						formControlName="dob_year" placeholder="yyyy" />
+					
+					<app-field-error-display [displayError]="isFieldInvalid('dob_year')"
+						errorMsg="Please provide valid year of birth({{ dob_min_year }}-{{ dob_max_year }})" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<div *ngIf="requestSuccess" class="alert alert-success" role="alert" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed" class="alert alert-danger" role="alert" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer row" >
+	
+		<div class="col-12" >
+	
+			<button type="button" *ngIf="type=='Child'" class="btn gray-btn float-left" (click)="onClickBack()" >
+				Back
+			</button>
+	
+			<button type="submit" [disabled]="requestSuccess" class="btn float-right" >
+				<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+				{{ loading ? "Saving..." : !requestSuccess ? "Continue" : "Done" }}
+			</button>
+
+		</div>
+
+	</div>
+
+</form>

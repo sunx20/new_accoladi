@@ -1,0 +1,120 @@
+
+<div class="px-4 py-5">
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-6">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/student/profile"
+							routerLinkActive="active" >Profile</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Account Information
+					</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="col-md-6 text-right">
+			<a (click)="updateStudentAI()" href="javascript:;" class="btn"><img class="mr-2" src="assets/img/sa-edit.svg" />Edit Account Information</a>
+		</div>
+	</div>
+
+	<section class="module">
+		<header><h2>Account Information</h2></header>
+		<div class="general-table closer-head border-rows" *ngIf="student">
+			<div>
+				<table class="table mb-0">
+
+					<thead>
+						<tr>
+							<th>
+								<!--for correct single line spacing-->
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								<img style="max-width:12px; margin-right:10px;" src="assets/img/role-student-icon-24.png" />
+								<strong>Role:</strong> {{role}}
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<table class="table mb-0">
+
+					<thead>
+						<tr>
+							<th width="35%">First Name</th>
+							<th width="30%">Middle Name</th>
+							<th width="35%">Last Name</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>{{ student?.first_name }}</td>
+							<td>{{ student?.middle_name}}</td>
+							<td>{{ student?.last_name }}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<table class="table mb-0">
+					<thead>
+						<tr>
+							<th width="75%">Date of Birth:</th>
+							<th width="25%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{ dob }}</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th width="30%">Email</th>
+							<th width="30%">Phone</th>
+							<th width="30%">International</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{ student?.email }}</td>
+							<td>{{ student?.phone?.phone }}</td>
+							<td>{{ student?.phone?.international }}</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<thead>
+						<tr>
+							<th>Address</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								{{ student?.address?.street1 }}
+								<br />{{ student?.address?.city }}
+								{{ student?.address?.state }}
+								{{ student?.address?.postal_code }}
+								<br />{{ student?.address?.country }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</div>

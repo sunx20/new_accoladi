@@ -1,0 +1,30 @@
+<kendo-grid 
+	[data]="view" 
+	[hideHeader]="true"
+	scrollable="none"  
+	kendoGridFocusable >
+	
+	<kendo-grid-column field="URL" title="" width="50" >
+
+		<ng-template kendoGridCellTemplate let-dataItem="dataItem" >
+			<button type="button" class="btn btn-play" (click)="playVideo(dataItem.video_url)" >
+				<img src="assets/img/play-arrow-black-19.png" />
+			</button>
+		</ng-template>
+
+	</kendo-grid-column>
+
+	<kendo-grid-column title="" >
+		
+		<ng-template kendoGridCellTemplate let-dataItem >
+			<div *ngIf="dataItem.performed" >{{ dataItem.performed }}</div>
+			<div *ngIf="dataItem.composer" >{{ dataItem.composer }}</div>
+			<div *ngIf="dataItem.show" >{{ dataItem.show }} | {{ dataItem.role }}</div>
+			<div *ngIf="dataItem.company" >{{ dataItem.company }}</div>
+			<div>{{ dataItem.type }}</div>
+			<div *ngIf="dataItem.comments" >{{ dataItem.comments }}</div>
+		</ng-template>
+
+	</kendo-grid-column>
+
+</kendo-grid>

@@ -1,0 +1,38 @@
+<div class="card " >
+
+	<div class="card-body" >
+
+		<h3>Dance Search</h3>
+
+		<small>
+			Search across the entire student database for Students that meet
+			your criteria, save the results, or save the criteria for later
+			searches.
+		</small>
+
+		<br />
+
+		<app-dance-filter 
+			(search)="onSearch($event)" 
+			[page]="page" 
+			[pageSize]="pageSize" >
+		</app-dance-filter>
+
+	</div>
+
+</div>
+
+<div #scrollElement>
+
+	<app-dance-search-result 
+		*ngIf="recruiter && response" 
+		[recruiter]="recruiter"
+		[response]="response" 
+		[total]="total"
+		[page]="page" 
+		[pageSize]="pageSize" 
+		(paginate)="onPaginate($event)" 
+		(scrollTo)="scroll()" >
+	</app-dance-search-result>
+
+</div>

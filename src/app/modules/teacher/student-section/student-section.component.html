@@ -1,0 +1,135 @@
+<div class="card" >
+
+	<div class="card-header" >
+
+		<h5 class="d-flex flex-row justify-content-between" >
+
+			<div>
+				Student Accounts
+			</div>
+
+			<button type="button" 
+					(click)="addStudent()" 
+					class="btn btn-light" >
+				ADD <i class="fa fa-plus" ></i>
+			</button>
+
+		</h5>
+
+	</div>
+
+	<ng-container *ngIf="invitation" > <!-- condition based on un-resolved "invitations" -->
+
+		<section id="unpaid-message-banner" 
+				 name="unpaid-message-banner" 
+				 class="unpaid-message py-3" >
+
+			<div *ngFor="let invite of inviteList" >
+
+				<div class="row" >
+
+					<div class="col-lg-10 offset-lg-1 pb-1" >
+
+						{{ invite.sender }} has invited you to share their accout as a Teacher.
+						
+						<button role="button"
+								(click)="onAccept(invite)"
+								class="btn btn-light btn-sm inviteBtn" > 
+							Accept
+						</button>
+
+						&nbsp;&nbsp;
+
+						<button role="button" 
+								(click)="onDecline(invite)"
+								class="btn btn-light btn-sm inviteBtn" >
+							Decline 
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</ng-container>
+
+	<div>
+
+		<div class="card-body" >
+
+			<div *ngIf="!teacher || loadingStudents" 
+				 class="d-flex justify-content-center" >
+
+				<div role="status"
+					 class="spinner-border" 
+					 style="width: 3rem; height: 3rem;" >
+
+					<span class="sr-only" >
+						Loading...
+					</span>
+
+				</div>
+
+			</div>
+
+			<table *ngIf="teacher && students" 
+					class="table table-bordered" >
+
+				<tbody>
+
+					<tr *ngFor="let student of students; let i = index" >
+
+						<td>
+							{{ i+1 }}
+						</td>
+						<td>
+							<b>{{ student.first_name }} {{ student.last_name }}</b>
+							<br><b>Username:</b> {{ student.username }}
+							<br><b>Talents:</b> ( {{ student?.talents?.length }} )
+							<b>Honors/Awards:</b> ( {{ student?.honors_awards?.length }} )
+							<b>Performances:</b> ( {{ student?.performances?.length }} )
+							<b>Education:</b> ( {{ student?.education?.length }} )
+						</td>
+						<td>
+							<i title="View Profile" 
+								(click)="modalProfile(student._id)"
+								class="fa fa-user text-danger mouse-pointer" ></i>
+						</td>
+						<td>
+							<i title="Remove" 
+								(click)="removeStudent(student._id)"
+								class="fa fa-trash text-danger  mouse-pointer" ></i>
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer d-flex justify-content-between" >
+
+		<span *ngIf="!teacher || loadingStudents " >
+			Loading students ...
+		</span>
+
+		<span *ngIf="teacher && students" >
+			You have {{ students.length }} student(s)
+		</span>
+
+		<button type="button"
+				(click)="addStudent()"
+				class="btn btn-link" >
+			ADD <i class="fa fa-plus" ></i>
+		</button>
+
+	</div>
+
+</div>

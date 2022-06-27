@@ -1,0 +1,713 @@
+/*-------------------------------------------
+	basics
+-------------------------------------------*/
+@font-face {
+	font-family: Poppins;
+	src: url(/assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+	font-family: Poppins;
+	src: url(/assets/fonts/Poppins/Poppins-Black.ttf);
+	font-weight: bold;
+}
+
+body {
+	/* font-family: Avenir, bold; */
+	font-family: Roboto,sans-serif;
+	background-color: #e6e2e2;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: #FFDC37;
+	/* color: #575757; */
+	text-decoration: none;
+}
+
+/*-------------------------------------------
+Main header Section
+-------------------------------------------*/
+.navbar-light {
+	/*background-image: url(/assets/images/header100.jpg);*/
+	background-size: 100% 100%;
+	background-color: #3E3E3E;
+	max-height: 74px;
+}
+
+nav .oi.fa-navicon {
+	font-size: 22px;
+	padding: 5px 15px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+
+.navbar-brand img {
+	width: 150px;
+	height: auto;
+}
+
+.navbar-brand img.logo-main {
+	display: block;
+}
+
+.navbar-brand img.logo-sm {
+	display: none;
+}
+
+.navbar-collapse .nav-link {
+	color: #fff !important;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 15px !important;
+	transition: all 0.5s ease;
+}
+
+a.nav-link.vl::after {
+	height: 40px;
+	width: 1px;
+	background-color: #fff;
+	position: absolute;
+	content: " ";
+	margin-left: 22px;
+	margin-top: -5px;
+}
+
+
+/*### Navbar User dropdown ###*/
+.collapse.show .nav-link.dropdown-toggle img {
+	margin-left: 0px;
+}
+
+a.dropdown-item {
+	padding: 10px 20px;
+}
+
+.dropdown-item .btn-light {
+	border: 1px solid #333;
+}
+
+.dropdown-menu.animate.slideIn {
+	border: none;
+	width: 250px;
+	margin-top: 14px;
+	right: -30px;
+	padding: 0;
+	border-radius: 3px;
+	z-index: 99999;
+}
+
+.animate {
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-20px);
+	}
+}
+
+.slideIn {
+	animation-name: slideIn;
+}
+
+/*###### User Nav item to navigate accounts and sign out #######*/
+li.user-nav-item.dropdown {
+	margin-top: -20px;
+}
+li.user-nav-item.dropdown a.nav-link {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+}
+.nav-link.dropdown-toggle img {
+	height: 28px;
+	border-radius: 50%;
+	margin-right: 5px;
+	margin-left: 20px;
+}
+li.user-nav-item .dropdown-menu.slideIn {
+	margin-left: -35px;
+}
+
+
+.sa-button {
+	font-size: 15px;
+	padding: 6px 15px;
+	border-radius: 15px;
+	background-color: #FFDC37;
+	color: #FFFFFF;
+}
+
+
+/*-------------------------------------------
+	Footer Section Start
+-------------------------------------------*/
+#footer {
+	background: url(/assets/images/section-2-bg.png) no-repeat center;
+	background-size: 100% 100%;
+	padding: 6rem 0 3rem;
+}
+
+#footer .footerMain {
+	padding-top: 50px;
+	font-size: 16px;
+	color: #333;
+}
+.footerMain h6 {
+  font-weight: 700;
+}
+.footerMain .col-md-3.col-sm-6.col-6 {
+  padding-top: 10px;
+}
+#footer .footerMain a {
+	display: inline-block;
+  text-decoration: none !important;
+  font-size: 14px;
+  color: #333;
+}
+#footer table {
+  margin-top: 70px;
+}
+#footer table .icons a {
+  padding: 0 8px !important;
+}
+#footer i.fa {
+	font-size: 40px;
+  color: #fff;
+  margin: 5px 0;
+  padding-top: 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #333;
+}
+@media (max-width: 767.98px) {
+	
+}
+
+@media (max-width: 500px) {
+
+}
+
+
+
+/*-----------------------------------
+Large devices (I-pads, 992px)
+------------------------------------*/
+
+@media (max-width: 992px) {
+	span.navbar-toggler-icon {
+		transition: all .3s ease;
+	}
+	.navbar-brand img {
+		margin-left: 30px;
+	}
+	.navbar-light {
+		background-size: cover;
+	}
+	.navbar-light .navbar-toggler {
+		border-color: none;
+		position: absolute;
+		left: -6px;
+	}
+	.navbar-light .navbar-toggler:focus {
+		outline: none;
+	}
+	.navbar-collapse {
+		max-height: 450px;
+		overflow-y: auto;
+		margin-top: 8px;
+		width: 300px;
+		padding-bottom: 20px;
+		background-color: #333;
+	}
+	.basicNav-collapse .dropdown-menu.slideIn {
+		margin-left: 35px;
+		margin-top: 0;
+		background-color: transparent;
+		box-shadow: none;
+	}
+	.basicNav-collapse a.dropdown-item {
+		color: #fff !important;
+	}
+	.basicNav-collapse a.dropdown-item:hover {
+		color: #333 !important;
+	}
+	li.user-nav-item.dropdown {
+		position: absolute;
+		right: 30px;
+	}
+}
+
+/*-----------------------------------
+Medium devices (I-pads, 768px)
+------------------------------------*/
+@media (max-width: 768px) {
+	.nav-link.disposable {
+		display: none;
+	}
+}
+
+@media (max-width: 500px) {
+	.navbar-brand img.logo-main {
+		display: none;
+	}
+	.navbar-brand img.logo-sm {
+		display: block;
+		width: 50px;
+		height: 48px;
+	}
+	nav .oi.fa-navicon {
+		padding: 5px 10px;
+	}
+	.navbar-light .nav-link.dropdown-toggle {
+		padding: 10px 15px;
+	}
+}
+@media (max-width: 400px) {
+	li.user-nav-item.dropdown {
+		right: 0;
+	}
+	li.user-nav-item .dropdown-menu.slideIn {
+		margin-left: -50px;
+	}
+}
+@media (max-width: 320px) {
+	.navbar-brand img.logo-sm {
+		visibility: hidden;
+	}
+}
+
+
+/*#########################################
+-------------------------------------------
+Message Layout Page
+-------------------------------------------
+###########################################*/
+#message-layout {
+	margin-top: 74px;
+}
+.msg-header p {
+	padding:  10px 0;
+	margin: 0;
+	font-size: 17px;
+}
+.page-title {
+	padding: 10px 0;
+}
+.page-title h4 {
+	margin-left: 10px;
+	margin-bottom: 0;
+}
+.msg-active {
+	background: linear-gradient(to right, #FFDC37 50%, transparent 50%);
+}
+.msg-unread {
+	background: linear-gradient(to right, #4ABA9F 50%, transparent 50%);
+}
+.msg-attachment {
+	background: linear-gradient(to right, #FF6950 50%, transparent 50%);
+}
+h3, h4, h5, h6 {
+	font-weight: 900;
+}
+
+/*-----------------------------------------
+Media Box Section
+-------------------------------------------*/
+.media-box {
+	width: 100%;
+}
+.media-box td {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.media-box .media-body {
+	border-bottom: 1px solid #333;
+}
+.media-box .media-img {
+	width: 80px;
+	padding: 15px 10px;
+}
+.media-box .media-img img {
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+}
+.media-box .media-img .icon {
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	background-color: #323333;
+	color: #FFDC37;
+	margin-top: 20px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	font-size: 22px;
+	font-weight: bold;
+}
+.media-box .media-content h6 {
+	margin-bottom: 5px;
+}
+.media-box .media-content p {
+	font-size: 13px;
+	margin: 0;
+}
+@media (max-width: 850px) {
+	.page-title h4 {
+		font-size: 18px;
+	}
+	.media-box .media-img {
+		width: 70px;
+	}
+	.media-box .media-img img {
+		height: 60px;
+		width: 60px;
+	}
+	.media-box .media-content h6 {
+		margin-top: 0;
+		font-size: 14px;
+		font-weight: 700;
+	}
+	.media-box .media-content p {
+		font-size: 12px;
+	}
+}
+@media (max-width: 575px) {
+	.display-sm {
+		display:  none;
+	}
+}
+@media (max-width: 400px) {
+	.stu-profile-views h5 {
+		font-size: 16px;
+	}
+}
+@media (max-width: 325px) {
+	.media-box .media-content h6 {
+		padding-left: 5px;
+	}
+	.media-box .media-content p {
+		padding-left: 5px;
+	}
+}
+
+/*-----------------------------------------
+Message Box Section
+-------------------------------------------*/
+.msg-box {
+	background-color: #fff;
+}
+.msg-date p {
+	padding: 8px 0;
+	font-size: 13px;
+	margin: 0;
+}
+.sender-user {
+	overflow: hidden;
+	width: 100%;
+}
+.sender-user img {
+	float: left;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.sender-user h5 {
+	float: left;
+	font-size: 16px;
+	margin: 0;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+.sender-text {
+	padding-left: 60px;
+	width: 100%;
+}
+.sender-text p {
+	max-width: 80%;
+	padding: 5px 13px;
+	border-radius: 4px;
+	background-color: #747F7F;
+	color: #fff;
+	font-size: 14px;
+}
+.current-user {
+	overflow: hidden;
+	width: 100%;
+}
+.current-user img {
+	float: right;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.current-user h5 {
+	float: right;
+	font-size: 16px;
+	margin: 0;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+.currentuser-text {
+	width: 100%;
+	padding-right: 60px;
+}
+.currentuser-text p {
+	max-width: 80%;
+	padding: 5px 13px;
+	border-radius: 4px;
+	background-color: #747F7F;
+	font-size: 14px;
+	color: #fff;
+	float: right;
+}
+.user-text-input {
+	outline: 0;
+	box-shadow: none !important;
+	border: 1px solid transparent !important;
+	border-top: 1px solid #333 !important;
+}
+.user-text-input {
+	background-color: #E8E4E4;
+	position: fixed;
+	bottom: 0;
+	margin-left: -14px;
+	border-radius: 0;
+}
+.user-text-input:focus {
+	background-color: #E8E4E4;
+}
+
+
+/*#########################################
+-------------------------------------------
+Student Dashboard Page
+-------------------------------------------
+###########################################*/
+.card {
+	margin-top: 50px;
+	color: #fff;
+	padding: 20px 8px;
+	background-color: #3E3E3E;
+	border: none;
+	border-radius: 15px;
+}
+.card .content-header {
+	padding-bottom: 20px;
+	text-align: left;
+}
+.card .content-header h5 {
+	font-weight: 900;
+	font-size: 30px;
+	color: #FFDC37;
+}
+.card>small {
+	text-align: right;
+	color: #fff;
+	cursor: pointer;
+	margin-right: 15px;
+}
+@media (max-width: 500px) {
+	.card-body {
+		padding: 10px;
+	}
+	.card .content-header h5 {
+		font-size: 20px;
+	}
+}
+
+/*-------------------------------------------
+Hello Section
+-------------------------------------------*/
+#hello-box {
+	margin-top: 10px;
+}
+#hello-box .hello img {
+	width: 100px;
+	padding: 20px;
+}
+#hello-box table {
+	width: 70%;
+	margin-left: 20px;
+	margin-bottom: 100px;
+}
+#hello-box h5 {
+	color: #FFDC37;
+}
+@media(min-width: 768px) and (max-width: 991px) {
+	#hello-box .hello img {
+		width: 60px;
+		padding: 10px;
+	}
+}
+@media (max-width: 767px) {
+	#hello-box table {
+		margin-bottom: 20px;
+	}
+}
+@media (max-width: 530px) {
+	#hello-box .hello img {
+		width: 70px;
+		padding: 10px;
+	}
+}
+@media (max-width: 390px) {
+	#hello-box .hello img {
+		width: 45px;
+		padding: 10px 5px;
+	}
+}
+
+
+/*-------------------------------------------
+Student Info Section
+-------------------------------------------*/
+#student-info {
+	margin-top: 120px;
+}
+#student-info .stu-img img {
+	max-height: 350px;
+	margin-bottom: 15px;
+}
+#student-info h5 {
+	color: #FFDC37;
+}
+#student-info .stu-bio p {
+	font-size: 16px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+#student-info .stu-bio p>span {
+	font-weight: 700;
+	font-size: 18px;
+}
+#student-info p.stu-attr {
+	margin-bottom: 3px;
+}
+
+@media (max-width: 575px) {
+	#student-info h5 {
+		font-size: 18px;
+	}
+	#student-info .stu-bio p {
+		font-size: 14px;
+	}
+	#student-info .stu-bio p>span {
+		font-size: 16px;
+	}
+	#student-info p.stu-attr {
+		font-size: 13px;
+	}
+}
+
+/*-------------------------------------------
+Student Badges Section
+-------------------------------------------*/
+#badge-box {
+	margin-top: 10px;
+}
+#badge-box .badges img {
+	width: 100px;
+	padding: 20px;
+}
+#badge-box table {
+	width: 70%;
+	margin-left: 20px;
+	margin-bottom: 100px;
+}
+#badge-box h5 {
+	color: #FFDC37;
+}
+@media(min-width: 768px) and (max-width: 991px) {
+	#badge-box .badges img {
+		width: 60px;
+		padding: 10px;
+	}
+}
+@media (max-width: 767px) {
+	#badge-box table {
+		margin-bottom: 20px;
+	}
+}
+@media (max-width: 530px) {
+	#badge-box .badges img {
+		width: 70px;
+		padding: 10px;
+	}
+}
+@media (max-width: 390px) {
+	#badge-box .badges img {
+		width: 45px;
+		padding: 10px 5px;
+	}
+}
+
+
+/*-------------------------------------------
+Student Videos Section
+-------------------------------------------*/
+#stu-videos video {
+	width: 100%;
+	margin: 10px 0;
+}
+#stu-videos p {
+	font-size: 13px;
+}
+
+/*-------------------------------------------
+Student Profile Data Section
+-------------------------------------------*/
+/* Student Profile Strength */
+#stu-profile-data .card-body p {
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+@media(max-width: 500px) {
+	#stu-profile-data .card-body p {
+		font-size: 13px;
+	}
+}
+
+.percent {
+	position: absolute;
+	font-weight: bold;
+	font-size: 45px;
+	color: #FFDC37;
+}
+
+.divisor {
+	width: 4px;
+	height: 100px;
+	background: #FFDC37;
+	transform: rotate(45deg);
+}
+
+.numerator {
+	margin-left: -80px;
+}
+
+.denominator {
+	margin-top: -80px;
+	margin-left: 10px;
+}
+
+.views,
+.searches {
+	font-size: 85px;
+	font-weight: bold;
+	color: #FFDC37;
+}
+.label {
+	font-weight: bold;
+	color: #FFDC37;
+}

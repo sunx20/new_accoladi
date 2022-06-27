@@ -1,0 +1,95 @@
+<div class="px-4 py-5">
+
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-6">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/{{userType}}/performance" routerLinkActive="active">Performance</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Honors & Awards
+					</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="col-md-6 text-right">
+			<a href="javascript:;" (click)="addStudentHA()" class="btn">
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Add Honors & Awards
+			</a>
+		</div>
+	</div>
+
+	<section class="module">
+		<header>
+			<h2>Honors & Awards</h2>
+		</header>
+		<div class="general-table">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td class="align-top">
+							<p>
+								An Honors Ensemble performance (like All-State
+								Chorus, Regional Band, or awards performances)
+								is a great addition to your resume. Recruiters
+								will often look for candidates who have honors
+								ensemble experience.
+							</p>
+							<p>
+								Questions Asked:<br />
+								Type * (Chorus, Solo, Sm. Ensemble, Ensemble,
+								Orchestra etc.), Name of Event *, State *,
+								Instrument/Voice Part *, Composition Performed
+								*, Date Performed, Grade (6-12), Section, Chair,
+								Link to video of performance
+							</p>
+						</td>
+						<td class="align-top text-center" width="200">
+							<a href="javascript:;" (click)="playVideo('https://vimeo.com/349239826')">
+								<img src="assets/img/honors_awards_video_thumb.jpg" /><br>Watch Video</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table">
+				<tbody>
+					<tr *ngFor=" let honorAward of honors_awards; let i = index ">
+						<td width="5%">
+							<button *ngIf="honorAward.video_url" type="button" class="btn btn-play"
+								(click)="playVideo(honorAward.video_url)">
+								<img src="assets/img/play-arrow-black-19.png" />
+							</button>
+						</td>
+						<td width="35%">
+							<span class="bumpup-txt">
+								<u>{{ honorAward.composition_title }}</u>
+							</span>
+							<br />
+							{{ honorAward.event }}
+							<!-- <p
+								*ngIf=" honorAward.video_url && honorAward.video_url !== '' " >
+								<small>
+									<a (click)=" playVideo(honorAward.video_url) " target="_blank" >
+										<i class="fab fa-3x fa-youtube mouse-pointer" ></i>
+									</a>
+								</small>
+							</p> -->
+						</td>
+						<td width="25%">{{ honorAward.date_performed }}</td>
+						<td width="3%">
+							<a href="javascript:;" (click)="updateStudentHA(honorAward._id)">
+								<img style="width:20px;" src="assets/img/sa-edit.svg" />
+							</a>
+						</td>
+						<td width="3%">
+							<img (click)="removeStudentHA(honorAward._id)" style="width:13px;cursor: pointer;"
+								src="assets/img/close-x-22.png" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,348 @@
+<style>
+	.summer-camps-page {
+		margin-top: 3em;
+	}
+</style>
+
+<div class="summer-camps-page gold-page">
+	
+	<div class="px-4 py-5" >
+
+		<h1 class="heading text-center">Summer Enrichment List</h1>
+
+		<div class="row mb-3 d-flex align-items-center" >
+
+			<div class="col-md-6" >
+
+				<nav aria-label="breadcrumb" >
+
+					<ol class="breadcrumb" >
+
+						<li class="breadcrumb-item active" aria-current="page" >
+							Summer Camps
+						</li>
+
+					</ol>
+
+				</nav>
+
+			</div>
+
+		</div>
+
+		<section class="module" >
+
+			<header>
+				<h2>Camp Search</h2>
+				<p *ngIf="!loggedin">Accoladi has an extensive searchable catalog of summer enrichment opportunities. <a [routerLink]="['/public/get-connected']">Join</a>, to get access!</p>
+				<p *ngIf="!loggedin">Already a member? <a [routerLink]="['/login']">Log In</a> to get access.</p>
+				<p *ngIf="!loggedin">BELOW IS A SAMPLE OF WHAT YOU CAN EXPECT TO FIND IN OUR SUMMER ENRICHMENT CATALOG</p>
+			</header>
+
+			<div class="general-table" >
+
+				<table *ngIf="loggedin" class="table" >
+
+					<tbody>
+
+						<tr>
+							<td class="align-top" >
+
+								<p *ngIf="data?.length" >
+									Search for Music Camps that offer repertoire building opportunities.
+								</p>
+
+								<p *ngIf="!data?.length" style="text-align:center;" >
+
+								</p>
+
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+
+				<form *ngIf="loggedin" [formGroup]="profileForm" >
+
+					<div class="row margin-off" >
+
+						<div class="col-2 form-group" >
+							
+							<label for="state" >State:</label>
+							<input class="form-control" placeholder="state" kendoTextBox formControlName="state" />
+
+						</div>
+
+						<div class="col-3 form-group" >
+							
+							<label>Price Per Session:</label>
+							<kendo-dropdownlist class="form-control" placeholder="Your favorite sports"
+								formControlName="price" [data]="priceList"
+								[textField]="'text'" [valueField]="'value'" >
+							</kendo-dropdownlist>
+
+						</div>
+
+						<div class="col-2 form-group" >
+
+							<label>Age Group:</label>
+							<kendo-multiselect class="form-control" placeholder="Age Group" formControlName="ageGroup"
+								(valueChange)="ageGroupChange($event)" [data]="ageGroupList" [textField]="'text'"
+								[valueField]="'value'" >
+							</kendo-multiselect>
+
+						</div>
+
+						<div class="col-2 form-group" >
+
+							<label>Discipline:</label>
+							<kendo-multiselect class="form-control" placeholder="Discipline" formControlName="discipline"
+								(valueChange)="disciplineChange($event)" [data]="disciplineList" [textField]="'text'"
+								[valueField]="'value'" >
+							</kendo-multiselect>
+
+						</div>
+
+						<div class="col-3 form-group" >
+
+							<label>Length of Session:</label>
+							<kendo-dropdownlist class="form-control" formControlName="length"
+							[data]="SessionList" [textField]="'text'"
+								[valueField]="'value'" >
+							</kendo-dropdownlist>
+
+						</div>
+
+					</div>
+
+				</form>
+
+				<div *ngIf="loggedin" class=" mt-4 mb-4 text-center" >
+					
+					<button type="submit" class="btn " (click)="onSearch()" >
+						<!-- <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span> -->
+						Search
+					</button>
+
+					&nbsp;
+
+					<button type="button" class="btn recruiter-search-reset-btn btn-default" (click)="resetForm()" >
+						Reset
+					</button>
+
+					&nbsp;
+
+					<span>&nbsp; &nbsp;</span>
+
+				</div>
+
+				<div *ngIf="loggedin">
+
+					<kendo-grid [pageable]="true" [filterable]="false" [skip]="gridState.skip" [data]="view | async"
+						[pageSize]="gridState.take" [sortable]="true" [navigable]="true" [sort]="gridState.sort"
+						style="height:auto" (dataStateChange)="dataStateChange($event)" (pageChange)="pageChange($event)" >
+
+						<kendo-grid-column field="name" title="Name" width="200" ></kendo-grid-column>
+						<kendo-grid-column field="email" title="Email" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="website" title="Website" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="cost_per_session" title="Cost Per Session" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="middle_school" title="Middle School" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="high_school" title="High School" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="over_18" title="Adult" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="weeks" title="Weeks" width="100" ></kendo-grid-column>
+						<kendo-grid-column field="address.state" title="State" width="100" ></kendo-grid-column>
+					</kendo-grid>
+
+				</div>
+
+				<div *ngIf="!loggedin">
+					<table class="k-grid-table" role="presentation">
+						<colgroup kendogridcolgroup="" role="presentation">
+							<col style="width: 200px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+							<col style="width: 100px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<td><b>Name</b></td>
+								<td><b>Email</b></td>
+								<td><b>Website</b></td>
+								<td><b>Cost Per Session</b></td>
+								<td><b>Middle School</b></td>
+								<td><b>High School</b></td>
+								<td><b>Adult</b></td>
+								<td><b>Weeks</b></td>
+								<td><b>Stat</b></td>
+							</tr>
+						</thead>
+						<tbody kendogridtablebody="" role="presentation">
+							<tr kendogridlogicalrow="" data-kendo-grid-item-index="0" role="row" aria-rowindex="2">
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="0" colspan="1" aria-colindex="1" style="touch-action: auto;">
+									University of North Texas: Summer String Institute
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="1" colspan="1" aria-colindex="2" style="touch-action: auto;">
+									untssi@unt.edu
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="2" colspan="1" aria-colindex="3" style="touch-action: auto;">
+									https://music.unt.edu/community/workshops-camps-and-masterclasses
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="3" colspan="1" aria-colindex="4" style="touch-action: auto;">
+									470-940
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="4" colspan="1" aria-colindex="5" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="5" colspan="1" aria-colindex="6" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="6" colspan="1" aria-colindex="7" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="7" colspan="1" aria-colindex="8" style="touch-action: auto;">
+									2
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="8" colspan="1" aria-colindex="9" style="touch-action: auto;">
+									TX
+								</td>
+							</tr>
+							<tr kendogridlogicalrow="" class="k-alt" data-kendo-grid-item-index="1" role="row" aria-rowindex="3">
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="0" colspan="1" aria-colindex="1" style="touch-action: auto;">
+									Pirastro Strings Elite Soloists Program
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="1" colspan="1" aria-colindex="2" style="touch-action: auto;">
+									untbasscamp@unt.edu
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="2" colspan="1" aria-colindex="3" style="touch-action: auto;">
+									https://music.unt.edu/community/workshops-camps-and-masterclasses
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="3" colspan="1" aria-colindex="4" style="touch-action: auto;">
+									0
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="4" colspan="1" aria-colindex="5" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="5" colspan="1" aria-colindex="6" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="6" colspan="1" aria-colindex="7" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="7" colspan="1" aria-colindex="8" style="touch-action: auto;">
+									1
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="8" colspan="1" aria-colindex="9" style="touch-action: auto;">
+									TX
+								</td>
+							</tr>
+							<tr kendogridlogicalrow="" data-kendo-grid-item-index="2" role="row" aria-rowindex="4">
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="0" colspan="1" aria-colindex="1" style="touch-action: auto;">
+									University of Texas at Austin: Middle School
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="1" colspan="1" aria-colindex="2" style="touch-action: auto;">
+									LMC@austin.utexas.edu
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="2" colspan="1" aria-colindex="3" style="touch-action: auto;">
+									http://www.longhornmusiccamp.org/Middle_School_Band_Camp.htm
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="3" colspan="1" aria-colindex="4" style="touch-action: auto;">
+									695
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="4" colspan="1" aria-colindex="5" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="5" colspan="1" aria-colindex="6" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="6" colspan="1" aria-colindex="7" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="7" colspan="1" aria-colindex="8" style="touch-action: auto;">
+									2
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="8" colspan="1" aria-colindex="9" style="touch-action: auto;">
+									TX
+								</td>
+							</tr>
+							<tr kendogridlogicalrow="" class="k-alt" data-kendo-grid-item-index="3" role="row" aria-rowindex="5">
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="0" colspan="1" aria-colindex="1" style="touch-action: auto;">
+									University of Texas at Austin: Longhorn Music Camp- Middle School Saxophone Academy
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="1" colspan="1" aria-colindex="2" style="touch-action: auto;">
+									LMC@austin.utexas.edu
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="2" colspan="1" aria-colindex="3" style="touch-action: auto;">
+									http://www.longhornmusiccamp.org/Middle_School_Saxophone_Academy.htm
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="3" colspan="1" aria-colindex="4" style="touch-action: auto;">
+									595
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="4" colspan="1" aria-colindex="5" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="5" colspan="1" aria-colindex="6" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="6" colspan="1" aria-colindex="7" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="7" colspan="1" aria-colindex="8" style="touch-action: auto;">
+									1
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="8" colspan="1" aria-colindex="9" style="touch-action: auto;">
+									TX
+								</td>
+							</tr>
+							<tr kendogridlogicalrow="" data-kendo-grid-item-index="4" role="row" aria-rowindex="6">
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="0" colspan="1" aria-colindex="1" style="touch-action: auto;">
+									University of Texas at Austin: Longhorn Music Camp- High School Choir Camp
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="1" colspan="1" aria-colindex="2" style="touch-action: auto;">
+									LMC@austin.utexas.edu
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="2" colspan="1" aria-colindex="3" style="touch-action: auto;">
+									http://www.longhornmusiccamp.org/High_School_Choir_Camp.htm
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="3" colspan="1" aria-colindex="4" style="touch-action: auto;">
+									395
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="4" colspan="1" aria-colindex="5" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="5" colspan="1" aria-colindex="6" style="touch-action: auto;">
+									true
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="6" colspan="1" aria-colindex="7" style="touch-action: auto;">
+									false
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="7" colspan="1" aria-colindex="8" style="touch-action: auto;">
+									1
+								</td>
+								<td kendogridcell="" kendogridlogicalcell="" role="gridcell" tabindex="-1" data-kendo-grid-column-index="8" colspan="1" aria-colindex="9" style="touch-action: auto;">
+									TX
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</section>
+
+	</div>
+
+
+	<app-footer></app-footer>
+
+</div>
+
+
+

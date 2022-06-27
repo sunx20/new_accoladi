@@ -1,0 +1,86 @@
+<div class="px-4 py-5">
+	<div class="row mb-3 d-flex align-items-center">
+		<div class="col-md-6">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a routerLink="/student/profile" routerLinkActive="active">Profile</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Parent/Sponsor
+					</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="col-md-6 text-right">
+			<a href="javascript:;" (click)="invite()" class="btn">
+				<img class="mr-2" src="assets/img/sa-add-08.svg" />
+				Invite Parent/Sponsor
+			</a>
+		</div>
+	</div>
+
+	<div class="card-columns">
+		<div class="card" *ngFor="let parent of studentParents">
+			<section class="module">
+				<!--
+				<div class="text-right mx-4 my-3">
+					<a href="javascript:;" (click)="edit(parent._id)"
+						><img
+							class="mr-2"
+							style="width:20px;"
+							src="assets/img/sa-edit.svg"
+					/></a>
+					<img style="width:13px;" src="assets/img/close-x-22.png" />
+				</div>
+				-->
+				<div>
+					<div class="row parent-sponsor align-items-center mb-4">
+						<div class="col-lg-6 text-center align-items-center">
+							<img
+								style="width:51px;"
+								src="assets/img/parent-icon-103.png" />
+						</div>
+						<div class="col-lg-6 align-items-center">
+							<p>
+								<span class="red-txt">Parent</span><br />
+								{{ parent.first_name }} {{ parent.last_name }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="card" *ngFor="let sponsor of studentSponsors">
+			<section class="module">
+				<!--
+				<div class="text-right mx-4 my-3">
+					<a href="javascript:;" (click)="edit(sponsor._id)"
+						><img
+							class="mr-2"
+							style="width:20px;"
+							src="assets/img/sa-edit.svg"
+					/></a>
+					<img style="width:13px;" src="assets/img/close-x-22.png" />
+				</div>
+				-->
+				<div>
+					<div class="row parent-sponsor align-items-center mb-4">
+						<div class="col-lg-6 text-center align-items-center">
+							<img
+								style="width:51px;"
+								src="assets/img/sponsor-icon-145.png" />
+						</div>
+						<div class="col-lg-6 align-items-center">
+							<p>
+								<span class="red-txt">Sponsor</span><br />
+								{{ sponsor.first_name }} {{ sponsor.last_name }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

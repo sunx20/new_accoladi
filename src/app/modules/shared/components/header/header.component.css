@@ -1,0 +1,125 @@
+/*
+header nav.navbar.first {
+	height: 100px;
+	padding: 20px 0;
+}
+
+header .first .navbar-brand {
+	margin-left: 20px;
+}
+
+header .first .navbar-toggler {
+	margin-right: 20px;
+}
+
+header .navbar-nav.nav-register {
+	padding: 20px 0;
+}
+
+header .navbar-nav.nav-register li.nav-item {
+	align-items: center;
+	display: flex;
+	color: #828282;
+}
+
+header .navbar-nav.nav-register a {
+	text-transform: uppercase;
+	color: #828282;
+	padding: 0.5rem 1rem 0.4rem;
+}
+
+header .first .navbar-collapse.show {
+	width: 100%;
+	position: absolute;
+	background: white;
+	top: 100px;
+	border-radius: 0 0 4px 4px;
+	z-index: 1;
+	padding: 0 20px;
+}
+
+header nav.navbar.second {
+	height: 70px;
+	background-color: #31404b;
+	padding: 20px 0;
+}
+
+header .second .navbar-toggler {
+	margin-left: 20px;
+}
+
+header nav.second.navbar-dark .navbar-nav li .nav-link,
+header nav.second.navbar-dark .dropdown-item {
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 0.5rem 1.5rem;
+}
+
+header nav.second.navbar-dark .navbar-nav li .nav-link:hover,
+header nav.second.navbar-dark .dropdown-item:hover {
+	background-color: #31404b;
+}
+
+header nav.second.navbar-dark .navbar-nav > li > .nav-link {
+	padding: 21px 15px;
+}
+
+header nav.second.navbar-dark .navbar-nav > li:first > .nav-link {
+	padding-left: 0;
+}
+
+header nav.second .dropdown-menu {
+	border-radius: 0 0 0.25rem 0.25rem;
+	background-color: #31404b;
+}
+
+header .second .navbar-collapse.show {
+	width: 100%;
+	position: absolute;
+	background: #b62025;
+	top: 70px;
+	border-radius: 0 0 4px 4px;
+}
+
+header nav.second.navbar-dark.navbar-toggler {
+	margin-left: 15px;
+}
+
+header .dropdown:hover > .dropdown-menu {
+	display: block;
+}
+
+.profileImage {
+	background-size: contain;
+	display: inline-block;
+	font-size: 17px;
+	color: #fff;
+	width: 65px;
+	height: 65px;
+	padding: 11px 11px;
+	margin-top: -20px;
+	border-radius: 50%;
+	margin-left: -25px;
+}
+
+.col-md-6 {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+@media screen and (max-width: 600px) {
+	#userInfo {
+		display: none;
+	}
+
+	#dropdown {
+		left: 0 !important;
+	}
+
+	nav.sticky-top .usermenu {
+		width: 140px;
+	}
+}
+*/

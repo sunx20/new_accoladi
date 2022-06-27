@@ -1,0 +1,353 @@
+<div class="px-4 py-4 role-container">
+	
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb pb-4">
+			<li class="breadcrumb-item">
+				<a routerLink="/student/profile">
+					Profile
+				</a>
+			</li>
+
+			<li class="breadcrumb-item active" aria-current="page">
+				Overview
+			</li>
+		</ol>
+	</nav>
+
+	<div class="card-columns">
+		
+		<div class="card" id="accountstep">
+			
+			<section class="module">
+				
+				<header class="row justify-content-between">
+					<h2 class="col-sm-6">Account Information</h2>
+					<a class="col-sm-6 text-right" routerLink="/student/settings">View Details</a>
+				</header>
+
+				<div class="general-table closer-head border-rows">
+					
+					<div>
+						
+						<table class="table mb-0">
+							<thead>
+								<tr>
+									<th>
+										<!--for correct single line spacing-->
+									</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>
+										<img style="max-width:12px; margin-right:10px;"
+											src="assets/img/role-student-icon-24.png" />
+										<strong>Role:</strong> {{ role }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table class="table mb-0">
+							<thead>
+								<tr>
+									<th width="35%">First Name</th>
+									<th width="30%">Middle Name</th>
+									<th width="35%">Last Name</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>{{ account?.first_name }}</td>
+									<td>{{ account?.middle_name }}</td>
+									<td>{{ account?.last_name }}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table class="table mb-0">
+							<thead>
+								<tr>
+									<th width="75%">Date of Birth:</th>
+									<th width="25%"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{ dob }}</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div>
+						
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="30%">Email</th>
+									<th width="30%">Phone</th>
+									<th width="30%">International</th>
+									<th width="10%"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{ account?.email }}</td>
+									<td>{{ account?.phone.phone }}</td>
+									<td>{{ account?.phone.international }}</td>
+									<td></td>
+								</tr>
+							</tbody>
+							<thead>
+								<tr>
+									<th>Address</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										{{ account?.address.street1 }}
+										<br />{{ account?.address.city }}
+										{{ account?.address.state }}
+										{{ account?.address.postal_code }}
+										<br />{{ account?.address.country }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="talentstep">
+			
+			<section class="module border-rows">
+				
+				<header class="row justify-content-between">
+					<h2 class="col-sm-6">Talents</h2>
+					<a class="col-sm-6 text-right" routerLink="/student/profile/talents">View Details</a>
+				</header>
+
+				<div>
+					<p>
+						Select your instrument family, then your instrument.
+						There is no limit to how many talents you can add, so
+						add them all!
+					</p>
+				</div>
+
+				<div *ngFor="let talent of talents">
+					<p>{{ talent?.talent }}<br />({{ talent?.year_started }})</p>
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="messagestep">
+			
+			<section class="module border-rows">
+				
+				<header>
+					<h2>Recent Messages</h2>
+				</header>
+
+				<div *ngIf="loadingMessages">
+					<p>Loading messages...</p>
+				</div>
+
+				<ng-container *ngIf="account && !loadingMessages">
+					
+					<div *ngFor="let message of latestMessages">
+						<p>
+							<span class="ltgray-txt">{{
+								message.last_msg.date_sent
+									| date: "EEEE, MMMM d"
+							}}</span>
+							<br />{{ message?.last_msg.message }}
+						</p>
+					</div>
+
+					<footer>
+						<a routerLink="/student/profile/messages">View More</a>
+					</footer>
+
+				</ng-container>
+
+			</section>
+
+		</div>
+
+		<div class="card" id="parentsponsorstep">
+			
+			<section class="module border-rows">
+				
+				<header class="row justify-content-between">
+					<h2 class="col-sm-6">Parent/Sponsor</h2>
+					<a class="col-sm-6 text-right" routerLink="/student/profile/parent-sponsor">View Details</a>
+				</header>
+
+				<div>
+					<p>
+						You can invite a parent or sponsor to link to your
+						profile. They can helpguide you through the process and
+						lend you a hand if you need it. Parents can create an
+						account for their student.
+					</p>
+				</div>
+
+				<div class="general-table closer-head border-rows">
+					
+					<div>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="100%">Parent</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td *ngFor="let p of studentParents">
+										{{ p?.first_name }} {{ p?.last_name }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div>
+						
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="100%">Sponsor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td *ngFor="let s of studentSponsors">
+										{{ s?.first_name }} {{ s?.last_name }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- modals -->
+<div class="modal fade improve-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	
+	<div class="modal-dialog">
+		
+		<div class="modal-content">
+			
+			<div class="modal-body">
+				
+				<h3>Improve Your Profile</h3>
+				<br />
+				
+			</div>
+
+			<div class="modal-footer d-flex justify-content-between">
+				<button type="button" class="btn gray-btn" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<ng-template #gSContent let-modal>
+
+	<div class="modal-body">
+
+		<h3>Getting Started Checklist</h3>
+
+		<br />
+
+		<ol>
+			<li>
+				Add Account Information (name, birthday, graduation date,
+				contact information, and address)
+			</li>
+			<li>Invite parents to create an account</li>
+			<li>Tell us about your talents (primary and additional)</li>
+			<li>
+				Add General Performance information (Primary instrument, when,
+				and where the performance took place)<br />
+				- Add videos if possible
+			</li>
+			<li>
+				Add information about private lessons, master classes, school
+				classes related to music, and summer enrichment programs that
+				you’ve taken part in <br />
+				- Add videos if possible
+			</li>
+			<li>
+				Add school information (middle and high schools attended) in the
+				Education Data tab
+			</li>
+			<li>
+				Add Scholastic Information (e.g. GPA, SAT score, ACT score,
+				etc.)
+			</li>
+			<li>
+				Add College Preferences (e.g. preferred schools, programs,
+				ensembles, etc.)
+			</li>
+			<li>
+				Write a College Intro Statement to grab college recruiters’ attention
+			</li>
+			<li>
+				Add Musical Theatre experience (e.g. orchestra pit, ensemble,
+				chorus, etc) <br />
+				- Add videos if possible
+			</li>
+			<li>
+				Insert information about Honors and Awards (e.g. honors
+				ensembles, all-state band, etc.) <br />
+				- Add videos if possible
+			</li>
+			<li>
+				Add information under Festivals and Competitions (e.g.
+				instrument, where, when, how well you did) <br />
+				- Add videos if possible
+			</li>
+		</ol>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between">
+		
+		<button type="button" class="btn gray-btn" (click)="modal.close('Close click')">
+			Close
+		</button>
+
+	</div>
+
+</ng-template>

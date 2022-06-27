@@ -1,0 +1,19 @@
+.font-12 {
+	font-size: 12px;
+}
+
+.modal-footer {
+	padding: 0rem !important;
+}
+
+.btn-primary:disabled {
+	color: #fff;
+	background-color: #e2a90a !important;
+	border-color: #ffffff;
+}
+
+.add-button {
+	width: 100%;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}

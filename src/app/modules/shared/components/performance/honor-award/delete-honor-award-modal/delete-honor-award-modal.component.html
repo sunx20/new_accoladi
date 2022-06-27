@@ -1,0 +1,48 @@
+<div class="modal-header">
+	<h4 class="modal-title">Delete Honors & Awards History</h4>
+</div>
+<div class="modal-body">
+	<div class="container">
+		<p *ngIf="!requestSuccess">
+			Are you sure you want to delete this item? <br />
+		</p>
+
+		<div class="form-row">
+			<div class="col-md-12">
+				<div
+					*ngIf="requestSuccess"
+					class="alert alert-success"
+					role="alert"
+				>
+					{{ feedback }}
+				</div>
+
+				<div
+					*ngIf="requestFailed"
+					class="alert alert-danger"
+					role="alert"
+				>
+					{{ feedback }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+	<button type="button" class="btn gray-btn" (click)="close()">
+		Cancel
+	</button>
+	<button
+		[disabled]="requestSuccess"
+		class="btn btn-danger"
+		(click)="delete()"
+	>
+		<span
+			*ngIf="loading"
+			class="spinner-border spinner-border-sm"
+			role="status"
+			aria-hidden="true"
+		></span>
+		{{ !requestSuccess ? "Delete" : "Done" }}
+	</button>
+</div>

@@ -1,0 +1,247 @@
+<!-- high-ed-header Section Start  [routerLink]="['/public/recruiters']"-->
+<div id="high-ed-header" class="avoid-navbar">
+
+	<div class="container-fluid d-flex justify-content-end">
+
+		<div class="heh-content">
+			<h1>COLLEGIATE</h1>
+			<h1>PROFESSIONALS</h1>
+		</div>
+
+	</div>
+
+</div>
+<!-- high-ed-header Section End -->
+
+<!-- High-Ed Explore Section -->
+<div class="high-ed-explore py-2">
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div class="col-sm-4 text-center py-3">
+				<h3 class="right-border">DISCOVER</h3>
+			</div>
+
+			<div class="col-sm-4 text-center py-3">
+				<h3 class="right-border">EVALUATE</h3>
+			</div>
+
+			<div class="col-sm-4 text-center py-3">
+				<h3>CONTACT</h3>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+<!-- High-Ed Explore Section End -->
+
+<!-- Explore-Details Section Start -->
+<div id="explore-details">
+
+	<div class="container-fluid pt-5">
+
+		<div class="row">
+
+			<div class="col-md-4">
+
+				<div class="ed-img position-relative">
+
+					<img src="assets/images/higher-ed3.png" class="img-fluid">
+
+					<div class="ed-img-overlay1 position-absolute text-center py-2">
+						<h4 class="lh-1">Dr. Steven Moore</h4>
+						<span>Associate Dean, Undergraduate Studies</span>
+						<h6>Frost School of Music</h6>
+						<h6>University of Miami</h6>
+						<button class="btn ed-btn" (click)="openCommitmentRecruiter(content4)">Endorsement Video</button>
+					</div>
+
+				</div>
+
+				<div class="ed-get-conntd my-3 pt-4">
+
+					<div class="d-flex justify-content-center">
+
+						<div class="text-center">
+
+							<button [routerLink]="['/public/get-connected']"  class="btn ed-btn get-conntd">Get Connected</button>
+
+							<h5>Discover talented students</h5>
+							<h5>from all over</h5>
+							<h5>the country</h5>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-8">
+
+				<div class="container-fluid">
+
+					<div class="row">
+
+						<div class="col-sm-4">
+							<img src="assets/images/higher-ed5.png" class="img-fluid">
+						</div>
+
+						<div class="col-sm-8">
+
+							<div class="detail-texts">
+
+								<h3 class="text-center">Discover</h3>
+
+								<ul>
+									<li>Search our nationwide database of thousands of profiles to find performers who fit your needs.</li>
+									<li>View Student profiles featuring performance and academic information.</li>
+									<li>Stay up to date on prospective student activity and track favorites from 6th through 12th grades.</li>
+								</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="container-fluid">
+
+					<div class="row py-2">
+
+						<div class="col-sm-4">
+							<img src="assets/images/higher-ed6.png" class="img-fluid">
+						</div>
+
+						<div class="col-sm-8">
+
+							<div class="detail-texts">
+
+								<h3 class="text-center">Evaluate</h3>
+
+								<ul>
+									<li>Review performance videos, showcasing student talents.</li>
+									<li>Rate students based on your program criteria.</li>
+									<li>Share student profiles with your colleagues</li>
+								</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="container-fluid">
+
+					<div class="row">
+
+						<div class="col-sm-4">
+							<img src="assets/images/higher-ed7.png" class="img-fluid">
+						</div>
+
+						<div class="col-sm-8">
+
+							<div class="detail-texts">
+
+								<h3 class="text-center">Contact</h3>
+
+								<ul>
+									<li>Keep correspondence in one place.</li>
+									<li>Receive email notifications from interested students.</li>
+									<li>Message students and their parents in our secure portal.</li>
+								</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+<!-- Explore-Details Section End -->
+
+<div style="height: 50px; width: 100%; background-color: #e6e5e5;"></div>
+
+<!-- Fast Track Guides Section Start -->
+<div id="tm-free-footer" class="high-ed-footer">
+
+	<div class="tm-free mb-5">
+
+		<h3>
+			Always <br>
+			FREE to the <br>
+			higher education community
+		</h3>
+
+		<div class="tm-free-btns d-flex justify-content-between">
+			<button [routerLink]="['/public/get-connected']" class="btn text-dark">GET CONNECTED</button>
+			<button (click)="openCommitmentRecruiter(content3)" class="btn text-dark">COMMITMENT<br> <span>TO HIGHER EDUCATION</span></button>
+		</div>
+
+	</div>
+
+	<!-- Footer Section Start -->
+	<app-footer></app-footer>
+	<!-- footer section End! -->
+
+</div>
+<!-- Fast Track Guides Section End -->
+
+<ng-template #content3 let-modal>
+
+	<h3 class="model-heading">Our Commitment to Recruiters</h3>
+
+	<div class="model-body">
+		We will connect you to:
+		<ul>
+			<li>A searchable database of prospective students, including their educational information, performance history, honors, references, and solo performance videos</li>
+			<li>A secure portal to review teacher references</li>
+			<li>A secure messaging portal for direct contact with students, parents, and teachers</li>
+			<li>A national directory of non-institutional scholarships</li>
+			<li>An opportunity for your school and music program to be featured on our front page</li>
+		</ul>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+	</div>
+
+</ng-template>
+
+<ng-template #content4 let-modal>
+
+	<h3 class="model-heading">Dr. Steven Moore</h3>
+
+	<div class="model-body text-center">
+		<iframe
+			width="560"
+			height="315"
+			src="https://www.youtube.com/embed/ng18-GMGzDI?playlist=ng18-GMGzDI&rel=0&loop=0"
+			title="YouTube video player"
+			frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen></iframe>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark ml-3 mt-4" (click)="modal.close()">Close</button>
+	</div>
+
+</ng-template>

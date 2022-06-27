@@ -1,0 +1,40 @@
+<div class="gold-page">
+	
+	<h2 class="heading text-center">COLLEGIATE PREMIER PROGRAMS</h2>
+	
+	<div class="container-fluid">
+		
+		<div class="row justify-content-md-center">
+			
+			<div class="col-8">
+
+				Accoladi’s Collegiate Premier Programs are collegiate music
+				programs that are independently researched and updated
+				annually. Each Premier Program must meet four of the
+				following criteria:
+				<ul>
+					<li>High graduation rate</li>
+					<li>Large career/alumni networks</li>
+					<li>Collegiate ensembles with an acclaimed performance history</li>
+					<li>Alumni with renowned performance, recording, or teaching careers</li>
+					<li>Directors/Instructors who have been performers or conductors in a nationally recognized professional ensemble(s)</li>
+					<li>Directors/Instructors with renowned solo performance or recording careers</li>
+				</ul>
+
+				<div>
+
+					<button *ngIf="!loggedin"  [routerLink]="['/public/get-connected']" class="btn btn-sm join-pitch-btn" >Get Started</button>
+					<button *ngIf="loggedin"  [routerLink]="['/premier-program-search']" class="btn btn-sm join-pitch-btn" >Search Premier programs</button>
+
+				</div>
+				<!--<app-premier-program-search></app-premier-program-search>-->
+				
+			</div>
+
+		</div>
+
+	</div>
+
+	<app-footer></app-footer>
+	
+</div>

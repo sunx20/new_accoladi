@@ -1,0 +1,241 @@
+<div class="card " >
+
+	<div>
+
+		<div class="card-body" >
+
+			<h3>
+				Account Information
+			</h3>
+
+			<ul class="list-group" >
+				<li class="list-group-item" >First Name: {{ user?.first_name }}</li>
+				<li class="list-group-item" >Last Name: {{ user?.last_name }}</li>
+				<li class="list-group-item" >Username: {{ user?.username }}</li>
+				<li class="list-group-item" >Role: {{ user?.role }}</li>
+				<li class="list-group-item" >Email: {{ user?.email }}</li>
+				<li class="list-group-item" *ngIf="dob" >Date of Birth: {{ dob }}</li>
+			</ul>
+
+			<br />
+
+			<ul class="list-group" *ngIf="user?.address" >
+				<li class="list-group-item" >
+					Address: {{ user.address.street1 }}
+					{{ user.address.street2 }}
+					{{ user.address.city }}
+					{{ user.address.state }} {{ user.address.postal_code }}
+					{{ user.address.country }}
+				</li>
+			</ul>
+
+			<br />
+
+			<ul class="list-group" *ngIf="user?.phone" >
+				<li class="list-group-item" >Phone: {{ user.phone.phone }}</li>
+				<li class="list-group-item" *ngIf="user.phone.international" >International:
+					{{ user.phone.international }}</li>
+			</ul>
+
+			<br />
+
+			<ul class="list-group" *ngIf="user?.role=='Recruiter'" >
+				<li class="list-group-item" >School: {{ school }}</li>
+				<li class="list-group-item" >Title: {{ title }}</li>
+				<li class="list-group-item" >Discipline: {{ discipline }}</li>
+				<li class="list-group-item" >URL: {{ url }}</li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer text-right" >
+
+		<button type="button" (click)="updateAccount()" class="btn btn-link" >
+			UPDATE <i class="fa fa-edit" ></i>
+		</button>
+
+	</div>
+
+</div>
+
+<div class="card mt-3" >
+
+	<section class="module" >
+
+		<header>
+			<h2>Upload Profile Image</h2>
+		</header>
+
+		<div class="col-lg-12 text-center py-2" >
+			<input type="file"
+					style="display:none"
+					name="uploadprofileimg"
+					id=""
+					(change)="selectImage($event.target.files)"
+					#FileInput>
+			<button type="button" class="btn" (click)="FileInput.click()" >Select Profile Image</button>
+			<div *ngIf="message" class="alert alert-danger" >{{message}}</div>
+		</div>
+
+		<div class="col-lg-12 text-center py-2" >
+			<div>
+				<img [src]="imgURL" height="100" width="100" class="m-auto" *ngIf="imgURL" >
+			</div>
+			<button type="button" class="btn py-2" *ngIf="imgURL" (click)="uploadImage()" >Upload Image</button>
+			<div *ngIf="isImageSucess"  class="alert alert-info " > {{responseMsg}} </div>
+		</div>
+
+	</section>
+
+</div>
+
+<div class="card" >
+
+	<div class="card" *ngIf="user?.role == 'Parent'" >
+
+		<section class="module" >
+
+			<header>
+				<h3>Payment & Billing</h3>
+			</header>
+
+			<div class="general-table closer-head" *ngIf="defaultCard" >
+		
+				<table class="table mb-0" >
+			
+					<thead>
+						<tr>
+							<th width="60%" >Default Payment Method</th>
+							<th width="10%" >Auto-Pay</th>
+							<th width="30%" ></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								{{defaultCard.brand}} **** **** **** {{defaultCard.last4}}
+							</td>
+							<td>
+								On
+							</td>
+							<td>
+								<button class="btn btn-primary " (click)="editDefaultCard()" >Edit</button>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+			<div class="general-table closer-head" *ngIf="!defaultCard" >
+				<button class="btn btn-primary add-default-btn" (click)="editDefaultCard()" >Add default payment method</button>
+			</div>
+
+			<div>
+				
+				<button type="button" (click)="bulkUpgrade()" class="btn " >
+					<span *ngIf="!bulkProcessing" >
+						Purchase Premium Access for Multiple Students
+						<i class="fa fa-arrow-up" ></i>
+					</span>
+					<span *ngIf="bulkProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+					<span *ngIf="bulkProcessing" > Processing</span>
+				</button>
+
+			</div>
+
+		</section>
+
+	</div>
+
+</div>
+
+<div class="card" >
+
+	<div class="card" >
+
+		<section class="module" >
+
+			<header>
+				<h3>Billing History</h3>
+			</header>
+
+			<div class="general-table closer-head" >
+
+				<table class="table" *ngIf=" subscriptionHistory && subscriptionHistory.length != 0 " >
+					
+					<thead>
+						<tr>
+							<th scope="col" >Student name</th>
+							<th scope="col" >Type</th>
+							<th scope="col" >Started</th>
+							<th scope="col" >Expiration</th>
+							<th scope="col" >Status</th>
+							<th scope="col" ></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr class="payment-history" *ngFor="let s of subscriptionHistory" >
+							<td>{{ s.student_fullname }}</td>
+							<td>{{ s.type }}</td>
+							<td>{{ s.start * 1000 | amDateFormat: 'MMM DD, YYYY' }}</td>
+							<td>{{ s.end * 1000 | amDateFormat: 'MMM DD, YYYY' }}</td>
+							<td>
+								<span class="{{
+										s.status === 'active'
+											? 'text-success'
+											: s.status === 'canceled'
+											? 'text-warning'
+											: ''
+									}}" >{{ s.status }}</span>
+							</td>
+							<td class="text-right" >
+								<div *ngIf=" (s.status === 'active' || s.status === 'trialing') && !cancel_processing"
+									ngbDropdown class="d-inline-block w-100" >
+
+									<button class="btn btn-light text-left" id="dropdownBasic1" ngbDropdownToggle>
+										Cancelling and Renewal
+									</button>
+
+									<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="p-0"
+										style="border:none; border-radius: 0;" >
+
+										<button [disabled]=" s.status !== 'trialing' "
+											class="btn btn-link text-left w-100" ngbDropdownItem
+											(click)="cancelSubscription(s.id,s.student_id,'i')" >
+											Cancel immediately
+										</button>
+
+										<button *ngIf="!s.cancel_at_period_end" class="btn btn-link text-left"
+											ngbDropdownItem (click)="cancelSubscription(s.id,s.student_id,'s')" >
+											Do not renew at end of subscription
+										</button>
+
+										<button *ngIf="s.cancel_at_period_end" class="btn btn-link text-left"
+											ngbDropdownItem (click)="cancelSubscription(s.id,s.student_id,'a')" >
+											Activate recurring payments
+										</button>
+
+									</div>
+								</div>
+
+								<span *ngIf=" s.status === 'active' &&	cancel_processing "
+									class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+
+			</div>
+
+		</section>
+
+	</div>
+
+</div>

@@ -1,0 +1,378 @@
+<div class="modal-header" >
+
+	<h4 class="modal-title" >Add a Student Account</h4>
+
+</div>
+
+<form novalidate="novalidate"
+		autocomplete="off"
+		[formGroup]="form"
+		(ngSubmit)="submitForm()" >
+
+	<div class="modal-body" >
+
+		<div class="container" >
+
+			<p>
+				You are choosing to "add a student" under your own account, this
+				means you are taking the role of sponsor and or teacher or both
+				(Depending on your role). You can add as many students as you like.
+				<br />Accounts are managed by email address, so you
+				student MUST have a unique email address to use.
+			</p>
+
+			<br />
+
+			<div class="form-row" >
+
+				<div class="col-md-4 form-group required"
+					 [ngClass]="displayFieldCss('first_name')" >
+
+					<label for="first_name" class="control-label " >
+						First Name
+					</label>
+					<input id="first_name"
+							name="first_name"
+							formControlName="first_name"
+							placeholder="First Name"
+							type="text"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('first_name')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('first_name')"
+						errorMsg="Please provide first name" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-4 form-group" >
+
+					<label for="middle_name" class="control-label " >
+						Middle Name
+					</label>
+					<input id="middle_name"
+							name="middle_name"
+							formControlName="middle_name"
+							placeholder="Middle Name"
+							type="text"
+							class="form-control " />
+
+				</div>
+
+				<div class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('last_name')" >
+
+					<label for="last_name" class="control-label " >
+						Last Name
+					</label>
+					<input id="last_name"
+							name="last_name"
+							type="text"
+							formControlName="last_name"
+							placeholder="Last Name"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('last_name')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('last_name')"
+						errorMsg="Please provide last name" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('email')" >
+
+					<label for="email" class="control-label " >
+						Email
+					</label>
+					<input id="email"
+							name="email"
+							type="text"
+							formControlName="email"
+							placeholder="Email"
+							class="form-control "
+							[class.is-valid]="f.email.status === 'VALID'"
+							[class.state-error]="isFieldInvalid('email')" />
+
+					<app-field-error-display
+						*ngIf="f.email.errors && f.email.errors.required"
+						[displayError]="isFieldInvalid('email')"
+						errorMsg="Please provide email"	>
+					</app-field-error-display>
+
+					<app-field-error-display
+						*ngIf="f.email.errors && f.email.errors.email"
+						[displayError]="isFieldInvalid('email')"
+						errorMsg="Please provide a valid email" >
+					</app-field-error-display>
+
+					<app-field-error-display
+						*ngIf="f.email.errors && f.email.errors.emailTaken"
+						[displayError]="isFieldInvalid('email')"
+						errorMsg="This email is already taken" >
+					</app-field-error-display>
+					<!-- <small *ngIf="f.email.status === 'PENDING'" >
+						<br />
+						<i>Checking...</i>
+					</small> -->
+
+				</div>
+
+				<div class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('username')" >
+
+					<label for="username" class="control-label " >
+						Username
+					</label>
+					<input id="username"
+							name="username"
+							type="text"
+							formControlName="username"
+							placeholder="Username"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('username')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('username')"
+						errorMsg="Please provide username" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-3 form-group"
+					[ngClass]="displayFieldCss('graduation_year')">
+
+					<label class="control-label">
+						Graduation year
+					</label>
+					<input
+						name="graduation_year"
+						type="number"
+						min="2000"
+						max="2100"
+						formControlName="graduation_year"
+						placeholder="Graduation year"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('graduation_year')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('graduation_year')"
+						errorMsg="Graduation year in range (2000 - 2100)">
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-12" >
+
+					<small>
+						NOTE: each student will receive an email invitation and
+						must accept, in order to enter data. They will enter
+						their own password when they accept your invitation.
+					</small>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-4 form-group required"
+					[ngClass]="displayFieldCss('dob_year')" >
+
+					<label class="control-label" >
+						Year of birth
+					</label>
+					<input *ngIf="dob_min_year && dob_max_year"
+							name="dob_year"
+							type="number"
+							formControlName="dob_year"
+							placeholder="yyyy"
+							[min]="dob_min_year"
+							[max]="dob_max_year"
+							class="form-control "
+							[class.state-error]="isFieldInvalid('dob_year')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_year')"
+						errorMsg="Please provide valid year of birth({{ dob_min_year }}-{{ dob_max_year }})" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-4  form-group required"
+					[ngClass]="displayFieldCss('dob_day')" >
+
+					<label class="control-label" >
+						Day of birth
+					</label>
+					<input
+						type="number"
+						name="dob_day"
+						formControlName="dob_day"
+						placeholder="dd"
+						min="1"
+						max="31"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('dob_day')" />
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_day')"
+						errorMsg="Please provide valid day of birth (01-31)" >
+					</app-field-error-display>
+
+				</div>
+
+				<div class="col-md-4  form-group required"
+					[ngClass]="displayFieldCss('dob_month')" >
+
+					<label class="control-label" >
+						Month of birth
+					</label>
+					<select
+						id="dob_month"
+						name="dob_month"
+						formControlName="dob_month"
+						class="form-control "
+						[class.state-error]="isFieldInvalid('dob_month')" >
+						<option value="" disabled selected>Select</option>
+						<option *ngFor="let month of months; let i = index"
+							value="{{ i + 1 }}" >
+							{{ month }}
+						</option>
+					</select>
+
+					<app-field-error-display
+						[displayError]="isFieldInvalid('dob_month')"
+						errorMsg="Please provide valid month of birth (01-12)" >
+					</app-field-error-display>
+
+				</div>
+
+			</div>
+
+			<br />
+
+			<div class="form-row" >
+
+				<div class="col-md-4" >
+
+					<div class="checkbox" >
+
+						<label for="sponsor" class="control-label" >
+							Sponsor*&nbsp;&nbsp;
+							<input id="sponsor"
+									type="checkbox"
+									name="sponsor"
+									formControlName="sponsor" />
+						</label>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4  form-group" >
+
+					<div class="checkbox" >
+
+						<label for="use_address" class="control-label" >
+							Use Your Address&nbsp;&nbsp;
+							<input id="use_address"
+									type="checkbox"
+									name="use_address"
+									formControlName="use_address" />
+						</label>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4  form-group" >
+
+					<div class="checkbox" >
+
+						<label for="use_phone" class="control-label" >
+							Use Your Phone&nbsp;&nbsp;
+							<input id="use_phone"
+									type="checkbox"
+									name="use_phone"
+									formControlName="use_phone" />
+						</label>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-12" >
+
+					<small>
+						* "Sponsor" indicates a financial commitment to pay the students Accoladi.com's membership fees.
+					</small>
+
+				</div>
+
+			</div>
+
+			<div class="form-row" >
+
+				<div class="col-md-12" >
+
+					<br />
+
+					<div *ngIf="requestSuccess"
+						role="alert"
+						class="alert alert-success" >
+						{{ feedback }}
+					</div>
+
+					<div *ngIf="requestFailed"
+						role="alert"
+						class="alert alert-danger" >
+						{{ feedback }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button"
+			(click)="close()"
+			class="btn gray-btn" >
+			Cancel
+		</button>
+
+		<button type="button" 
+				(click)="submitAttempted=true; submitForm();" 
+				appDisableDoubleClick
+				[disabled]="requestSuccess"
+				class="btn"  >
+
+			<span *ngIf="loading"
+				role="status"
+				class="spinner-border spinner-border-sm"
+				aria-hidden="true" ></span>
+
+			{{ 
+				loading 
+				? "Saving..." 
+				: !requestSuccess 
+					? "Save" 
+					: "Done" 
+			}}
+
+		</button>
+
+	</div>
+
+</form>

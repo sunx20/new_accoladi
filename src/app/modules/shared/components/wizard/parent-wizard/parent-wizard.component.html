@@ -1,0 +1,19 @@
+<app-address-profile *ngIf="isAddressProfile" (openProfile)="profileOpen($event)">
+</app-address-profile>
+
+<app-dates-profile *ngIf="isDateProfile" (openProfile)="profileOpen($event)">
+</app-dates-profile>
+
+<app-parent-profile *ngIf="isParentProfile" (openProfile)="profileOpen($event)">
+</app-parent-profile>
+
+<app-talent-profile *ngIf="isTalentProfile" (openProfile)="profileOpen($event)">
+</app-talent-profile>
+
+<app-college-preference-profile *ngIf="isCollegePrefProfile" (openProfile)="profileOpen($event)"
+    [isWizardOpen]="isWizardOpen"></app-college-preference-profile>
+
+<app-school-profile *ngIf="isSchoolProfile" (openProfile)="profileOpen($event)"> </app-school-profile>
+
+<app-ensemble-interest-military-profile *ngIf="isEnsembleProfile" (openProfile)="profileOpen($event)"
+    [isWizardOpen]="isWizardOpen"></app-ensemble-interest-military-profile>

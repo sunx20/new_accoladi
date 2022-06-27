@@ -1,0 +1,107 @@
+<ng-container>
+
+	<div class="container-fluid role-container" >
+
+		<div class="row" >
+
+			<nav class="col-md-2 sidebar"
+				[class.reveal]="showSidebar" >
+
+				<app-side-bar></app-side-bar>
+
+			</nav>
+
+			<main role="main"
+				  class="employer col-md-9 ml-sm-auto col-lg-10" >
+
+				<br>&nbsp;
+
+				<section *ngIf="showWelcome"
+						class="module py-3"
+						style="background-image:url('assets/img/instruments-889.png');
+								background-size: 50%;
+								background-repeat: no-repeat;
+								background-position: right;" >
+
+					<div>
+
+						<div class="row" >
+
+							<div class="col-lg-5" >
+
+								<h1>Hello {{ parent.first_name }} {{ parent.last_name }}</h1>
+								<button type="button"
+										class="btn"
+										(click)="open(gSContent)" >
+									Getting Started Checklist
+								</button>
+
+							</div>
+
+							<div class="col-lg-6" >&nbsp;</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<br>
+
+				<router-outlet></router-outlet>
+
+			</main>
+
+		</div>
+
+	</div>
+
+</ng-container>
+
+
+<ng-template #gSContent let-modal >
+
+	<div class="modal-body" >
+
+		<h3>Getting Started Checklist</h3>
+
+		<br />
+
+		<ol>
+			<li>Add your students to your dashboard. Make sure you subscribe to premium access to get all the benefits of the service</li>
+			<li>Ensure your student has completed their account information, general performances, private lessons, master classes, and	summer camp sections of their profile
+				<ol>
+					<li>Examine your student’s account to determine possible places for improvement, and start taking steps to flesh out their profile</li>
+					<li>Add as many good quality videos as possible</li>
+				</ol>
+			</li>
+			<li>Make sure your student’s account is fully complete
+				<ol>
+					<li>Speak with your student and help them fill out sections they’re having trouble completing on their own</li>
+					<li>Add more videos! Record videos in your home showcasing your student’s talent(s)</li>
+				</ol>
+			</li>
+			<li>Check out other resources on Accoladi.com
+				<ol>
+					<li>A guide to the premiere music programs in the country</li>
+					<li>A summary of careers for people with a music background</li>
+					<li>A grade-by-grade guide to help your student collect experiences that build their musical portfolio</li>
+					<li>What parents need to know when their student wants to study music</li>
+				</ol>
+			</li>
+
+		</ol>
+
+	</div>
+
+	<div class="modal-footer d-flex justify-content-between" >
+
+		<button type="button"
+				class="btn gray-btn"
+				(click)="modal.close('Close click')" >
+			Close
+		</button>
+
+	</div>
+
+</ng-template>

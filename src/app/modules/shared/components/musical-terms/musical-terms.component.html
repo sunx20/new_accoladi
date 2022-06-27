@@ -1,0 +1,167 @@
+<div class="row mb-3 d-flex align-items-center">
+
+	<div class="col-md-6">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href>Resources</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">
+					Musical Terms
+				</li>
+			</ol>
+		</nav>
+	</div>
+
+	<div class="col-md-6 text-right">
+		<button type="submit" class="btn btn-default" *ngIf='isRecruiter' [routerLink]="['new']" appDisableDoubleClick>
+			<i title="Update musical term" class="fas fa-plus mr-1"></i>
+			New Term
+		</button>
+	</div>
+
+</div>
+
+<div class="card">
+
+	<div class="card-body">
+
+		<div class="row mb-5">
+			<div class="col-md-5 align-middle">
+				<h6>Musical Terms</h6>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search..">
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-12 alphabet">
+				<a role="button" class="mr-2" style="cursor: pointer;" [class.active]="filterLetter=='all'"
+					(click)="filterLetter = 'all'">all</a>|
+				<a role="button" class="mr-3" style="cursor: pointer;" *ngFor="let letter of alphabet"
+					[class.active]="filterLetter==letter" (click)="filterLetter = letter">{{letter}}</a>
+			</div>
+		</div>
+
+		<table class="table">
+
+			<tbody>
+
+				<tr *ngFor="let item of searchResults; let i = index">
+
+					<td>
+
+						<ng-container>
+
+							<div class="row">
+
+								<div class="col-6">
+									<a (click)="playVideo(content)" class="text-decoration-none"
+										style=" cursor:pointer;color: #00aeef;">{{item.term}}</a>
+								</div>
+
+								<div class="col-6" align="right">
+									<a class="text-right mr-3" nowrap="nowrap" *ngIf='isRecruiter'>
+										<i title="Update musical term" class="fas fa-edit"
+											style="color:#e2a90a;cursor:pointer;" (click)="edit(editContent, item)"></i>
+									</a>
+									<a class="text-right mr-3" nowrap="nowrap" *ngIf='isRecruiter'>
+										<i title="Remove musical term from database" class="fas fa-times"
+											style="color:#e2a90a;cursor:pointer;" (click)="delete(item,i)"></i>
+									</a>
+									<a>
+										<i title="Musical term video" class="fas fa-play mr-3"
+											style="color:#e2a90a;cursor:pointer;" (click)="playVideo(content)"></i>
+									</a>
+								</div>
+
+								<ng-template #content let-modal>
+									<div class="model-body">
+										<app-video-player [video]='item.video_url'></app-video-player>
+										<h6 class="text-center mt-3 mb-3" *ngIf="item.video_url == ''">Video not found
+											!!!</h6>
+									</div>
+									<div *ngIf="item.video_url != ''"
+										style="position: absolute; bottom: 10px;width: 100%;height: 70px;background-color: white;">
+										<button type="button" class="btn btn-outline-dark ml-3 mt-4"
+											(click)="modal.close()">Close</button>
+									</div>
+
+								</ng-template>
+
+								<ng-template #editContent let-modal>
+
+									<div class="modal-header">
+										<h4 class="modal-title" id="modal-basic-title">Edit Musical Term : {{item.term}}
+										</h4>
+										<button type="button" class="close" aria-label="Close"
+											(click)="modal.dismiss('Cross click')">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<div class="modal-body">
+										<form [formGroup]="form">
+											<div class="form-group">
+												<label for="term">Term</label>
+												<div class="input-group">
+													<input id="term" class="form-control" formControlName="term">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="term">Definition</label>
+												<div class="input-group">
+													<input id="definition" class="form-control"
+														formControlName="definition">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="term">Video url</label>
+												<div class="input-group">
+													<input id="video_url" class="form-control"
+														formControlName="video_url">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="exampleFormControlSelect2">Publish status</label>
+												<select class="form-control" formControlName="publish">
+													<option value="true">Published</option>
+													<option value="false">Unpublished</option>
+												</select>
+											</div>
+
+										</form>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											(click)="modal.close('dismiss')">Close</button>
+										<button type="button" class="btn btn-outline-dark"
+											(click)="modal.close('save')">Save</button>
+									</div>
+
+								</ng-template>
+
+							</div>
+
+							<p class="text-muted"> Definition : &nbsp; {{item.definition}}</p>
+
+						</ng-container>
+
+					</td>
+
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>

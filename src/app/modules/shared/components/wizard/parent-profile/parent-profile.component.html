@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h4 class="modal-title">Parent</h4>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+
+      <div class="form-row">
+        <div class="col-md-6 form-group required" [ngClass]="displayFieldCss('type')">
+          <label for="type" class="control-label ">Type</label>
+          <select id="type" class="form-control " [class.state-error]="isFieldInvalid('type')" name="type"
+            formControlName="type" placeholder="Type">
+            <option value="" disabled selected>Type - Select One...</option>
+            <option *ngFor="let t of messageTypes" value="{{ t.type }}">{{ t.display }}</option>
+          </select>
+          <app-field-error-display [displayError]="isFieldInvalid('type')" errorMsg="Please provide type">
+          </app-field-error-display>
+        </div>
+
+        <div class="col-md-6 form-group required" [ngClass]="displayFieldCss('email')">
+          <label for="email" class="control-label ">Email</label>
+          <input id="email" placeholder="Email" name="email" placeholder="Email" type="email" class="form-control"
+            formControlName="email" [class.state-error]="isFieldInvalid('email')" />
+          <app-field-error-display [displayError]="isFieldInvalid('email')"
+            *ngIf="f.email.errors && f.email.errors.required" errorMsg="Please provide an email">
+          </app-field-error-display>
+          <app-field-error-display [displayError]="isFieldInvalid('email')"
+            *ngIf="f.email.errors && f.email.errors.email" errorMsg="Please provide a valid email">
+          </app-field-error-display>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <textarea style="text-align: left; min-height: 230px; resize: none;" name="pretyped" class="form-control"
+            rows="5" disabled="true">{{ pretypedMessage }}</textarea>
+          <br />
+          <label for="additionalMsg" class="control-label ">Additional Message</label>
+          <textarea formControlName="additionalMsg" name="additionalMsg" placeholder="Additional Message"
+            class="form-control" rows="5" id="additionalMsg"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+          <div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+            {{ feedback }}
+          </div>
+          <div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+            {{ feedback }}
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-between">
+        <div class="col-md-12">
+          <button type="button" style="float: left" class="btn gray-btn mr-1" (click)="close()">
+            Cancel
+          </button>
+          <button type="button" style="float: left" class="btn gray-btn" (click)="BackToPreviousProfile()">
+            Back
+          </button>
+          <button type="button" class="btn mr-1" style="float: right" (click)=" submitAndNext()">
+            Next
+          </button>
+          <button type="button" class="btn mr-1" style="float: right" (click)="submitForm()">Invite
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

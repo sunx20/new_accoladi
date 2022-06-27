@@ -1,0 +1,108 @@
+<div class="modal-header">
+  <h4 class="modal-title">Score this Student - {{student_name}}</h4>
+</div>
+
+<form>
+
+  <div class="modal-body">
+
+    <div class="container">
+      <form [formGroup]="profileForm">
+        <div class="form-row">
+
+          <!-- 
+					TODO:
+					Form depends on the AREA for judging criteria
+				 -->
+
+          <div class="row col-12 mt-1">
+            <div class="col-5">Category</div>
+            <div class="col-2">{{compositionI}}</div>
+            <div class="col-2">{{compositionII}}</div>
+            <div class="col-3">General Comments</div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Correctness</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Correctness" name="CompositionI_Correctness" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)" /></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Correctness" name="CompositionII_Correctness" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Correctness" name="GeneralComments_Correctness" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Rhythm</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Rhythm" name="CompositionI_Rhythm" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Rhythm" name="CompositionII_Rhythm" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Rhythm" name="GeneralComments_Rhythm" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Tempo</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Tempo" name="CompositionI_Tempo" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Tempo" name="CompositionII_Tempo" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Tempo" name="GeneralComments_Tempo"  /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Dynamics</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Dynamics" name="CompositionI_Dynamics" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Dynamics" name="CompositionII_Dynamics" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Dynamics" name="GeneralComments_Dynamics" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Articulation</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Articulation" name="CompositionI_Articulation" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Articulation" name="CompositionII_Articulation" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Articulation" name="GeneralComments_Articulation" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Phrasing</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Phrasing" name="CompositionI_Phrasing" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Phrasing" name="CompositionII_Phrasing" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Phrasing" name="GeneralComments_Phrasing" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Balance</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Balance" name="CompositionI_Balance" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Balance" name="CompositionII_Balance" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Balance" name="GeneralComments_Balance" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Interpretation</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Interpretation" name="CompositionI_Interpretation" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Interpretation" name="CompositionII_Interpretation" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Interpretation" name="GeneralComments_Interpretation" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Presentation</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Presentation" name="CompositionI_Presentation" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Presentation" name="CompositionII_Presentation" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Presentation" name="GeneralComments_Presentation"  /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Memorization or Overall Impression</div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionI_Memorization" name="CompositionI_Memorization" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" formControlName="CompositionII_Memorization" name="CompositionII_Memorization" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" formControlName="GeneralComments_Memorization" name="GeneralComments_Memorization" /></div>
+          </div>
+          <div class="row col-12 mt-1">
+            <div class="col-5">Total</div>
+            <div class="col-2"><input type="number" class="form-cell" id="val1"formControlName="Total_CompositionI" name="Total_CompositionI" [min]="0" [max]="10" (input)="onCompositionOneChange($event.target.value)"/></div>
+            <div class="col-2"><input type="number" class="form-cell" id="val2"formControlName="Total_CompositionII" name="Total_CompositionII" [min]="0" [max]="10" (input)="onCompositionTwoChange($event.target.value)"/></div>
+            <div class="col-3"><input type="text" class="form-control form-cell" id="val3"formControlName="Total_GeneralComments" name="Total_GeneralComments" /></div>
+          </div>
+
+
+        </div>
+        <div>Judges Score: {{judgesScore}}</div>
+      </form>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn gray-btn" (click)="close()">
+          Cancel
+        </button>
+        <button type="submit"  (click)="sumbit()" class="btn-primary btn">
+          Submit
+         </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

@@ -1,0 +1,181 @@
+<section>
+
+	<br />
+
+	<div class="px-4" >
+
+		<div class="row" >
+
+			<div class="col-md-8" >
+
+				<h2 *ngIf="student" >
+					{{ student.first_name }} {{ student.last_name }} Profile
+				</h2>
+
+			</div>
+
+			<div class="col-md-4 text-right" >
+
+				<button type="button"
+					class="btn btn-sm "
+					(click)="goBack()" >
+					Go Back to My Dashboard
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+<section>
+
+	<br />
+
+	<div class="row" >
+
+		<div class="col-md-12" >
+
+			<app-talent
+				*ngIf="student"
+				[student]="student" >
+			</app-talent>
+
+		</div>
+
+	</div>
+
+</section>
+
+<section>
+
+	<br />
+
+	<div class="px-4" >
+
+		<div class="row" >
+
+			<div class="col-md-12" >
+				<h3>Performance / Studies Data</h3>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="row" >
+
+		<div class="col-md-6" >
+
+			<app-honor-award
+				*ngIf="student"
+				[student]="student" >
+			</app-honor-award>
+
+			<app-summer-enrichment
+				*ngIf="student"
+				[student]="student" >
+			</app-summer-enrichment>
+
+			<app-musical-theater
+				*ngIf="student"
+				[student]="student" >
+			</app-musical-theater>
+
+			<app-master-class
+				*ngIf="student"
+				[student]="student" >
+			</app-master-class>
+			
+			<app-dance
+				*ngIf="student"
+				[student]="student" >
+			</app-dance>
+		</div>
+
+		<div class="col-md-6" >
+			<app-festival-competition
+				*ngIf="student"
+				[student]="student" >
+			</app-festival-competition>
+
+			<app-general-performance
+				*ngIf="student"
+				[student]="student" >
+			</app-general-performance>
+
+			<app-private-study
+				*ngIf="student"
+				[student]="student" >
+			</app-private-study>
+
+			<app-musical-class
+				*ngIf="student"
+				[student]="student" >
+			</app-musical-class>
+
+		</div>
+
+	</div>
+
+</section>
+
+<section>
+
+	<br />
+
+	<div class="px-4" >
+
+		<div class="row" >
+
+			<div class="col-md-12" >
+				<h3>Education Data</h3>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="row" >
+
+		<div class="col-md-6" >
+
+			<app-education-school
+				*ngIf="student"
+				[student]="student" >
+			</app-education-school>
+
+			<app-scholastic-information
+				*ngIf="student"
+				[student]="student" >
+			</app-scholastic-information>
+
+		</div>
+
+		<div class="col-md-6" >
+
+			<app-college-preference
+				*ngIf="student"
+				[student]="student" >
+			</app-college-preference>
+
+			<app-personal-statement
+				*ngIf="student"
+				[student]="student" >
+			</app-personal-statement>
+
+			<!--
+			<app-letter
+				*ngIf="student"
+				[student]="student" >
+			</app-letter>
+			-->
+
+		</div>
+
+	</div>
+
+</section>

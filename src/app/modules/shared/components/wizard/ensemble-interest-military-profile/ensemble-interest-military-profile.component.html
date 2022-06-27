@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h4 class="modal-title">Ensemble interest/Military</h4>
+</div>
+<form novalidate="novalidate" autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <label for="ensembles" class="control-label ">Ensembles</label>
+          <ng-select [closeOnSelect]="false" *ngIf="ensemblesList.length" [multiple]="true" placeholder=""
+            clearAllText="Clear" formControlName="ensembles">
+            <ng-option *ngFor="let e of ensemblesList" [value]="e">{{ e }}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12 form-group">
+          <label for="military" class="control-label ">Military</label>
+          <ng-select [closeOnSelect]="false" *ngIf="militaryList.length" [multiple]="true" placeholder=""
+            clearAllText="Clear" formControlName="military">
+            <ng-option *ngFor="let ml of militaryList" [value]="ml">{{ ml }}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div *ngIf="requestSuccess" class="alert alert-success" role="alert">
+            {{ feedback }}
+          </div>
+          <div *ngIf="requestFailed" class="alert alert-danger" role="alert">
+            {{ feedback }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-between">
+    <div class="col-md-12">
+      <button type="button" class="btn gray-btn mr-1" (click)="close()">Cancel
+      </button>
+      <button type="button" class="btn gray-btn" (click)="BackToPreviousProfile()">Back
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)="close()">Finish
+      </button>
+      <button type="button" class="btn mr-1" style="float: right" (click)="submitForm()">Save
+      </button>
+    </div>
+  </div>
+
+</form>
