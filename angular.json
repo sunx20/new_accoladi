@@ -1,0 +1,192 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"accoladi": {
+			"root": "",
+			"sourceRoot": "src",
+			"projectType": "application",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "../dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"polyfills": "src/polyfills.ts",
+						"assets": [
+							"src/assets",
+							"src/articles",
+							"src/auditions",
+							"src/templates",
+							"src/favicon.ico"
+						],
+						"styles": [
+							"node_modules/bootstrap/dist/css/bootstrap.min.css",
+							"node_modules/@ng-select/ng-select/themes/default.theme.css",
+							"src/assets/css/introjs.css",
+							"src/styles.css",
+							"node_modules/ngx-toastr/toastr.css",
+							"node_modules/@progress/kendo-theme-default/dist/all.css"
+						],
+						"scripts": [
+							"node_modules/intro.js/minified/intro.min.js"
+						]
+					},
+					"configurations": {
+						"dev": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
+							]
+						},
+						"demo": {
+							"optimization": true,
+							"buildOptimizer": true,
+							"aot": true,
+							"extractCss": true,
+							"extractLicenses": true,
+							"sourceMap": true,
+							"namedChunks": true,
+							"vendorChunk": true,
+							"outputHashing": "all",
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.demo.ts"
+								}
+							]
+						},
+						"qa": {
+							"optimization": true,
+							"buildOptimizer": true,
+							"aot": true,
+							"extractCss": true,
+							"extractLicenses": true,
+							"sourceMap": true,
+							"namedChunks": true,
+							"vendorChunk": true,
+							"outputHashing": "all",
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.qa.ts"
+								}
+							]
+						},
+						"production": {
+							"optimization": true,
+							"buildOptimizer": true,
+							"aot": true,
+							"extractCss": true,
+							"extractLicenses": true,
+							"sourceMap": true,
+							"namedChunks": true,
+							"vendorChunk": true,
+							"outputHashing": "all",
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "accoladi:build"
+					},
+					"configurations": {
+						"dev": {
+							"browserTarget": "accoladi:build:dev"
+						},
+						"demo": {
+							"browserTarget": "accoladi:build:demo"
+						},
+						"qa": {
+							"browserTarget": "accoladi:build:qa"
+						},
+						"production": {
+							"browserTarget": "accoladi:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "Saccoladi:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/test.ts",
+						"karmaConfig": "./karma.conf.js",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "src/tsconfig.spec.json",
+						"scripts": [],
+						"styles": ["src/styles.css"],
+						"assets": [
+							"src/assets",
+							"src/public",
+							"src/articles",
+							"src/auditions",
+							"src/templates",
+							"src/favicon.ico"
+						]
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"src/tsconfig.app.json",
+							"src/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
+		},
+		"accoladi-e2e": {
+			"root": "e2e",
+			"sourceRoot": "e2e",
+			"projectType": "application",
+			"architect": {
+				"e2e": {
+					"builder": "@angular-devkit/build-angular:protractor",
+					"options": {
+						"protractorConfig": "./protractor.conf.js",
+						"devServerTarget": "Saccoladi:serve"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": ["e2e/tsconfig.e2e.json"],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "accoladi",
+	"schematics": {
+		"@schematics/angular:component": {
+			"prefix": "app",
+			"styleext": "css"
+		},
+		"@schematics/angular:directive": {
+			"prefix": "app"
+		}
+	},
+	"cli": {
+		
+	}
+}
